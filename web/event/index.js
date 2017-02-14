@@ -27,12 +27,7 @@ function setUpComponents() {
         isHost = event.isAccessorHost();
         isAttendee = event.isUserInEvent();
         canJoin = (event.canUserJoin()&&!event.isUserInEvent());
-        
-
-        
-
-        //Show and hide all the divs in the html under here
-        
+        //Show and hide all the divs in the html under here 
 }
 
 function getEvent() {
@@ -65,8 +60,6 @@ function inviteFriends() {
 function chat(){
     
 }
-//What is this??
-//To make the call wait. Might need this later
 $.wait = function(ms) {
     var defer = $.Deferred();
     setTimeout(function() { defer.resolve(); }, ms);

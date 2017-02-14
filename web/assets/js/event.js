@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-//Investigate if all the urls are correct
 Event = {
     host: null,
     category: null,
