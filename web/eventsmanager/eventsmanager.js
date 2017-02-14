@@ -12,30 +12,13 @@ var eventCategories;
 
 //Global variables go under here
 var id;
-function setUpComponents() {
-    // Link some buttons to certain functions
-    $('#delete').on('click', deleteEvent);
-    $('#edit').on('click', editEvent);
-    $('#invite').on('click', inviteFriends);
-    //Call function to display the event based on the relation of the
-    //accessor to that event. Host, Attendee, neither
-    id = parseInt(sessionStorage.getItem('id'));
-    getEvents(id);
-    //Show and hide all the divs in the html under here
-        
-}
+
 
 function setUpComponents() {
     $('button#createEvent').on('click', createEvent);
+        id = parseInt(sessionStorage.getItem('id'));
+    getEvents(id);
 }
-
-function getEvents() {
-    userID = parseInt(SessionStorage.getItem('id'));
-    user = new User();
-    user.create(userID);
-    eventsHosted = user.getEventsHosted();
-    eventsAttending = user.getEventsAttending();
-    visibleEvents = user.getVisibleEvents();
 function getEvents(){
 userID = parseInt(SessionStorage.getItem('id'));
 user = new User();
