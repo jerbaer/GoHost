@@ -71,4 +71,7 @@ function refresh() {
 }
 
 $(window).load(setUpComponents);
+function rerere(){
+    
+}
 
