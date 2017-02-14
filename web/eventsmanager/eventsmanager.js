@@ -68,7 +68,6 @@ function createEvent() {
     maxAttendees = $('#maxAttendees').val;
     description = $('#description').val;
     var event = new Event(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc);
-
 }
 
 //What is this??
@@ -79,12 +78,11 @@ $.wait = function (ms) {
         defer.resolve();
     }, ms);
     return defer;
-};
+}
 
 function refresh() {
     window.location.href = window.location.href;
     window.location.reload(true);
-}
-;
+};
 
 $(window).load(setUpComponents);
