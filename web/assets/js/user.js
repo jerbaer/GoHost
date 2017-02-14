@@ -70,6 +70,9 @@ User = {
     getEventsHosting: function(){
         User.createHostedEventsList();
         return eventsHosting;
+    },
+    getName: function(){
+        return name;
     }
     
 };

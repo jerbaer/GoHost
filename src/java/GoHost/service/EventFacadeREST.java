@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author Jerry
  */
 @Stateless
-@Path("gohost.event")
+@Path("event")
 public class EventFacadeREST extends AbstractFacade<Event> {
 
     @PersistenceContext(unitName = "GoHostPU")
@@ -63,10 +63,11 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     }
 
     @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Event> findAll() {
-        return super.findAll();
+    @Path("{visibility}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List getOpen(@PathParam("visiblity") Integer visibility){
+                List<Event> allEvents = em.createNamedQuery("Event.findByVisibility", Event.class).setParameter("visibility", visibility).getResultList();
+                return allEvents;
     }
 
     @GET
