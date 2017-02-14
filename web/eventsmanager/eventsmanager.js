@@ -16,7 +16,7 @@ var id;
 
 function setUpComponents() {
     $('button#createEvent').on('click', createEvent);
-        id = parseInt(sessionStorage.getItem('id'));
+    id = parseInt(sessionStorage.getItem('id'));
     getEvents(id);
 }
 
@@ -26,17 +26,9 @@ function getEvents() {
     user.create(userID);
     eventsHosted = user.getEventsHosted();
     eventsAttending = user.getEventsAttending();
-    visibleEvents = user.getVisibleEvents();
-    }
-function getEvents(){
-userID = parseInt(SessionStorage.getItem('id'));
-user = new User();
-user.create(userID);
-eventsHosted = user.getEventsHosted();
-eventsAttending = user.getEventsAttending();
-
 }
-function getStringsFromEvents(EventsList){
+
+function getStringsFromEvents(EventsList) {
     eventTitles = new Array(EventsList.getSize);
     eventHosts = new Array(EventsList.getSize);
     eventStartTimes = new Array(EventsList.getSize);
@@ -52,15 +44,19 @@ function getStringsFromEvents(EventsList){
         eventIDs[i] = EventsList.getEventsList()[i].getID();
     }
 }
+
 function getHostStrings() {
     getStringsFromEvents(eventsHosted);
 }
+
 function getAttendingStrings() {
     getStringsFromEvents(eventsAttending);
 }
+
 function getVisibleStrings() {
     getStringsFromEvents(visibleEvents);
 }
+
 function createEvent() {
     eventTitle = $('#eventTitle').val;
     eventCat = $('#eventCat').val;
@@ -77,14 +73,18 @@ function createEvent() {
 
 //What is this??
 //To make the call wait. Might need this later
-$.wait = function(ms) {
+$.wait = function (ms) {
     var defer = $.Deferred();
-    setTimeout(function() { defer.resolve(); }, ms);
+    setTimeout(function () {
+        defer.resolve();
+    }, ms);
     return defer;
 };
 
 function refresh() {
-    window.location.href = window.location.href; window.location.reload(true); 
-};
+    window.location.href = window.location.href;
+    window.location.reload(true);
+}
+;
 
 $(window).load(setUpComponents);
