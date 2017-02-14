@@ -26,7 +26,7 @@ Event = {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibility
         var url = Event.coreUrl + "event?idevent="+idevent;
-        accessor = new User;
+        accessor = User
         accessor.create(iduser)
         $.getJSON(url).done(Event.createFollowUp);
     },
@@ -97,7 +97,7 @@ Event = {
         return false;
     },
     closeEvent: function () {
-        access = new accessibility(3)
+        access = 3
         this.accessibility = access;
     },
     

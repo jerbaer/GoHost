@@ -15,7 +15,7 @@ eventsList = {
         } else if (viewType == 1){
             getEventsAttending();
         } else if (viewType == 2){
-            getEventsVisible();
+            eventsList.getEventsVisible();
         }
         this.accessor = accessor;
         this.viewType = viewType
@@ -60,7 +60,7 @@ eventsList = {
         return events;
     },
     getSize: function(){
-        return events.size();
+        return events.length()
     }
 
 }

@@ -63,12 +63,11 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     }
 
     @GET
-    @Path("{visibility}")
     @Produces({MediaType.APPLICATION_JSON})
-    public List getOpen(@PathParam("visiblity") Integer visibility){
+    public List getOpen(@PathParam("visiblity") int visibility){
                 List<Event> allEvents = em.createNamedQuery("Event.findByVisibility", Event.class).setParameter("visibility", visibility).getResultList();
-                return allEvents;
-    }
+               return allEvents;
+   }
 
     @GET
     @Path("{from}/{to}")

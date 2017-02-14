@@ -6,9 +6,9 @@
 
 function  Category (idcategory1){
     this.idcategory = idcategory1;
-    this.name = this.getName();
+    this.name = ""
     coreUrl = "http://" + window.location.host + "/GoHost/api/";
-    function getName(){
+    function retrieveName(){
         //get the name of the category from the database
         var url = coreUrl + "category?idcategory="+idcategory;
         $.getJSON(url).done(nameFollowUp);
@@ -16,9 +16,13 @@ function  Category (idcategory1){
     //Don't know if this chain of functions will work. Need to learn to do
     //things in the same function for this
     function nameFollowUp(data){
-        return data.name;
+        name = data.getName();
     }
-    
+    function getName(){
+        retrieveName();
+        return name;
+    }
+
     function getID(){
         return idcategory;
     }
