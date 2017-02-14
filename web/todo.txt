@@ -1,0 +1,11 @@
+wrong email/password combo check - high
+setup facebook login - low
+index.js reference at the bottom of each page
+calender view feature
+show past events
+event "theme" pictures
+use profile pic of host if no pic chosen
+add sr-only to font awesome icons. (refer to fa accessibility page)
+fa-comment/fa-comments for chat bubble icons
+change all bootstrap columns to sm instead of lg
+add footer to login page
