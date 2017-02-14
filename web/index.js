@@ -4,16 +4,16 @@
  * and open the template in the editor.
  */
 
-sys_init = {
-    // changed .host to .hostname
-    coreUrl: "http://" + window.location.hostname + "/GoHost/api/",
 
-    doLogin: function () {
+    // changed .host to .hostname
+    coreUrl: "http://" + window.location.hostname + "/GoHost/api/";
+
+    function doLogin() {
         var url = sys_init.coreUrl + "user?email=" + $('#loginEmail').val() + "&password=" + $('#loginPass').val();
         $.getJSON(url).done(sys_init.moveToHome);
-    },
+    }
 
-    createUser: function () {
+    function createUser() {
         if ($('#regPass').val() !== $('#regPassConf').val()) {
             $('#regPassWarning').show();
         } else {
@@ -30,8 +30,8 @@ sys_init = {
                 success: sys_init.moveToHome
             });
         }
-    },
-    moveToHome: function (data) {
+    }
+     function moveToHome(data) {
         if (data.iduser !== 0) {
             // Storing the id number of the user
             sessionStorage.setItem('id', data.iduser);
@@ -41,9 +41,9 @@ sys_init = {
         } else {
             $('#regWarning').show();
         }
-    },
+    }
 
-    setUpButtons: function () {
+    function setUpButtons () {
         // Hide the warning divisions upon loading
         $('#loginWarning').hide();
         // I've removed these two warnings for now
@@ -53,10 +53,9 @@ sys_init = {
         // Button for submitting login info
         //$('button#login').on('click', sys_init.doLogin);
         // This is to simulate the login
-        $('button#login').on('click', sys_init.doLogin);
+        $('button#login').on('click', doLogin);
         // Button for creating an account
-        $('button#register').on('click', sys_init.createUser);
+        $('button#register').on('click', createUser);
     }
-};
 
-$(document).ready(sys_init.setUpButtons);
+$(document).ready(setUpButtons);
