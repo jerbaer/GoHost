@@ -36,6 +36,7 @@ function getEvents() {
     eventsHosted = user.getEventsHosted();
     eventsAttending = user.getEventsAttending();
     visibleEvents = user.getVisibleEvents();
+    }
 function getEvents(){
 userID = parseInt(SessionStorage.getItem('id'));
 user = new User();
