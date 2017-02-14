@@ -33,10 +33,6 @@ function setUpComponents() {
 function getEvent() {
     event =  new Event();
     event.createFromDB(eventid, id);
-    //This is where the event object will be created based on the id of the 
-    //accessor. A couple of functions will be called afterwards on that object
-    //to determne the relationship of that accessor to the event
-    //After that, this will populate the appropriate parts of the html
 }
 
 function deleteEvent() {
