@@ -13,6 +13,7 @@ var accessor = null;
 var isHost = false;
 var isAttendee = false;
 var canJoin = false;
+var canSee = false;
 function setUpComponents() {
 	// Link some buttons to certain functions
         $('#delete').on('click', deleteEvent);
@@ -26,7 +27,20 @@ function setUpComponents() {
         isHost = event.isAccessorHost();
         isAttendee = event.isUserInEvent();
         canJoin = (event.canUserJoin()&&!event.isUserInEvent());
-        
+        canSee = event.canUserSee();
+        //eventDetails, joinEvent, hostOnly
+        if(isHost){
+            $('#joinEvent').hide();
+        } else if (isAttendee){
+            $('#joinEvent').hide();
+            $('#hostOnly').hide();
+        } else if (canJoin){
+            $('#hostOnly').hide();
+        } else if (!canSee){
+            $('#eventDetails').hide();
+            $('#joinEvent').hide();
+            $('#hostOnly').hide();
+        }
         //Show and hide all the divs in the html under here 
 }
 
@@ -44,6 +58,19 @@ function editEvent() {
     //This will get all the input from the edit form and use it call all the
     //edit functions on the event object. After that, it will call the function
     //that flushes all the changes to the database
+    event.editDescription($('#description').val());
+    event.editTitle($('#eventTitle').val());
+    //Need to make sure these two have proper values
+    event.editStartTime($('#eventStart').val());
+    event.editEndTime($('#eventEnd').val());
+    //These two need to be creating objects on the other end
+    event.editCategory($('#eventCat').val());
+    event.editLocation($('#eventLoc').val());
+    //These two need to be converted to 0,1,2
+    event.editAccessiblity($('#eventAcc').val());
+    event.editVisibility($('#eventVis').val());
+    //Flushes everything to the database
+    event.refreshEdits();
 }
 
 

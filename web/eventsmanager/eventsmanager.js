@@ -7,7 +7,6 @@ var eventHosts;
 var eventStartTimes;
 var eventEndTimes;
 var eventCategories;
-//Classes I will be interacting with here: eventList, user, (?event?)
 
 
 //Global variables go under here
@@ -70,8 +69,6 @@ function createEvent() {
     var event = new Event(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc);
 }
 
-//What is this??
-//To make the call wait. Might need this later
 $.wait = function (ms) {
     var defer = $.Deferred();
     setTimeout(function () {

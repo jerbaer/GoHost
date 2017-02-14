@@ -175,6 +175,28 @@ Event = {
         this.endTime = endTime;
     },
     
+    editTitle: function(title){
+        this.title = title;
+    },
+    
+    editCategory: function(category){
+        this.category = category;
+    },
+    editLocation: function(location){
+        this.location = location;
+    },
+    editVisibility: function(visibility){
+        this.visibility = visibility;
+    },
+    
+    editAccessiblity: function(accessibility){
+        this.accessibility = accessibility;
+    },
+    
+    editMax: function(max){
+        this.eventMax = max;
+    },
+    
     getEventStart : function(){
         return eventStart;
     },
