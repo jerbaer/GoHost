@@ -22,17 +22,17 @@ function setUpComponents() {
         eventid  = parseInt(sessionStorage.getItem('eventid'));
 	//Call function to display the event based on the relation of the
         //accessor to that event. Host, Attendee, neither
-	getUser();
         getEvent();
         isHost = event.isAccessorHost();
         isAttendee = event.isUserInEvent();
         canJoin = (event.canUserJoin()&&!event.isUserInEvent());
+        
         //Show and hide all the divs in the html under here 
 }
 
 function getEvent() {
-        event =  new Event();
-        event.createFromDB(eventid, id);
+    event =  new Event();
+    event.createFromDB(eventid, id);
     //This is where the event object will be created based on the id of the 
     //accessor. A couple of functions will be called afterwards on that object
     //to determne the relationship of that accessor to the event
