@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Events</title>
+        <!-- Add description + keywords -->
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link href="../assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.js"></script>
+        <script src="https://use.fontawesome.com/4ba65f929c.js"></script>
+        <style type="text/css">
+            body { 
+                padding: 60px 0 0 0;
+            }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="blogTitle navbar-brand" href="../home/index.html">GoHost</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="../eventsmanager/index.html"><i class="fa fa-calendar-o fa-fw"></i></a></li>
+                        <li><a href="../people/index.html"><i class="fa fa-user-o fa-fw"></i></a></li>
+                        <li><a href="../notifications/index.html"><i class="fa fa-bell-o fa-fw"></i></a></li>
+                        <li><a href="../index.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <br>
+            <div class="row">
+                <div class="col-sm-8">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#home">Hosting</a></li>
+                        <li><a data-toggle="tab" href="#menu1">Attending</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade in active">
+                            <h3>Events I'm Hosting</h3>
+                            <p>Some events in hosting.</p>
+                        </div>
+                        <div id="menu1" class="tab-pane fade">
+                            <h3>Events I'm Attending</h3>
+                            <p>Some events in attending.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-sm-offset-2">
+                    <ul class="nav nav-pills">
+                        <li><a href="#eventModal" data-toggle="modal" data-target="#eventModal" class="btn btn-info btn-lg" id="createEvent">Create Event</a></li>
+                    </ul>
+                </div>
+                <!-- Create Event Modal -->
+                <div class="modal fade" id="eventModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Create An Event</h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Change the action/method -->
+                                <form class="form-horizontal" id="eventForm" action="resources/php/login.php" method="POST">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label for="eventTitle" class="col-lg-2 control-label">Title</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" id="eventTitle" name="eventTitle" placeholder="Event Title" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="eventCat" class="col-lg-2 control-label">Event Type</label>
+                                            <div class="col-lg-10">
+                                                <select class="form-control col-lg-10" id="eventCat">
+                                                    <!-- Categories populated from database -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="eventStart" class="col-lg-2 control-label">Start Time</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" id="eventStart" name="eventStart" type="datetime-local">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="eventEnd" class="col-lg-2 control-label">End Time</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" id="eventEnd" name="eventEnd" type="datetime-local">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="eventLoc" class="col-lg-2 control-label">Location</label>
+                                            <div class="col-lg-10">
+                                                <select class="form-control col-lg-10" id="eventLoc">
+                                                    <!-- Locations populated from database, don't forget "Other" option -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="eventVis" class="col-lg-2 control-label">Visibility</label>
+                                            <div class="col-lg-10">
+                                                <select class="form-control col-lg-10" id="eventVis">
+                                                    <!-- Visibilities populated from database -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="eventAcc" class="col-lg-2 control-label">Access</label>
+                                            <div class="col-lg-10">
+                                                <select class="form-control" id="eventAcc">
+                                                    <!-- Accesses populated from database -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="maxAttendees" class="col-lg-2 control-label">Max Attendees</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" id="maxAttendees" name="maxAttendees" type="number">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description" class="col-lg-2 control-label">Description</label>
+                                            <div class="col-lg-10">
+                                                <textarea class="form-control" rows="5" id="description"></textarea>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button class="btn btn-info" id="login" type="button">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="js/eventsmanager.js"></script>
+    </body>
+
+</html>
