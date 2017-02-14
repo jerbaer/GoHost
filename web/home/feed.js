@@ -42,3 +42,4 @@ function getStringsFromEvents(EventsList) {
 function getVisibleStrings() {
     getStringsFromEvents(visibleEvents);
 }
+$(document).ready();
