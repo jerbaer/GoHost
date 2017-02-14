@@ -72,6 +72,6 @@ function refresh() {
 
 $(window).load(setUpComponents);
 function rerere(){
-    
+    //blahblah mahmoud is a syrian
 }
 
