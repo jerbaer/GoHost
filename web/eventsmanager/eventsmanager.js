@@ -12,21 +12,12 @@ var eventCategories;
 
 //Global variables go under here
 var id;
-function setUpComponents() {
-    // Link some buttons to certain functions
-    $('#delete').on('click', deleteEvent);
-    $('#edit').on('click', editEvent);
-    $('#invite').on('click', inviteFriends);
-    //Call function to display the event based on the relation of the
-    //accessor to that event. Host, Attendee, neither
-    id = parseInt(sessionStorage.getItem('id'));
-    getEvents(id);
-    //Show and hide all the divs in the html under here
-        
-}
+
 
 function setUpComponents() {
     $('button#createEvent').on('click', createEvent);
+        id = parseInt(sessionStorage.getItem('id'));
+    getEvents(id);
 }
 
 function getEvents() {
@@ -46,18 +37,20 @@ eventsAttending = user.getEventsAttending();
 
 }
 function getStringsFromEvents(EventsList){
-  eventTitles =  new Array(EventsList.size);
-  eventHosts = new Array(EventsList.size);
-  eventStartTimes = new Array(EventsList.size);
-  eventEndTimes = new Array(EventsList.size);
-  eventCategories = new Array(EventsList.size);
-  for (i=0;i<EventsList.size;i++){
-  eventTitles[i] = EventsList.getEvents()[i].getTitle();
-  eventHosts [i] = EventsList.getEvents()[i].getHost();
-  eventStartTimes[i] = EventsList.getEvents()[i].getStartTime();
-  eventEndTimes[i] = EventsList.getEvents()[i].getEndTime();
-  eventCategories[i] = EventsList.getEvents()[i].getCategory();
-  }
+    eventTitles = new Array(EventsList.getSize);
+    eventHosts = new Array(EventsList.getSize);
+    eventStartTimes = new Array(EventsList.getSize);
+    eventEndTimes = new Array(EventsList.getSize);
+    eventCategories = new Array(EventsList.getSize);
+    eventIDs = new Array(EventsList.getSize);
+    for (i = 0; i < EventsList.getSize(); i++) {
+        eventTitles[i] = EventsList.getEventsList()[i].getTitle();
+        eventHosts [i] = EventsList.getEventsList()[i].getHost();
+        eventStartTimes[i] = EventsList.getEventsList()[i].getStartTime();
+        eventEndTimes[i] = EventsList.getEventsList()[i].getEndTime();
+        eventCategories[i] = EventsList.getEventsList()[i].getCategory();
+        eventIDs[i] = EventsList.getEventsList()[i].getID();
+    }
 }
 function getHostStrings() {
     getStringsFromEvents(eventsHosted);
@@ -92,6 +85,6 @@ $.wait = function(ms) {
 
 function refresh() {
     window.location.href = window.location.href; window.location.reload(true); 
-}
+};
 
 $(window).load(setUpComponents);
