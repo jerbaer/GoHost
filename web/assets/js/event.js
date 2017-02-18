@@ -26,8 +26,8 @@ Event = {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibility
         var url = Event.coreUrl + "event?idevent="+idevent;
-        accessor = User
-        accessor.create(iduser)
+        accessor = User;
+        accessor.create(iduser);
         $.getJSON(url).done(Event.createFollowUp);
     },
     createFollowUp: function(data){
@@ -82,22 +82,22 @@ Event = {
     },
     
     isAccessorHost: function () {
-        if (this.accessor.getID() == this.host.getID()) {
-            return true
+        if (this.accessor.getID() === this.host.getID()) {
+            return true;
         } else
             return false;
 
     },
     isUserInEvent: function () {
         for (i = 0; i < this.users.size(); i++) {
-            if (this.accessor.getID() == this.user[i].getID()) {
+            if (this.accessor.getID() === this.user[i].getID()) {
                 return true;
             }
         }
         return false;
     },
     closeEvent: function () {
-        access = 3
+        access = 3;
         this.accessibility = access;
     },
     
@@ -130,14 +130,14 @@ Event = {
 		});
     },
     isEventFull: function () {
-        if (this.accessibility.getID() == 3) {
+        if (this.accessibility.getID() === 3) {
             return true;
         } else
             return false;
     },
     addUserToEvent: function (iduser) {
         //adds user to the users array as well as the database and refresh
-        n= users.length;
+        n = users.length;
         users[n] = iduser;
         var user = {iduser: iduser, idevent: idevent};
 		$.ajax({
@@ -145,11 +145,11 @@ Event = {
 		  type:'POST',
 		  data:JSON.stringify(user),
 		  contentType:'application/json',
-		  dataType:'json',
+		  dataType:'json'
 		});
     },
     canUserJoin: function () {
-        if (this.accessibility.getID() == 2) {
+        if (this.accessibility.getID() === 2) {
             return true;
         } //else {
             //for (i = 0; i < this.invited.size(); i++) {
@@ -161,7 +161,7 @@ Event = {
        // }
     },
     canUserSee: function(){
-        if (this.visibility.getID() == 2){
+        if (this.visibility.getID() === 2){
             return true;
         //} else if (this.host.isFriendsWith(accessor) && this.visibility.getID()== 1){
         //    return true;
@@ -242,12 +242,12 @@ Event = {
 		  type:'PUT',
 		  data:JSON.stringify(user),
 		  contentType:'application/json',
-		  dataType:'json',
+		  dataType:'json'
 		});
         //This will have a put request that updates the db with all the edits 
         //That might have happened to the event object. We will call this 
         //End-all function everytime an edit happens
-    },
+    }
 };
 
 
