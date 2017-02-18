@@ -60,7 +60,7 @@ sys_init = {
         // Button for creating an account
         $('#register').on('click', sys_init.createUser);
     },
-    refresh: function() {
+    refresh: function () {
 	window.location.href = window.location.href; window.location.reload(true); 
     }
 };
