@@ -4,19 +4,19 @@
  * and open the template in the editor.
  */
 
-Inbox = {
+Notification = {
+    message: "",
+    read: null,
+    systemName: "",
+    idnotification: 0,
     owner: null,
-    notifications: [],
+    time: 0,
 
-    displayNotifications: function () {
+    displayNotification: function () {
         
     },
-
-    addNotification: function () {
-        
-    },
-
-    getNotification: function () {
+    
+    readNotification: function () {
         
     }
 }

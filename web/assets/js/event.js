@@ -22,6 +22,7 @@ Event = {
     location: null,
     users: [],
     coreUrl: "http://143.44.67.0:13774/GoHost/api/",
+    
     createFromDB: function (idevent, iduser) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibility
