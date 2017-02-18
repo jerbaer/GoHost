@@ -9,14 +9,27 @@ Inbox = {
     notifications: [],
 
     displayNotifications: function () {
-        
+        // for each n in notifications {
+            // n.displayNotification()
     },
 
     addNotification: function () {
-        
+        // construct notification var
     },
 
     getNotification: function () {
+        // talk to server here
+    },
+    
+    eventInvite: function () {
+        
+    },
+    
+    eventRequest: function () {
+        
+    },
+    
+    friendRequest: function () {
         
     }
 }
