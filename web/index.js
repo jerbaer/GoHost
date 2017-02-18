@@ -6,7 +6,7 @@
 
 sys_init = {
     // changed .host to .hostname
-    coreUrl: "http://143.44.67.0:13774/GoHost/api",
+    coreUrl: "http://143.44.67.0:13774/GoHost/api/",
 
     doLogin: function () {
         var url = sys_init.coreUrl + "user?email=" + $('#loginEmail').val() + "&password=" + $('#loginPass').val();
