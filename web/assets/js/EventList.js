@@ -62,5 +62,4 @@ eventsList = {
     getSize: function(){
         return events.length();
     }
-
-}
+};
