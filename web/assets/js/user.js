@@ -64,8 +64,6 @@ User = {
         return eventsAttending;
     },
     getVisibleEvents: function(){
-
-
         return eventsVisible;
     },
     getFriendsList: function(){
