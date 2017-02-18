@@ -7,7 +7,7 @@
 function  Category (idcategory1){
     this.idcategory = idcategory1;
     this.name = ""
-    coreUrl = "http://" + window.location.host + "/GoHost/api/";
+    coreUrl = "http://143.44.67.0:13774/GoHost/api/";
     function retrieveName(){
         //get the name of the category from the database
         var url = coreUrl + "category?idcategory="+idcategory;

@@ -6,7 +6,7 @@
 function  Location (idlocation1){
     this.idlocation = idlocation1;
     this.name = this.getName();
-    coreUrl = "http://" + window.location.host + "/GoHost/api/";
+    coreUrl = "http://143.44.67.0:13774/GoHost/api/";
     function getName(){
         //get the name of the category from the database
         var url = coreUrl + "location?idlocation="+idlocation;

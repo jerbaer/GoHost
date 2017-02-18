@@ -12,7 +12,7 @@ User = {
     eventsHosting: null,
     eventsAttending: null,
     eventsVisible: null,
-    coreUrl: "http://143.44.67.0:13774/GoHost/",
+    coreUrl: "http://143.44.67.0:13774/GoHost/api/",
     
     
     create: function(iduser){
