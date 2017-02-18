@@ -60,7 +60,7 @@ eventsList = {
         return events;
     },
     getSize: function(){
-        return events.length()
+        return events.length();
     }
 
 }
