@@ -12,5 +12,11 @@ Inbox = {
         
     },
     
+    readNotifications() {
+        
+    },
     
+    Notification() {
+        
+    }
 }
