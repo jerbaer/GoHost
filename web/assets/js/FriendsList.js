@@ -10,7 +10,7 @@ FriendsList = {
     friends : null, //array of user objects with friends in them
     owner : 0,
     size: 0,
-    coreUrl: "http://" + window.location.host + "/GoHost/api/",
+    coreUrl: "http://143.44.67.0:13774/GoHost/",
     create: function(iduser){
         owner = iduser;
         //get friends from database and populate list, fill in size

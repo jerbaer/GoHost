@@ -8,7 +8,7 @@ eventsList = {
     events: [], //array of events contained in the list
     accessor: null, //user that is accessing the list
     viewType: 0, // 0 means view events hosting, 1 means events attending, 2 means all visible events
-    coreUrl: "http://" + window.location.host + "/GoHost/api/",
+    coreUrl: "http://143.44.67.0:13774/GoHost/",
     create: function (accessor, viewType) {
         if (viewType == 0){
             getEventsHosting();

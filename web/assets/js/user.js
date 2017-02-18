@@ -12,7 +12,7 @@ User = {
     eventsHosting: null,
     eventsAttending: null,
     eventsVisible: null,
-    coreUrl: "http://" + window.location.host + "/GoHost/api/",
+    coreUrl: "http://143.44.67.0:13774/GoHost/",
     
     
     create: function(iduser){
@@ -21,8 +21,8 @@ User = {
         //the database. After that, it will use other
         //objects to populate friends list, eventslist...
         User.iduser = iduser;
-        var url = Event.coreUrl + "user?iduser="+iduser;
-        $.getJSON(url).done(Event.createFollowUp);
+        var url = User.coreUrl + "user?iduser="+iduser;
+        $.getJSON(url).done(User.createFollowUp);
     },
     
     createFollowUp: function(data){
