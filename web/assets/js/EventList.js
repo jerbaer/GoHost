@@ -17,8 +17,8 @@ eventsList = {
         } else if (viewType == 2){
             eventsList.getEventsVisible();
         }
-        this.accessor = accessor;
-        this.viewType = viewType
+        eventsList.accessor = accessor;
+        eventsList.viewType = viewType
 
     },
     getEventsHosting: function () {
