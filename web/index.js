@@ -4,22 +4,22 @@
  * and open the template in the editor.
  */
 
-
+sys_init = {
     // changed .host to .hostname
-    coreUrl: "http://" + window.location.hostname + "/GoHost/api/";
+    coreUrl: "http://" + window.location.host + "/GoHost/api/",
 
-    function doLogin() {
+    doLogin: function () {
         var url = sys_init.coreUrl + "user?email=" + $('#loginEmail').val() + "&password=" + $('#loginPass').val();
         $.getJSON(url).done(sys_init.moveToHome);
-    }
+    },
 
-    function createUser() {
+    createUser: function () {
         if ($('#regPass').val() !== $('#regPassConf').val()) {
             $('#regPassWarning').show();
         } else {
-            var url = coreUrl + "user";
+            var url = sys_init.coreUrl + "user";
             var user = {email: $('#regEmail').val(),
-                password: $('#regPass').val()};
+                password: $('#regPass').val(), name:"", idprofile:2};
             var toSend = JSON.stringify(user);
             $.ajax({
                 url: url,
@@ -27,23 +27,26 @@
                 data: toSend,
                 contentType: 'application/json',
                 dataType: 'json',
+                async : false,
                 success: sys_init.moveToHome
             });
         }
-    }
-     function moveToHome(data) {
-        if (data.iduser !== 0) {
+    },
+
+    moveToHome: function (data) {
+        if (data !== "0"&& data !== 0) {
             // Storing the id number of the user
-            sessionStorage.setItem('id', data.iduser);
+            sessionStorage.setItem('id', parseInt(data));
             //Take them to home page
             // deleted ".href", maybe this will work
-            window.location = 'home/index.html#' + data.iduser;
+            window.location.href = 'home/index.html#';
+            refresh();
         } else {
             $('#regWarning').show();
         }
-    }
+    },
 
-    function setUpButtons () {
+    setUpButtons: function () {
         // Hide the warning divisions upon loading
         $('#loginWarning').hide();
         // I've removed these two warnings for now
@@ -53,9 +56,13 @@
         // Button for submitting login info
         //$('button#login').on('click', sys_init.doLogin);
         // This is to simulate the login
-        $('button#login').on('click', doLogin);
+        $('#login').on('click', sys_init.doLogin);
         // Button for creating an account
-        $('button#register').on('click', createUser);
-    }
+        $('#register').on('click', sys_init.createUser);
+    },
+    refresh: function() {
+	window.location.href = window.location.href; window.location.reload(true); 
+}
+};
 
-$(document).ready(setUpButtons);
+$(document).ready(sys_init.setUpButtons);
