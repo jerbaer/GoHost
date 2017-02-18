@@ -40,7 +40,7 @@ sys_init = {
             //Take them to home page
             // deleted ".href", maybe this will work
             window.location.href = 'home/index.html#';
-            refresh();
+            sys_init.refresh;
         } else {
             $('#regWarning').show();
         }
@@ -62,7 +62,7 @@ sys_init = {
     },
     refresh: function() {
 	window.location.href = window.location.href; window.location.reload(true); 
-}
+    }
 };
 
 $(document).ready(sys_init.setUpButtons);
