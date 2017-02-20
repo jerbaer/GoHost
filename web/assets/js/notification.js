@@ -13,10 +13,17 @@ Notification = {
     time: 0,
 
     displayNotification: function () {
-        
+        // construct notification in html (i think)
     },
     
     readNotification: function () {
         
+    },
+    
+    create: function (message, owner, fromSystem) {
+        // var notification = {member variables}
+            // $.ajax({
+                // member variables
+            // });
     }
 }
