@@ -9,7 +9,7 @@ eventsList = {
     accessor: null, //user that is accessing the list
     viewType: 0, // 0 means view events hosting, 1 means events attending, 2 means all visible events
     coreUrl: "http://143.44.67.0:13774/GoHost/api/",
-    create: function (accessor, viewType) {
+    create: function (accessor1, viewType) {
         if (viewType == 0){
             eventsList.getEventsHosting();
         } else if (viewType == 1){
@@ -17,8 +17,8 @@ eventsList = {
         } else if (viewType == 2){
             eventsList.getEventsVisible();
         }
-        eventsList.accessor = accessor;
-        eventsList.viewType = viewType
+        eventsList.accessor = accessor1;
+        eventsList.viewType = viewType;
 
     },
     getEventsHosting: function () {
