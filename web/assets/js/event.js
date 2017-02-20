@@ -68,7 +68,7 @@ Event = {
         //if accessibility is 1, add all friends to invited list. Add the created object to the database.
         var event = {title: title,idhost: idhost,maxattendees: eventMax,idlocation: idlocation,idvisibility: idvisibility,idaccessibility: idaccessibility,starttime: eventStart,endtime: eventEnd,description: description,idcategory: idcategory};
 		$.ajax({
-		  url:'http://localhost:8080/GoHost/api/event',
+		  url:coreUrl + "event",
 		  type:'POST',
 		  data:JSON.stringify(event),
 		  contentType:'application/json',
@@ -106,27 +106,27 @@ Event = {
     deleteEvent: function () {
                 //Deletes event from event table
 		$.ajax({
-		  url:'http://localhost:8080/GoHost/api/event$idevent=' + idevent,
+		  url: coreUrl + 'event$idevent=' + idevent,
 		  type:'DELETE'
 		});
                 //Deletes all attendee rows of this event
                 $.ajax({
-		  url:'http://localhost:8080/GoHost/api/attendee$idevent=' + idevent,
+		  url: coreUrl + 'attendee$idevent=' + idevent,
 		  type:'DELETE'
 		});
                 //Delets all invited rows of this evnet
                 $.ajax({
-		  url:'http://localhost:8080/GoHost/api/invited$idevent=' + idevent,
+		  url: coreUrl + 'invited$idevent=' + idevent,
 		  type:'DELETE'
 		});
                 //Delets all messages of this event
                 $.ajax({
-		  url:'http://localhost:8080/GoHost/api/message$idevent=' + idevent,
+		  url: coreUrl + 'message$idevent=' + idevent,
 		  type:'DELETE'
 		});
                 //Deletes all notifications of this event
                 $.ajax({
-		  url:'http://localhost:8080/GoHost/api/notification$idevent=' + idevent,
+		  url: coreUrl + 'notification$idevent=' + idevent,
 		  type:'DELETE'
 		});
     },
@@ -142,7 +142,7 @@ Event = {
         users[n] = iduser;
         var user = {iduser: iduser, idevent: idevent};
 		$.ajax({
-		  url:'http://localhost:8080/GoHost/api/attendee',
+		  url: coreUrl + 'attendee',
 		  type:'POST',
 		  data:JSON.stringify(user),
 		  contentType:'application/json',
@@ -239,7 +239,7 @@ Event = {
     refreshEdits: function(){
         var event = {title: title,idhost: host,maxattendees: eventMax,idlocation: location.idlocation,idvisibility: visibility,idaccessibility: accessibility,starttime: eventStart,endtime: eventEnd,description: description,idcategory: category.idcategory};
 		$.ajax({
-		  url:'http://143.44.10.35/GoHost/api/event',
+		  url: coreUrl + 'event',
 		  type:'PUT',
 		  data:JSON.stringify(user),
 		  contentType:'application/json',

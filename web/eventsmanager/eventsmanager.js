@@ -53,9 +53,6 @@ function getAttendingStrings() {
     getStringsFromEvents(eventsAttending);
 }
 
-function getVisibleStrings() {
-    getStringsFromEvents(visibleEvents);
-}
 
 function createEvent() {
     eventTitle = $('#eventTitle').val;
@@ -67,7 +64,8 @@ function createEvent() {
     eventAcc = $('#eventAcc').val;
     maxAttendees = $('#maxAttendees').val;
     description = $('#description').val;
-    var event = new Event(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc);
+    event = Event;
+    event.create(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc);
 }
 
 $.wait = function (ms) {
