@@ -22,7 +22,7 @@ function setUpComponents() {
 function getEvents() {
     user = User;
     user.create(id);
-    eventsHosted = user.getEventsHosted();
+    eventsHosted = user.getEventsHosting();
     eventsAttending = user.getEventsAttending();
 }
 
