@@ -11,9 +11,9 @@ eventsList = {
     coreUrl: "http://143.44.67.0:13774/GoHost/api/",
     create: function (accessor, viewType) {
         if (viewType == 0){
-            getEventsHosting();
+            eventsList.getEventsHosting();
         } else if (viewType == 1){
-            getEventsAttending();
+            eventsList.getEventsAttending();
         } else if (viewType == 2){
             eventsList.getEventsVisible();
         }
