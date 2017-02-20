@@ -68,7 +68,7 @@ Event = {
         //if accessibility is 1, add all friends to invited list. Add the created object to the database.
         var event = {title: title,idhost: idhost,maxattendees: eventMax,idlocation: idlocation,idvisibility: idvisibility,idaccessibility: idaccessibility,starttime: eventStart,endtime: eventEnd,description: description,idcategory: idcategory};
 		$.ajax({
-		  url:'http://localhost:8080/GoHost/api/event',
+		  url:'http://143.44.67.0:13774/GoHost/api/event',
 		  type:'POST',
 		  data:JSON.stringify(event),
 		  contentType:'application/json',
@@ -106,27 +106,27 @@ Event = {
     deleteEvent: function () {
                 //Deletes event from event table
 		$.ajax({
-		  url:'http://localhost:8080/GoHost/api/event$idevent=' + idevent,
+		  url:'http://143.44.67.0:13774/GoHost/api/event$idevent=' + idevent,
 		  type:'DELETE'
 		});
                 //Deletes all attendee rows of this event
                 $.ajax({
-		  url:'http://localhost:8080/GoHost/api/attendee$idevent=' + idevent,
+		  url:'http://143.44.67.0:13774/GoHost/api/attendee$idevent=' + idevent,
 		  type:'DELETE'
 		});
                 //Delets all invited rows of this evnet
                 $.ajax({
-		  url:'http://localhost:8080/GoHost/api/invited$idevent=' + idevent,
+		  url:'http://143.44.67.0:13774/GoHost/api/invited$idevent=' + idevent,
 		  type:'DELETE'
 		});
                 //Delets all messages of this event
                 $.ajax({
-		  url:'http://localhost:8080/GoHost/api/message$idevent=' + idevent,
+		  url:'http://143.44.67.0:13774/GoHost/api/message$idevent=' + idevent,
 		  type:'DELETE'
 		});
                 //Deletes all notifications of this event
                 $.ajax({
-		  url:'http://localhost:8080/GoHost/api/notification$idevent=' + idevent,
+		  url:'http://143.44.67.0:13774/GoHost/api/notification$idevent=' + idevent,
 		  type:'DELETE'
 		});
     },

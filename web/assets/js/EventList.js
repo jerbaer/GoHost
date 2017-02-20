@@ -52,7 +52,7 @@ eventsList = {
     },
     visibleFollowUp: function (data) {
         for(i=0;i<data.length;i++){
-            events[i] = new Event();
+            events[i] = Event;
             events[i].create(data[i].getIdevent());
         }
     },
