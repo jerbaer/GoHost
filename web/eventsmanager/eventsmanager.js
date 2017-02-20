@@ -20,7 +20,7 @@ function setUpComponents() {
 }
 
 function getEvents() {
-    user = new User();
+    user = User;
     user.create(id);
     eventsHosted = user.getEventsHosted();
     eventsAttending = user.getEventsAttending();
