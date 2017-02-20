@@ -142,7 +142,7 @@ Event = {
         users[n] = iduser;
         var user = {iduser: iduser, idevent: idevent};
 		$.ajax({
-		  url:'http://localhost:8080/GoHost/api/attendee',
+		  url:'http://143.44.67.0:13774/GoHost/api/attendee',
 		  type:'POST',
 		  data:JSON.stringify(user),
 		  contentType:'application/json',
