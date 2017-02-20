@@ -63,7 +63,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public User findUser(@QueryParam("iduser") Integer id) {
+    public User findUser(@QueryParam("id") Integer id) {
         User u = null;
         u = em.createNamedQuery("User.findById", User.class).setParameter("iduser", id).getSingleResult();
         return u;
