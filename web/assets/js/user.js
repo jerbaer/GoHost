@@ -5,9 +5,9 @@
  */
 User = {
     iduser: 0,
-    email: 0,
-    password: 0,
-    name: 0,
+    email: "",
+    password: "",
+    name: "",
     friendsList: null,
     eventsHosting: null,
     eventsAttending: null,
@@ -26,9 +26,9 @@ User = {
     },
     
     createFollowUp: function(data){
-        email = data.getEmail();
-        password = data.getPassword();
-        name = data.getName();
+        email = data.email;
+        password = data.password;
+        name = data.name;
         //Do you want me to call these other functions right away or to wait for now?
     },
     createFriendsList: function(){
