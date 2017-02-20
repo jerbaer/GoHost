@@ -14,15 +14,14 @@ var id;
 
 
 function setUpComponents() {
-    $('button#createEvent').on('click', createEvent);
+    $('#createEvent').on('click', createEvent);
     id = parseInt(sessionStorage.getItem('id'));
-    getEvents(id);
+    getEvents();
 }
 
 function getEvents() {
-    userID = parseInt(SessionStorage.getItem('id'));
     user = new User();
-    user.create(userID);
+    user.create(id);
     eventsHosted = user.getEventsHosted();
     eventsAttending = user.getEventsAttending();
 }
