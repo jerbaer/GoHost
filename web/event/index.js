@@ -29,7 +29,7 @@ function setUpComponents() {
     $('#invite').on('click', inviteFriends);
     id = parseInt(sessionStorage.getItem('id'));
     eventid = (window.location.href.split('#'))[1];
-    accessor = User;
+    let accessor = new User();
     accessor.create(id);
 
     //Call function to display the event based on the relation of the
@@ -59,7 +59,7 @@ function setUpComponents() {
 }
 
 function getEvent() {
-    event = new Event();
+    let event = new Event();
     event.createFromDB(eventid, accessor);
     getStringsFromEvent(event);
     // Create the event in the html
