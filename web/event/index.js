@@ -93,13 +93,13 @@ function inviteFriends() {
     //would actually allow you to invite people?
 }
 
-function getStringFromEvent() {
-    eventTitle;
-    eventHost;
-    eventStartTimes;
-    eventEndTimes;
-    eventCategories;
-    eventIDs;
+function getStringsFromEvent(event) {
+    eventTitle = event.getTitle();
+    eventHost = event.getHost();
+    eventStartTime = event.getEventStart();
+    eventEndTime = event.getEventEnd();
+    eventCategory = event.getCategory();
+    eventID = event.getID();
 }
 
 //This will be coded in iteration 2.0??
