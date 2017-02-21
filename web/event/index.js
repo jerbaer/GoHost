@@ -85,6 +85,10 @@ function inviteFriends() {
     //would actually allow you to invite people?
 }
 
+function getStringFromEvent() {
+    
+}
+
 //This will be coded in iteration 2.0??
 function chat(){
     
