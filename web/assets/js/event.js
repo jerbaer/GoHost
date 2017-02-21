@@ -72,7 +72,7 @@ Event = {
 		  data:JSON.stringify(event),
 		  contentType:'application/json',
 		  dataType:'json',
-		  success: createFollowUp2
+		  success: Event.createFollowUp2
 		});
     },
     
