@@ -41,6 +41,7 @@ function getEvents() {
 		newH = $('<h6>').append(newA);
 		newHr = $('<hr>');
 		
+                eventsFeed.append(newHr);
 		eventsFeed.append(newH);
                 eventsFeed.append(newH1);
                 eventsFeed.append(newH2);
