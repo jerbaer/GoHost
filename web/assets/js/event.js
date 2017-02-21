@@ -69,10 +69,11 @@ Event = {
         var event = {title: title, idhost: idhost, maxattendees: eventMax, /*idlocation: idlocation,*/ idvisibility: idvisibility, idaccessibility: idaccessibility, /*starttime: eventStart, endtime: eventEnd,*/ description: description, idcategory: idcategory};
         $.ajax({
             url: Event.coreUrl + "event",
-            type: 'POST',
+            type: 'post',
             data: JSON.stringify(event),
             contentType: 'application/json',
-            dataType: 'json'
+            dataType: 'json',
+            async : false
             //success: Event.createFollowUp2
         });
     },
