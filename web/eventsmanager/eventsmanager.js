@@ -20,8 +20,6 @@ function setUpComponents() {
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
     getCategories();
-    //This needs to
-    //1. Populate the catgory dropdown with categories from DB
 }
 
 function getCategories() {
@@ -33,8 +31,8 @@ function categoriesFollowUp(data){
     eventsCat = $('#eventCat');
     for (i=0; i<data.length;i++){
         newHr = $('<option>').val(data.idcategory).text(data.name);
+        eventsCat.append(newHr);
     }
-    
 }
 
 function getEvents() {
