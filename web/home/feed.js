@@ -30,7 +30,7 @@ function getEvents() {
     var n, url;
 	// Find the newestBlogs div that will house newly created blogs
 	eventsFeed = $('#eventsFeed');
-	
+
 	for(n = visibleEvents.getSize()-1; n > -1; n--){
 		url = "event/index.html";
 		newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function() {window.location.href = url; window.location.reload(true); });
@@ -59,10 +59,11 @@ function getStringsFromEvents(eventList) {
     for (i = 0; i < eventList.getSize(); i++) {
         eventTitles[i] = eventList.getEventsList()[i].getTitle();
         eventHosts [i] = eventList.getEventsList()[i].getHost().getName();
-        var t = eventList.getEventsList()[i].getEventStart().split(/[- :]/);
-        var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));      
-        eventStartTimes[i] = d.toString();
-        eventEndTimes[i] = eventList.getEventsList()[i].getEventEnd();
+        //var t = eventList.getEventsList()[i].getEventStart().split(/[- T :]/);
+        var d = new Date(eventList.getEventsList()[i].getEventStart());      
+        eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
+        var x = new Date(eventList.getEventsList()[i].getEventEnd())
+        eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
         eventCategories[i] = eventList.getEventsList()[i].getCategory().getName();
         eventIDs[i] = eventList.getEventsList()[i].getID();
     }
