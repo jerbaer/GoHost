@@ -66,21 +66,21 @@ Event = {
     create: function (idhost, idcategory, eventStart, eventEnd, eventMax, description, title, idvisibility, idaccessibility, idlocation) {
         //creates a user from the idhost, category from idcategory, visibility from idvisibility/idaccessibility, location from idlocation, all other fields are filled from parameters
         //if accessibility is 1, add all friends to invited list. Add the created object to the database.
-        var event = {title: title, idhost: idhost, maxattendees: eventMax, idlocation: idlocation, idvisibility: idvisibility, idaccessibility: idaccessibility, starttime: eventStart, endtime: eventEnd, description: description, idcategory: idcategory};
+        var event = {title: title, idhost: idhost, maxattendees: eventMax, /*idlocation: idlocation,*/ idvisibility: idvisibility, idaccessibility: idaccessibility, /*starttime: eventStart, endtime: eventEnd,*/ description: description, idcategory: idcategory};
         $.ajax({
             url: Event.coreUrl + "event",
             type: 'POST',
             data: JSON.stringify(event),
             contentType: 'application/json',
-            dataType: 'json',
-            success: Event.createFollowUp2
+            dataType: 'json'
+            //success: Event.createFollowUp2
         });
     },
 
-    createFollowUp2: function (id) {
+    //createFollowUp2: function (id) {
         //Stores the id of the event row recently added to the database
-        idevent = id;
-    },
+        //idevent = id;
+    //},
 
     isAccessorHost: function () {
         if (this.accessor.getID() === this.host.getID()) {
