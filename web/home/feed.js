@@ -32,8 +32,8 @@ function getEvents() {
 	eventsFeed = $('#eventsFeed');
 
 	for(n = visibleEvents.getSize()-1; n > -1; n--){
-		url = "event/index.html";
-		newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function() {window.location.href = url; window.location.reload(true); sessionStorage.setItem('eventid', eventIDs[n]);  });
+		url = "event/index.html#" + eventIDs[n];
+		newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function() {window.location.href = url; window.location.reload(true);});
                 newH1 = $('<h6>').text(eventHosts[n]);
                 newH2 = $('<h6>').text(eventStartTimes[n]);
                 newH3 = $('<h6>').text(eventEndTimes[n]);
