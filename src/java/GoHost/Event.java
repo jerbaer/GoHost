@@ -49,7 +49,7 @@ public class Event implements Serializable {
     @NotNull
     @Column(name = "idevent")
     private Integer idevent;
-    @Basic(optional = false)
+    @Basic(optional = true)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "title")
