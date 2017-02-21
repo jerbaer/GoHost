@@ -18,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -64,10 +65,11 @@ public class EventFacadeREST extends AbstractFacade<Event> {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public List getOpen(@PathParam("visibility") int visibility){
-                List<Event> allEvents = em.createNamedQuery("Event.findByVisibility", Event.class).setParameter("visibility", visibility).getResultList();
-               return allEvents;
+    public List<Event> getOpen(@QueryParam("visibility") int vis){
+                return em.createNamedQuery("Event.findByVisibility", Event.class).setParameter("visibility", new Integer(vis)).getResultList();
+  
    }
+
 
     @GET
     @Path("{from}/{to}")

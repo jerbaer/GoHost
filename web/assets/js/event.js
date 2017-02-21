@@ -26,7 +26,7 @@ Event = {
     createFromDB: function (idevent, iduser) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibility
-        var url = Event.coreUrl + "event?idevent="+idevent;
+        var url = Event.coreUrl + "event/"+idevent;
         accessor = User;
         accessor.create(iduser);
         $.getJSON(url).done(Event.createFollowUp);
