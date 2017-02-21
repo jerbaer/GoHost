@@ -14,6 +14,14 @@ var isHost = false;
 var isAttendee = false;
 var canJoin = false;
 var canSee = false;
+
+var eventTitle;
+var eventHost;
+var eventStartTimes;
+var eventEndTimes;
+var eventCategories;
+var eventIDs;
+    
 function setUpComponents() {
 	// Link some buttons to certain functions
         $('#delete').on('click', deleteEvent);
@@ -86,7 +94,12 @@ function inviteFriends() {
 }
 
 function getStringFromEvent() {
-    
+    eventTitle;
+    eventHost;
+    eventStartTimes;
+    eventEndTimes;
+    eventCategories;
+    eventIDs;
 }
 
 //This will be coded in iteration 2.0??
