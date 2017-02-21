@@ -4,26 +4,30 @@
  * and open the template in the editor.
  */
 
-function  Category (idcategory1){
-    this.idcategory = idcategory1;
-    this.name = ""
-    coreUrl = "http://143.44.67.0:13774/GoHost/api/";
-    function retrieveName(){
+Category = {
+    idcategory : 0,
+    name : "",
+    coreUrl : "http://143.44.67.0:13774/GoHost/api/",
+    create: function(idcategory1){
+               Category.idcategory = idcategory1;
+               retrieveName();
+    },
+    retrieveName: function(){
         //get the name of the category from the database
-        var url = coreUrl + "category?idcategory="+idcategory;
+        var url = coreUrl + "category/"+Category.idcategory;
         $.getJSON(url).done(nameFollowUp);
-    }
+    },
     //Don't know if this chain of functions will work. Need to learn to do
     //things in the same function for this
-    function nameFollowUp(data){
-        name = data.getName();
-    }
-    function getName(){
-        retrieveName();
-        return name;
-    }
+    nameFollowUp : function(data){
+        Category.name = data.name;
+    },
+    getName: function(){
+ 
+        return Category.name;
+    },
 
-    function getID(){
-        return idcategory;
+    getID: function(){
+        return Category.idcategory;
     }
 };

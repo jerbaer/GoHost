@@ -22,8 +22,7 @@ function getEvents() {
     user = User;
     user.create(id);
     user.createVisibleList();
-    setTimeout(user.getVisibleEvents, 1000);
-    visibleEvents = setTimeout(user.getVisibleEvents, 5000);
+    visibleEvents = user.getVisibleEvents()
     
     setTimeout(getVisibleStrings(),10000);
     //this is where it connects with HTML to print the feed in objects
@@ -60,8 +59,8 @@ function getStringsFromEvents(eventList) {
     for (i = 0; i < eventList.getSize(); i++) {
         eventTitles[i] = eventList.getEventsList()[i].getTitle();
         eventHosts [i] = eventList.getEventsList()[i].getHost().getName();
-        eventStartTimes[i] = eventList.getEventsList()[i].getStartTime();
-        eventEndTimes[i] = eventList.getEventsList()[i].getEndTime();
+        eventStartTimes[i] = eventList.getEventsList()[i].getEventStart();
+        eventEndTimes[i] = eventList.getEventsList()[i].getEventEnd();
         eventCategories[i] = eventList.getEventsList()[i].getCategory().getName();
         eventIDs[i] = eventList.getEventsList()[i].getID();
     }
