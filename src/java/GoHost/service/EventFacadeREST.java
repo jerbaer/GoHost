@@ -72,7 +72,7 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public List<Event> getHosting(@QueryParam("idhost") int vis){
-        return em.createNamedQuery("Event.findByVisibility", Event.class).setParameter("visibility", new Integer(vis)).getResultList();
+        return em.createNamedQuery("Event.findByIdhost", Event.class).setParameter("idhost", new Integer(vis)).getResultList();
    }
 
     @GET
