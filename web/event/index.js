@@ -67,7 +67,6 @@ function deleteEvent() {
     event.deleteEvent();
 }
 
-
 function editEvent() {
     //This will get all the input from the edit form and use it call all the
     //edit functions on the event object. After that, it will call the function
@@ -87,7 +86,6 @@ function editEvent() {
     event.refreshEdits();
 }
 
-
 function inviteFriends() {
     //This will pull up a list of the user's friends and then the other button
     //would actually allow you to invite people?
@@ -102,7 +100,7 @@ function getStringsFromEvent(event) {
     eventID = event.getID();
 }
 
-//This will be coded in iteration 2.0??
+//This will be coded in iteration 2.0?? hehe ecks dee
 function chat(){
     
 }

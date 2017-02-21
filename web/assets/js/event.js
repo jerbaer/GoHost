@@ -220,10 +220,6 @@ Event = {
         return Event.title;
     },
     
-    getidEvent : function(){
-        return Event.idevent;
-    },
-    
     getLocation : function(){
         return location.getName();
     },
@@ -235,6 +231,7 @@ Event = {
     getUsers : function(){
         return Event.users;
     },
+    
     getID : function(){
         return Event.idevent;
     },
