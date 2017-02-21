@@ -72,15 +72,15 @@ Event = {
             type: 'POST',
             data: JSON.stringify(event),
             contentType: 'application/json',
-            dataType: 'json',
-            success: Event.createFollowUp2
+            dataType: 'json'
+            //success: Event.createFollowUp2
         });
     },
 
-    createFollowUp2: function (id) {
+    //createFollowUp2: function (id) {
         //Stores the id of the event row recently added to the database
-        idevent = id;
-    },
+        //idevent = id;
+    //},
 
     isAccessorHost: function () {
         if (this.accessor.getID() === this.host.getID()) {
