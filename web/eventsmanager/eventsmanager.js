@@ -14,7 +14,7 @@ var id;
 
 
 function setUpComponents() {
-    jQuery.ajaxSetup({async:false});
+    jQuery.ajaxSetup({async: false});
     $('#createEvent').on('click', createEvent);
     $('#attending').on('click', getAttendingStrings);
     id = parseInt(sessionStorage.getItem('id'));
@@ -23,13 +23,13 @@ function setUpComponents() {
 }
 
 function getCategories() {
-    var url = "http://143.44.67.0:13774/GoHost/api/category/all"; 
+    var url = "http://143.44.67.0:13774/GoHost/api/category/all";
     $.getJSON(url).done(eventsList.categoriesFollowUp);
 }
 
-function categoriesFollowUp(data){
+function categoriesFollowUp(data) {
     eventsCat = $('#eventCat');
-    for (i=0; i<data.length;i++){
+    for (i = 0; i < data.length; i++) {
         newHr = $('<option>').val(data.idcategory).text(data.name);
         eventsCat.append(newHr);
     }
@@ -55,56 +55,64 @@ function getStringsFromEvents(eventList) {
         eventTitles[i] = eventList.getEventsList()[i].getTitle();
         eventHosts [i] = eventList.getEventsList()[i].getHost().getName();
         //var t = eventList.getEventsList()[i].getEventStart().split(/[- T :]/);
-        var d = new Date(eventList.getEventsList()[i].getEventStart());      
+        var d = new Date(eventList.getEventsList()[i].getEventStart());
         eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
         var x = new Date(eventList.getEventsList()[i].getEventEnd())
         eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
         eventCategories[i] = eventList.getEventsList()[i].getCategory().getName();
         eventIDs[i] = eventList.getEventsList()[i].getID();
-}
+    }
 }
 
 function getHostStrings() {
     getStringsFromEvents(eventsHosted);
     eventsFeed = $('#hosting');
-    for(n = eventTitles.length-1; n > -1; n--){
-		url = "event/index.html";
-		newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function() {window.location.href = url; window.location.reload(true); sessionStorage.setItem('eventid', eventIDs[n]);  });
-                newH1 = $('<p>').text(eventHosts[n]);
-                newH2 = $('<p>').text(eventStartTimes[n]);
-                newH3 = $('<p>').text(eventEndTimes[n]);
-                newH4 = $('<p>').text(eventCategories[n]);
-		newH = $('<p>').append(newA);
-		newHr = $('<hr>');
-		
-		eventsFeed.append(newH);
-                eventsFeed.append(newH1);
-                eventsFeed.append(newH2);
-                eventsFeed.append(newH3);
-                eventsFeed.append(newH4);
-		eventsFeed.append(newHr);
+    for (n = eventTitles.length - 1; n > -1; n--) {
+        url = "event/index.html";
+        newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
+            window.location.href = url;
+            window.location.reload(true);
+            sessionStorage.setItem('eventid', eventIDs[n]);
+        });
+        newH1 = $('<p>').text(eventHosts[n]);
+        newH2 = $('<p>').text(eventStartTimes[n]);
+        newH3 = $('<p>').text(eventEndTimes[n]);
+        newH4 = $('<p>').text(eventCategories[n]);
+        newH = $('<p>').append(newA);
+        newHr = $('<hr>');
+
+        eventsFeed.append(newH);
+        eventsFeed.append(newH1);
+        eventsFeed.append(newH2);
+        eventsFeed.append(newH3);
+        eventsFeed.append(newH4);
+        eventsFeed.append(newHr);
     }
 }
 
 function getAttendingStrings() {
     getStringsFromEvents(eventsAttending);
     eventsFeed = $('#attending');
-    for(n = eventTitles.length-1; n > -1; n--){
-		url = "event/index.html";
-		newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function() {window.location.href = url; window.location.reload(true); sessionStorage.setItem('eventid', eventIDs[n]);  });
-                newH1 = $('<h6>').text(eventHosts[n]);
-                newH2 = $('<h6>').text(eventStartTimes[n]);
-                newH3 = $('<h6>').text(eventEndTimes[n]);
-                newH4 = $('<h6>').text(eventCategories[n]);
-		newH = $('<h6>').append(newA);
-		newHr = $('<hr>');
-		
-		eventsFeed.append(newH);
-                eventsFeed.append(newH1);
-                eventsFeed.append(newH2);
-                eventsFeed.append(newH3);
-                eventsFeed.append(newH4);
-		eventsFeed.append(newHr);
+    for (n = eventTitles.length - 1; n > -1; n--) {
+        url = "event/index.html";
+        newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
+            window.location.href = url;
+            window.location.reload(true);
+            sessionStorage.setItem('eventid', eventIDs[n]);
+        });
+        newH1 = $('<h6>').text(eventHosts[n]);
+        newH2 = $('<h6>').text(eventStartTimes[n]);
+        newH3 = $('<h6>').text(eventEndTimes[n]);
+        newH4 = $('<h6>').text(eventCategories[n]);
+        newH = $('<h6>').append(newA);
+        newHr = $('<hr>');
+
+        eventsFeed.append(newH);
+        eventsFeed.append(newH1);
+        eventsFeed.append(newH2);
+        eventsFeed.append(newH3);
+        eventsFeed.append(newH4);
+        eventsFeed.append(newHr);
     }
 }
 
