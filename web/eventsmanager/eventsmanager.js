@@ -58,7 +58,7 @@ function getStringsFromEvents(eventList) {
 function getHostStrings() {
     getStringsFromEvents(eventsHosted);
     eventsFeed = $('#hosting');
-    for(n = eventList.getSize()-1; n > -1; n--){
+    for(n = eventTitles.getSize()-1; n > -1; n--){
 		url = "event/index.html";
 		newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function() {window.location.href = url; window.location.reload(true); sessionStorage.setItem('eventid', eventIDs[n]);  });
                 newH1 = $('<h6>').text(eventHosts[n]);
@@ -80,7 +80,7 @@ function getHostStrings() {
 function getAttendingStrings() {
     getStringsFromEvents(eventsAttending);
     eventsFeed = $('#attending');
-    for(n = eventList.getSize()-1; n > -1; n--){
+    for(n = eventTitles.getSize()-1; n > -1; n--){
 		url = "event/index.html";
 		newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function() {window.location.href = url; window.location.reload(true); sessionStorage.setItem('eventid', eventIDs[n]);  });
                 newH1 = $('<h6>').text(eventHosts[n]);
