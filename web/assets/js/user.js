@@ -57,25 +57,25 @@ User = {
         }
     },
     getID: function(){
-        return iduser;
+        return User.iduser;
     },
     getEventsAttending: function(){
         User.createEventsAttendingList();
-        return eventsAttending;
+        return User.eventsAttending;
     },
     getVisibleEvents: function(){
-        return eventsVisible;
+        return User.eventsVisible;
     },
     getFriendsList: function(){
         User.createFriendsList();
-        return friendsList;
+        return User.friendsList;
     },
     getEventsHosting: function(){
         User.createHostedEventsList();
-        return eventsHosting;
+        return User.eventsHosting;
     },
     getName: function(){
-        return name;
+        return User.name;
     }
     
 };

@@ -24,13 +24,13 @@ eventsList = {
     },
     getEventsHosting: function () {
         //get all events accessor is hosting, put them in events (0)
-        var url = eventsList.coreUrl + "event?idhost="+accessor.getID();
+        var url = eventsList.coreUrl + "event?idhost="+eventsList.accessor.getID();
         $.getJSON(url).done(eventsList.hostingFollowUp);
     },
     
     hostingFollowUp: function (data) {
         for (n=0; n<data.length;n++){
-            events[n] = data[n].idevent;
+            eventsList.events[n] = data[n].idevent;
         }
     },
     
@@ -42,7 +42,7 @@ eventsList = {
     
     attendingFollowUp: function (data) {
         for (n=0; n<data.length;n++){
-            events[n] = data[n].idevent;
+            eventsList.events[n] = data[n].idevent;
         }
     },
     
@@ -54,8 +54,8 @@ eventsList = {
     visibleFollowUp: function (data) {
         for(i=0;i<data.length;i++){
             event1 = Event;
-            events.push(event1);
-            events[i].create(data[i].getIdevent());
+            eventsList.events.push(event1);
+            eventsList.events[i].create(data[i].getIdevent());
         }
     },
     getEventsList: function () {

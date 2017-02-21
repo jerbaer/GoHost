@@ -24,9 +24,9 @@ function getEvents() {
     user = User;
     user.create(id);
     eventsHosted = user.getEventsHosting();
-    eventsHosted.create(id,0);
+    eventsHosted.create(user,0);
     eventsAttending = user.getEventsAttending();
-    eventsHosted.create(id,1);
+    eventsHosted.create(user,1);
 }
 
 function getStringsFromEvents(EventsList) {
