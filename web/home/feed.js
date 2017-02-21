@@ -59,7 +59,9 @@ function getStringsFromEvents(eventList) {
     for (i = 0; i < eventList.getSize(); i++) {
         eventTitles[i] = eventList.getEventsList()[i].getTitle();
         eventHosts [i] = eventList.getEventsList()[i].getHost().getName();
-        eventStartTimes[i] = eventList.getEventsList()[i].getEventStart();
+        var t = eventList.getEventsList()[i].getEventStart().split(/[- :]/);
+        var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));      
+        eventStartTimes[i] = d.toString();
         eventEndTimes[i] = eventList.getEventsList()[i].getEventEnd();
         eventCategories[i] = eventList.getEventsList()[i].getCategory().getName();
         eventIDs[i] = eventList.getEventsList()[i].getID();
