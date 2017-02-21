@@ -29,7 +29,7 @@ eventsList = {
     },
     
     hostingFollowUp: function (data) {
-        for (n=0; n<data.length;n++){
+        for (i=0; i<data.length;i++){
             event1 = Event;
             eventsList.events.push(event1);
             eventsList.events[i].createFromDB(data[i].idevent, eventsList.accessor);
