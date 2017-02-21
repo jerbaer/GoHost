@@ -18,6 +18,11 @@ function setUpComponents() {
     $('#createEvent').on('click', createEvent);
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
+    //This needs to
+    //1. Populate the catgory dropdown with categories from DB
+    //2. Populate the visibility dropdown
+    //3. Populate the location dropdown
+    //4. Populate the accessibility dropdown
 }
 
 function getEvents() {
@@ -56,15 +61,15 @@ function getAttendingStrings() {
 
 
 function createEvent() {
-    eventTitle = $('#eventTitle').val;
-    eventCat = $('#eventCat').val;
-    eventStart = $('#eventStart').val;
-    eventEnd = $('#eventEnd').val;
-    eventLoc = $('#eventLoc').val;
-    eventVis = $('#eventVis').val;
-    eventAcc = $('#eventAcc').val;
-    maxAttendees = $('#maxAttendees').val;
-    description = $('#description').val;
+    eventTitle = $('#eventTitle').val();
+    eventCat = $('#eventCat').val();
+    eventStart = $('#eventStart').val();
+    eventEnd = $('#eventEnd').val();
+    eventLoc = $('#eventLoc').val();
+    eventVis = $('#eventVis').val();
+    eventAcc = $('#eventAcc').val();
+    maxAttendees = $('#maxAttendees').val();
+    description = $('#description').val();
     event = Event;
     event.create(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc);
 }
