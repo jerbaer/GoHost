@@ -36,7 +36,7 @@ eventsList = {
     
     getEventsAttending: function () {
         //self explanatory (1)
-        var url = eventsList.coreUrl + "attendee?iduser="+accessor.getID();
+        var url = eventsList.coreUrl + "attendee?iduser="+eventsList.accessor.getID();
         $.getJSON(url).done(eventsList.attendingFollowUp);
     },
     

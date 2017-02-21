@@ -26,9 +26,9 @@ User = {
     },
     
     createFollowUp: function(data){
-        email = data.email;
-        password = data.password;
-        name = data.name;
+        User.email = data.email;
+        User.password = data.password;
+        User.name = data.name;
         //Do you want me to call these other functions right away or to wait for now?
     },
     createFriendsList: function(){
