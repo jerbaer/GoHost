@@ -55,13 +55,13 @@ eventsList = {
         for(i=0;i<data.length;i++){
             event1 = Event;
             eventsList.events.push(event1);
-            eventsList.events[i].create(data[i].getIdevent());
+            eventsList.events[i].create(data[i].idevent);
         }
     },
     getEventsList: function () {
-        return events;
+        return eventsList.events;
     },
     getSize: function(){
-        return events.length();
+        return eventsList.events.length();
     }
 };
