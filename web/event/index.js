@@ -20,10 +20,16 @@ function setUpComponents() {
         $('#edit').on('click', editEvent);
         $('#invite').on('click', inviteFriends);
         id = parseInt(sessionStorage.getItem('id'));
-        eventid  = parseInt(sessionStorage.getItem('eventid'));
+        eventid = (window.location.href.split('#'))[1];
+        accessor = User;
+        accessor.create(id);
+        
 	//Call function to display the event based on the relation of the
         //accessor to that event. Host, Attendee, neither
         getEvent();
+        if(event.getHost().getID() == accessor.getID()){
+            isHost = true;
+        }
         isHost = event.isAccessorHost();
         isAttendee = event.isUserInEvent();
         canJoin = (event.canUserJoin()&&!event.isUserInEvent());
@@ -46,7 +52,7 @@ function setUpComponents() {
 
 function getEvent() {
     event =  new Event();
-    event.createFromDB(eventid, id);
+    event.createFromDB(eventid, accessor);
 }
 
 function deleteEvent() {
