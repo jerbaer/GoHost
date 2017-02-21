@@ -61,6 +61,8 @@ function setUpComponents() {
 function getEvent() {
     event = new Event();
     event.createFromDB(eventid, accessor);
+    getStringsFromEvent(event);
+    eventDetails = $('#eventDetails');
 }
 
 function deleteEvent() {
