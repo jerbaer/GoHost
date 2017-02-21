@@ -14,6 +14,7 @@ var id;
 
 
 function setUpComponents() {
+    jQuery.ajaxSetup({async:false});
     $('#createEvent').on('click', createEvent);
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
