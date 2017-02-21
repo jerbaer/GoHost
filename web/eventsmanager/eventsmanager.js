@@ -137,7 +137,7 @@ function createEvent() {
     maxAttendees = $('#maxAttendees').val();
     description = $('#description').val();
     event = Event;
-    event.create(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc);
+    event.create(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc, maxAttendees);
 }
 
 $.wait = function (ms) {
