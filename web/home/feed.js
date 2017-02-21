@@ -34,7 +34,7 @@ function getEvents() {
 	for(n = visibleEvents.getSize()-1; n > -1; n--){
 		url = "event/index.html";
 		newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function() {window.location.href = url; window.location.reload(true); });
-                newH1 = $('<a>').text(eventHosts[n]);
+                newH1 = $('<a>').text("Host:" + eventHosts[n]);
                 newH2 = $('<a>').text(eventStartTimes[n]);
                 newH3 = $('<a>').text(eventEndTimes[n]);
                 newH4 = $('<a>').text(eventCategories[n]);
