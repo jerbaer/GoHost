@@ -12,51 +12,51 @@ eventsList = {
     create: function (accessor1, viewType) {
         eventsList.accessor = accessor1;
         eventsList.viewType = viewType;
-        if (viewType == 0) {
+        if (viewType == 0){
             eventsList.getEventsHosting();
-        } else if (viewType == 1) {
+        } else if (viewType == 1){
             eventsList.getEventsAttending();
-        } else if (viewType == 2) {
+        } else if (viewType == 2){
             eventsList.getEventsVisible();
         }
-
+        
 
     },
     getEventsHosting: function () {
         //get all events accessor is hosting, put them in events (0)
-        var url = eventsList.coreUrl + "event/idhost?idhost=" + eventsList.accessor.getID();
+        var url = eventsList.coreUrl + "event/idhost?idhost="+eventsList.accessor.getID();
         $.getJSON(url).done(eventsList.hostingFollowUp);
     },
-
+    
     hostingFollowUp: function (data) {
-        for (i = 0; i < data.length; i++) {
+        for (i=0; i<data.length;i++){
             event1 = Event;
-            event1.createFromDB(data[i].idevent, eventsList.accessor);
+            event1.createFromDB(data[i].idevent, eventsList.accessor)
             eventsList.events.push(event1);
         }
     },
-
+    
     getEventsAttending: function () {
         //self explanatory (1)
-        var url = eventsList.coreUrl + "attendee/iduser?iduser=" + eventsList.accessor.getID();
+        var url = eventsList.coreUrl + "attendee/iduser?iduser="+eventsList.accessor.getID();
         $.getJSON(url).done(eventsList.attendingFollowUp);
     },
-
+    
     attendingFollowUp: function (data) {
-        for (i = 0; i < data.length; i++) {
+        for (i=0; i<data.length;i++){
             event1 = Event;
             eventsList.events.push(event1);
             eventsList.events[i].createFromDB(data[i].idevent, eventsList.accessor);
         }
     },
-
+    
     getEventsVisible: function () {
         var url = eventsList.coreUrl + "event/visibility?visibility=2";
         $.getJSON(url).done(eventsList.visibleFollowUp);
-
+        
     },
     visibleFollowUp: function (data) {
-        for (i = 0; i < data.length; i++) {
+        for(i=0;i<data.length;i++){
             event1 = Event;
             eventsList.events.push(event1);
             eventsList.events[i].createFromDB(data[i].idevent, eventsList.accessor);
@@ -65,7 +65,7 @@ eventsList = {
     getEventsList: function () {
         return eventsList.events;
     },
-    getSize: function () {
+    getSize: function(){
         return eventsList.events.length;
     }
 };
