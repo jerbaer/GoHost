@@ -62,7 +62,18 @@ function getEvent() {
     event = new Event();
     event.createFromDB(eventid, accessor);
     getStringsFromEvent(event);
+    // Create the event in the html
+    // Can implement links that allow edits to be made from the page
     eventDetails = $('#eventDetails');
+    newH = $('<h3>').text(eventTitle);
+    newH1 = $('<p>').text(eventStartTime);
+    newH2 = $('<p>').text(eventEndTime);
+    newH3 = $('<p>').text(eventCategory);
+
+    eventDetails.append(newH);
+    eventDetails.append(newH1);
+    eventDetails.append(newH2);
+    eventDetails.append(newH3);
 }
 
 function deleteEvent() {
@@ -95,11 +106,11 @@ function inviteFriends() {
 
 function getStringsFromEvent(event) {
     eventTitle = event.getTitle();
-    eventHost = event.getHost();
+    //eventHost = event.getHost(); don't need to display this
     eventStartTime = event.getEventStart();
     eventEndTime = event.getEventEnd();
     eventCategory = event.getCategory();
-    eventID = event.getID();
+    //eventID = event.getID(); or this
 }
 
 //This will be coded in iteration 2.0?? hehe ecks dee
