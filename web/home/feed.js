@@ -12,6 +12,7 @@ var eventHosts;
 var eventStartTimes;
 var eventEndTimes;
 var eventCategories;
+
 function setUpComponents() {
     jQuery.ajaxSetup({async:false});
     id = parseInt(sessionStorage.getItem('id'));
@@ -72,4 +73,5 @@ function getStringsFromEvents(eventList) {
 function getVisibleStrings() {
     getStringsFromEvents(visibleEvents);
 }
+
 $(document).ready(setUpComponents);

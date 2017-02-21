@@ -14,6 +14,14 @@ var isHost = false;
 var isAttendee = false;
 var canJoin = false;
 var canSee = false;
+
+var eventTitle;
+var eventHost;
+var eventStartTimes;
+var eventEndTimes;
+var eventCategories;
+var eventIDs;
+    
 function setUpComponents() {
 	// Link some buttons to certain functions
         $('#delete').on('click', deleteEvent);
@@ -83,6 +91,15 @@ function editEvent() {
 function inviteFriends() {
     //This will pull up a list of the user's friends and then the other button
     //would actually allow you to invite people?
+}
+
+function getStringsFromEvent(event) {
+    eventTitle = event.getTitle();
+    eventHost = event.getHost();
+    eventStartTime = event.getEventStart();
+    eventEndTime = event.getEventEnd();
+    eventCategory = event.getCategory();
+    eventID = event.getID();
 }
 
 //This will be coded in iteration 2.0??
