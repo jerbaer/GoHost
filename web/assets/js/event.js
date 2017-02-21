@@ -55,13 +55,13 @@ class Event {
 
     invitedFollowUp(data) {
         for (n = 0; n < data.length; n++) {
-            invitedUsers[n] = data[n].iduser;
+            this.invitedUsers[n] = data[n].iduser;
         }
     }
 
     attendeeFollowUp(data) {
         for (n = 0; n < data.length; n++) {
-            users[n] = data[n].iduser;
+            this.users[n] = data[n].iduser;
         }
     }
 
@@ -102,7 +102,7 @@ class Event {
     }
 
     closeEvent() {
-        access = 3;
+        this.access = 3;
         this.accessibility = access;
     }
 
