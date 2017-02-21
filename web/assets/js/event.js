@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function makeEvent(){    
-return Event = {
+   
+Event = {
     host: null,
     category: null,
     accessor: null,
@@ -252,5 +252,5 @@ return Event = {
         //End-all function everytime an edit happens
     }
 };
-}
+
 
