@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author Jerry
  */
 @Stateless
-@Path("gohost.category")
+@Path("category")
 public class CategoryFacadeREST extends AbstractFacade<Category> {
 
     @PersistenceContext(unitName = "GoHostPU")
@@ -57,9 +57,9 @@ public class CategoryFacadeREST extends AbstractFacade<Category> {
 
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Category find(@PathParam("id") Integer id) {
-        return super.find(id);
+    @Produces({MediaType.APPLICATION_JSON})
+    public Category findCategory(@PathParam("id") Integer id) {
+        return em.createNamedQuery("Category.findByIdcategory", Category.class).setParameter("idcategory", id).getSingleResult();
     }
 
     @GET
