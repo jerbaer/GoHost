@@ -36,7 +36,7 @@ function categoriesFollowUp(data) {
 }
 
 function getEvents() {
-    user = User;
+    let user = new User();
     user.create(id);
     eventsHosted = user.getEventsHosting();
     eventsAttending = user.getEventsAttending();
@@ -127,7 +127,7 @@ function createEvent() {
     eventAcc = $('#eventAcc').val();
     maxAttendees = $('#maxAttendees').val();
     description = $('#description').val();
-    event = Event;
+    let event = new Event();
     event.create(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc);
 }
 
