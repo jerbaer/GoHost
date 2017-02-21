@@ -38,8 +38,7 @@ sys_init = {
             // Storing the id number of the user
             sessionStorage.setItem('id', parseInt(data));
             //Take them to home page
-            // deleted ".href", maybe this will work
-            window.location.href = 'home/';
+            window.location.href = 'home';
             sys_init.refresh;
         } else {
             $('#regWarning').show();
@@ -60,6 +59,7 @@ sys_init = {
         // Button for creating an account
         $('#register').on('click', sys_init.createUser);
     },
+    
     refresh: function () {
 	window.location.href = window.location.href; window.location.reload(true); 
     }
