@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+    
+
 eventsList = {
     events: [], //array of events contained in the list
     accessor: null, //user that is accessing the list
@@ -30,7 +32,7 @@ eventsList = {
     
     hostingFollowUp: function (data) {
         for (i=0; i<data.length;i++){
-            event1 = Event;
+            event1 = makeEvent();
             event1.createFromDB(data[i].idevent, eventsList.accessor)
             eventsList.events.push(event1);
         }
@@ -44,7 +46,7 @@ eventsList = {
     
     attendingFollowUp: function (data) {
         for (i=0; i<data.length;i++){
-            event1 = Event;
+            event1 = makeEvent();
             eventsList.events.push(event1);
             eventsList.events[i].createFromDB(data[i].idevent, eventsList.accessor);
         }
@@ -56,10 +58,11 @@ eventsList = {
         
     },
     visibleFollowUp: function (data) {
-        for(i=0;i<data.length;i++){
-            event1 = Event;
+        for(var i=0;i<data.length;i++){
+            event1 = makeEvent();
+            event1.createFromDB(data[i].idevent, eventsList.accessor)
             eventsList.events.push(event1);
-            eventsList.events[i].createFromDB(data[i].idevent, eventsList.accessor);
+            
         }
     },
     getEventsList: function () {
@@ -69,3 +72,4 @@ eventsList = {
         return eventsList.events.length;
     }
 };
+
