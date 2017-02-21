@@ -26,9 +26,9 @@ User = {
     },
     
     createFollowUp: function(data){
-        email = data.email;
-        password = data.password;
-        name = data.name;
+        User.email = data.email;
+        User.password = data.password;
+        User.name = data.name;
         //Do you want me to call these other functions right away or to wait for now?
     },
     createFriendsList: function(){
@@ -57,25 +57,25 @@ User = {
         }
     },
     getID: function(){
-        return iduser;
+        return User.iduser;
     },
     getEventsAttending: function(){
         User.createEventsAttendingList();
-        return eventsAttending;
+        return User.eventsAttending;
     },
     getVisibleEvents: function(){
-        return eventsVisible;
+        return User.eventsVisible;
     },
     getFriendsList: function(){
         User.createFriendsList();
-        return friendsList;
+        return User.friendsList;
     },
     getEventsHosting: function(){
         User.createHostedEventsList();
-        return eventsHosting;
+        return User.eventsHosting;
     },
     getName: function(){
-        return name;
+        return User.name;
     }
     
 };
