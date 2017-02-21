@@ -53,7 +53,8 @@ eventsList = {
     },
     visibleFollowUp: function (data) {
         for(i=0;i<data.length;i++){
-            events[i] = Event;
+            event1 = Event;
+            events.push(event1);
             events[i].create(data[i].getIdevent());
         }
     },
