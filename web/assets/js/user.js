@@ -4,17 +4,17 @@
  * and open the template in the editor.
  */
 class User {
-    
+        iduser = 0;
+        email = "";
+        password = "";
+        name = "";
+        friendsList = null;
+        eventsHosting = null;
+        eventsAttending = null;
+        eventsVisible = null;
+        coreUrl = "http://143.44.67.0:13774/GoHost/api/";         
     constructor() {
-        this.iduser = 0;
-        this.email = "";
-        this.password = "";
-        this.name = "";
-        this.friendsList = null;
-        this.eventsHosting = null;
-        this.eventsAttending = null;
-        this.eventsVisible = null;
-        this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";        
+  
     }
     create(iduser){
         this.iduser = iduser;
