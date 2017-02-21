@@ -63,17 +63,18 @@ public class AttendeeFacadeREST extends AbstractFacade<Attendee> {
         return super.find(id);
     }
     @GET
+    @QueryParam("{iduser}")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Attendee> getAttending(@QueryParam("iduser") int vis){
         return em.createNamedQuery("Attendee.findByIduser", Attendee.class).setParameter("iduser", new Integer(vis)).getResultList();
    }
 
-    @GET
+    /*@GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Attendee> findAll() {
         return super.findAll();
-    }
+    }*/
 
     @GET
     @Path("{from}/{to}")
