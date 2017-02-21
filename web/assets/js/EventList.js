@@ -55,7 +55,7 @@ eventsList = {
         for(i=0;i<data.length;i++){
             event1 = Event;
             eventsList.events.push(event1);
-            eventsList.events[i].create(data[i].idevent);
+            eventsList.events[i].createFromDB(data[i].idevent, accessor);
         }
     },
     getEventsList: function () {

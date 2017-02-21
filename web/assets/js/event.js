@@ -23,12 +23,11 @@ Event = {
     users: [],
     coreUrl: "http://143.44.67.0:13774/GoHost/api/",
     
-    createFromDB: function (idevent, iduser) {
+    createFromDB: function (idevent, accessor) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibility
         var url = Event.coreUrl + "event/"+idevent;
-        accessor = User;
-        accessor.create(iduser);
+        Event.accessor = accessor
         $.getJSON(url).done(Event.createFollowUp);
     },
     createFollowUp: function(data){
@@ -68,7 +67,7 @@ Event = {
         //if accessibility is 1, add all friends to invited list. Add the created object to the database.
         var event = {title: title,idhost: idhost,maxattendees: eventMax,idlocation: idlocation,idvisibility: idvisibility,idaccessibility: idaccessibility,starttime: eventStart,endtime: eventEnd,description: description,idcategory: idcategory};
 		$.ajax({
-		  url:coreUrl + "event",
+		  url: Event.coreUrl + "event",
 		  type:'POST',
 		  data:JSON.stringify(event),
 		  contentType:'application/json',
