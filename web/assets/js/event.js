@@ -16,8 +16,8 @@ Event = {
     description: "",
     title: "",
     //visibility and accessibility are still being treated as objects in the code
-    visibility: null,
-    accessibility: null,
+    visibility: 0,
+    accessibility: 0,
     invitedUsers: [],
     location: null,
     users: [],
@@ -26,24 +26,24 @@ Event = {
     createFromDB: function (idevent, accessor) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibility
-        var url = Event.coreUrl + "event/"+idevent;
+        var url = Event.coreUrl + "event/"+accessor.getID;
         Event.accessor = accessor
         $.getJSON(url).done(Event.createFollowUp);
     },
     createFollowUp: function(data){
-        Event.accessor = parseInt(sessionStorage.getItem('id'));
-        Event.host = Event.accessor;
-        idevent = data.getIdevent;
+        host = User;
+        host.create(data.idhost);
+        idevent = data.idevent;
         chat = null;//Add this in iteration 2.0
-        eventStart = data.getStarttime;
-        eventEnd = data.getEndtime;
-        eventMax = data.getMaxattendees;
-        description = data.getDescription;
-        title = data.getTitle;
+        eventStart = data.starttime;
+        eventEnd = data.endtime;
+        eventMax = data.maxattendees;
+        description = data.description;
+        title = data.title;
         //location = new Location(data.getIdlocation);
-        category = new Category(data.getIdcategory);
-        accessibility = data.getAccessibility;
-        visibility = data.getVisibility;
+        category = new Category(data.idcategory);
+        accessibility = data.accessibility;
+        visibility = data.visibility;
         //var url = Event.coreUrl + "invited?idevent="+idevent;
         //$.getJSON(url).done(Event.invitedFollowUp);
         //var url1 = Event.coreUrl + "attendee?idevent="+idevent;
