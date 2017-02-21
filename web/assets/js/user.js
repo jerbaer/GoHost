@@ -37,15 +37,15 @@ User = {
     },
     createHostedEventsList: function(){
         eventsHosting = eventsList;
-        eventsHosting.create(this.user, 0);
+        eventsHosting.create(this, 0);
     },
     createEventsAttendingList: function(){
         eventsAttending = eventsList;
-        evetnsAttending.create(this.user, 1);
+        evetnsAttending.create(this, 1);
     },
     createVisibleList: function(){
         eventsVisible = eventsList;
-        eventsVisible.create(this.user, 2);
+        eventsVisible.create(this, 2);
     },
     
     receiveUser : function(Data){
