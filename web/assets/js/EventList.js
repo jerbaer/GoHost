@@ -32,12 +32,14 @@ eventsList = {
     
     hostingFollowUp: function (data) {
         for (i=0; i<data.length;i++){
-            event1 = makeEvent();
+            event1 = Object.create(Event);
             event1.createFromDB(data[i].idevent, eventsList.accessor)
             eventsList.events.push(event1);
         }
     },
-    
+    clear: function(){
+        events = []
+    },
     getEventsAttending: function () {
         //self explanatory (1)
         var url = eventsList.coreUrl + "attendee/iduser?iduser="+eventsList.accessor.getID();
@@ -46,7 +48,7 @@ eventsList = {
     
     attendingFollowUp: function (data) {
         for (i=0; i<data.length;i++){
-            event1 = makeEvent();
+            event1 = Object.create(Event);
             eventsList.events.push(event1);
             eventsList.events[i].createFromDB(data[i].idevent, eventsList.accessor);
         }
@@ -59,7 +61,7 @@ eventsList = {
     },
     visibleFollowUp: function (data) {
         for(var i=0;i<data.length;i++){
-            event1 = makeEvent();
+            event1 = Object.create(Event);
             event1.createFromDB(data[i].idevent, eventsList.accessor)
             eventsList.events.push(event1);
             
