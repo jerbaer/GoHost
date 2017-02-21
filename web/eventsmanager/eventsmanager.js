@@ -24,13 +24,13 @@ function setUpComponents() {
 
 function getCategories() {
     var url = "http://143.44.67.0:13774/GoHost/api/category/all";
-    $.getJSON(url).done(eventsList.categoriesFollowUp);
+    $.getJSON(url).done(categoriesFollowUp);
 }
 
 function categoriesFollowUp(data) {
     eventsCat = $('#eventCat');
     for (i = 0; i < data.length; i++) {
-        newHr = $('<option>').val(data.idcategory).text(data.name);
+        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
         eventsCat.append(newHr);
     }
 }
