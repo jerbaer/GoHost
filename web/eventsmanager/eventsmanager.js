@@ -29,14 +29,12 @@ function getEvents() {
     user = User;
     user.create(id);
     eventsHosted = user.getEventsHosting();
-    eventsHosted.create(user,0);
     eventsAttending = user.getEventsAttending();
-    eventsHosted.create(user,1);
-    gotHostStrings();
+    getHostStrings();
     getAttendingStrings();
 }
 
-function getStringsFromEvents(EventsList) {
+function getStringsFromEvents(eventList) {
     eventTitles = new Array(eventList.getSize());
     eventHosts = new Array(eventList.getSize());
     eventStartTimes = new Array(eventList.getSize());
@@ -53,6 +51,7 @@ function getStringsFromEvents(EventsList) {
         eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
         eventCategories[i] = eventList.getEventsList()[i].getCategory().getName();
         eventIDs[i] = eventList.getEventsList()[i].getID();
+}
 }
 
 function getHostStrings() {
