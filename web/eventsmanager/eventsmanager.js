@@ -33,7 +33,6 @@ function categoriesFollowUp(data){
     eventsCat = $('#eventCat');
     for (i=0; i<data.length;i++){
         newHr = $('<option>').val(data.idcategory).text(data.name);
-        
     }
     
 }
