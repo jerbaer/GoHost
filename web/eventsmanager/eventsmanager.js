@@ -100,11 +100,11 @@ function getAttendingStrings() {
             window.location.reload(true);
             sessionStorage.setItem('eventid', eventIDs[n]);
         });
-        newH1 = $('<h6>').text(eventHosts[n]);
-        newH2 = $('<h6>').text(eventStartTimes[n]);
-        newH3 = $('<h6>').text(eventEndTimes[n]);
-        newH4 = $('<h6>').text(eventCategories[n]);
-        newH = $('<h6>').append(newA);
+        newH1 = $('<p>').text(eventHosts[n]);
+        newH2 = $('<p>').text(eventStartTimes[n]);
+        newH3 = $('<p>').text(eventEndTimes[n]);
+        newH4 = $('<p>').text(eventCategories[n]);
+        newH = $('<p>').append(newA);
         newHr = $('<hr>');
 
         eventsFeed.append(newH);
