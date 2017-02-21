@@ -39,7 +39,7 @@ sys_init = {
             sessionStorage.setItem('id', parseInt(data));
             //Take them to home page
             // deleted ".href", maybe this will work
-            window.location.href = 'home/index.html#';
+            window.location.href = 'home/';
             sys_init.refresh;
         } else {
             $('#regWarning').show();
