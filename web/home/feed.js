@@ -5,8 +5,8 @@
  */
 
 var id = 0;
-var visibleEvents = null
-var user = null
+var visibleEvents = null;
+var user = null;
 var eventTitles;
 var eventHosts;
 var eventStartTimes;
