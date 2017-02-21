@@ -19,9 +19,23 @@ function setUpComponents() {
     $('#attending').on('click', getAttendingStrings);
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
+    getCategories();
     //This needs to
     //1. Populate the catgory dropdown with categories from DB
-    //2. Populate the location dropdown
+}
+
+function getCategories() {
+    var url = "http://143.44.67.0:13774/GoHost/api/category/all"; 
+    $.getJSON(url).done(eventsList.categoriesFollowUp);
+}
+
+function categoriesFollowUp(data){
+    eventsCat = $('#eventCat');
+    for (i=0; i<data.length;i++){
+        newHr = $('<option>').val(data.idcategory).text(data.name);
+        
+    }
+    
 }
 
 function getEvents() {

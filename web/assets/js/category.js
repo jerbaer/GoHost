@@ -23,7 +23,6 @@ Category = {
         Category.name = data.name;
     },
     getName: function(){
- 
         return Category.name;
     },
 

@@ -63,6 +63,7 @@ public class CategoryFacadeREST extends AbstractFacade<Category> {
     }
 
     @GET
+    @Path("all")
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Category> findAll() {
