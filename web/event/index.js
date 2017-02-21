@@ -7,7 +7,7 @@
 
 // Global Variables go under here if they are needed
 var id = 0;
-var eventid  = 0;
+var eventid = 0;
 var event = null;
 var accessor = null;
 var isHost = false;
@@ -21,45 +21,45 @@ var eventStartTimes;
 var eventEndTimes;
 var eventCategories;
 var eventIDs;
-    
+
 function setUpComponents() {
-	// Link some buttons to certain functions
-        $('#delete').on('click', deleteEvent);
-        $('#edit').on('click', editEvent);
-        $('#invite').on('click', inviteFriends);
-        id = parseInt(sessionStorage.getItem('id'));
-        eventid = (window.location.href.split('#'))[1];
-        accessor = User;
-        accessor.create(id);
-        
-	//Call function to display the event based on the relation of the
-        //accessor to that event. Host, Attendee, neither
-        getEvent();
-        if(event.getHost().getID() == accessor.getID()){
-            isHost = true;
-        }
-        isHost = event.isAccessorHost();
-        isAttendee = event.isUserInEvent();
-        canJoin = (event.canUserJoin()&&!event.isUserInEvent());
-        canSee = event.canUserSee();
-        //eventDetails, joinEvent, hostOnly
-        if(isHost){
-            $('#joinEvent').hide();
-        } else if (isAttendee){
-            $('#joinEvent').hide();
-            $('#hostOnly').hide();
-        } else if (canJoin){
-            $('#hostOnly').hide();
-        } else if (!canSee){
-            $('#eventDetails').hide();
-            $('#joinEvent').hide();
-            $('#hostOnly').hide();
-        }
-        //Show and hide all the divs in the html under here 
+    // Link some buttons to certain functions
+    $('#delete').on('click', deleteEvent);
+    $('#edit').on('click', editEvent);
+    $('#invite').on('click', inviteFriends);
+    id = parseInt(sessionStorage.getItem('id'));
+    eventid = (window.location.href.split('#'))[1];
+    accessor = User;
+    accessor.create(id);
+
+    //Call function to display the event based on the relation of the
+    //accessor to that event. Host, Attendee, neither
+    getEvent();
+    if (event.getHost().getID() == accessor.getID()) {
+        isHost = true;
+    }
+    isHost = event.isAccessorHost();
+    isAttendee = event.isUserInEvent();
+    canJoin = (event.canUserJoin() && !event.isUserInEvent());
+    canSee = event.canUserSee();
+    //eventDetails, joinEvent, hostOnly
+    if (isHost) {
+        $('#joinEvent').hide();
+    } else if (isAttendee) {
+        $('#joinEvent').hide();
+        $('#hostOnly').hide();
+    } else if (canJoin) {
+        $('#hostOnly').hide();
+    } else if (!canSee) {
+        $('#eventDetails').hide();
+        $('#joinEvent').hide();
+        $('#hostOnly').hide();
+    }
+    //Show and hide all the divs in the html under here 
 }
 
 function getEvent() {
-    event =  new Event();
+    event = new Event();
     event.createFromDB(eventid, accessor);
 }
 
@@ -101,17 +101,20 @@ function getStringsFromEvent(event) {
 }
 
 //This will be coded in iteration 2.0?? hehe ecks dee
-function chat(){
-    
+function chat() {
+
 }
-$.wait = function(ms) {
+$.wait = function (ms) {
     var defer = $.Deferred();
-    setTimeout(function() { defer.resolve(); }, ms);
+    setTimeout(function () {
+        defer.resolve();
+    }, ms);
     return defer;
 };
 
 function refresh() {
-	window.location.href = window.location.href; window.location.reload(true); 
+    window.location.href = window.location.href;
+    window.location.reload(true);
 }
 
 $(window).load(setUpComponents);
