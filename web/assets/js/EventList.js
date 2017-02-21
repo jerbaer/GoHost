@@ -24,7 +24,7 @@ eventsList = {
     },
     getEventsHosting: function () {
         //get all events accessor is hosting, put them in events (0)
-        var url = eventsList.coreUrl + "event?idhost="+eventsList.accessor.getID();
+        var url = eventsList.coreUrl + "event/idhost?idhost="+eventsList.accessor.getID();
         $.getJSON(url).done(eventsList.hostingFollowUp);
     },
     
@@ -51,7 +51,7 @@ eventsList = {
     },
     
     getEventsVisible: function () {
-        var url = eventsList.coreUrl + "event?visibility=2";
+        var url = eventsList.coreUrl + "event/visibility?visibility=2";
         $.getJSON(url).done(eventsList.visibleFollowUp);
         
     },
