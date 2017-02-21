@@ -6,7 +6,7 @@
 class User {
     
     constructor() {
-        this.iduser = iduser;
+        this.iduser = 0;
         this.email = "";
         this.password = "";
         this.name = "";
@@ -17,7 +17,7 @@ class User {
         this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";        
     }
     create(iduser){
-
+        this.iduser = iduser;
         var url = this.coreUrl + "user/" + iduser;
         $.getJSON(url).done(this.createFollowUp);
     }
