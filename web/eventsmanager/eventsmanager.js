@@ -89,6 +89,6 @@ $.wait = function (ms) {
 function refresh() {
     window.location.href = window.location.href;
     window.location.reload(true);
-};
+}
 
 $(window).load(setUpComponents);
