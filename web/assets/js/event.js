@@ -41,7 +41,7 @@ Event = {
         Event.description = data.description;
         Event.title = data.title;
         //location = new Location(data.getIdlocation);
-        Event.category = Category;
+        Event.category = Object.create(Category);
         Event.category.create(data.idcategory);
         Event.accessibility = data.accessibility;
         Event.visibility = data.visibility;
