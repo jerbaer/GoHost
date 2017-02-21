@@ -13,6 +13,7 @@ var eventStartTimes;
 var eventEndTimes;
 var eventCategories;
 function setUpComponents() {
+    jQuery.ajaxSetup({async:false});
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
 }
