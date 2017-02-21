@@ -32,23 +32,27 @@ function getEvents() {
     eventsHosted.create(user,0);
     eventsAttending = user.getEventsAttending();
     eventsHosted.create(user,1);
+    gotHostStrings();
+    getAttendingStrings();
 }
 
 function getStringsFromEvents(EventsList) {
-    eventTitles = new Array(EventsList.getSize);
-    eventHosts = new Array(EventsList.getSize);
-    eventStartTimes = new Array(EventsList.getSize);
-    eventEndTimes = new Array(EventsList.getSize);
-    eventCategories = new Array(EventsList.getSize);
-    eventIDs = new Array(EventsList.getSize);
-    for (i = 0; i < EventsList.getSize(); i++) {
-        eventTitles[i] = EventsList.getEventsList()[i].getTitle();
-        eventHosts [i] = EventsList.getEventsList()[i].getHost();
-        eventStartTimes[i] = EventsList.getEventsList()[i].getStartTime();
-        eventEndTimes[i] = EventsList.getEventsList()[i].getEndTime();
-        eventCategories[i] = EventsList.getEventsList()[i].getCategory();
-        eventIDs[i] = EventsList.getEventsList()[i].getID();
-    }
+    eventTitles = new Array(eventList.getSize());
+    eventHosts = new Array(eventList.getSize());
+    eventStartTimes = new Array(eventList.getSize());
+    eventEndTimes = new Array(eventList.getSize());
+    eventCategories = new Array(eventList.getSize());
+    eventIDs = new Array(eventList.getSize());
+    for (i = 0; i < eventList.getSize(); i++) {
+        eventTitles[i] = eventList.getEventsList()[i].getTitle();
+        eventHosts [i] = eventList.getEventsList()[i].getHost().getName();
+        //var t = eventList.getEventsList()[i].getEventStart().split(/[- T :]/);
+        var d = new Date(eventList.getEventsList()[i].getEventStart());      
+        eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
+        var x = new Date(eventList.getEventsList()[i].getEventEnd())
+        eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
+        eventCategories[i] = eventList.getEventsList()[i].getCategory().getName();
+        eventIDs[i] = eventList.getEventsList()[i].getID();
 }
 
 function getHostStrings() {
