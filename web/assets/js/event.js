@@ -26,24 +26,24 @@ Event = {
     createFromDB: function (idevent, accessor) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibility
-        var url = Event.coreUrl + "event/"+accessor.getID;
+        var url = Event.coreUrl + "event/"+accessor.getID();
         Event.accessor = accessor
         $.getJSON(url).done(Event.createFollowUp);
     },
     createFollowUp: function(data){
-        host = User;
-        host.create(data.idhost);
-        idevent = data.idevent;
-        chat = null;//Add this in iteration 2.0
-        eventStart = data.starttime;
-        eventEnd = data.endtime;
-        eventMax = data.maxattendees;
-        description = data.description;
-        title = data.title;
+        Event.host = User;
+        Event.host.create(data.idhost);
+        Event.idevent = data.idevent;
+        Event.chat = null;//Add this in iteration 2.0
+        Event.eventStart = data.starttime;
+        Event.eventEnd = data.endtime;
+        Event.eventMax = data.maxattendees;
+        Event.description = data.description;
+        Event.title = data.title;
         //location = new Location(data.getIdlocation);
-        category = new Category(data.idcategory);
-        accessibility = data.accessibility;
-        visibility = data.visibility;
+        Event.category = new Category(data.idcategory);
+        Event.accessibility = data.accessibility;
+        Event.visibility = data.visibility;
         //var url = Event.coreUrl + "invited?idevent="+idevent;
         //$.getJSON(url).done(Event.invitedFollowUp);
         //var url1 = Event.coreUrl + "attendee?idevent="+idevent;
