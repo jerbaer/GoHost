@@ -62,7 +62,8 @@ function getStringsFromEvents(eventList) {
         eventTitles[i] = eventList.getEventsList()[i].getTitle();
         eventHosts [i] = eventList.getEventsList()[i].getHost().getName();
         //var t = eventList.getEventsList()[i].getEventStart().split(/[- T :]/);
-        var d = new Date(eventList.getEventsList()[i].getEventStart());      
+        var d = new Date(eventList.getEventsList()[i].getEventStart());
+        //In a future iteration look at user time zone and adjust time accordingly
         eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
         var x = new Date(eventList.getEventsList()[i].getEventEnd())
         eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
