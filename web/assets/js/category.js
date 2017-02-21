@@ -4,6 +4,37 @@
  * and open the template in the editor.
  */
 
+
+class Category{
+    constructor(){
+     this.idcategory= 0;
+    this.name = "";
+    this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
+    }
+    create(idcategory1){
+               Category.idcategory = idcategory1;
+               Category.retrieveName();
+    }
+    retrieveName(){
+        //get the name of the category from the database
+        var url = Category.coreUrl + "category/"+Category.idcategory;
+        $.getJSON(url).done(Category.nameFollowUp);
+    }
+    //Don't know if this chain of functions will work. Need to learn to do
+    //things in the same function for this
+    nameFollowUp(data){
+        Category.name = data.name;
+    }
+    getName(){
+        return Category.name;
+    }
+
+    getID(){
+        return Category.idcategory;
+    }
+}
+
+/*
 Category = {
     idcategory : 0,
     name : "",
@@ -30,3 +61,4 @@ Category = {
         return Category.idcategory;
     }
 };
+*/
