@@ -41,7 +41,6 @@ function getEvents() {
     eventsHosted = user.getEventsHosting();
     eventsAttending = user.getEventsAttending();
     getHostStrings();
-    getAttendingStrings();
 }
 
 function getStringsFromEvents(eventList) {
@@ -65,6 +64,11 @@ function getStringsFromEvents(eventList) {
 }
 
 function getHostStrings() {
+    eventTitles = null;
+    eventHosts = null;
+    eventStartTimes = null;
+    eventEndTimes = null;
+    eventCategories = null;
     getStringsFromEvents(eventsHosted);
     eventsFeed = $('#hosting');
     for (n = eventTitles.length - 1; n > -1; n--) {
@@ -91,6 +95,11 @@ function getHostStrings() {
 }
 
 function getAttendingStrings() {
+    eventTitles = null;
+    eventHosts = null;
+    eventStartTimes = null;
+    eventEndTimes = null;
+    eventCategories = null;
     getStringsFromEvents(eventsAttending);
     eventsFeed = $('#attending');
     for (n = eventTitles.length - 1; n > -1; n--) {
