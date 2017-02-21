@@ -70,7 +70,7 @@ function getHostStrings() {
     getStringsFromEvents(eventsHosted);
     eventsFeed = $('#hosting');
     for (n = eventTitles.length - 1; n > -1; n--) {
-        url = "event/index.html";
+        url = "../event/index.html";
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;
             window.location.reload(true);
