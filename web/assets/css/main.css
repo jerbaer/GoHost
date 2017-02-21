@@ -8,8 +8,13 @@
     border-right: 1px solid #ffffff;
 }
 
-/* Parallax */
+/* Img */
+img {
+    max-height: 100%;
+    max-width: 100%
+}
 
+/* Parallax */
 body, html {
     height: 100%;
 }
