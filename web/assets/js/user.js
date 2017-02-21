@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 class User {
+    
     constructor() {
-        
-    }
-    create(iduser){
         this.iduser = iduser;
         this.email = "";
         this.password = "";
@@ -16,7 +14,10 @@ class User {
         this.eventsHosting = null;
         this.eventsAttending = null;
         this.eventsVisible = null;
-        this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
+        this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";        
+    }
+    create(iduser){
+
         var url = this.coreUrl + "user/" + iduser;
         $.getJSON(url).done(this.createFollowUp);
     }
