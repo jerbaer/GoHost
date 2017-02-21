@@ -60,7 +60,7 @@ class User {
         return friendsList;
     }
     getEventsHosting() {
-        User.createHostedEventsList();
+        createHostedEventsList();
         return eventsHosting;
     }
     getName() {
