@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author Jerry
  */
 @Stateless
-@Path("gohost.message")
+@Path("message")
 public class MessageFacadeREST extends AbstractFacade<Message> {
 
     @PersistenceContext(unitName = "GoHostPU")

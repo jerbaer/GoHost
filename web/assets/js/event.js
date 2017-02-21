@@ -235,6 +235,9 @@ Event = {
     getUsers : function(){
         return Event.users;
     },
+    getID : function(){
+        return Event.idevent;
+    },
     
     refreshEdits: function(){
         var event = {title: title,idhost: host,maxattendees: eventMax,idlocation: location.idlocation,idvisibility: visibility,idaccessibility: accessibility,starttime: eventStart,endtime: eventEnd,description: description,idcategory: category.idcategory};

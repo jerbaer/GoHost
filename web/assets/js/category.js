@@ -10,12 +10,12 @@ Category = {
     coreUrl : "http://143.44.67.0:13774/GoHost/api/",
     create: function(idcategory1){
                Category.idcategory = idcategory1;
-               retrieveName();
+               Category.retrieveName();
     },
     retrieveName: function(){
         //get the name of the category from the database
-        var url = coreUrl + "category/"+Category.idcategory;
-        $.getJSON(url).done(nameFollowUp);
+        var url = Category.coreUrl + "category/"+Category.idcategory;
+        $.getJSON(url).done(Category.nameFollowUp);
     },
     //Don't know if this chain of functions will work. Need to learn to do
     //things in the same function for this
