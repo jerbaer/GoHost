@@ -33,7 +33,7 @@ class Event {
     }
 
     createFollowUp(data) {
-        Event.host = new User();
+        let Event.host = new User();
         Event.host.create(data.idhost);
         Event.idevent = data.idevent;
         Event.chat = null;//Add this in iteration 2.0
@@ -43,7 +43,7 @@ class Event {
         Event.description = data.description;
         Event.title = data.title;
         //location = new Location(data.getIdlocation);
-        Event.category = new Category();
+        let Event.category = new Category();
         Event.category.create(data.idcategory);
         Event.accessibility = data.accessibility;
         Event.visibility = data.visibility;

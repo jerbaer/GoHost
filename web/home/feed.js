@@ -20,10 +20,10 @@ function setUpComponents() {
 }
 
 function getEvents() {
-    let user = User();
+    user = new User();
     user.create(id);
     user.createVisibleList();
-    let visibleEvents = user.getVisibleEvents()
+    visibleEvents = user.getVisibleEvents()
 
     setTimeout(getVisibleStrings(), 10000);
     //this is where it connects with HTML to print the feed in objects
@@ -74,7 +74,7 @@ function getStringsFromEvents(eventList) {
     }
 }
 function getVisibleStrings() {
-    getStringsFromEvents(this.visibleEvents);
+    getStringsFromEvents(visibleEvents);
 }
 
 $(document).ready(setUpComponents);
