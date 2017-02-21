@@ -30,7 +30,9 @@ eventsList = {
     
     hostingFollowUp: function (data) {
         for (n=0; n<data.length;n++){
-            eventsList.events[n] = data[n].idevent;
+            event1 = Event;
+            eventsList.events.push(event1);
+            eventsList.events[i].createFromDB(data[i].idevent, eventsList.accessor);
         }
     },
     
@@ -41,8 +43,10 @@ eventsList = {
     },
     
     attendingFollowUp: function (data) {
-        for (n=0; n<data.length;n++){
-            eventsList.events[n] = data[n].idevent;
+        for (i=0; i<data.length;i++){
+            event1 = Event;
+            eventsList.events.push(event1);
+            eventsList.events[i].createFromDB(data[i].idevent, eventsList.accessor);
         }
     },
     
