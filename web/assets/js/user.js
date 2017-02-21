@@ -21,7 +21,7 @@ User = {
         //the database. After that, it will use other
         //objects to populate friends list, eventslist...
         User.iduser = iduser;
-        var url = User.coreUrl + "user?id="+iduser;
+        var url = User.coreUrl + "user/"+iduser;
         $.getJSON(url).done(User.createFollowUp);
     },
     
