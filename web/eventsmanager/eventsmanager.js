@@ -16,6 +16,7 @@ var id;
 function setUpComponents() {
     jQuery.ajaxSetup({async:false});
     $('#createEvent').on('click', createEvent);
+    $('#attending').on('click', getAttendingStrings);
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
     //This needs to
@@ -56,10 +57,46 @@ function getStringsFromEvents(eventList) {
 
 function getHostStrings() {
     getStringsFromEvents(eventsHosted);
+    eventsFeed = $('#hosting');
+    for(n = eventList.getSize()-1; n > -1; n--){
+		url = "event/index.html";
+		newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function() {window.location.href = url; window.location.reload(true); sessionStorage.setItem('eventid', eventIDs[n]);  });
+                newH1 = $('<h6>').text(eventHosts[n]);
+                newH2 = $('<h6>').text(eventStartTimes[n]);
+                newH3 = $('<h6>').text(eventEndTimes[n]);
+                newH4 = $('<h6>').text(eventCategories[n]);
+		newH = $('<h6>').append(newA);
+		newHr = $('<hr>');
+		
+		eventsFeed.append(newH);
+                eventsFeed.append(newH1);
+                eventsFeed.append(newH2);
+                eventsFeed.append(newH3);
+                eventsFeed.append(newH4);
+		eventsFeed.append(newHr);
+    }
 }
 
 function getAttendingStrings() {
     getStringsFromEvents(eventsAttending);
+    eventsFeed = $('#attending');
+    for(n = eventList.getSize()-1; n > -1; n--){
+		url = "event/index.html";
+		newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function() {window.location.href = url; window.location.reload(true); sessionStorage.setItem('eventid', eventIDs[n]);  });
+                newH1 = $('<h6>').text(eventHosts[n]);
+                newH2 = $('<h6>').text(eventStartTimes[n]);
+                newH3 = $('<h6>').text(eventEndTimes[n]);
+                newH4 = $('<h6>').text(eventCategories[n]);
+		newH = $('<h6>').append(newA);
+		newHr = $('<hr>');
+		
+		eventsFeed.append(newH);
+                eventsFeed.append(newH1);
+                eventsFeed.append(newH2);
+                eventsFeed.append(newH3);
+                eventsFeed.append(newH4);
+		eventsFeed.append(newHr);
+    }
 }
 
 
