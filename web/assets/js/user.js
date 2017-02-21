@@ -3,7 +3,73 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-User = {
+class User {
+    constructor() {
+        
+    }
+    create(iduser){
+        this.iduser = iduser;
+        this.email = "";
+        this.password = "";
+        this.name = "";
+        this.friendsList = null;
+        this.eventsHosting = null;
+        this.eventsAttending = null;
+        this.eventsVisible = null;
+        this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
+        var url = this.coreUrl + "user/" + iduser;
+        $.getJSON(url).done(this.createFollowUp);
+    }
+    createFollowUp(data) {
+        email = data.email;
+        password = data.password;
+        name = data.name;
+    }
+    createFriendsList() {
+        let friendsList = new FriendsList(iduser);
+    }
+    createHostedEventsList() {
+        let eventsHosting = new eventsList(this, 0);
+    }
+    createEventsAttendingList() {
+        let eventsAttending = new eventsList(this,1);
+    }
+    createVisibleList() {
+        let eventsVisible = new eventsList(this,2);
+    }
+    receiveUser(Data) {
+        iduser = Data.idUser;
+        if (iduser !== "0") {
+            sessionStorage.setItem('id', iduser);
+            email = Data.email;
+            name = Data.name;
+        }
+    }
+    getID() {
+        return iduser;
+    }
+    getEventsAttending() {
+        this.createEventsAttendingList();
+        return eventsAttending;
+    }
+    getVisibleEvents() {
+        return eventsVisible;
+    }
+    getFriendsList() {
+        createFriendsList();
+        return friendsList;
+    }
+    getEventsHosting() {
+        User.createHostedEventsList();
+        return eventsHosting;
+    }
+    getName() {
+        return name;
+    }
+}
+
+
+/*User = {
     iduser: 0,
     email: "",
     password: "",
@@ -78,3 +144,4 @@ User = {
     }
 
 };
+*/
