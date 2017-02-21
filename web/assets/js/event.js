@@ -28,7 +28,7 @@ class Event {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibility
         var url = Event.coreUrl + "event/" + accessor.getID();
-        Event.accessor = accessor
+        Event.accessor = accessor;
         $.getJSON(url).done(Event.createFollowUp);
     }
 
