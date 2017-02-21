@@ -122,7 +122,7 @@ function createEvent() {
     eventCat = $('#eventCat').val();
     eventStart = $('#eventStart').val();
     eventEnd = $('#eventEnd').val();
-    eventLoc = $('#eventLoc').val();
+    eventLoc = 0//$('#eventLoc').val
     eventVis = $('#eventVis').val();
     eventAcc = $('#eventAcc').val();
     maxAttendees = $('#maxAttendees').val();
