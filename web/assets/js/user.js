@@ -32,20 +32,20 @@ User = {
         //Do you want me to call these other functions right away or to wait for now?
     },
     createFriendsList: function(){
-        friendsList = FriendsList();
-        friendsList.create(iduser)
+        User.friendsList = FriendsList();
+        User.friendsList.create(iduser)
     },
     createHostedEventsList: function(){
-        eventsHosting = eventsList;
-        eventsHosting.create(User, 0);
+        User.eventsHosting = eventsList;
+        User.eventsHosting.create(User, 0);
     },
     createEventsAttendingList: function(){
-        eventsAttending = eventsList;
-        evetnsAttending.create(User, 1);
+        User.eventsAttending = eventsList;
+        User.eventsAttending.create(User, 1);
     },
     createVisibleList: function(){
-        eventsVisible = eventsList;
-        eventsVisible.create(User, 2);
+        User.eventsVisible = eventsList;
+        User.eventsVisible.create(User, 2);
     },
     
     receiveUser : function(Data){

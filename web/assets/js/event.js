@@ -41,7 +41,8 @@ Event = {
         Event.description = data.description;
         Event.title = data.title;
         //location = new Location(data.getIdlocation);
-        Event.category = new Category(data.idcategory);
+        Event.category = Category;
+        Event.category.create(data.idcategory);
         Event.accessibility = data.accessibility;
         Event.visibility = data.visibility;
         //var url = Event.coreUrl + "invited?idevent="+idevent;
@@ -168,59 +169,59 @@ Event = {
         } else return false;
     },
     editDescription: function(description){
-        this.description = description;
+        Event.description = description;
     },
     editStartTime: function(startTime){
-        this.startTime = startTime;
+        Event.startTime = startTime;
     },
     editEndTime: function(endTime){
-        this.endTime = endTime;
+        Event.endTime = endTime;
     },
     
     editTitle: function(title){
-        this.title = title;
+        Event.title = title;
     },
     
     editCategory: function(category){
-        this.category = category;
+        Event.category = category;
     },
     editLocation: function(location){
-        this.location = location;
+        Event.location = location;
     },
     editVisibility: function(visibility){
-        this.visibility = visibility;
+        Event.visibility = visibility;
     },
     
     editAccessiblity: function(accessibility){
-        this.accessibility = accessibility;
+        Event.accessibility = accessibility;
     },
     
     editMax: function(max){
-        this.eventMax = max;
+        Event.eventMax = max;
     },
     
     getEventStart : function(){
-        return eventStart;
+        return Event.eventStart;
     },
     
     getEventEnd : function(){
-        return eventEnd;
+        return Event.eventEnd;
     },
     
     getHost : function(){
-        return host;
+        return Event.host;
     },
     
     getCategory : function(){
-        return category;
+        return Event.category;
     },
     
     getTitle : function(){
-        return title;
+        return Event.title;
     },
     
     getidEvent : function(){
-        return idevent;
+        return Event.idevent;
     },
     
     getLocation : function(){
@@ -228,11 +229,11 @@ Event = {
     },
     
     getDescription : function(){
-        return description;
+        return Event.description;
     },
     
     getUsers : function(){
-        return users;
+        return Event.users;
     },
     
     refreshEdits: function(){
