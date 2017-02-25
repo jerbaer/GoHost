@@ -50,7 +50,7 @@ function Event() {
         this.category = new Category(data.idcategory);//Is this how you construct a cat?
         this.accessibility = data.accessibility;
         this.visibility = data.visibility;
-    },
+    };
 
 
     this.invitedFollowUp = function (data) {
@@ -71,7 +71,7 @@ function Event() {
         //Won't let me use this.
         var event = {title: title, idhost: idhost, maxattendees: eventMax, /*idlocation: idlocation,*/ idvisibility: idvisibility, idaccessibility: idaccessibility, /*starttime: eventStart, endtime: eventEnd,*/ description: description, idcategory: idcategory};
         $.ajax({
-            url: Event.coreUrl + "event",
+            url: this.coreUrl + "event",
             type: 'post',
             data: JSON.stringify(event),
             contentType: 'application/json',
@@ -185,14 +185,14 @@ function Event() {
     };
 
     this.editTitle = function (title) {
-        Event.title = title;
+        this.title = title;
     };
 
     this.editCategory = function (category) {
         this.category = category;
     };
     this.editLocation = function (location) {
-        Event.location = location;
+        this.location = location;
     };
     this.editVisibility = function (visibility) {
         this.visibility = visibility;
