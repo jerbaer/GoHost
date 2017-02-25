@@ -10,7 +10,7 @@ function Category (idcategory1) {
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
     this.retrieveName = function(){
         //get the name of the category from the database
-        var url = Category.coreUrl + "category/"+Category.idcategory;
+        var url = Category.coreUrl + "category/"+this.idcategory;
         $.getJSON(url).done(Category.nameFollowUp);
     };
     this.nameFollowUp  = function(data){
