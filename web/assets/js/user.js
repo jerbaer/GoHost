@@ -33,7 +33,7 @@ function User() {
     };
 
     this.createFriendsList = function () {
-        User.friendsList = FriendsList();
+        User.friendsList = new FriendsList();
         User.friendsList.create(iduser);
     };
 
