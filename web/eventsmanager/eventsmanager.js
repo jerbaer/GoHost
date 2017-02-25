@@ -8,10 +8,8 @@ var eventStartTimes;
 var eventEndTimes;
 var eventCategories;
 
-
 //Global variables go under here
 var id;
-
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
@@ -132,7 +130,6 @@ function getAttendingStrings() {
         eventsFeed.append(newHr);
     }
 }
-
 
 function createEvent() {
     eventTitle = $('#eventTitle').val();
