@@ -18,7 +18,7 @@ function Category (idcategory1) {
     //Don't know if this chain of functions will work. Need to learn to do
     //things in the same function for this
     this.nameFollowUp  = function(data){
-        this.name = data.name;
+        name = data.name;
     };
     this.getName = function(){
         return this.name;

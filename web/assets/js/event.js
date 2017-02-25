@@ -25,8 +25,9 @@ function Event() {
     this.createFromDB = function (idevent, accessor1) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibili
-        var url = this.coreUrl + "event/" + accessor1.getID();
+        var url = this.coreUrl + "event/" + idevent;
         this.accessor = accessor1;
+
         $.ajax({
             dataType: "json",
             url: url,
