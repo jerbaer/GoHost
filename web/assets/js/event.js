@@ -25,9 +25,9 @@ function Event() {
 
     this.createFromDB = function(idevent, accessor){
         //fill all the relevant fields from SQL, get accessor from session, create objects
-        //for category, user, host, location, visibility, accessibility
+        //for category, user, host, location, visibility, accessibili
         var url = this.coreUrl + "event/" + accessor.getID();
-        this.accessor = accessor
+        this.accessor = accessor;
         $.getJSON(url).done(this.createFollowUp);
     };
     this.createFollowUp = function (data) {
@@ -42,6 +42,25 @@ function Event() {
         this.title = data.title;
         this.location = new Location(data.getIdlocation);
         this.category = new Category(data.idcategory);//Is this how you construct a cat?
+        this.accessibility = data.accessibility;
+        this.visibility = data.visibility;
+        var url = Event.coreUrl + "event/" + idevent;
+        this.accessor = accessor;
+        $.getJSON(url).done(Event.createFollowUp);
+    },
+    this.createFollowUp = function (data) {
+        this.host = User;
+        this.host.create(data.idhost);
+        this.idevent = data.idevent;
+        this.chat = null;//Add this in iteration 2.0
+        this.eventStart = data.starttime;
+        this.eventEnd = data.endtime;
+        this.eventMax = data.maxattendees;
+        this.description = data.description;
+        this.title = data.title;
+        //location = new Location(data.getIdlocation);
+        this.category = Object.create(Category);
+        this.category.create(data.idcategory);
         this.accessibility = data.accessibility;
         this.visibility = data.visibility;
         //var url = Event.coreUrl + "invited?idevent="+idevent;
