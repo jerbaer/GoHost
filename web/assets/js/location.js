@@ -6,16 +6,16 @@
 function  Location (idlocation1){
     this.idlocation = idlocation1;
     this.name = this.getName();
-    coreUrl = "http://143.44.67.0:13774/GoHost/api/";
-    function getName(){
+    this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
+    this.getName = function(){
         //get the name of the category from the database
-        var url = coreUrl + "location?idlocation="+idlocation;
-        $.getJSON(url).done(nameFollowUp);
-    }
-    function nameFollowUp(data){
+        var url = this.coreUrl + "location?idlocation="+this.idlocation;
+        $.getJSON(url).done(this.nameFollowUp);
+    };
+    this.nameFollowUp = function(data){
         return data.name;
-    }
-    function getID(){
-        return idlocation;
-    }
-};
+    };
+    this.getID = function(){
+        return this.idlocation;
+    };
+}
