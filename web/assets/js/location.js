@@ -11,7 +11,12 @@ function  Location (idlocation1){
     this.retrieveName = function(){
         //get the name of the location from the database
         var url = this.coreUrl + "location/"+this.idlocation;
-        $.getJSON(url).done(this.nameFollowUp);
+        $.ajax({
+            dataType: "json",
+            url: url,
+            context: this,
+            success: this.nameFollowUp
+        });
     };
     this.nameFollowUp = function(data){
         this.name = data.name;

@@ -11,7 +11,12 @@ function Category (idcategory1) {
     this.retrieveName = function(){
         //get the name of the category from the database
         var url = this.coreUrl + "category/"+this.idcategory;
-        $.getJSON(url).done(this.nameFollowUp);
+        $.ajax({
+            dataType: "json",
+            url: url,
+            context: this,
+            success: this.nameFollowUp
+        });
     };
     this.nameFollowUp  = function(data){
         this.name = data.name;
