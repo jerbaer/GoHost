@@ -44,9 +44,9 @@ function Event() {
         this.category = new Category(data.idcategory);//Is this how you construct a cat?
         this.accessibility = data.accessibility;
         this.visibility = data.visibility;
-        var url = Event.coreUrl + "event/" + idevent;
+        var url = this.coreUrl + "event/" + this.idevent;
         this.accessor = accessor;
-        $.getJSON(url).done(Event.createFollowUp);
+        $.getJSON(url).done(this.createFollowUp);
     },
     this.createFollowUp = function (data) {
         this.host = User;
@@ -58,9 +58,8 @@ function Event() {
         this.eventMax = data.maxattendees;
         this.description = data.description;
         this.title = data.title;
-        //location = new Location(data.getIdlocation);
-        this.category = Object.create(Category);
-        this.category.create(data.idcategory);
+        this.location = new Location(data.getIdlocation);
+        this.category = new Category(data.idcategory);
         this.accessibility = data.accessibility;
         this.visibility = data.visibility;
         //var url = Event.coreUrl + "invited?idevent="+idevent;
