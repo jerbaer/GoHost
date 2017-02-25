@@ -16,7 +16,7 @@ function FriendsList() {
         owner = iduser;
         //get friends from database and populate list, fill in size
         var url = coreUrl + "friend?iduser1=" + owner;
-        $.getJSON(url).done(FriendsList.friendFollowUp);
+        $.getJSON(url).done(this.friendFollowUp);
         //Need to also cross reference it with friends that are user1
         //Need to rethink how friends status happens in the first place
     };
@@ -55,7 +55,7 @@ FriendsList = {
         owner = iduser;
         //get friends from database and populate list, fill in size
         var url = coreUrl + "friend?iduser1=" + owner;
-        $.getJSON(url).done(FriendsList.friendFollowUp);
+        $.getJSON(url).done(this.friendFollowUp);
         //Need to also cross reference it with friends that are user1
         //Need to rethink how friends status happens in the first place
     },
