@@ -47,6 +47,7 @@ function getStringsFromEvents(eventList) {
     eventStartTimes = new Array(eventList.getSize());
     eventEndTimes = new Array(eventList.getSize());
     eventCategories = new Array(eventList.getSize());
+    eventLocations = new Array(eventList.getSize());
     eventIDs = new Array(eventList.getSize());
     for (i = 0; i < eventList.getSize(); i++) {
         eventTitles[i] = eventList.getEventsList()[i].getTitle();
@@ -64,6 +65,7 @@ function getStringsFromEvents(eventList) {
 
 function getHostStrings() {
     $('#attend').hide();
+    $('#attend').empty();
     if (eventsHosted != null) {
         eventsHosted = null;
     }
@@ -77,6 +79,7 @@ function getHostStrings() {
     eventStartTimes = null;
     eventEndTimes = null;
     eventCategories = null;
+    eventLocations = null;
     getStringsFromEvents(eventsHosted);
     var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
     var n, url;
@@ -109,6 +112,7 @@ function getHostStrings() {
 
 function getAttendingStrings() {
     $('#host').hide();
+    $('#host').empty();
     if (eventsAttending != null) {
         eventsAttending = null;
     }
@@ -122,6 +126,7 @@ function getAttendingStrings() {
     eventStartTimes = null;
     eventEndTimes = null;
     eventCategories = null;
+    eventLocations = null;
     getStringsFromEvents(eventsAttending);
     var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
     var n, url;
