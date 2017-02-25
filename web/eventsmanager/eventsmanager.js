@@ -63,9 +63,14 @@ function getStringsFromEvents(eventList) {
 }
 
 function getHostStrings() {
-    $('#attending').hide();
-    if (eventsHosted!=null){eventsHosted.clear()}
-    if (eventsAttending!=null){eventsAttending.clear()}
+    $('#attend').hide();
+    if (eventsHosted != null) {
+        eventsHosted = null;
+    }
+    if (eventsAttending != null) {
+        eventsAttending = null;
+    }
+    user.createHostedEventsList();
     eventsHosted = user.getEventsHosting();
     eventTitles = null;
     eventHosts = null;
@@ -75,8 +80,8 @@ function getHostStrings() {
     getStringsFromEvents(eventsHosted);
     var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
     var n, url;
-    eventsFeed = $('#hosting');
-    for (n = eventTitles.length - 1; n > -1; n--) {
+    eventsFeed = $('#host');
+    for (n = eventsHosted.getSize() - 1; n > -1; n--) {
         url = "../event/index.html"; //need to append event ID here
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;
@@ -99,12 +104,18 @@ function getHostStrings() {
         eventsFeed.append(newH5);
         eventsFeed.append(newHr);
     }
+    $('#host').show();
 }
 
 function getAttendingStrings() {
-     $('#hosting').hide();
-    if (eventsAttending!=null){eventsAttending.clear()}
-    if (eventsHosted!=null){eventsHosted.clear()}
+    $('#host').hide();
+    if (eventsAttending != null) {
+        eventsAttending = null;
+    }
+    if (eventsHosted != null) {
+        eventsHosted = null;
+    }
+    user.createEventsAttendingList();
     eventsAttending = user.getEventsAttending();
     eventTitles = null;
     eventHosts = null;
@@ -114,8 +125,8 @@ function getAttendingStrings() {
     getStringsFromEvents(eventsAttending);
     var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
     var n, url;
-    eventsFeed = $('#attending');
-    for (n = eventTitles.length - 2; n > -1; n--) {
+    eventsFeed = $('#attend');
+    for (n = eventsAttending.getSize() -1 ; n > -1; n--) {
         url = "../event/index.html";
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;
@@ -138,6 +149,7 @@ function getAttendingStrings() {
         eventsFeed.append(newH5);
         eventsFeed.append(newHr);
     }
+    $('#attend').show();
 }
 
 function createEvent() {
