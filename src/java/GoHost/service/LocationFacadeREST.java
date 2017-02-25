@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author Jerry
  */
 @Stateless
-@Path("gohost.location")
+@Path("location")
 public class LocationFacadeREST extends AbstractFacade<Location> {
 
     @PersistenceContext(unitName = "GoHostPU")

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 function  Location (idlocation1){
     this.idlocation = idlocation1;
     this.name = "";
-    
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
-    this.getName = function(){
-        //get the name of the category from the database
-        var url = this.coreUrl + "location?idlocation="+this.idlocation;
+    this.retrieveName = function(){
+        //get the name of the location from the database
+        var url = this.coreUrl + "location/"+this.idlocation;
         $.getJSON(url).done(this.nameFollowUp);
     };
     this.nameFollowUp = function(data){
@@ -19,6 +19,7 @@ function  Location (idlocation1){
     this.getID = function(){
         return this.idlocation;
     };
-    this.getName();
-    
+    this.getName = function(){
+        return this.name;
+    };
 }

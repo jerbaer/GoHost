@@ -46,7 +46,9 @@ function Event() {
         this.description = data.description;
         this.title = data.title;
         this.location = new Location(data.idlocation);
-        this.category = new Category(data.idcategory);//Is this how you construct a cat?
+        this.location.retrieveName();
+        this.category = new Category(data.idcategory);
+        this.category.retrieveName();
         this.accessibility = data.accessibility;
         this.visibility = data.visibility;
     };
