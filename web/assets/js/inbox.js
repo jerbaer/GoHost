@@ -4,32 +4,32 @@
  * and open the template in the editor.
  */
 
-Inbox = {
-    owner: null,
-    notifications: [],
+function Inbox() {
+    this.owner = null;
+    this.notifications = [];
 
-    displayNotifications: function () {
+    this.displayNotifications = function () {
         // for each n in notifications {
             // n.displayNotification()
-    },
+    };
 
-    addNotification: function () {
+    this.addNotification = function () {
         // construct notification var
-    },
+    };
 
-    getNotification: function () {
+    this.getNotification = function () {
         // talk to server here
-    },
+    };
     
-    eventInvite: function () {
+    this.eventInvite = function () {
         
-    },
+    };
     
-    eventRequest: function () {
+    this.eventRequest = function () {
         
-    },
+    };
     
-    friendRequest: function () {
+    this.friendRequest = function () {
         
-    }
+    };
 }

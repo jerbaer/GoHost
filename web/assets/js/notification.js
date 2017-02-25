@@ -4,26 +4,26 @@
  * and open the template in the editor.
  */
 
-Notification = {
-    message: "",
-    read: null,
-    systemName: "",
-    idnotification: 0,
-    owner: null,
-    time: 0,
+function Notification(){
+    this.message = "";
+    this.read = null;
+    this.systemName = "";
+    this.idnotification = 0;
+    this.owner = null;
+    this.time = 0;
 
-    displayNotification: function () {
+    this.displayNotification = function () {
         // construct notification in html (i think)
-    },
+    };
     
-    readNotification: function () {
+    this.readNotification = function () {
         
-    },
+    };
     
-    create: function (message, owner, fromSystem) {
+    this.create = function (message, owner, fromSystem) {
         // var notification = {member variables}
             // $.ajax({
                 // member variables
             // });
-    }
+    };
 }
