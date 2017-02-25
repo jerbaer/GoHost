@@ -15,7 +15,6 @@ function Event() {
     this.eventMax = 0;
     this.description = "";
     this.title = "";
-    //visibility and accessibility are still being treated as objects in the code
     this.visibility = 0;
     this.accessibility = 0;
     this.invitedUsers = [];
