@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+   
 Event = {
     host: null,
     category: null,
@@ -26,7 +26,7 @@ Event = {
     createFromDB: function (idevent, accessor) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibility
-        var url = Event.coreUrl + "event/" + accessor.getID();
+        var url = Event.coreUrl + "event/" + idevent;
         Event.accessor = accessor
         $.getJSON(url).done(Event.createFollowUp);
     },

@@ -13,7 +13,7 @@
         <script src="../assets/js/user.js"></script>
         <script src="../assets/js/EventList.js"></script>
         <script src="../assets/js/category.js"></script>
-        <script src="eventsmanager.js"></script>
+        <!--script src="eventsmanager.js"></script-->
         <style type="text/css">
             body { 
                 padding: 60px 0 0 0;
@@ -48,6 +48,7 @@
             <div class="row">
                 <div class="col-sm-8">
                     <ul class="nav nav-tabs">
+                        <!-- the id="hosting/attending" were bricking the bootstrap functionality -->
                         <li class="active"><a data-toggle="tab" href="#hosting">Hosting</a></li>
                         <li><a data-toggle="tab" href="#attending">Attending</a></li>
                     </ul>
@@ -56,10 +57,20 @@
                         <div id="hosting" class="tab-pane fade in active">
                             <h3>Events I'm Hosting</h3>
                             <hr>
+                            <p><a href="../event">the best event</a></p>
+                            <p>alex</p>
+                            <p>Sun Feb 14 2016 16:00:00</p>
+                            <p>Sun Feb 14 2016 17:00:00</p>
+                            <p>Activity</p>
                         </div>
                         <div id="attending" class="tab-pane fade">
                             <h3>Events I'm Attending</h3>
                             <hr>
+                            <p><a href="../event">the best event</a></p>
+                            <p>alex</p>
+                            <p>Sun Feb 14 2016 16:00:00</p>
+                            <p>Sun Feb 14 2016 17:00:00</p>
+                            <p>Activity</p>
                         </div>
                     </div>
                 </div>

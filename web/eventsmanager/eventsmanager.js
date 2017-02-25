@@ -17,6 +17,7 @@ function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     $('#createEvent').on('click', createEvent);
     $('#attending').on('click', getAttendingStrings);
+    $('hosting').on('click', getHostStrings);
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
     getCategories();
@@ -38,12 +39,11 @@ function categoriesFollowUp(data) {
 function getEvents() {
     user = User;
     user.create(id);
-    eventsHosted = user.getEventsHosting();
-    eventsAttending = user.getEventsAttending();
     getHostStrings();
 }
 
 function getStringsFromEvents(eventList) {
+
     eventTitles = new Array(eventList.getSize());
     eventHosts = new Array(eventList.getSize());
     eventStartTimes = new Array(eventList.getSize());
@@ -64,6 +64,10 @@ function getStringsFromEvents(eventList) {
 }
 
 function getHostStrings() {
+    $('#attending1').hide();
+    if (eventsHosted!=null){eventsHosted.clear()}
+    if (eventsAttending!=null){eventsAttending.clear()}
+    eventsHosted = user.getEventsHosting();
     eventTitles = null;
     eventHosts = null;
     eventStartTimes = null;
@@ -95,6 +99,10 @@ function getHostStrings() {
 }
 
 function getAttendingStrings() {
+     $('#hosting1').hide();
+    if (eventsAttending!=null){eventsAttending.clear()}
+    if (eventsHosted!=null){eventsHosted.clear()}
+    eventsAttending = user.getEventsAttending();
     eventTitles = null;
     eventHosts = null;
     eventStartTimes = null;
@@ -102,7 +110,7 @@ function getAttendingStrings() {
     eventCategories = null;
     getStringsFromEvents(eventsAttending);
     eventsFeed = $('#attending');
-    for (n = eventTitles.length - 1; n > -1; n--) {
+    for (n = eventTitles.length - 2; n > -1; n--) {
         url = "../event/index.html";
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;
