@@ -8,7 +8,7 @@ function Category (idcategory1) {
     this.idcategory = idcategory1;
     this.name = "";
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
-    this.retrieveName();
+    
     
     this.retrieveName = function(){
         //get the name of the category from the database
@@ -27,4 +27,5 @@ function Category (idcategory1) {
     this.getID = function(){
         return this.idcategory;
     };
+    this.retrieveName();
 }
