@@ -4,68 +4,68 @@
  * and open the template in the editor.
  */
 
-Event = {
-    host: null,
-    category: null,
-    accessor: null,
-    idevent: 0,
-    chat: null,
-    eventStart: 0,
-    eventEnd: 0,
-    eventMax: 0,
-    description: "",
-    title: "",
+function Event() {
+    this.host = null;
+    this.category = null;
+    this.accessor = null;
+    this.idevent = 0;
+    this.chat = null;
+    this.eventStart = 0;
+    this.eventEnd = 0;
+    this.eventMax = 0;
+    this.description = "";
+    this.title = "";
     //visibility and accessibility are still being treated as objects in the code
-    visibility: 0,
-    accessibility: 0,
-    invitedUsers: [],
-    location: null,
-    users: [],
-    coreUrl: "http://143.44.67.0:13774/GoHost/api/",
+    this.visibility = 0;
+    this.accessibility = 0;
+    this.invitedUsers = [];
+    this.location = null;
+    this.users = [];
+    this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
 
-    createFromDB: function (idevent, accessor) {
+    this.createFromDB = function(idevent, accessor){
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibility
-        var url = Event.coreUrl + "event/" + accessor.getID();
-        Event.accessor = accessor
-        $.getJSON(url).done(Event.createFollowUp);
-    },
-    createFollowUp: function (data) {
-        Event.host = User;
-        Event.host.create(data.idhost);
-        Event.idevent = data.idevent;
-        Event.chat = null;//Add this in iteration 2.0
-        Event.eventStart = data.starttime;
-        Event.eventEnd = data.endtime;
-        Event.eventMax = data.maxattendees;
-        Event.description = data.description;
-        Event.title = data.title;
-        //location = new Location(data.getIdlocation);
-        Event.category = Object.create(Category);
-        Event.category.create(data.idcategory);
-        Event.accessibility = data.accessibility;
-        Event.visibility = data.visibility;
+        var url = this.coreUrl + "event/" + accessor.getID();
+        this.accessor = accessor
+        $.getJSON(url).done(this.createFollowUp);
+    };
+    this.createFollowUp = function (data) {
+        this.host = new User();//Is this how you construct a user?
+        this.host.create(data.idhost);
+        this.idevent = data.idevent;
+        this.chat = null;//Add this in iteration 2.0
+        this.eventStart = data.starttime;
+        this.eventEnd = data.endtime;
+        this.eventMax = data.maxattendees;
+        this.description = data.description;
+        this.title = data.title;
+        this.location = new Location(data.getIdlocation);
+        this.category = new Category(data.idcategory);//Is this how you construct a cat?
+        this.accessibility = data.accessibility;
+        this.visibility = data.visibility;
         //var url = Event.coreUrl + "invited?idevent="+idevent;
         //$.getJSON(url).done(Event.invitedFollowUp);
         //var url1 = Event.coreUrl + "attendee?idevent="+idevent;
         //$.getJSON(url1).done(Event.attendeeFollowUp);
-    },
+    };
 
-    invitedFollowUp: function (data) {
+    this.invitedFollowUp = function (data) {
         for (n = 0; n < data.length; n++) {
-            invitedUsers[n] = data[n].iduser;
+            this.invitedUsers[n] = data[n].iduser;
         }
-    },
+    };
 
-    attendeeFollowUp: function (data) {
+    this.attendeeFollowUp = function (data) {
         for (n = 0; n < data.length; n++) {
-            users[n] = data[n].iduser;
+            this.users[n] = data[n].iduser;
         }
-    },
+    };
 
-    create: function (idhost, idcategory, eventStart, eventEnd, description, title,idvisibility,idaccessibility, idlocation, eventMax) {
+    this.create = function (idhost, idcategory, eventStart, eventEnd, description, title,idvisibility,idaccessibility, idlocation, eventMax) {
         //creates a user from the idhost, category from idcategory, visibility from idvisibility/idaccessibility, location from idlocation, all other fields are filled from parameters
         //if accessibility is 1, add all friends to invited list. Add the created object to the database.
+        //Won't let me use this.
         var event = {title: title, idhost: idhost, maxattendees: eventMax, /*idlocation: idlocation,*/ idvisibility: idvisibility, idaccessibility: idaccessibility, /*starttime: eventStart, endtime: eventEnd,*/ description: description, idcategory: idcategory};
         $.ajax({
             url: Event.coreUrl + "event",
@@ -76,81 +76,82 @@ Event = {
             async : false
             //success: Event.createFollowUp2
         });
-    },
+    };
 
-    //createFollowUp2: function (id) {
+    this.createFollowUp2 = function (id) {
         //Stores the id of the event row recently added to the database
-        //idevent = id;
-    //},
+        idevent = id;
+    };
 
-    isAccessorHost: function () {
+    this.isAccessorHost = function () {
         if (this.accessor.getID() === this.host.getID()) {
             return true;
         } else
             return false;
 
-    },
-    isUserInEvent: function () {
+    };
+    this.isUserInEvent = function () {
         for (i = 0; i < this.users.size(); i++) {
             if (this.accessor.getID() === this.user[i].getID()) {
                 return true;
             }
         }
         return false;
-    },
-    closeEvent: function () {
+    };
+    this.closeEvent = function () {
+        //Is this the right way to declare a variable?
         access = 3;
         this.accessibility = access;
-    },
+    };
 
     //deletes all mentions of event from database
-    deleteEvent: function () {
+    this.deleteEvent = function () {
         //Deletes event from event table
         $.ajax({
-            url: coreUrl + 'event$idevent=' + idevent,
+            url: this.coreUrl + 'event$idevent=' + this.idevent,
             type: 'DELETE'
         });
         //Deletes all attendee rows of this event
         $.ajax({
-            url: coreUrl + 'attendee$idevent=' + idevent,
+            url: this.coreUrl + 'attendee$idevent=' + this.idevent,
             type: 'DELETE'
         });
         //Delets all invited rows of this evnet
         $.ajax({
-            url: coreUrl + 'invited$idevent=' + idevent,
+            url: this.coreUrl + 'invited$idevent=' + this.idevent,
             type: 'DELETE'
         });
         //Delets all messages of this event
         $.ajax({
-            url: coreUrl + 'message$idevent=' + idevent,
+            url: this.coreUrl + 'message$idevent=' + this.idevent,
             type: 'DELETE'
         });
         //Deletes all notifications of this event
         $.ajax({
-            url: coreUrl + 'notification$idevent=' + idevent,
+            url: this.coreUrl + 'notification$idevent=' + this.idevent,
             type: 'DELETE'
         });
-    },
-    isEventFull: function () {
-        if (this.accessibility.getID() === 3) {
+    };
+    this.isEventFull = function () {
+        if (this.accessibility === 3) {
             return true;
         } else
             return false;
-    },
-    addUserToEvent: function (iduser) {
+    };
+    this.addUserToEvent = function (iduser) {
         //adds user to the users array as well as the database and refresh
-        n = users.length;
-        users[n] = iduser;
+        n = this.users.length;
+        this.users[n] = iduser;
         var user = {iduser: iduser, idevent: idevent};
         $.ajax({
-            url: coreUrl + 'attendee',
+            url: this.coreUrl + 'attendee',
             type: 'POST',
             data: JSON.stringify(user),
             contentType: 'application/json',
             dataType: 'json'
         });
-    },
-    canUserJoin: function () {
+    };
+    this.canUserJoin = function () {
         if (this.accessibility.getID() === 2) {
             return true;
         } //else {
@@ -161,84 +162,84 @@ Event = {
         //  }
         //  return false;
         // }
-    },
-    canUserSee: function () {
+    };
+    this.canUserSee = function () {
         if (this.visibility.getID() === 2) {
             return true;
             //} else if (this.host.isFriendsWith(accessor) && this.visibility.getID()== 1){
             //    return true;
         } else
             return false;
-    },
-    editDescription: function (description) {
-        Event.description = description;
-    },
-    editStartTime: function (startTime) {
-        Event.startTime = startTime;
-    },
-    editEndTime: function (endTime) {
-        Event.endTime = endTime;
-    },
+    };
+    this.editDescription = function (description) {
+        this.description = description;
+    };
+    this.editStartTime = function (startTime) {
+        this.startTime = startTime;
+    };
+    this.editEndTime = function (endTime) {
+        this.endTime = endTime;
+    };
 
-    editTitle: function (title) {
+    this.editTitle = function (title) {
         Event.title = title;
-    },
+    };
 
-    editCategory: function (category) {
-        Event.category = category;
-    },
-    editLocation: function (location) {
+    this.editCategory = function (category) {
+        this.category = category;
+    };
+    this.editLocation = function (location) {
         Event.location = location;
-    },
-    editVisibility: function (visibility) {
-        Event.visibility = visibility;
-    },
+    };
+    this.editVisibility = function (visibility) {
+        this.visibility = visibility;
+    };
 
-    editAccessiblity: function (accessibility) {
-        Event.accessibility = accessibility;
-    },
+    this.editAccessiblity = function (accessibility) {
+        this.accessibility = accessibility;
+    };
 
-    editMax: function (max) {
-        Event.eventMax = max;
-    },
+    this.editMax = function (max) {
+        this.eventMax = max;
+    };
 
-    getEventStart: function () {
-        return Event.eventStart;
-    },
+    this.getEventStart = function () {
+        return this.eventStart;
+    };
 
-    getEventEnd: function () {
-        return Event.eventEnd;
-    },
+    this.getEventEnd = function () {
+        return this.eventEnd;
+    };
 
-    getHost: function () {
-        return Event.host;
-    },
+    this.getHost = function () {
+        return this.host;
+    };
 
-    getCategory: function () {
-        return Event.category;
-    },
+    this.getCategory = function () {
+        return this.category;
+    };
 
-    getTitle: function () {
-        return Event.title;
-    },
+    this.getTitle = function () {
+        return this.title;
+    };
 
-    getLocation: function () {
-        return location.getName();
-    },
+    this.getLocation = function () {
+        return this.location.getName();
+    };
 
-    getDescription: function () {
-        return Event.description;
-    },
+    this.getDescription = function () {
+        return this.description;
+    };
 
-    getUsers: function () {
+    this.getUsers = function () {
         return Event.users;
-    },
+    };
 
-    getID: function () {
-        return Event.idevent;
-    },
+    this.getID = function () {
+        return this.idevent;
+    };
 
-    refreshEdits: function () {
+    this.refreshEdits = function () {
         var event = {title: title, idhost: host, maxattendees: eventMax, idlocation: location.idlocation, idvisibility: visibility, idaccessibility: accessibility, starttime: eventStart, endtime: eventEnd, description: description, idcategory: category.idcategory};
         $.ajax({
             url: coreUrl + 'event',
@@ -250,7 +251,7 @@ Event = {
         //This will have a put request that updates the db with all the edits 
         //That might have happened to the event object. We will call this 
         //End-all function everytime an edit happens
-    }
-};
+    };
+}
 
 
