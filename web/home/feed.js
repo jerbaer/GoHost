@@ -20,7 +20,7 @@ function setUpComponents() {
 }
 
 function getEvents() {
-    user = User;
+    user = new User();
     user.create(id);
     user.createVisibleList();
     visibleEvents = user.getVisibleEvents()
