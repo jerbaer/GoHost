@@ -22,7 +22,12 @@ function User() {
         //objects to populate friends list, eventslist...
         this.iduser = iduser;
         var url = this.coreUrl + "user/" + iduser;
-        $.getJSON(url).done(this.createFollowUp);
+                $.ajax({
+  dataType: "json",
+  url: url,
+  context: this,
+  success: this.createFollowUp
+});
     };
 
     this.createFollowUp = function (data) {
@@ -38,18 +43,18 @@ function User() {
     };
 
     this.createHostedEventsList = function () {
-        this.eventsHosting = eventsList;
-        this.eventsHosting.create(User, 0);
+        this.eventsHosting = new eventsList();
+        this.eventsHosting.create(this, 0);
     };
 
     this.createEventsAttendingList = function () {
-        this.eventsAttending = eventsList;
-        this.eventsAttending.create(User, 1);
+        this.eventsAttending = new eventsList();
+        this.eventsAttending.create(this, 1);
     };
 
     this.createVisibleList = function () {
-        this.eventsVisible = eventsList;
-        this.eventsVisible.create(User, 2);
+        this.eventsVisible = new eventsList();
+        this.eventsVisible.create(this, 2);
     };
 
     this.receiveUser = function (Data) {

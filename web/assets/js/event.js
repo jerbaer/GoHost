@@ -23,12 +23,17 @@ function Event() {
     this.users = [];
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
 
-    this.createFromDB = function(idevent, accessor){
+    this.createFromDB = function (idevent, accessor1) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibili
-        var url = this.coreUrl + "event/" + accessor.getID();
-        this.accessor = accessor;
-        $.getJSON(url).done(this.createFollowUp);
+        var url = this.coreUrl + "event/" + accessor1.getID();
+        this.accessor = accessor1;
+        $.ajax({
+            dataType: "json",
+            url: url,
+            context: this,
+            success: this.createFollowUp
+        });
     };
     this.createFollowUp = function (data) {
         this.host = new User();//Is this how you construct a user?
@@ -40,12 +45,12 @@ function Event() {
         this.eventMax = data.maxattendees;
         this.description = data.description;
         this.title = data.title;
-        this.location = new Location(data.getIdlocation);
+        this.location = new Location(data.idlocation);
         this.category = new Category(data.idcategory);//Is this how you construct a cat?
         this.accessibility = data.accessibility;
         this.visibility = data.visibility;
-        var url = this.coreUrl + "event/" + this.idevent;
     };
+
 
     this.invitedFollowUp = function (data) {
         for (n = 0; n < data.length; n++) {
@@ -59,7 +64,7 @@ function Event() {
         }
     };
 
-    this.create = function (idhost, idcategory, eventStart, eventEnd, description, title,idvisibility,idaccessibility, idlocation, eventMax) {
+    this.create = function (idhost, idcategory, eventStart, eventEnd, description, title, idvisibility, idaccessibility, idlocation, eventMax) {
         //creates a user from the idhost, category from idcategory, visibility from idvisibility/idaccessibility, location from idlocation, all other fields are filled from parameters
         //if accessibility is 1, add all friends to invited list. Add the created object to the database.
         //Won't let me use this.
@@ -70,8 +75,8 @@ function Event() {
             data: JSON.stringify(event),
             contentType: 'application/json',
             dataType: 'json',
-            async : false
-            //success: Event.createFollowUp2
+            async: false
+                    //success: Event.createFollowUp2
         });
     };
 
