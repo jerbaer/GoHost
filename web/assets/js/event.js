@@ -45,27 +45,6 @@ function Event() {
         this.accessibility = data.accessibility;
         this.visibility = data.visibility;
         var url = this.coreUrl + "event/" + this.idevent;
-        this.accessor = accessor;
-        $.getJSON(url).done(this.createFollowUp);
-    },
-    this.createFollowUp = function (data) {
-        this.host = User;
-        this.host.create(data.idhost);
-        this.idevent = data.idevent;
-        this.chat = null;//Add this in iteration 2.0
-        this.eventStart = data.starttime;
-        this.eventEnd = data.endtime;
-        this.eventMax = data.maxattendees;
-        this.description = data.description;
-        this.title = data.title;
-        this.location = new Location(data.getIdlocation);
-        this.category = new Category(data.idcategory);
-        this.accessibility = data.accessibility;
-        this.visibility = data.visibility;
-        //var url = Event.coreUrl + "invited?idevent="+idevent;
-        //$.getJSON(url).done(Event.invitedFollowUp);
-        //var url1 = Event.coreUrl + "attendee?idevent="+idevent;
-        //$.getJSON(url1).done(Event.attendeeFollowUp);
     };
 
     this.invitedFollowUp = function (data) {
