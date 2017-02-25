@@ -20,72 +20,72 @@ function User() {
         //create and populate a user object from an already created user row in
         //the database. After that, it will use other
         //objects to populate friends list, eventslist...
-        User.iduser = iduser;
-        var url = User.coreUrl + "user/" + iduser;
-        $.getJSON(url).done(User.createFollowUp);
+        this.iduser = iduser;
+        var url = this.coreUrl + "user/" + iduser;
+        $.getJSON(url).done(this.createFollowUp);
     };
 
     this.createFollowUp = function (data) {
-        User.email = data.email;
-        User.password = data.password;
-        User.name = data.name;
+        this.email = data.email;
+        this.password = data.password;
+        this.name = data.name;
         //Do you want me to call these other functions right away or to wait for now?
     };
 
     this.createFriendsList = function () {
-        User.friendsList = new FriendsList();
-        User.friendsList.create(iduser);
+        this.friendsList = new FriendsList();
+        this.friendsList.create(iduser);
     };
 
     this.createHostedEventsList = function () {
-        User.eventsHosting = eventsList;
-        User.eventsHosting.create(User, 0);
+        this.eventsHosting = eventsList;
+        this.eventsHosting.create(User, 0);
     };
 
     this.createEventsAttendingList = function () {
-        User.eventsAttending = eventsList;
-        User.eventsAttending.create(User, 1);
+        this.eventsAttending = eventsList;
+        this.eventsAttending.create(User, 1);
     };
 
     this.createVisibleList = function () {
-        User.eventsVisible = eventsList;
-        User.eventsVisible.create(User, 2);
+        this.eventsVisible = eventsList;
+        this.eventsVisible.create(User, 2);
     };
 
     this.receiveUser = function (Data) {
-        User.iduser = Data.idUser;
-        if (User.iduser !== "0") {
-            sessionStorage.setItem('id', User.iduser);
-            User.email = Data.email;
-            User.name = Data.name;
+        this.iduser = Data.idUser;
+        if (this.iduser !== "0") {
+            sessionStorage.setItem('id', this.iduser);
+            this.email = Data.email;
+            this.name = Data.name;
         }
     };
 
     this.getID = function () {
-        return User.iduser;
+        return this.iduser;
     };
 
     this.getEventsAttending = function () {
-        User.createEventsAttendingList();
-        return User.eventsAttending;
+        this.createEventsAttendingList();
+        return this.eventsAttending;
     };
 
     this.getVisibleEvents = function () {
-        return User.eventsVisible;
+        return this.eventsVisible;
     };
 
     this.getFriendsList = function () {
-        User.createFriendsList();
-        return User.friendsList;
+        this.createFriendsList();
+        return this.friendsList;
     };
 
     this.getEventsHosting = function () {
-        User.createHostedEventsList();
-        return User.eventsHosting;
+        this.createHostedEventsList();
+        return this.eventsHosting;
     };
 
     this.getName = function () {
-        return User.name;
+        return this.name;
     };
 }
 
@@ -105,62 +105,62 @@ function User() {
  //create and populate a user object from an already created user row in
  //the database. After that, it will use other
  //objects to populate friends list, eventslist...
- User.iduser = iduser;
- var url = User.coreUrl + "user/" + iduser;
- $.getJSON(url).done(User.createFollowUp);
+ this.iduser = iduser;
+ var url = this.coreUrl + "user/" + iduser;
+ $.getJSON(url).done(this.createFollowUp);
  },
  
  createFollowUp: function (data) {
- User.email = data.email;
- User.password = data.password;
- User.name = data.name;
+ this.email = data.email;
+ this.password = data.password;
+ this.name = data.name;
  //Do you want me to call these other functions right away or to wait for now?
  },
  createFriendsList: function () {
- User.friendsList = FriendsList();
- User.friendsList.create(iduser);
+ this.friendsList = FriendsList();
+ this.friendsList.create(iduser);
  },
  createHostedEventsList: function () {
- User.eventsHosting = eventsList;
- User.eventsHosting.create(User, 0);
+ this.eventsHosting = eventsList;
+ this.eventsHosting.create(User, 0);
  },
  createEventsAttendingList: function () {
- User.eventsAttending = eventsList;
- User.eventsAttending.create(User, 1);
+ this.eventsAttending = eventsList;
+ this.eventsAttending.create(User, 1);
  },
  createVisibleList: function () {
- User.eventsVisible = eventsList;
- User.eventsVisible.create(User, 2);
+ this.eventsVisible = eventsList;
+ this.eventsVisible.create(User, 2);
  },
  
  receiveUser: function (Data) {
- User.iduser = Data.idUser;
- if (User.iduser !== "0") {
- sessionStorage.setItem('id', User.iduser);
- User.email = Data.email;
- User.name = Data.name;
+ this.iduser = Data.idUser;
+ if (this.iduser !== "0") {
+ sessionStorage.setItem('id', this.iduser);
+ this.email = Data.email;
+ this.name = Data.name;
  }
  },
  getID: function () {
- return User.iduser;
+ return this.iduser;
  },
  getEventsAttending: function () {
- User.createEventsAttendingList();
- return User.eventsAttending;
+ this.createEventsAttendingList();
+ return this.eventsAttending;
  },
  getVisibleEvents: function () {
- return User.eventsVisible;
+ return this.eventsVisible;
  },
  getFriendsList: function () {
- User.createFriendsList();
- return User.friendsList;
+ this.createFriendsList();
+ return this.friendsList;
  },
  getEventsHosting: function () {
- User.createHostedEventsList();
- return User.eventsHosting;
+ this.createHostedEventsList();
+ return this.eventsHosting;
  },
  getName: function () {
- return User.name;
+ return this.name;
  }
  
  };
