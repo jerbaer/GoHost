@@ -35,7 +35,6 @@ function Event() {
             success: this.createFollowUp
         });
     };
-    
     this.createFollowUp = function (data) {
         this.host = new User(); // Is this how you construct a user?
         this.host.create(data.idhost);
@@ -54,6 +53,7 @@ function Event() {
         this.visibility = data.visibility;
     };
 
+
     this.invitedFollowUp = function (data) {
         for (n = 0; n < data.length; n++) {
             this.invitedUsers[n] = data[n].iduser;
@@ -70,7 +70,7 @@ function Event() {
         //creates a user from the idhost, category from idcategory, visibility from idvisibility/idaccessibility, location from idlocation, all other fields are filled from parameters
         //if accessibility is 1, add all friends to invited list. Add the created object to the database.
         //Won't let me use this.
-        var event = {title: title, idhost: idhost, maxattendees: eventMax, /*idlocation: idlocation,*/ idvisibility: idvisibility, idaccessibility: idaccessibility, /*starttime: eventStart, endtime: eventEnd,*/ description: description, idcategory: idcategory};
+        var event = {title: title, idhost: idhost, maxattendees: parseInt(eventMax), /*idlocation: idlocation,*/ visibility: parseInt(idvisibility), accessibility: parseInt(idaccessibility), starttime: new Date(eventStart), endtime: new Date(eventEnd), description: description, idcategory: parseInt(idcategory)};
         $.ajax({
             url: this.coreUrl + "event",
             type: 'post',
