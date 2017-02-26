@@ -1,3 +1,4 @@
+//Global variables go under here
 var eventsHosted = null;
 var eventsAttending = null;
 var visibleEvents = null;
@@ -8,8 +9,6 @@ var eventStartTimes;
 var eventEndTimes;
 var eventCategories;
 var eventLocations;
-
-//Global variables go under here
 var id;
 
 function setUpComponents() {
