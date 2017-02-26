@@ -66,6 +66,7 @@ function getStringsFromEvents(eventList) {
 function getHostStrings() {
     $('#attend').hide();
     $('#attend').empty();
+    $('#host').empty();
     if (eventsHosted != null) {
         eventsHosted = null;
     }
@@ -114,6 +115,7 @@ function getHostStrings() {
 function getAttendingStrings() {
     $('#host').hide();
     $('#host').empty();
+    $('#attend').empty();
     if (eventsAttending != null) {
         eventsAttending = null;
     }
