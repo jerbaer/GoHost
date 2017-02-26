@@ -84,6 +84,7 @@ function getHostStrings() {
     var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
     var n, url;
     eventsFeed = $('#host');
+    eventsFeed.append('<br />');
     for (n = eventsHosted.getSize() - 1; n > -1; n--) {
         url = "../event/index.html"; //need to append event ID here
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
@@ -98,7 +99,7 @@ function getHostStrings() {
         newH5 = $('<p>').text(eventLocations[n]);
         newH = $('<p>').append(newA);
         newHr = $('<hr>');
-
+        
         eventsFeed.append(newH);
         eventsFeed.append(newH1);
         eventsFeed.append(newH2);
@@ -131,6 +132,7 @@ function getAttendingStrings() {
     var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
     var n, url;
     eventsFeed = $('#attend');
+    eventsFeed.append('<br />');
     for (n = eventsAttending.getSize() -1 ; n > -1; n--) {
         url = "../event/index.html";
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
