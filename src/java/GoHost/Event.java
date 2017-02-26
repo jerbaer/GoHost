@@ -46,7 +46,6 @@ public class Event implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = true)
-    @NotNull
     @Column(name = "idevent")
     private Integer idevent;
     @Basic(optional = true)
