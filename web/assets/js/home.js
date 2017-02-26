@@ -5,7 +5,6 @@
  */
 
 sys_init = {
-    // changed .host to .hostname
     coreUrl: "http://143.44.67.0:13774/GoHost/api/",
 
     doLogin: function () {
