@@ -220,7 +220,7 @@ function Event() {
     };
 
     this.getCategory = function () {
-        return this.category.getName();
+        return this.category.getName(); // Running up errors here
     };
 
     this.getTitle = function () {
