@@ -36,16 +36,16 @@ function Event() {
         });
     };
     this.createFollowUp = function (data) {
-        this.host = new User();//Is this how you construct a user?
+        this.host = new User(); // Is this how you construct a user?
         this.host.create(data.idhost);
         this.idevent = data.idevent;
-        this.chat = null;//Add this in iteration 2.0
+        this.chat = null; // Adding this in iteration 2.0
         this.eventStart = data.starttime;
         this.eventEnd = data.endtime;
         this.eventMax = data.maxattendees;
         this.description = data.description;
         this.title = data.title;
-        this.location = new Location(data.idlocation);
+        this.location = new Location(data.idlocation); // throwing an error here
         this.location.retrieveName();
         this.category = new Category(data.idcategory);
         this.category.retrieveName();
