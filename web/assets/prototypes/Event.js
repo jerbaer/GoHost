@@ -35,6 +35,7 @@ function Event() {
             success: this.createFollowUp
         });
     };
+    
     this.createFollowUp = function (data) {
         this.host = new User(); // Is this how you construct a user?
         this.host.create(data.idhost);
@@ -52,7 +53,6 @@ function Event() {
         this.accessibility = data.accessibility;
         this.visibility = data.visibility;
     };
-
 
     this.invitedFollowUp = function (data) {
         for (n = 0; n < data.length; n++) {
