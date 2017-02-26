@@ -28,6 +28,7 @@ function setUpComponents() {
     $('#delete').on('click', deleteEvent);
     $('#edit').on('click', editEvent);
     $('#invite').on('click', inviteFriends);
+    jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
     eventid = (window.location.href.split('#'))[1];
     user = new User();
