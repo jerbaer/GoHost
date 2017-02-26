@@ -23,11 +23,11 @@ function User() {
         this.iduser = iduser;
         var url = this.coreUrl + "user/" + iduser;
                 $.ajax({
-  dataType: "json",
-  url: url,
-  context: this,
-  success: this.createFollowUp
-});
+                    dataType: "json",
+                    url: url,
+                    context: this,
+                    success: this.createFollowUp
+                });
     };
 
     this.createFollowUp = function (data) {

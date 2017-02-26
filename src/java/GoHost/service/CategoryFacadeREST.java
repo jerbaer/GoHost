@@ -54,12 +54,12 @@ public class CategoryFacadeREST extends AbstractFacade<Category> {
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
-
+    
     @GET
     @Path("{id}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public Category findCategory(@PathParam("id") Integer id) {
-        return em.createNamedQuery("Category.findByIdcategory", Category.class).setParameter("idcategory", id).getSingleResult();
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Category find(@PathParam("id") Integer id) {
+        return super.find(id);
     }
 
     @GET

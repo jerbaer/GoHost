@@ -12,6 +12,7 @@ var eventHosts;
 var eventStartTimes;
 var eventEndTimes;
 var eventCategories;
+var eventLocations;
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
@@ -27,7 +28,7 @@ function getEvents() {
 
     setTimeout(getVisibleStrings(), 10000);
     //this is where it connects with HTML to print the feed in objects
-    var newH, newA, newHr, newH1, newH2, newH3, newH4, eventsFeed;
+    var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
     var n, url;
     // Find the newestBlogs div that will house newly created blogs
     eventsFeed = $('#eventsFeed');
@@ -42,6 +43,7 @@ function getEvents() {
         newH2 = $('<p>').text(eventStartTimes[n]);
         newH3 = $('<p>').text(eventEndTimes[n]);
         newH4 = $('<p>').text(eventCategories[n]);
+        newH5 = $('<p>').text(eventLocations[n]);
         newH = $('<p>').append(newA);
         newHr = $('<hr>');
 
@@ -50,6 +52,7 @@ function getEvents() {
         eventsFeed.append(newH2);
         eventsFeed.append(newH3);
         eventsFeed.append(newH4);
+        eventsFeed.append(newH5);
         eventsFeed.append(newHr);
     }
 }
@@ -59,6 +62,7 @@ function getStringsFromEvents(eventList) {
     eventStartTimes = new Array(eventList.getSize());
     eventEndTimes = new Array(eventList.getSize());
     eventCategories = new Array(eventList.getSize());
+    eventLocations = new Array(eventList.getSize());
     eventIDs = new Array(eventList.getSize());
     for (i = 0; i < eventList.getSize(); i++) {
         eventTitles[i] = eventList.getEventsList()[i].getTitle();
@@ -69,7 +73,8 @@ function getStringsFromEvents(eventList) {
         eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
         var x = new Date(eventList.getEventsList()[i].getEventEnd())
         eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
-        eventCategories[i] = eventList.getEventsList()[i].getCategory().getName();
+        eventCategories[i] = eventList.getEventsList()[i].getCategory();
+        eventLocations[i] = eventList.getEventsList()[i].getLocation();
         eventIDs[i] = eventList.getEventsList()[i].getID();
     }
 }

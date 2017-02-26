@@ -18,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -25,7 +26,7 @@ import javax.ws.rs.core.MediaType;
  * @author Jerry
  */
 @Stateless
-@Path("gohost.notification")
+@Path("notification")
 public class NotificationFacadeREST extends AbstractFacade<Notification> {
 
     @PersistenceContext(unitName = "GoHostPU")
@@ -75,6 +76,15 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
     public List<Notification> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
+    
+    //iduser is an Integer here. I've kept everything the same way here cuz 
+    //I don't know if changing it to int will fuck with the SQL or nah
+    @GET
+    @Path("iduser")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Notification> getNotifications(@QueryParam("iduser") Integer iduser){
+        return em.createNamedQuery("Event.findByIdhost", Notification.class).setParameter("iduser", iduser).getResultList();
+   }
 
     @GET
     @Path("count")

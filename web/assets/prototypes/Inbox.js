@@ -7,7 +7,9 @@
 function Inbox() {
     this.owner = null;
     this.notifications = [];
-
+    
+    //the id of the user being passed here needs to be an Integer rather than 
+    //an int
     this.displayNotifications = function () {
         // for each n in notifications {
             // n.displayNotification()

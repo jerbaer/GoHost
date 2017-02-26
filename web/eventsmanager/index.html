@@ -9,10 +9,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="../assets/js/bootstrap.js"></script>
         <script src="https://use.fontawesome.com/4ba65f929c.js"></script>
-        <script src="../assets/js/event.js"></script>
-        <script src="../assets/js/user.js"></script>
-        <script src="../assets/js/EventList.js"></script>
-        <script src="../assets/js/category.js"></script>
+        <script src="../assets/prototypes/Event.js"></script>
+        <script src="../assets/prototypes/User.js"></script>
+        <script src="../assets/prototypes/EventList.js"></script>
+        <script src="../assets/prototypes/Category.js"></script>
+        <script src="../assets/prototypes/Location.js"></script>
         <script src="eventsmanager.js"></script>
         <style type="text/css">
             body { 
@@ -47,18 +48,16 @@
             <br>
             <div class="row">
                 <div class="col-sm-8">
+
                     <ul class="nav nav-tabs">
-                        <!-- the id="hosting/attending" were bricking the bootstrap functionality -->
-                        <li class="active"><a data-toggle="tab" href="#hosting">Hosting</a></li>
-                        <li><a data-toggle="tab" href="#attending">Attending</a></li>
+                        <li class="active"><a data-toggle="tab" href="#host" id="hostingtab">Hosting</a></li>
+                        <li><a data-toggle="tab" href="#attend" id="attendingtab">Attending</a></li>
                     </ul>
 
                     <div class="tab-content">
-                        <div id="hosting" class="tab-pane fade in active">
-
+                        <div id="host" class="tab-pane fade in active">
                         </div>
-                        <div id="attending" class="tab-pane fade">
-
+                        <div id="attend" class="tab-pane fade">
                         </div>
                     </div>
                 </div>

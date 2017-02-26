@@ -29,7 +29,12 @@ function eventsList(){
     this.getEventsHosting= function () {
         //get all events accessor is hosting, put them in events (0)
         var url = this.coreUrl + "event/idhost?idhost="+this.accessor.getID();
-        $.getJSON(url).done(this.hostingFollowUp);
+        $.ajax({
+            dataType: "json",
+            url: url,
+            context: this,
+            success: this.hostingFollowUp
+        });
     },
     
    this.hostingFollowUp= function (data) {
@@ -44,7 +49,12 @@ function eventsList(){
     this.getEventsAttending= function () {
         //self explanatory (1)
         var url = this.coreUrl + "attendee/iduser?iduser="+this.accessor.getID();
-        $.getJSON(url).done(this.attendingFollowUp);
+        $.ajax({
+            dataType: "json",
+            url: url,
+            context: this,
+            success: this.attendingFollowUp
+        });
     },
     
     this.attendingFollowUp= function (data) {
@@ -59,19 +69,19 @@ function eventsList(){
     this.getEventsVisible= function () {
         var url = this.coreUrl + "event/visibility?visibility=2";
         $.ajax({
-  dataType: "json",
-  url: url,
-  context: this,
-  success: this.visibleFollowUp
-});
+            dataType: "json",
+            url: url,
+            context: this,
+            success: this.visibleFollowUp
+        });
         
     },
     this.visibleFollowUp= function (data) {
         this.events = new Array();
-        for(i=0;i<data.length;i++){
-            this.event1 = new Event();
-            this.events.push(this.event1);
-            this.events[i].createFromDB(data[i].idevent, this.accessor);
+        for(var i=0;i<data.length;i++){
+            let event1 = new Event();
+            event1.createFromDB(data[i].idevent, this.accessor);
+            this.events.push(event1);
         }
     },
     this.getEventsList= function () {

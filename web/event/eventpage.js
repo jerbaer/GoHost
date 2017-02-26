@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 //Classes that I will be interacting with here: Event, User, FriendsList
 
 // Global Variables go under here if they are needed
 var id = 0;
 var eventid = 0;
 var event = null;
-var accessor = null;
+var user = null;
 var isHost = false;
 var isAttendee = false;
 var canJoin = false;
@@ -29,16 +30,16 @@ function setUpComponents() {
     $('#invite').on('click', inviteFriends);
     id = parseInt(sessionStorage.getItem('id'));
     eventid = (window.location.href.split('#'))[1];
-    accessor = User;
-    accessor.create(id);
+    user = new User();
+    user.create(id);
 
     //Call function to display the event based on the relation of the
-    //accessor to that event. Host, Attendee, neither
+    //userto that event. Host, Attendee, neither
     getEvent();
-    if (event.getHost().getID() == accessor.getID()) {
+    if (event.getHost().getID() === user.getID()) {
         isHost = true;
     }
-    isHost = event.isAccessorHost();
+    isHost = event.isuserHost();
     isAttendee = event.isUserInEvent();
     canJoin = (event.canUserJoin() && !event.isUserInEvent());
     canSee = event.canUserSee();
@@ -60,7 +61,7 @@ function setUpComponents() {
 
 function getEvent() {
     event = new Event();
-    event.createFromDB(eventid, accessor);
+    event.createFromDB(eventid, user);
     getStringsFromEvent(event);
     // Create the event in the html
     // Can implement links that allow edits to be made from the page

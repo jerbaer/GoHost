@@ -7,6 +7,7 @@ var eventHosts;
 var eventStartTimes;
 var eventEndTimes;
 var eventCategories;
+var eventLocations;
 
 //Global variables go under here
 var id;
@@ -14,8 +15,8 @@ var id;
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     $('#createEvent').on('click', createEvent);
-    $('#attending').on('click', getAttendingStrings);
-    $('hosting').on('click', getHostStrings);
+    $('#attendingtab').on('click', getAttendingStrings);
+    $('#hostingtab').on('click', getHostStrings);
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
     getCategories();
@@ -41,12 +42,12 @@ function getEvents() {
 }
 
 function getStringsFromEvents(eventList) {
-
     eventTitles = new Array(eventList.getSize());
     eventHosts = new Array(eventList.getSize());
     eventStartTimes = new Array(eventList.getSize());
     eventEndTimes = new Array(eventList.getSize());
     eventCategories = new Array(eventList.getSize());
+    eventLocations = new Array(eventList.getSize());
     eventIDs = new Array(eventList.getSize());
     for (i = 0; i < eventList.getSize(); i++) {
         eventTitles[i] = eventList.getEventsList()[i].getTitle();
@@ -56,24 +57,35 @@ function getStringsFromEvents(eventList) {
         eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
         var x = new Date(eventList.getEventsList()[i].getEventEnd())
         eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
-        eventCategories[i] = eventList.getEventsList()[i].getCategory().getName();
+        eventCategories[i] = eventList.getEventsList()[i].getCategory();
+        eventLocations[i] = eventList.getEventsList()[i].getLocation();
         eventIDs[i] = eventList.getEventsList()[i].getID();
     }
 }
 
 function getHostStrings() {
-    $('#attending1').hide();
-    if (eventsHosted!=null){eventsHosted.clear()}
-    if (eventsAttending!=null){eventsAttending.clear()}
+    $('#attend').hide();
+    $('#attend').empty();
+    if (eventsHosted != null) {
+        eventsHosted = null;
+    }
+    if (eventsAttending != null) {
+        eventsAttending = null;
+    }
+    user.createHostedEventsList();
     eventsHosted = user.getEventsHosting();
     eventTitles = null;
     eventHosts = null;
     eventStartTimes = null;
     eventEndTimes = null;
     eventCategories = null;
+    eventLocations = null;
     getStringsFromEvents(eventsHosted);
-    eventsFeed = $('#hosting');
-    for (n = eventTitles.length - 1; n > -1; n--) {
+    var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
+    var n, url;
+    eventsFeed = $('#host');
+    eventsFeed.append('<br />');
+    for (n = eventsHosted.getSize() - 1; n > -1; n--) {
         url = "../event/index.html"; //need to append event ID here
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;
@@ -84,31 +96,44 @@ function getHostStrings() {
         newH2 = $('<p>').text(eventStartTimes[n]);
         newH3 = $('<p>').text(eventEndTimes[n]);
         newH4 = $('<p>').text(eventCategories[n]);
+        newH5 = $('<p>').text(eventLocations[n]);
         newH = $('<p>').append(newA);
         newHr = $('<hr>');
-
+        
         eventsFeed.append(newH);
         eventsFeed.append(newH1);
         eventsFeed.append(newH2);
         eventsFeed.append(newH3);
         eventsFeed.append(newH4);
+        eventsFeed.append(newH5);
         eventsFeed.append(newHr);
     }
+    $('#host').show();
 }
 
 function getAttendingStrings() {
-     $('#hosting1').hide();
-    if (eventsAttending!=null){eventsAttending.clear()}
-    if (eventsHosted!=null){eventsHosted.clear()}
+    $('#host').hide();
+    $('#host').empty();
+    if (eventsAttending != null) {
+        eventsAttending = null;
+    }
+    if (eventsHosted != null) {
+        eventsHosted = null;
+    }
+    user.createEventsAttendingList();
     eventsAttending = user.getEventsAttending();
     eventTitles = null;
     eventHosts = null;
     eventStartTimes = null;
     eventEndTimes = null;
     eventCategories = null;
+    eventLocations = null;
     getStringsFromEvents(eventsAttending);
-    eventsFeed = $('#attending');
-    for (n = eventTitles.length - 2; n > -1; n--) {
+    var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
+    var n, url;
+    eventsFeed = $('#attend');
+    eventsFeed.append('<br />');
+    for (n = eventsAttending.getSize() -1 ; n > -1; n--) {
         url = "../event/index.html";
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;
@@ -119,6 +144,7 @@ function getAttendingStrings() {
         newH2 = $('<p>').text(eventStartTimes[n]);
         newH3 = $('<p>').text(eventEndTimes[n]);
         newH4 = $('<p>').text(eventCategories[n]);
+        newH4 = $('<p>').text(eventLocations[n]);
         newH = $('<p>').append(newA);
         newHr = $('<hr>');
 
@@ -127,8 +153,10 @@ function getAttendingStrings() {
         eventsFeed.append(newH2);
         eventsFeed.append(newH3);
         eventsFeed.append(newH4);
+        eventsFeed.append(newH5);
         eventsFeed.append(newHr);
     }
+    $('#attend').show();
 }
 
 function createEvent() {

@@ -15,7 +15,6 @@ function Event() {
     this.eventMax = 0;
     this.description = "";
     this.title = "";
-    //visibility and accessibility are still being treated as objects in the code
     this.visibility = 0;
     this.accessibility = 0;
     this.invitedUsers = [];
@@ -26,8 +25,9 @@ function Event() {
     this.createFromDB = function (idevent, accessor1) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
         //for category, user, host, location, visibility, accessibili
-        var url = this.coreUrl + "event/" + accessor1.getID();
+        var url = this.coreUrl + "event/" + idevent;
         this.accessor = accessor1;
+
         $.ajax({
             dataType: "json",
             url: url,
@@ -36,17 +36,19 @@ function Event() {
         });
     };
     this.createFollowUp = function (data) {
-        this.host = new User();//Is this how you construct a user?
+        this.host = new User(); // Is this how you construct a user?
         this.host.create(data.idhost);
         this.idevent = data.idevent;
-        this.chat = null;//Add this in iteration 2.0
+        this.chat = null; // Adding this in iteration 2.0
         this.eventStart = data.starttime;
         this.eventEnd = data.endtime;
         this.eventMax = data.maxattendees;
         this.description = data.description;
         this.title = data.title;
-        this.location = new Location(data.idlocation);
-        this.category = new Category(data.idcategory);//Is this how you construct a cat?
+        this.location = new Location(data.idlocation); // throwing an error here
+        this.location.retrieveName();
+        this.category = new Category(data.idcategory);
+        this.category.retrieveName();
         this.accessibility = data.accessibility;
         this.visibility = data.visibility;
     };
@@ -64,7 +66,7 @@ function Event() {
         }
     };
 
-    this.create = function (idhost, idcategory, eventStart, eventEnd, description, title, idvisibility, idaccessibility, idlocation, eventMax, accessor) {
+    this.create = function (idhost, idcategory, eventStart, eventEnd, description, title, idvisibility, idaccessibility, idlocation, eventMax) {
         //creates a user from the idhost, category from idcategory, visibility from idvisibility/idaccessibility, location from idlocation, all other fields are filled from parameters
         //if accessibility is 1, add all friends to invited list. Add the created object to the database.
         //Won't let me use this.
@@ -72,20 +74,17 @@ function Event() {
         $.ajax({
             url: this.coreUrl + "event",
             type: 'post',
-            context:this,
             data: JSON.stringify(event),
             contentType: 'application/json',
             dataType: 'json',
-            async: false,
-            success: Event.createFollowUp2
+            async: false
+                    //success: Event.createFollowUp2
         });
-       
     };
 
     this.createFollowUp2 = function (id) {
         //Stores the id of the event row recently added to the database
-        this.idevent = id;
-        this.create(idevent, accessor)
+        idevent = id;
     };
 
     this.isAccessorHost = function () {
@@ -221,7 +220,7 @@ function Event() {
     };
 
     this.getCategory = function () {
-        return this.category;
+        return this.category.getName(); // Running up errors here
     };
 
     this.getTitle = function () {
