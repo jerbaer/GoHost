@@ -79,6 +79,8 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
     
     //iduser is an Integer here. I've kept everything the same way here cuz 
     //I don't know if changing it to int will fuck with the SQL or nah
+    
+    
     @GET
     @Path("iduser")
     @Produces({MediaType.APPLICATION_JSON})
