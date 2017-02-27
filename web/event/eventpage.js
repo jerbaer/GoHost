@@ -52,7 +52,6 @@ function setUpComponents() {
         $('#inviteSpan').hide();
         $('#hostOnly').hide();
     }
-    //Show and hide all the divs in the html under here 
 }
 
 function getEvent() {
@@ -76,6 +75,7 @@ function getEvent() {
 
 function deleteEvent() {
     event1.deleteEvent();
+    window.location.reload();
 }
 
 function editEvent() {
@@ -95,15 +95,18 @@ function editEvent() {
     event1.editVisibility($('#eventVis').val());
     //Flushes everything to the database
     event1.refreshEdits();
+    window.location.reload();
 }
 
 function inviteFriends() {
     //This will pull up a list of the user's friends and then the other button
     //would actually allow you to invite people?
+    window.location.reload();
 }
 
 function joinEvent() {
-    // This adds the accessor to the attendee list of the event
+    event1.addUserToEvent(id);
+    window.location.reload();
 }
 
 function getStringsFromEvent(event1) {
