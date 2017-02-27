@@ -85,4 +85,6 @@ function editAccount() {
 function deleteAccount() {
     profile.deleteAccount();
     location.href = "../";
+
 }
+$(window).load(setUpComponents);
