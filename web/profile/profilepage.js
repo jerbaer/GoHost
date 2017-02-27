@@ -28,9 +28,9 @@ function setUpComponents() {
         // Hide add friend button
         // Show edit/delete settings
         $('#joinEvent').hide();
-        $('#delete').on('click', deleteEvent);
-        $('#edit').on('click', editEvent);
-        $('#invite').on('click', inviteFriends);
+        $('#editProfile').on('click', editProfile);
+        $('#editUser').on('click', editAccount);
+        $('#deleteAcc').on('click', deleteAccount);
     } else if (isFriend) {
         // Hide add friend button
         // Hide edit/delete settings

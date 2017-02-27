@@ -80,19 +80,121 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <!-- Might want to change this text -->
                         <h4 class="modal-title">Settings</h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal" id="settingsForm">
+                        <div class="row-fluid">
+                            <a class="text-info" href="#profModal" data-toggle="modal" data-target="#profModal">Edit Profile Information</a>
+                        </div>
+                        <br>
+                        <div class="row-fluid">
+                            <a class="text-info" href="#userModal" data-toggle="modal" data-target="#userModal" id="editUser">Edit User Information</a>
+                        </div>
+                        <hr>
+                        <div class="row-fluid">
+                            <a class="text-danger" href="#deleteModal" data-toggle="modal" data-target="#deleteModal">Delete Account</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="profModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit Profile Information</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Change the action/method -->
+                        <form class="form-horizontal" id="eventForm" action="resources/php/login.php" method="POST">
                             <fieldset>
-                                <p>List of friends here.</p>
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-2 control-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="name" name="name" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="picture" class="col-sm-2 control-label">Profile Picture</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="picture" name="picture" type="url">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description" class="col-sm-2 control-label">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="5" id="description"></textarea>
+                                    </div>
+                                </div>
                             </fieldset>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button class="btn btn-info" id="invite" type="button">Invite</button>
+                        <button class="btn btn-info" id="editProfile" type="button">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="userModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit User Information</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="eventForm" action="resources/php/login.php" method="POST">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="name" class="col-sm-2 control-label">Name</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="name" name="name" placeholder="Your Name (ex. Jerry Wang)" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="col-sm-2 control-label">Password</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="password" name="password" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-10">
+                                       <input class="form-control" id="email" name="email" placeholder="example@lawrence.edu" type="email">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button class="btn btn-info" id="editProfile" type="button">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="deleteModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Delete Event</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="invForm">
+                            <fieldset>
+                                <p>Are you sure you want to delete your account?</p>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button class="btn btn-warning" id="deleteAcc" type="button">Delete</button>
                     </div>
                 </div>
             </div>
