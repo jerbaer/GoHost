@@ -39,7 +39,7 @@ function User() {
 
     this.createFriendsList = function () {
         this.friendsList = new FriendsList();
-        this.friendsList.create(iduser);
+        this.friendsList.create(this.iduser);
     };
     
     this.createStrangersList = function () {

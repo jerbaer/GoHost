@@ -4,6 +4,7 @@
 var id = 0;
 var profileid = 0;
 var profile1 = null;
+var user = null;
 
 var profileName;
 var profilePicture;
