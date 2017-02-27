@@ -27,9 +27,9 @@ function getFriendsStrings() {
     $('#strangers').hide();
     $('#strangers').empty();
     $('#friends').empty();
-    if (friends != null)
+    if (friends !== null)
         friends = null;
-    if (stragners != null)
+    if (strangers !== null)
         stragners = null;
     user.createFriendsList();
     friends = user.getFriendsList();
