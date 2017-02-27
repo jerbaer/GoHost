@@ -77,33 +77,28 @@ function Event() {
             contentType: 'application/json',
             dataType: 'json',
             context: this,
-            async: false
-            //success: Event.createFollowUp2
+            async: false,
+            success: this.createFollowUp2
         });
 
     };
 
     this.createFollowUp2 = function (data) { //when friendslist is working, do some of this stuff
-        var id = data.idevent;
-        var attendee = {iduser : this.tempID, idevent : id};
         $.ajax({
-            url: this.coreUrl + "attendee",
-            type: 'POST',
-            data: JSON.stringify(attendee),
-            context: this,
+            url: this.coreUrl + "event/" + data.idevent,
+            type: 'GET',
             contentType: 'application/json',
-            dataTpye: 'json',
-            async: false
-        });
-        if (data.accessibility === 1){
-            var user = new User();
-            user.create(this.tempID);
-            var friendsList = user.getFriendsList();
-            for(var i = 0; i<friendsList.size(); i++){
-                
-            }
-        }
+            dataType: 'json',
+            context:this,
+            async : false,
+            success: this.createFollowUp3
+        })
+
     };
+    
+    this.createFollowUp3 = function(data){
+        
+    }
 
     this.isAccessorHost = function () {
         if (this.accessor.getID() === this.host.getID()) {
