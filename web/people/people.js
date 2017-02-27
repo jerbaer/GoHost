@@ -1,4 +1,4 @@
-// Going to work with User, FriendsList, Profile
+// Going to work with User, PeopleList, Profile
 
 //Global variables
 var friends = null;
@@ -31,8 +31,8 @@ function getFriendsStrings() {
         friends = null;
     if (strangers !== null)
         stragners = null;
-    user.createFriendsList();
-    friends = user.getFriendsList();
+    user.createPeopleList();
+    friends = user.getPeopleList();
     peopleNames = null;
     peoplePictures = null;
     peopleDescriptions = null;
@@ -60,9 +60,9 @@ function getFriendsStrings() {
     $('#friends').show();
 }
 
-// For strangers will need to get a FriendsList of not friends
-function getStringsFromPeople(friendsList) {
-    list = friendsList.getFriends();
+// For strangers will need to get a PeopleList of not friends
+function getStringsFromPeople(PeopleList) {
+    list = PeopleList.getFriends();
     peopleNames = new Array(list.length);
     peoplePictures = new Array(list.length);
     peopleDescriptions = new Array(list.length);

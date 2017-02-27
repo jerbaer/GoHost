@@ -32,7 +32,7 @@ function Profile () {
     };
     
     this.isFriend = function () {
-        friends = new FriendsList();
+        friends = new PeopleList();
         friends.create(iduser);
         if(friends.isUserOnList(this.accessor.getID()))
             return true;
@@ -90,10 +90,6 @@ function Profile () {
         // Not sure what this is
     };
     
-    this.Profile = function (owner, accessor1) {
-        // Not sure what this is
-    };
-    
     // Might move this to the top and change create like Event is organized
     this.createProfileFromDB = function (iostream) {
         // var url = 
@@ -104,8 +100,8 @@ function Profile () {
         // populate member variables
     };
     
-    this.getFriendsList = function () {
-        friends = new FriendsList();
+    this.getPeopleList = function () {
+        friends = new PeopleList();
         friends.create(iduser);
         return friends.getFriends();
     };

@@ -9,7 +9,7 @@ function User() {
     this.email = "";
     this.password = "";
     this.name = "";
-    this.friendsList = null;
+    this.PeopleList = null;
     this.eventsHosting = null;
     this.eventsAttending = null;
     this.eventsVisible = null;
@@ -37,9 +37,9 @@ function User() {
         //Do you want me to call these other functions right away or to wait for now?
     };
 
-    this.createFriendsList = function () {
-        this.friendsList = new FriendsList();
-        this.friendsList.create(this.iduser);
+    this.createPeopleList = function () {
+        this.PeopleList = new PeopleList();
+        this.PeopleList.create(this.iduser);
     };
     
     this.createStrangersList = function () {
@@ -79,9 +79,9 @@ function User() {
         return this.eventsVisible;
     };
 
-    this.getFriendsList = function () {
-        this.createFriendsList();
-        return this.friendsList;
+    this.getPeopleList = function () {
+        this.createPeopleList();
+        return this.PeopleList;
     };
 
     this.getEventsHosting = function () {

@@ -13,6 +13,7 @@ function Inbox() {
     this.create = function (owner) {
         this.owner = owner;
     }
+    //This might need to be parsed into an Integer
     this.getNotifications = function () {
         var url = this.coreUrl + "notification/iduser?iduser=" + this.owner;
         $.ajax({
