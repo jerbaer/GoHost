@@ -84,17 +84,6 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
     public List<Notification> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
-    
-    //iduser is an Integer here. I've kept everything the same way here cuz 
-    //I don't know if changing it to int will fuck with the SQL or nah
-    
-    
-    @GET
-    @Path("iduser")
-    @Produces({MediaType.APPLICATION_JSON})
-    public List<Notification> getNotifications(@QueryParam("iduser") Integer iduser){
-        return em.createNamedQuery("Event.findByIdhost", Notification.class).setParameter("iduser", iduser).getResultList();
-   }
 
     @GET
     @Path("count")
