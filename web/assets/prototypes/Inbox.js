@@ -9,7 +9,10 @@ function Inbox() {
     this.notifications = [];
     this.coreUrl= "http://143.44.67.0:13774/GoHost/api/";
     this.notification1 = null;
-
+    
+    this.create = function (owner) {
+        this.owner = owner;
+    }
     this.getNotifications = function () {
         var url = this.coreUrl + "notification/iduser?iduser=" + this.owner.iduser;
         $.ajax({
@@ -36,23 +39,4 @@ function Inbox() {
         return this.notifications.length;
     };
     
-    
-    
-    
-    //These should be in the notifications js
-    this.displayNotifications = function () {
-        // for each n in notifications {
-            // n.displayNotification()
-    };
-    this.eventInvite = function () {
-        //Initializes an EventInvite object and pushes it to the db
-    };
-    
-    this.eventRequest = function () {
-        //Initializes an EventRequest object and pushes to the db
-    };
-    
-    this.friendRequest = function () {
-        //Initializes a FriendRequest object and pushes to the db
-    }
 };
