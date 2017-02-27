@@ -43,10 +43,13 @@ function setUpComponents() {
         $('#hostOnly').hide();
         $('#invite').on('click', inviteFriends);
     } else if (canJoin) {
+        $('#inviteSpan').hide();
         $('#hostOnly').hide();
+        $('#joinEvent').on('click', joinEvent);
     } else if (!canSee) {
         $('#eventDetails').hide();
         $('#joinEvent').hide();
+        $('#inviteSpan').hide();
         $('#hostOnly').hide();
     }
     //Show and hide all the divs in the html under here 
@@ -99,6 +102,10 @@ function inviteFriends() {
     //would actually allow you to invite people?
 }
 
+function joinEvent() {
+    // This adds the accessor to the attendee list of the event
+}
+
 function getStringsFromEvent(event1) {
     eventTitle = event1.getTitle();
     //eventHost = event.getHost(); don't need to display this
@@ -114,6 +121,7 @@ function getStringsFromEvent(event1) {
 function chat() {
 
 }
+
 $.wait = function (ms) {
     var defer = $.Deferred();
     setTimeout(function () {
