@@ -10,7 +10,10 @@ var eventEndTimes;
 var eventCategories;
 var eventLocations;
 var id;
-
+String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
+    var t = this.split(/[- :T]/);
+    return new Date(t[0], t[1]-1, t[2], t[3]||0, t[4]||0, t[5]||0);
+};
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     $('#createEvent').on('click', createEvent);
@@ -52,9 +55,9 @@ function getStringsFromEvents(eventList) {
         eventTitles[i] = eventList.getEventsList()[i].getTitle();
         eventHosts [i] = eventList.getEventsList()[i].getHost().getName();
         //var t = eventList.getEventsList()[i].getEventStart().split(/[- T :]/);
-        var d = new Date(eventList.getEventsList()[i].getEventStart());
+        var d = eventList.getEventsList()[i].getEventStart().mysqlToDate();
         eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
-        var x = new Date(eventList.getEventsList()[i].getEventEnd())
+        var x = eventList.getEventsList()[i].getEventEnd().mysqlToDate();
         eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
         eventCategories[i] = eventList.getEventsList()[i].getCategory();
         eventLocations[i] = eventList.getEventsList()[i].getLocation();
