@@ -26,61 +26,24 @@ function getNotifications() {
     //The way I have this set up, I would only need to append the shit
     //inside the notifications array into the notifications div
     
-    var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
-    var n, url;
-    // Find the newestBlogs div that will house newly created blogs
-    eventsFeed = $('#notifications');
-
-    for (n = visibleEvents.getSize() - 1; n > -1; n--) {
-        url = "../event/index.html#" + eventIDs[n];
-        newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
-            window.location.href = url;
-            window.location.reload(true);
-        });
-        newH1 = $('<p>').text(eventHosts[n]);
-        newH2 = $('<p>').text(eventStartTimes[n]);
-        newH3 = $('<p>').text(eventEndTimes[n]);
-        newH4 = $('<p>').text(eventCategories[n]);
-        newH5 = $('<p>').text(eventLocations[n]);
-        newH = $('<p>').append(newA);
-        newHr = $('<hr>');
-
-        eventsFeed.append(newH);
-        eventsFeed.append(newH1);
-        eventsFeed.append(newH2);
-        eventsFeed.append(newH3);
-        eventsFeed.append(newH4);
-        eventsFeed.append(newH5);
-        eventsFeed.append(newHr);
+    notificationsFeed = $('#notifications');
+    for (n = inbox.getSize() - 1; n > -1; n--) {
+        notificationsFeed.append(notifications[i]);
     }
 }
-
 //This will go through all the different notifications, calling getHTML on them
 //Which calls createHTML inside the notification object. It stores all the div
 //objects returned into a singule array. This way, I will only have to append
 //the divs in this one array; notifications
 function getHTMLFromNotifications(inbox) {
-    eventTitles = new Array(eventList.getSize());
-    eventHosts = new Array(eventList.getSize());
-    eventStartTimes = new Array(eventList.getSize());
-    eventEndTimes = new Array(eventList.getSize());
-    eventCategories = new Array(eventList.getSize());
-    eventLocations = new Array(eventList.getSize());
-    eventIDs = new Array(eventList.getSize());
-    for (i = 0; i < eventList.getSize(); i++) {
-        eventTitles[i] = eventList.getEventsList()[i].getTitle();
-        eventHosts [i] = eventList.getEventsList()[i].getHost().getName();
-        var d = eventList.getEventsList()[i].getEventStart().mysqlToDate();
-        eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
-        var x = eventList.getEventsList()[i].getEventEnd().mysqlToDate();
-        eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
-        eventCategories[i] = eventList.getEventsList()[i].getCategory();
-        eventLocations[i] = eventList.getEventsList()[i].getLocation();
-        eventIDs[i] = eventList.getEventsList()[i].getID();
+    notifications = new Array(inbox.getSize());
+    for (i = 0; i < inbox.getSize(); i++) {
+        notifications[i] = inbox.getNotificationsList()[i].getHTML();
     }
 }
 
-//These need to be changed
+//I have those functions inside the notification prototype. Keeping those empty
+//functions here in case they actually need to be here.
 function eventInvite() {
         //Initializes an EventInvite object and pushes it to the db
 }
