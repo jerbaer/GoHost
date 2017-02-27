@@ -39,6 +39,14 @@ function Profile () {
         return false;
     };
     
+    this.getDescription = function () {
+        return this.description;
+    };
+    
+    this.getPicture = function () {
+        return this.photoURL;
+    }
+    
     this.editDescription = function (description) {
         this.description = description;
         this.refreshEdits();

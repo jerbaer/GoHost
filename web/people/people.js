@@ -1,6 +1,14 @@
 // Going to work with User, FriendsList
 
 //Global variables
+var friends = null;
+var strangers = null;
+var user = null;
+var list;
+var peopleNames;
+var peoplePictures;
+var peopleDescriptions;
+var peopleIDs;
 var id;
 
 function setUpComponents() {
@@ -15,33 +23,54 @@ function getPeople() {
     getFriends();
 }
 
-function getFriends() {
-    
+function getFriendsStrings() {
+    $('#strangers').hide();
+    $('#strangers').empty();
+    $('#friends').empty();
+    if (friends != null)
+        friends = null;
+    if (stragners != null)
+        stragners = null;
+    user.createFriendsList();
+    friends = user.getFriendsList();
+    peopleNames = null;
+    peoplePictures = null;
+    peopleDescriptions = null;
+    peopleIDs = null;
+    getStringsFromPeople(friends);
+    var newH, newA, newP, peopleList;
+    var n, url;
+    // this part might need to change/be more specific with bootstrap classes
+    peopleList = $('#friends');
+    for (n = friends.getSize() - 1; n > -1; n--) {
+        url = ".../people/index.html#" + peopleIDs[n];
+        newA = $('<a>').attr('href',url).text(peopleNames[n]).on('click', function () {
+            window.locaton.href = url;
+            window.location.reload(true);
+            //double check this session storage part
+            sessionStorage.setItem('peopleid'), peopleIDs[n];
+        });
+        newH = $('<h3>').append(newA);
+        newP = $('<p>').append(peopleDescriptions[n]);
+        // figure out how to do picture
+        
+        peopleList.append(newH);
+        peopleList.append(newP);
+    }
+    $('#friends').show();
 }
 
 // For strangers will need to get a FriendsList of not friends
 function getStringsFromPeople(friendsList) {
-    peopleNames = new Array(friendsList.getSize());
-    peoplePhotoURLs = new Array(friendsList.getSize());
-    peopleDescription = new Array(friendsList.getSize());
-    
-    eventTitles = new Array(eventList.getSize());
-    eventHosts = new Array(eventList.getSize());
-    eventStartTimes = new Array(eventList.getSize());
-    eventEndTimes = new Array(eventList.getSize());
-    eventCategories = new Array(eventList.getSize());
-    eventLocations = new Array(eventList.getSize());
-    eventIDs = new Array(eventList.getSize());
-    for (i = 0; i < eventList.getSize(); i++) {
-        eventTitles[i] = eventList.getEventsList()[i].getTitle();
-        eventHosts [i] = eventList.getEventsList()[i].getHost().getName();
-        //var t = eventList.getEventsList()[i].getEventStart().split(/[- T :]/);
-        var d = eventList.getEventsList()[i].getEventStart().mysqlToDate();
-        eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
-        var x = eventList.getEventsList()[i].getEventEnd().mysqlToDate();
-        eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
-        eventCategories[i] = eventList.getEventsList()[i].getCategory();
-        eventLocations[i] = eventList.getEventsList()[i].getLocation();
-        eventIDs[i] = eventList.getEventsList()[i].getID();
+    list = friendsList.getFriends();
+    peopleNames = new Array(list.length);
+    peoplePictures = new Array(list.length);
+    peopleDescriptions = new Array(list.length);
+    peopleIDs = new Array(list.length);
+    for (i = 0; i < list.length(); i++) {
+        peopleNames[i] = list[i].getName;
+        peoplePictures[i] = list[i].getPicture;
+        peopleDescriptions[i] = list[i].getDescription;
+        peopleIDs[i] = list[i].getIDs;
     }
 }

@@ -41,6 +41,10 @@ function User() {
         this.friendsList = new FriendsList();
         this.friendsList.create(iduser);
     };
+    
+    this.createStrangersList = function () {
+        // Get a (shortened?) list of people who aren't friends
+    };
 
     this.createHostedEventsList = function () {
         this.eventsHosting = new eventsList();
@@ -66,10 +70,6 @@ function User() {
         }
     };
 
-    this.getID = function () {
-        return this.iduser;
-    };
-
     this.getEventsAttending = function () {
         this.createEventsAttendingList();
         return this.eventsAttending;
@@ -89,14 +89,31 @@ function User() {
         return this.eventsHosting;
     };
 
+    this.getID = function () {
+        return this.iduser;
+    };
+
     this.getName = function () {
         return this.name;
     };
     
+    //idk if this is necessary as just doing what Profile does but for conveniene sake
+    this.getDescription = function () {
+        profile = new Profile();
+        profile.create(iduser);
+        return profile.getDescription();
+    };
+    
+    this.getPicture = function () {
+        profile = new Profile();
+        profile.create(iduser);
+        return profile.getPicture();
+    }
+    
     this.editName = function (name) {
         this.name = name;
         this.refreshEdits();
-    }
+    };
     
     this.editPassword = function (password) {
         this.password = password;
