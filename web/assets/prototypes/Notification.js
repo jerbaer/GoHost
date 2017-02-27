@@ -95,14 +95,21 @@ function Notification(){
             }
         }
     };
+    
     this.createSystemNotification = function(){
         
     };
-     this.createEventInvite = function() {
+    this.createEventInvite = function() {
          
-     };
+    };
      
-     this.createEventRequest 
+    this.createEventRequest = function(){
+         
+    };
+     
+    this.createFriendRequest = function(){
+         
+    };
     
     this.getRead = function (){
         return this.read;
