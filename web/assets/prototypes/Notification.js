@@ -15,10 +15,15 @@
 //however specific I want to get with those.
 function Notification(){
     this.newH = $('<div>');
+    this.newH1;
+    this.newH2;
+    this.newH3;
+    this.newH4;
+    this.text;
     this.idnotification = 0;
-    this.iduser = 0;
+    this.user = 0;
     this.from = 0;
-    this.idevent = 0;
+    this.event = 0;
     this.status = 0;
     this.read = null;
     this.timestamp = 0;
@@ -37,9 +42,12 @@ function Notification(){
     
     this.createFromDBFollowUp = function (data){
         this.idnotification = data.idnotification;
-        this.iduser = data.iduser;
-        this.from = data.from;
-        this.idevent = data.idevent;
+        this.user = new User();
+        this.user.create(data.iduser)
+        this.from = new User();
+        this.from.create(data.from);
+        this.event = new Event();
+        this.event.createFromDB(data.idevent, this.user);
         this.status = data.status;
         this.read = data.read;
         this.timestamp = data.timestamp;
@@ -104,7 +112,11 @@ function Notification(){
     };
      
     this.createEventRequest = function(){
-         
+        this.text = "User" +/*insert user name here*/ + "has requested to join"+
+                "your event" + /*insert event name here*/ + "";
+        this.newH1 = $('<p>').text(this.text);
+        this.newH2 = $('<button>').text("Accept").on('click', acceptEventRequest());
+        this.newH2 = $('<button>').text("Reject").on('click', rejectEventRequest());
     };
      
     this.createFriendRequest = function(){
