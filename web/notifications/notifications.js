@@ -19,6 +19,7 @@ String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
 function getNotifications() {
     inbox = new Inbox();
     inbox.create(id);
+    inbox.getNotifications();
 
     setTimeout(getHTMLFromNotifications(inbox), 10000);
     //this is where it connects with HTML to print the feed in objects
