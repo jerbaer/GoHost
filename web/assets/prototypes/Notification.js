@@ -68,11 +68,41 @@ function Notification(){
         this.idnotification = data;
     };
     
-    //returns a div populated with shit according to the type of the notification
+    //returns a div populated according to the type of the notification
     this.getHTML = function (){
         this.createHTML;
         return this.newH;
-    }
+    };
+    
+    //This is where the logic that checks what kind of notification it is
+    //will be. Based on what kind of notification, it will call one of 
+    //(four?) functions that will populate the div accordingly
+    this.createHTML = function (){
+        if(this.from ==0){
+            //This is a system notification that doesn't require input from the user. This will probably not be implemented soon
+            this.createSystemNotification;
+        } else {
+            //This is a request that requires input from the user
+            if (this.status == 0){
+                //this is an event invite
+                this.createEventInvite;
+            } else if (this.status == 1){
+                //this is an event request
+                this.createEventRequest;
+            } else if (this.status == 2){
+                //this is a friend request
+                this.createFriendRequest;
+            }
+        }
+    };
+    this.createSystemNotification = function(){
+        
+    };
+     this.createEventInvite = function() {
+         
+     };
+     
+     this.createEventRequest 
     
     this.getRead = function (){
         return this.read;
