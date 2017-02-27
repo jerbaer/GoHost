@@ -18,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -53,6 +54,14 @@ public class InvitedFacadeREST extends AbstractFacade<Invited> {
     @Path("{id}")
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
+    }
+        @DELETE
+    @Path("delete")
+    public void removeByEvent(@QueryParam("idevent") Integer id) {
+        List<Invited> list = em.createNamedQuery("Invited.findByIdevent", Invited.class).setParameter("idevent", new Integer(id)).getResultList();
+        for (int i = 0; i<list.size(); i++){
+            super.remove(super.find(list.get(i).getIdinvited()));
+        }
     }
 
     @GET

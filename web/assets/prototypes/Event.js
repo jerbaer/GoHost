@@ -112,27 +112,27 @@ function Event() {
     this.deleteEvent = function () {
         //Deletes event from event table
         $.ajax({
-            url: this.coreUrl + 'event$idevent=' + this.idevent,
+            url: this.coreUrl + 'event/' + this.idevent,
             type: 'DELETE'
         });
         //Deletes all attendee rows of this event
         $.ajax({
-            url: this.coreUrl + 'attendee$idevent=' + this.idevent,
+            url: this.coreUrl + 'attendee/delete/' + this.idevent,
             type: 'DELETE'
         });
         //Delets all invited rows of this evnet
         $.ajax({
-            url: this.coreUrl + 'invited$idevent=' + this.idevent,
+            url: this.coreUrl + 'invited/delete/' + this.idevent,
             type: 'DELETE'
         });
         //Delets all messages of this event
         $.ajax({
-            url: this.coreUrl + 'message$idevent=' + this.idevent,
+            url: this.coreUrl + 'message/delete/' + this.idevent,
             type: 'DELETE'
         });
         //Deletes all notifications of this event
         $.ajax({
-            url: this.coreUrl + 'notification$idevent=' + this.idevent,
+            url: this.coreUrl + 'notification/delete/' + this.idevent,
             type: 'DELETE'
         });
     };
