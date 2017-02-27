@@ -22,16 +22,23 @@ function FriendsList() {
     };
 
     this.friendFollowUp = function (data) {
-        size = data.length;
+        this.size = data.length;
         friends = [];
         for (n = 0; n < data.length; n++) {
+            let user = new User();
+            user.create //need to finish this and also fix the getjson above
             friends[n] = data[n].iduser2;
         }
     };
 
     this.getFriends = function () {
-        return friends;
+        return this.friends;
     };
+    
+    this.getSize = function () {
+        return this.friends.length;
+    }
+    
     this.isUserOnList = function (iduser) {
         for (i = 0; i < size; i++) {
             if (iduser = friends[i].getID()) {

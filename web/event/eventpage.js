@@ -1,15 +1,7 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-//Classes that I will be interacting with here: Event, User, FriendsList
-
 // Global Variables go under here if they are needed
 var id = 0;
 var eventid = 0;
-var event = null;
+var event1 = null;
 var user = null;
 var isHost = false;
 var isAttendee = false;
@@ -18,16 +10,17 @@ var canSee = false;
 
 var eventTitle;
 var eventHost;
-var eventStartTimes;
-var eventEndTimes;
-var eventCategories;
+var eventStartTime;
+var eventEndTime;
+var eventCategory;
 var eventIDs;
 
+String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
+    var t = this.split(/[- :T]/);
+    return new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
+};
+
 function setUpComponents() {
-    // Link some buttons to certain functions
-    $('#delete').on('click', deleteEvent);
-    $('#edit').on('click', editEvent);
-    $('#invite').on('click', inviteFriends);
     jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
     eventid = (window.location.href.split('#'))[1];
@@ -37,33 +30,37 @@ function setUpComponents() {
     //Call function to display the event based on the relation of the
     //userto that event. Host, Attendee, neither
     getEvent();
-    if (event.getHost().getID() === user.getID()) {
-        isHost = true;
-    }
-    isHost = event.isuserHost();
-    isAttendee = event.isUserInEvent();
-    canJoin = (event.canUserJoin() && !event.isUserInEvent());
-    canSee = event.canUserSee();
+    isHost = event1.isAccessorHost();
+    isAttendee = event1.isUserInEvent();
+    canJoin = (event1.canUserJoin() && !event1.isUserInEvent());
+    canSee = event1.canUserSee();
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
         $('#joinEvent').hide();
+        $('#delete').on('click', deleteEvent);
+        $('#edit').on('click', editEvent);
+        $('#invite').on('click', inviteFriends);
     } else if (isAttendee) {
         $('#joinEvent').hide();
         $('#hostOnly').hide();
+        $('#invite').on('click', inviteFriends);
     } else if (canJoin) {
+        $('#inviteSpan').hide();
         $('#hostOnly').hide();
+        $('#joinEvent').on('click', joinEvent);
     } else if (!canSee) {
         $('#eventDetails').hide();
         $('#joinEvent').hide();
+        $('#inviteSpan').hide();
         $('#hostOnly').hide();
+        // Make error div for can't see
     }
-    //Show and hide all the divs in the html under here 
 }
 
 function getEvent() {
-    event = new Event();
-    event.createFromDB(eventid, user);
-    getStringsFromEvent(event);
+    event1 = new Event();
+    event1.createFromDB(eventid, user);
+    getStringsFromEvent(event1);
     // Create the event in the html
     // Can implement links that allow edits to be made from the page
     eventDetails = $('#eventDetails');
@@ -76,42 +73,53 @@ function getEvent() {
     eventDetails.append(newH1);
     eventDetails.append(newH2);
     eventDetails.append(newH3);
+    eventDetails.append('<br />');
 }
 
 function deleteEvent() {
-    event.deleteEvent();
+    event1.deleteEvent();
+    location.href = "../home";
 }
 
 function editEvent() {
     //This will get all the input from the edit form and use it call all the
     //edit functions on the event object. After that, it will call the function
     //that flushes all the changes to the database
-    event.editDescription($('#description').val());
-    event.editTitle($('#eventTitle').val());
+    event1.editDescription($('#description').val());
+    event1.editTitle($('#eventTitle').val());
     //Need to make sure these two have proper values
-    event.editStartTime($('#eventStart').val());
-    event.editEndTime($('#eventEnd').val());
+    event1.editStartTime($('#eventStart').val());
+    event1.editEndTime($('#eventEnd').val());
     //These two need to be creating objects on the other end
-    event.editCategory($('#eventCat').val());
-    event.editLocation($('#eventLoc').val());
+    event1.editCategory($('#eventCat').val());
+    event1.editLocation($('#eventLoc').val());
     //These two need to be converted to 0,1,2
-    event.editAccessiblity($('#eventAcc').val());
-    event.editVisibility($('#eventVis').val());
+    event1.editAccessiblity($('#eventAcc').val());
+    event1.editVisibility($('#eventVis').val());
     //Flushes everything to the database
-    event.refreshEdits();
+    event1.refreshEdits();
+    window.location.reload();
 }
 
 function inviteFriends() {
     //This will pull up a list of the user's friends and then the other button
     //would actually allow you to invite people?
+    window.location.reload();
 }
 
-function getStringsFromEvent(event) {
-    eventTitle = event.getTitle();
+function joinEvent() {
+    event1.addUserToEvent(id);
+    window.location.reload();
+}
+
+function getStringsFromEvent(event1) {
+    eventTitle = event1.getTitle();
     //eventHost = event.getHost(); don't need to display this
-    eventStartTime = event.getEventStart();
-    eventEndTime = event.getEventEnd();
-    eventCategory = event.getCategory();
+    var d = event1.getEventStart().mysqlToDate();
+    eventStartTime = d.toString().replace("GMT-0600 (Central Standard Time)", "");
+    var x = event1.getEventEnd().mysqlToDate();
+    eventEndTime = x.toString().replace("GMT-0600 (Central Standard Time)", "");
+    eventCategory = event1.getCategory();
     //eventID = event.getID(); or this
 }
 
@@ -119,6 +127,7 @@ function getStringsFromEvent(event) {
 function chat() {
 
 }
+
 $.wait = function (ms) {
     var defer = $.Deferred();
     setTimeout(function () {

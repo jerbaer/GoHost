@@ -18,7 +18,7 @@ function Category (idcategory1) {
             success: this.nameFollowUp
         });
     };
-    this.nameFollowUp  = function(data){
+    this.nameFollowUp = function(data){
         this.name = data.name;
     };
 

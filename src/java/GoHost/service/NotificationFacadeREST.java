@@ -55,6 +55,15 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
+    
+    @DELETE
+    @Path("delete")
+    public void removeByEvent(@QueryParam("idevent") Integer id) {
+        List<Notification> list = em.createNamedQuery("Notification.findByIdevent", Notification.class).setParameter("idevent", new Integer(id)).getResultList();
+        for (int i = 0; i<list.size(); i++){
+            super.remove(super.find(list.get(i).getIdnotification()));
+        }
+    }
 
     @GET
     @Path("{id}")
@@ -62,6 +71,13 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
     public Notification find(@PathParam("id") Integer id) {
         return super.find(id);
     }
+    
+    @GET
+    @Path("iduser")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Notification> getNotifications(@QueryParam("iduser") int vis){
+        return em.createNamedQuery("Notification.findByIduser", Notification.class).setParameter("iduser", new Integer(vis)).getResultList();
+   } 
 
     @GET
     @Override
@@ -81,12 +97,7 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
     //I don't know if changing it to int will fuck with the SQL or nah
     
     
-    @GET
-    @Path("iduser")
-    @Produces({MediaType.APPLICATION_JSON})
-    public List<Notification> getNotifications(@QueryParam("iduser") Integer iduser){
-        return em.createNamedQuery("Event.findByIdhost", Notification.class).setParameter("iduser", iduser).getResultList();
-   }
+
 
     @GET
     @Path("count")
