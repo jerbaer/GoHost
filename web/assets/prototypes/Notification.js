@@ -12,6 +12,7 @@ function Notification(){
     this.status = 0;
     this.read = null;
     this.timestamp = 0;
+    this.coreUrl= "http://143.44.67.0:13774/GoHost/api/";
     
     //Need to make sure that the facade actually supports this request
     this.creatFromDB = function (iduser){
