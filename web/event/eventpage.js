@@ -14,7 +14,10 @@ var eventStartTimes;
 var eventEndTimes;
 var eventCategories;
 var eventIDs;
-
+String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
+    var t = this.split(/[- :T]/);
+    return new Date(t[0], t[1]-1, t[2], t[3]||0, t[4]||0, t[5]||0);
+};
 function setUpComponents() {
     // Link some buttons to certain functions
     $('#delete').on('click', deleteEvent);
@@ -100,8 +103,10 @@ function inviteFriends() {
 function getStringsFromEvent(event) {
     eventTitle = event1.getTitle();
     //eventHost = event.getHost(); don't need to display this
-    eventStartTime = event1.getEventStart();
-    eventEndTime = event1.getEventEnd();
+        var d = event1.getEventStart().mysqlToDate();
+        eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
+        var x = event1.getEventEnd().mysqlToDate();
+        eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
     eventCategory = event1.getCategory();
     //eventID = event.getID(); or this
 }

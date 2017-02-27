@@ -10,8 +10,8 @@ function Event() {
     this.accessor = null;
     this.idevent = 0;
     this.chat = null;
-    this.eventStart = 0;
-    this.eventEnd = 0;
+    this.eventStart = "";
+    this.eventEnd = "";
     this.eventMax = 0;
     this.description = "";
     this.title = "";
@@ -20,6 +20,7 @@ function Event() {
     this.invitedUsers = [];
     this.location = null;
     this.users = [];
+    this.tempID;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
 
     this.createFromDB = function (idevent, accessor1) {
@@ -67,9 +68,7 @@ function Event() {
     };
 
     this.create = function (idhost, idcategory, eventStart, eventEnd, description, title, idvisibility, idaccessibility, idlocation, eventMax) {
-        //creates a user from the idhost, category from idcategory, visibility from idvisibility/idaccessibility, location from idlocation, all other fields are filled from parameters
-        //if accessibility is 1, add all friends to invited list. Add the created object to the database.
-        //Won't let me use this.
+        this.tempID = idhost;
         var event = {title: title, idhost: idhost, maxattendees: parseInt(eventMax), /*idlocation: idlocation,*/ visibility: parseInt(idvisibility), accessibility: parseInt(idaccessibility), starttime: new Date(eventStart), endtime: new Date(eventEnd), description: description, idcategory: parseInt(idcategory)};
         $.ajax({
             url: this.coreUrl + "event",
@@ -77,14 +76,33 @@ function Event() {
             data: JSON.stringify(event),
             contentType: 'application/json',
             dataType: 'json',
-            async: false
-                    //success: Event.createFollowUp2
+            context: this,
+            async: false,
+            //success: Event.createFollowUp2
         });
+
     };
 
-    this.createFollowUp2 = function (id) {
-        //Stores the id of the event row recently added to the database
-        idevent = id;
+    this.createFollowUp2 = function (data) { //when friendslist is working, do some of this stuff
+        var id = data.idevent;
+        var attendee = {iduser : this.tempID, idevent : id}
+        $.ajax({
+            url: this.coreUrl + "attendee",
+            type: 'POST',
+            data: JSON.stringify(attendee),
+            context: this,
+            contentType: 'application/json',
+            dataTpye: 'json',
+            async: false
+        })
+        if (data.accessibility == 1){
+            var user = new User();
+            user.create(this.tempID);
+            var friendsList = user.getFriendsList();
+            for(var i = 0; i<friendsList.size(); i++){
+                
+            }
+        }
     };
 
     this.isAccessorHost = function () {
@@ -117,22 +135,22 @@ function Event() {
         });
         //Deletes all attendee rows of this event
         $.ajax({
-            url: this.coreUrl + 'attendee/delete/' + this.idevent,
+            url: this.coreUrl + 'attendee/delete?idevent=' + this.idevent,
             type: 'DELETE'
         });
         //Delets all invited rows of this evnet
         $.ajax({
-            url: this.coreUrl + 'invited/delete/' + this.idevent,
+            url: this.coreUrl + 'invited/delete?idevent=' + this.idevent,
             type: 'DELETE'
         });
         //Delets all messages of this event
         $.ajax({
-            url: this.coreUrl + 'message/delete/' + this.idevent,
+            url: this.coreUrl + 'message/delete?idevent=' + this.idevent,
             type: 'DELETE'
         });
         //Deletes all notifications of this event
         $.ajax({
-            url: this.coreUrl + 'notification/delete/' + this.idevent,
+            url: this.coreUrl + 'notification/delete?idevent=' + this.idevent,
             type: 'DELETE'
         });
     };
@@ -253,9 +271,9 @@ function Event() {
     };
 
     this.refreshEdits = function () {
-        var event = {title: title, idhost: host, maxattendees: eventMax, idlocation: location.idlocation, idvisibility: visibility, idaccessibility: accessibility, starttime: eventStart, endtime: eventEnd, description: description, idcategory: category.idcategory};
+        var event = {title: title, idhost: host, maxattendees: eventMax, idlocation: this.location.getID(), idvisibility: visibility, idaccessibility: accessibility, starttime: eventStart, endtime: eventEnd, description: description, idcategory: this.category.getID()};
         $.ajax({
-            url: coreUrl + 'event',
+            url: coreUrl + 'event/' + this.idevent,
             type: 'PUT',
             data: JSON.stringify(user),
             contentType: 'application/json',

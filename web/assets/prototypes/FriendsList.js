@@ -22,9 +22,11 @@ function FriendsList() {
     };
 
     this.friendFollowUp = function (data) {
-        size = data.length;
+        this.size = data.length;
         friends = [];
         for (n = 0; n < data.length; n++) {
+            let user = new User();
+            user.create //need to finish this and also fix the getjson above
             friends[n] = data[n].iduser2;
         }
     };
