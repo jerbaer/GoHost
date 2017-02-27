@@ -1,4 +1,4 @@
-/* 
+ /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -14,6 +14,7 @@
 //read: this will be used to distinguish the different types of system notifications
 //however specific I want to get with those.
 function Notification(){
+    this.newH = $('<>');
     this.idnotification = 0;
     this.iduser = 0;
     this.from = 0;
@@ -66,6 +67,11 @@ function Notification(){
         //Is this what the database actually sends back??
         this.idnotification = data;
     };
+    
+    this.getHTML = function (){
+        this.createHTML;
+        return 
+    }
     
     this.getRead = function (){
         return this.read;
