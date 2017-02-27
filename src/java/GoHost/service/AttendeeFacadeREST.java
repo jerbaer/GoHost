@@ -55,6 +55,14 @@ public class AttendeeFacadeREST extends AbstractFacade<Attendee> {
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
+    @DELETE
+    @Path("delete")
+    public void removeByEvent(@QueryParam("idevent") Integer id) {
+        List<Attendee> list = em.createNamedQuery("Attendee.findByIdevent", Attendee.class).setParameter("idevent", new Integer(id)).getResultList();
+        for (int i = 0; i<list.size(); i++){
+            super.remove(super.find(list.get(i).getIdattendee()));
+        }
+    }
 
     @GET
     @Path("{id}")
