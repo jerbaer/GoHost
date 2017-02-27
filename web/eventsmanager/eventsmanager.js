@@ -1,3 +1,4 @@
+//Global variables go under here
 var eventsHosted = null;
 var eventsAttending = null;
 var visibleEvents = null;
@@ -8,8 +9,6 @@ var eventStartTimes;
 var eventEndTimes;
 var eventCategories;
 var eventLocations;
-
-//Global variables go under here
 var id;
 
 function setUpComponents() {
@@ -87,7 +86,7 @@ function getHostStrings() {
     eventsFeed = $('#host');
     eventsFeed.append('<br />');
     for (n = eventsHosted.getSize() - 1; n > -1; n--) {
-        url = "../event/index.html"; //need to append event ID here
+        url = "../event/index.html#" + eventIDs[n];
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;
             window.location.reload(true);
@@ -136,7 +135,7 @@ function getAttendingStrings() {
     eventsFeed = $('#attend');
     eventsFeed.append('<br />');
     for (n = eventsAttending.getSize() -1 ; n > -1; n--) {
-        url = "../event/index.html";
+        url = "../event/index.html#" + eventIDs[n]";
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;
             window.location.reload(true);
