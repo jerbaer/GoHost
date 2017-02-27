@@ -32,8 +32,12 @@ function FriendsList() {
     };
 
     this.getFriends = function () {
-        return friends;
+        return this.friends;
     };
+    
+    this.getSize = function () {
+        return this.friends.length;
+    }
     
     this.isUserOnList = function (iduser) {
         for (i = 0; i < size; i++) {
