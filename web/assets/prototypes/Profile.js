@@ -90,10 +90,6 @@ function Profile () {
         // Not sure what this is
     };
     
-    this.Profile = function (owner, accessor1) {
-        // Not sure what this is
-    };
-    
     // Might move this to the top and change create like Event is organized
     this.createProfileFromDB = function (iostream) {
         // var url = 

@@ -48,21 +48,58 @@
             <div class="row" id="profName"></div>
             <hr>
             <div class="row">
-                <div id="profPic" class="col-xs-3">
-                    <!-- Profile Picture -->
-                    <img class="img-responsive" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div id="profPic" class="col-xs-3">
+                            <!-- Profile Picture -->
+                            <img class="img-responsive" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
+                        </div>
+                        <div id="profDesc" class="col-xs-6 col-xs-offset-2">
+                            <!-- Description -->
+                        </div>
+                    </div>
                 </div>
-                <div id="profDesc" class="col-xs-6 col-xs-offset-2">
-                    <!-- Description -->
+                <div class="col-sm-2 col-sm-offset-2">
+                    <div class="row" id="addFriend">
+                        <button type="button" class="btn btn-info">Add Friend</button>
+                    </div>
+                    <div class="row" id="ownerOnly">
+                        <a class="btn btn-info" href="#settingsModal" data-toggle="modal" data-target="#settingsModal" aria-label="Settings">
+                            <i class="fa fa-cog" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <!-- Need to add more settings for users who are the owner -->
             <!-- Like an edit profile button + modal -->
             <!-- Make error div for can't see -->
         </div>
+        <!-- Modals -->
+        <div class="modal fade" id="settingsModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!-- Might want to change this text -->
+                        <h4 class="modal-title">Settings</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="settingsForm">
+                            <fieldset>
+                                <p>List of friends here.</p>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button class="btn btn-info" id="invite" type="button">Invite</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="profile.js"></script>
+        <script src="profilepage.js"></script>
     </body>
 
 </html>
