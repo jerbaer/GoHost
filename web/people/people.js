@@ -20,7 +20,7 @@ function setUpComponents() {
 function getPeople() {
     user = new User();
     user.create(id);
-    getFriends();
+    getFriendsStrings();
 }
 
 function getFriendsStrings() {
