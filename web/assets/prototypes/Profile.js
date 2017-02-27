@@ -39,13 +39,17 @@ function Profile () {
         return false;
     };
     
+    this.getName = function () {
+        return this.owner.getName();
+    };
+    
     this.getDescription = function () {
         return this.description;
     };
     
     this.getPicture = function () {
         return this.photoURL;
-    }
+    };
     
     this.editDescription = function (description) {
         this.description = description;
@@ -104,6 +108,10 @@ function Profile () {
     
     this.isUserOnList = function () {
         // idk which user and which list so yeah
+    };
+    
+    this.deleteAccount = function (){
+        // Fill this in
     };
     
     this.refreshEdits = function () {
