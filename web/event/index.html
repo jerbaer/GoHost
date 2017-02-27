@@ -57,27 +57,34 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-lg-offset-2">
-                    <a class="btn btn-info" href="#invModal" data-toggle="modal" data-target="#invModal" aria-label="Invite">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                    </a>
-                    <div class="modal fade" id="invModal" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <!-- Might want to change this text -->
-                                    <h4 class="modal-title">Invite Friends</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form class="form-horizontal" id="invForm">
-                                        <fieldset>
-                                            <p>List of friends here.</p>
-                                        </fieldset>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button class="btn btn-info" id="invite" type="button">Invite</button>
+                    <div id="joinEvent">
+                        <a class="btn btn-info" href="#joinModal" data-toggle="modal" data-target="#joinModal" aria-label="Join">
+                            <i class="fa fa-calender-plus-o" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div id="invite">
+                        <a class="btn btn-info" href="#invModal" data-toggle="modal" data-target="#invModal" aria-label="Invite">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </a>
+                        <div class="modal fade" id="invModal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <!-- Might want to change this text -->
+                                        <h4 class="modal-title">Invite Friends</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-horizontal" id="invForm">
+                                            <fieldset>
+                                                <p>List of friends here.</p>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button class="btn btn-info" id="invite" type="button">Invite</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
