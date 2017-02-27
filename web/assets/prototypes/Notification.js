@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
+//read: (0: not read, 1: read)
+//status: (0: pending, 1: rejected, 2: accepted, 3: (Do I need a 4th status?))
+
 function Notification(){
     this.idnotification = 0;
     this.iduser = 0;
@@ -21,7 +24,7 @@ function Notification(){
             dataType: "json",
             url: url,
             context: this,
-            success: this.createFollowUp
+            success: this.createFromDBFollowUp
         });
     };
     
@@ -37,9 +40,6 @@ function Notification(){
     
     //Need to decide what values read and status can take. What 0,1, and 2 mean
     this.create = function (iduser, from, idevent, timestamp) {
-        //creates a user from the idhost, category from idcategory, visibility from idvisibility/idaccessibility, location from idlocation, all other fields are filled from parameters
-        //if accessibility is 1, add all friends to invited list. Add the created object to the database.
-        //Won't let me use this.
         var event = {iduser: iduser, from: from, idevent: idevent, status: 0, read: 0, timestamp: timestamp};
         $.ajax({
             url: this.coreUrl + "event",
@@ -57,15 +57,17 @@ function Notification(){
     this.createFollowUp = function (data){
         //Is this what the database actually sends back??
         this.idnotification = data;
-    }
+    };
     
     
     this.editRead = function (read) {
         this.read = read;
+        this.refreshEdits();
     };
     
     this.editStatus = function(status){
         this.status = status;
+        this.refreshEdits();
     };
     
     

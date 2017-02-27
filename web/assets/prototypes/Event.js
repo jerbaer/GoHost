@@ -177,34 +177,43 @@ function Event() {
     };
     this.editDescription = function (description) {
         this.description = description;
+        this.refreshEdits();
     };
     this.editStartTime = function (startTime) {
         this.startTime = startTime;
+        this.refreshEdits();
     };
     this.editEndTime = function (endTime) {
         this.endTime = endTime;
+        this.refreshEdits();
     };
 
     this.editTitle = function (title) {
         this.title = title;
+        this.refreshEdits();
     };
 
     this.editCategory = function (category) {
         this.category = category;
+        this.refreshEdits();
     };
     this.editLocation = function (location) {
         this.location = location;
+        this.refreshEdits();
     };
     this.editVisibility = function (visibility) {
         this.visibility = visibility;
+        this.refreshEdits();
     };
 
     this.editAccessiblity = function (accessibility) {
         this.accessibility = accessibility;
+        this.refreshEdits();
     };
 
     this.editMax = function (max) {
         this.eventMax = max;
+        this.refreshEdits();
     };
 
     this.getEventStart = function () {
