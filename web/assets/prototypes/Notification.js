@@ -4,9 +4,14 @@
  * and open the template in the editor.
  */
 
-//read: (0: not read, 1: read)
-//status: (0: pending, 1: rejected, 2: accepted, 3: (Do I need a 4th status?))
-
+//read: this will be a field that denotes sth completely different
+//This will denote whether the notitification is a request or not
+//(0: request, 1: not request)
+//status: This is a dummy field that I don't really need rn
+//I will be defaulting this to 0. I can use this for sth else 
+//If I need to
+//from: this will have the id of the user who sent the notification
+//it will be 0 if the notification is from the system.
 function Notification(){
     this.idnotification = 0;
     this.iduser = 0;
@@ -39,8 +44,10 @@ function Notification(){
     };
     
     //Need to decide what values read and status can take. What 0,1, and 2 mean
-    this.create = function (iduser, from, idevent, timestamp) {
-        var event = {iduser: iduser, from: from, idevent: idevent, status: 0, read: 0, timestamp: timestamp};
+    //Make sure vars are parsed properly
+    //Go to the entity page that the id is optional = true and @notNull is not there
+    this.create = function (iduser, from, idevent, timestamp, read) {
+        var event = {iduser: iduser, from: from, idevent: idevent, status: 0, read: read, timestamp: timestamp};
         $.ajax({
             url: this.coreUrl + "event",
             type: 'post',
@@ -59,7 +66,12 @@ function Notification(){
         this.idnotification = data;
     };
     
-    
+    this.getRead = function (){
+        return this.read;
+    };
+    this.getStatus = function () {
+        return this.status;
+    };
     this.editRead = function (read) {
         this.read = read;
         this.refreshEdits();
@@ -82,8 +94,5 @@ function Notification(){
             contentType: 'application/json',
             dataType: 'json'
         });
-        //This will have a put request that updates the db with all the edits 
-        //That might have happened to the event object. We will call this 
-        //End-all function everytime an edit happens
     };
 }
