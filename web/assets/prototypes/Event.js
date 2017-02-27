@@ -174,7 +174,7 @@ function Event() {
         });
     };
     this.canUserJoin = function () {
-        if (this.accessibility.getID() === 2) {
+        if (this.accessibility === 2) {
             return true;
         } //else {
         //for (i = 0; i < this.invited.size(); i++) {
@@ -186,7 +186,7 @@ function Event() {
         // }
     };
     this.canUserSee = function () {
-        if (this.visibility.getID() === 2) {
+        if (this.visibility === 2) {
             return true;
             //} else if (this.host.isFriendsWith(accessor) && this.visibility.getID()== 1){
             //    return true;
