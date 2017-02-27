@@ -14,7 +14,7 @@ function Inbox() {
         this.owner = owner;
     }
     this.getNotifications = function () {
-        var url = this.coreUrl + "notification/iduser?iduser=" + this.owner.iduser;
+        var url = this.coreUrl + "notification/iduser?iduser=" + this.owner;
         $.ajax({
             dataType: "json",
             url: url,
