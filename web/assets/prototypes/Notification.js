@@ -4,14 +4,15 @@
  * and open the template in the editor.
  */
 
-//read: this will be a field that denotes sth completely different
-//This will denote whether the notitification is a request or not
-//(0: request, 1: not request)
-//status: This is a dummy field that I don't really need rn
-//I will be defaulting this to 0. I can use this for sth else 
-//If I need to
 //from: this will have the id of the user who sent the notification
-//it will be 0 if the notification is from the system.
+//it will be 0 if the notification is from the system. Basically,
+//this will be a system notification if from is 0. Otherwise, it's a request.
+
+//status: this will be used to distinguish the different types of requests
+//(0: eventInvite, 1: eventRequest, 2: friendRequest)
+
+//read: this will be used to distinguish the different types of system notifications
+//however specific I want to get with those.
 function Notification(){
     this.idnotification = 0;
     this.iduser = 0;
@@ -47,9 +48,9 @@ function Notification(){
     //Make sure vars are parsed properly
     //Go to the entity page that the id is optional = true and @notNull is not there
     this.create = function (iduser, from, idevent, timestamp, read) {
-        var event = {iduser: iduser, from: from, idevent: idevent, status: 0, read: read, timestamp: timestamp};
+        var event = {iduser: iduser, from: from, idevent: idevent, status: status, read: 0, timestamp: timestamp};
         $.ajax({
-            url: this.coreUrl + "event",
+            url: this.coreUrl + "notification",
             type: 'post',
             data: JSON.stringify(event),
             contentType: 'application/json',
@@ -88,7 +89,7 @@ function Notification(){
     this.refreshEdits = function () {
         var event = {read: this.read, status: this.status};
         $.ajax({
-            url: coreUrl + 'event',
+            url: coreUrl + 'notification',
             type: 'PUT',
             data: JSON.stringify(user),
             contentType: 'application/json',
