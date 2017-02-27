@@ -92,6 +92,26 @@ function User() {
     this.getName = function () {
         return this.name;
     };
+    
+    this.editName = function (name) {
+        this.name = name;
+        this.refreshEdits();
+    }
+    
+    this.editPassword = function (password) {
+        this.password = password;
+        this.refreshEdits();
+    };
+    
+    this.editEmail = function (email) {
+        this.email = email;
+        this.refreshEdits()
+    };
+    
+    this.refreshEdits = function () {
+        var user = {}; //long list of member variables
+        // ajax requests here. reference event.refreshEdits
+    };
 }
 
 /*User = {

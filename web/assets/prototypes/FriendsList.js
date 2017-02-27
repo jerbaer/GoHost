@@ -34,6 +34,7 @@ function FriendsList() {
     this.getFriends = function () {
         return friends;
     };
+    
     this.isUserOnList = function (iduser) {
         for (i = 0; i < size; i++) {
             if (iduser = friends[i].getID()) {
