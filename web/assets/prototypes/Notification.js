@@ -30,7 +30,7 @@ function Notification(){
     this.coreUrl= "http://143.44.67.0:13774/GoHost/api/";
     
     //Need to make sure that the facade actually supports this request
-    this.creatFromDB = function (iduser){
+    this.createFromDB = function (iduser){
         var url = this.coreUrl + "notification/" + iduser;
         $.ajax({
             dataType: "json",
@@ -45,12 +45,12 @@ function Notification(){
         this.user = new User();
         this.user.create(data.iduser)
         this.from = new User();
-        this.from.create(data.from);
+        this.from.create(data.sender);
         this.event = new Event();
         this.event.createFromDB(data.idevent, this.user);
-        this.status = data.status;
-        this.read = data.read;
-        this.timestamp = data.timestamp;
+        this.status = data.notificationstatus;
+        this.read = data.isread;
+        this.timestamp = data.timesent;
     };
     
     //Need to decide what values read and status can take. What 0,1, and 2 mean

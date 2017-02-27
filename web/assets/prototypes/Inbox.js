@@ -26,7 +26,7 @@ function Inbox() {
     this.getNotificationsFollowUp = function(data){
         this.notifications = new Array();
         for(var i=0;i<data.length;i++){
-            this.notification1 = new Notification();
+            var notification1 = new Notification();
             notification1.createFromDB(data[i].idevent);
             this.notifications.push(notification1);
         }

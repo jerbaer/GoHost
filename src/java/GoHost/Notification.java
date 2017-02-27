@@ -30,32 +30,31 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Notification.findAll", query = "SELECT n FROM Notification n")
     , @NamedQuery(name = "Notification.findByIdnotification", query = "SELECT n FROM Notification n WHERE n.idnotification = :idnotification")
     , @NamedQuery(name = "Notification.findByIduser", query = "SELECT n FROM Notification n WHERE n.iduser = :iduser")
-    , @NamedQuery(name = "Notification.findByFrom", query = "SELECT n FROM Notification n WHERE n.from = :from")
+    , @NamedQuery(name = "Notification.findBySender", query = "SELECT n FROM Notification n WHERE n.sender = :sender")
     , @NamedQuery(name = "Notification.findByIdevent", query = "SELECT n FROM Notification n WHERE n.idevent = :idevent")
-    , @NamedQuery(name = "Notification.findByStatus", query = "SELECT n FROM Notification n WHERE n.status = :status")
-    , @NamedQuery(name = "Notification.findByRead", query = "SELECT n FROM Notification n WHERE n.read = :read")
-    , @NamedQuery(name = "Notification.findByTimestamp", query = "SELECT n FROM Notification n WHERE n.timestamp = :timestamp")})
+    , @NamedQuery(name = "Notification.findByNotificationstatus", query = "SELECT n FROM Notification n WHERE n.notificationstatus = :notificationstatus")
+    , @NamedQuery(name = "Notification.findByisRead", query = "SELECT n FROM Notification n WHERE n.isread = :isread")
+    , @NamedQuery(name = "Notification.findByTimesent", query = "SELECT n FROM Notification n WHERE n.timesent = :timesent")})
 public class Notification implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional = true)
     @Column(name = "idnotification")
     private Integer idnotification;
     @Column(name = "iduser")
     private Integer iduser;
-    @Column(name = "from")
-    private Integer from;
+    @Column(name = "sender")
+    private Integer sender;
     @Column(name = "idevent")
     private Integer idevent;
-    @Column(name = "status")
-    private Integer status;
-    @Column(name = "read")
-    private Integer read;
-    @Column(name = "timestamp")
+    @Column(name = "notificationstatus")
+    private Integer notificationstatus;
+    @Column(name = "isread")
+    private Integer isread;
+    @Column(name = "timesent")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date timestamp;
+    private Date timesent;
 
     public Notification() {
     }
@@ -80,12 +79,12 @@ public class Notification implements Serializable {
         this.iduser = iduser;
     }
 
-    public Integer getFrom() {
-        return from;
+    public Integer getSender() {
+        return sender;
     }
 
-    public void setFrom(Integer from) {
-        this.from = from;
+    public void setSender(Integer sender) {
+        this.sender = sender;
     }
 
     public Integer getIdevent() {
@@ -96,28 +95,28 @@ public class Notification implements Serializable {
         this.idevent = idevent;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getNotificationstatus() {
+        return notificationstatus;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setNotificationstatus(Integer notificationstatus) {
+        this.notificationstatus = notificationstatus;
     }
 
-    public Integer getRead() {
-        return read;
+    public Integer getIsread() {
+        return isread;
     }
 
-    public void setRead(Integer read) {
-        this.read = read;
+    public void setIsread(Integer isread) {
+        this.isread = isread;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
+    public Date getTimesent() {
+        return timesent;
     }
 
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+    public void setTimesent(Date timesent) {
+        this.timesent = timesent;
     }
 
     @Override

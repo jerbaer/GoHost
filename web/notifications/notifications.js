@@ -20,6 +20,7 @@ function getNotifications() {
     inbox = new Inbox();
     inbox.create(id);
     inbox.getNotifications();
+    notifications = inbox.getNotificationsList();
 
     setTimeout(getHTMLFromNotifications(inbox), 10000);
     //this is where it connects with HTML to print the feed in objects
@@ -28,8 +29,8 @@ function getNotifications() {
     //inside the notifications array into the notifications div
     
     notificationsFeed = $('#notifications');
-    for (n = inbox.getSize() - 1; n > -1; n--) {
-        notificationsFeed.append(notifications[i]);
+    for (var n = inbox.getSize() - 1; n > -1; n--) {
+        notificationsFeed.append(notifications[n]);
     }
 }
 //This will go through all the different notifications, calling getHTML on them
@@ -38,7 +39,7 @@ function getNotifications() {
 //the divs in this one array; notifications
 function getHTMLFromNotifications(inbox) {
     notifications = new Array(inbox.getSize());
-    for (i = 0; i < inbox.getSize(); i++) {
+    for (var i = 0; i < inbox.getSize(); i++) {
         notifications[i] = inbox.getNotificationsList()[i].getHTML();
     }
 }
