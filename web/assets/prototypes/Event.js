@@ -110,7 +110,6 @@ function Event() {
             return true;
         } else
             return false;
-
     };
     
     this.isUserInEvent = function () {
