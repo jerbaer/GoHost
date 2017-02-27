@@ -18,24 +18,26 @@ function setUpComponents() {
     owner.create(profileid);
     accessor = new User();
     accessor.create(id);
-    
+
     getProfile();
     isOwner = profile1.isCurrentUser();
     isFriend = profile1.isFriend();
     canSee = profile1.canUserSee();
-    
-    if(isOwner) {
+
+    if (isOwner) {
         // Hide add friend button
         // Show edit/delete settings
-    }
-    else if(isFriend) {
+        $('#joinEvent').hide();
+        $('#delete').on('click', deleteEvent);
+        $('#edit').on('click', editEvent);
+        $('#invite').on('click', inviteFriends);
+    } else if (isFriend) {
         // Hide add friend button
         // Hide edit/delete settings
-    }
-    else if(canSee) {
+    } else if (canSee) {
         // Hide edit/delete settings
-    }
-    else {
+        // Show add friend
+    } else {
         // Show error div
     }
 }
@@ -47,13 +49,13 @@ function getProfile() {
     // Popualte the html page
     profName = $('#profName');
     newH1 = $('<h1>').text(profileName);
-    
+
     profPic = $('#profPic');
     // Do picture stuff
-    
+
     profDesc = $('#profDesc');
     newP = $('<p>').text(profileDescription);
-    
+
     profName.append(newH1);
     profDesc.append(hewP);
 }
@@ -65,7 +67,7 @@ function getStringsFromProfile(profile1) {
 }
 
 function addFriend() {
-    
+
 }
 
 function editProfile() {
@@ -84,7 +86,7 @@ function editAccount() {
 }
 
 function deleteAccount() {
-    profile.deleteAccount();
+    profile1.deleteAccount();
     location.href = "../";
 
 }
