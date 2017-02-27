@@ -77,7 +77,7 @@ function Event() {
             contentType: 'application/json',
             dataType: 'json',
             context: this,
-            async: false,
+            async: false
             //success: Event.createFollowUp2
         });
 
@@ -85,7 +85,7 @@ function Event() {
 
     this.createFollowUp2 = function (data) { //when friendslist is working, do some of this stuff
         var id = data.idevent;
-        var attendee = {iduser : this.tempID, idevent : id}
+        var attendee = {iduser : this.tempID, idevent : id};
         $.ajax({
             url: this.coreUrl + "attendee",
             type: 'POST',
@@ -94,8 +94,8 @@ function Event() {
             contentType: 'application/json',
             dataTpye: 'json',
             async: false
-        })
-        if (data.accessibility == 1){
+        });
+        if (data.accessibility === 1){
             var user = new User();
             user.create(this.tempID);
             var friendsList = user.getFriendsList();
@@ -112,6 +112,7 @@ function Event() {
             return false;
 
     };
+    
     this.isUserInEvent = function () {
         for (i = 0; i < this.users.size(); i++) {
             if (this.accessor.getID() === this.user[i].getID()) {

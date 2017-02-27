@@ -19,10 +19,6 @@ String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
     return new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
 };
 function setUpComponents() {
-    // Link some buttons to certain functions
-    $('#delete').on('click', deleteEvent);
-    $('#edit').on('click', editEvent);
-    $('#invite').on('click', inviteFriends);
     jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
     eventid = (window.location.href.split('#'))[1];
@@ -32,18 +28,20 @@ function setUpComponents() {
     //Call function to display the event based on the relation of the
     //userto that event. Host, Attendee, neither
     getEvent();
-    if (event1.getHost().getID() === user.getID()) {
-        isHost = true;
-    }
+    isHost = event1.isAccessorHost();
     isAttendee = event1.isUserInEvent();
     canJoin = (event1.canUserJoin() && !event1.isUserInEvent());
     canSee = event1.canUserSee();
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
         $('#joinEvent').hide();
+        $('#delete').on('click', deleteEvent);
+        $('#edit').on('click', editEvent);
+        $('#invite').on('click', inviteFriends);
     } else if (isAttendee) {
         $('#joinEvent').hide();
         $('#hostOnly').hide();
+        $('#invite').on('click', inviteFriends);
     } else if (canJoin) {
         $('#hostOnly').hide();
     } else if (!canSee) {
@@ -70,6 +68,7 @@ function getEvent() {
     eventDetails.append(newH1);
     eventDetails.append(newH2);
     eventDetails.append(newH3);
+    eventDetails.append('<br />');
 }
 
 function deleteEvent() {
