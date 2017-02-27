@@ -38,10 +38,10 @@ public class EventFacadeREST extends AbstractFacade<Event> {
 
     @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Event createEvent(Event entity) {
+    public String createEvent(Event entity) {
         super.create(entity);
         em.flush();
-        return entity;
+        return entity.getIdevent().toString();
     }
 
     @PUT

@@ -84,21 +84,26 @@ function Event() {
     };
 
     this.createFollowUp2 = function (data) { //when friendslist is working, do some of this stuff
+        var id = parseInt(data);
+        var attendee = {iduser : this.tempID, idevent : id};
         $.ajax({
-            url: this.coreUrl + "event/" + data.idevent,
-            type: 'GET',
+            url: this.coreUrl + "attendee",
+            type: 'POST',
+            data: JSON.stringify(attendee),
+            context: this,
             contentType: 'application/json',
-            dataType: 'json',
-            context:this,
-            async : false,
-            success: this.createFollowUp3
-        })
-
+            dataTpye: 'json',
+            async: false
+        });
+        //if (data.accessibility === 1){
+            //var user = new User();
+            //user.create(this.tempID);
+            //var friendsList = user.getFriendsList();
+            //for(var i = 0; i<friendsList.size(); i++){
+                
+            //}
+        //}
     };
-    
-    this.createFollowUp3 = function(data){
-        
-    }
 
     this.isAccessorHost = function () {
         if (this.accessor.getID() === this.host.getID()) {
