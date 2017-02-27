@@ -75,7 +75,7 @@ function getEvent() {
 
 function deleteEvent() {
     event1.deleteEvent();
-    window.location.reload();
+    location.href = "../home";
 }
 
 function editEvent() {
