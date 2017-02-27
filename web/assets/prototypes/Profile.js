@@ -39,6 +39,10 @@ function Profile () {
         return false;
     };
     
+    this.canUserSee = function () {
+        // For if we want to implement blocking people
+    }
+    
     this.getName = function () {
         return this.owner.getName();
     };

@@ -53,6 +53,7 @@ function setUpComponents() {
         $('#joinEvent').hide();
         $('#inviteSpan').hide();
         $('#hostOnly').hide();
+        // Make error div for can't see
     }
 }
 

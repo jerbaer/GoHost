@@ -1,4 +1,4 @@
-// Going to work with User, FriendsList
+// Going to work with User, FriendsList, Profile
 
 //Global variables
 var friends = null;
