@@ -5,12 +5,6 @@
  */
 var id = 0;
 var notifications = null;
-var eventTitles;
-var eventHosts;
-var eventStartTimes;
-var eventEndTimes;
-var eventCategories;
-var eventLocations;
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
@@ -28,6 +22,10 @@ function getNotifications() {
 
     setTimeout(getHTMLFromNotifications(inbox), 10000);
     //this is where it connects with HTML to print the feed in objects
+    
+    //The way I have this set up, I would only need to append the shit
+    //inside the notifications array into the notifications div
+    
     var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
     var n, url;
     // Find the newestBlogs div that will house newly created blogs
@@ -60,7 +58,7 @@ function getNotifications() {
 //This will go through all the different notifications, calling getHTML on them
 //Which calls createHTML inside the notification object. It stores all the div
 //objects returned into a singule array. This way, I will only have to append
-//the divs in this one 
+//the divs in this one array; notifications
 function getHTMLFromNotifications(inbox) {
     eventTitles = new Array(eventList.getSize());
     eventHosts = new Array(eventList.getSize());
