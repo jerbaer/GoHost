@@ -67,7 +67,8 @@ function getStringsFromProfile(profile1) {
 }
 
 function addFriend() {
-
+    // Add accesor to owner's friend PeopleList
+    window.location.reload();
 }
 
 function editProfile() {
