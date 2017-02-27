@@ -41,6 +41,7 @@ public class AttendeeFacadeREST extends AbstractFacade<Attendee> {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Attendee entity) {
         super.create(entity);
+        em.flush();
     }
 
     @PUT
