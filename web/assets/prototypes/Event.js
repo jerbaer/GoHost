@@ -112,6 +112,7 @@ function Event() {
             return false;
 
     };
+    
     this.isUserInEvent = function () {
         for (i = 0; i < this.users.size(); i++) {
             if (this.accessor.getID() === this.user[i].getID()) {
