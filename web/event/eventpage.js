@@ -68,6 +68,7 @@ function getEvent() {
     eventDetails.append(newH1);
     eventDetails.append(newH2);
     eventDetails.append(newH3);
+    eventDetails.append('<br />');
 }
 
 function deleteEvent() {
