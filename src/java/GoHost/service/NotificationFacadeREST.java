@@ -72,7 +72,6 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
         return super.find(id);
     }
     
-    //Fix the problem with the facade
     @GET
     @Path("iduser")
     @Produces({MediaType.APPLICATION_JSON})
