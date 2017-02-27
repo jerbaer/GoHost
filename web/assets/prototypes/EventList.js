@@ -72,7 +72,6 @@ function eventsList() {
             context: this,
             success: this.visibleFollowUp
         });
-
     };
 
     this.visibleFollowUp = function (data) {
