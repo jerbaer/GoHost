@@ -160,6 +160,7 @@ function Event() {
         } else
             return false;
     };
+    
     this.addUserToEvent = function (iduser) {
         //adds user to the users array as well as the database and refresh
         n = this.users.length;

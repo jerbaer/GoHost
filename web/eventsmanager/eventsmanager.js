@@ -175,6 +175,7 @@ function createEvent() {
     description = $('#description').val();
     event = new Event();
     event.create(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc, maxAttendees, user);
+    window.location.reload();
 }
 
 $.wait = function (ms) {
