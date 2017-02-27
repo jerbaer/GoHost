@@ -1,4 +1,4 @@
-// Using Profile, User, FriendsList
+// Using Profile, User, PeopleList
 
 //Global Variables Here
 var id = 0;

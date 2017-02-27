@@ -32,7 +32,7 @@ function Profile () {
     };
     
     this.isFriend = function () {
-        friends = new FriendsList();
+        friends = new PeopleList();
         friends.create(iduser);
         if(friends.isUserOnList(this.accessor.getID()))
             return true;
@@ -104,8 +104,8 @@ function Profile () {
         // populate member variables
     };
     
-    this.getFriendsList = function () {
-        friends = new FriendsList();
+    this.getPeopleList = function () {
+        friends = new PeopleList();
         friends.create(iduser);
         return friends.getFriends();
     };

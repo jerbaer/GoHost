@@ -83,7 +83,7 @@ function Event() {
 
     };
 
-    this.createFollowUp2 = function (data) { //when friendslist is working, do some of this stuff
+    this.createFollowUp2 = function (data) { //when PeopleList is working, do some of this stuff
         var id = parseInt(data);
         var attendee = {iduser : this.tempID, idevent : id};
         $.ajax({
@@ -98,8 +98,8 @@ function Event() {
         //if (data.accessibility === 1){
             //var user = new User();
             //user.create(this.tempID);
-            //var friendsList = user.getFriendsList();
-            //for(var i = 0; i<friendsList.size(); i++){
+            //var PeopleList = user.getPeopleList();
+            //for(var i = 0; i<PeopleList.size(); i++){
                 
             //}
         //}
