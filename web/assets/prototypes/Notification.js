@@ -14,7 +14,7 @@
 //read: this will be used to distinguish the different types of system notifications
 //however specific I want to get with those.
 function Notification(){
-    this.newH = $('<>');
+    this.newH = $('<div>');
     this.idnotification = 0;
     this.iduser = 0;
     this.from = 0;
@@ -68,9 +68,10 @@ function Notification(){
         this.idnotification = data;
     };
     
+    //returns a div populated with shit according to the type of the notification
     this.getHTML = function (){
         this.createHTML;
-        return 
+        return this.newH;
     }
     
     this.getRead = function (){
