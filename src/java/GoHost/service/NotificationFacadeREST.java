@@ -63,10 +63,11 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
         return super.find(id);
     }
     
+    //Fix the problem with the facade
     @GET
     @Path("iduser")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Notification> getOpen(@QueryParam("iduser") int vis){
+    public List<Notification> getNotifications(@QueryParam("iduser") int vis){
         return em.createNamedQuery("Notification.findByIduser", Notification.class).setParameter("iduser", new Integer(vis)).getResultList();
    } 
 
