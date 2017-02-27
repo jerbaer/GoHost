@@ -14,7 +14,7 @@ var id;
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
-    getPeople;
+    getPeople();
 }
 
 function getPeople() {
