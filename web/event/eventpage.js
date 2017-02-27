@@ -1,11 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-//Classes that I will be interacting with here: Event, User, FriendsList
-
 // Global Variables go under here if they are needed
 var id = 0;
 var eventid = 0;
