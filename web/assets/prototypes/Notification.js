@@ -104,21 +104,44 @@ function Notification(){
         }
     };
     
+    //This will not require action from the user. All it will have is dismiss
+    //notification button that deletes the notification
     this.createSystemNotification = function(){
         
     };
+    //This will just have a button that allows the user to join the event
     this.createEventInvite = function() {
          
     };
      
     this.createEventRequest = function(){
-        this.text = "User" +/*insert user name here*/ + "has requested to join"+
-                "your event" + /*insert event name here*/ + "";
+        this.text = "User " + this.from.getName() + " has requested to join "+
+                "your event " + this.event.getTitle() + ".";
         this.newH1 = $('<p>').text(this.text);
         this.newH2 = $('<button>').text("Accept").on('click', acceptEventRequest());
-        this.newH2 = $('<button>').text("Reject").on('click', rejectEventRequest());
+        this.newH3 = $('<button>').text("Reject").on('click', rejectEventRequest());
+        this.newH.append(this.newH1);
+        this.newH.append(this.newH2);
+        this.newH.append(this.newH3);
+        //Might need to come back and tweak the html if it doesn't look good
+    };
+    
+    //Should these two functions be here in the first place??
+    //Will these functions still be called even if they are being called
+    //from a different js?
+    this.acceptEventRequest = function(){
+        //adds the this.from user to the list of attendees for this.event
+        //This does not have to have the post request here. It should just call
+        //add user to event function on the event object
+        //Then deletes the notification
+    };
+    
+    this.rejectEventRequest = function(){
+        //Simply deletes the notification??
     };
      
+    //This creates the html associated with the friend request notification
+    //Very similar to the create event request function
     this.createFriendRequest = function(){
          
     };
@@ -132,6 +155,15 @@ function Notification(){
     this.editRead = function (read) {
         this.read = read;
         this.refreshEdits();
+    };
+    
+    //This gets called each time the user interacts with a notification
+    //Does this delete every trace of the notification from the db?
+    this.deleteEvent = function () {
+        $.ajax({
+            url: this.coreUrl + 'notification/' + this.idnotification,
+            type: 'DELETE'
+        });
     };
     
     this.editStatus = function(status){
