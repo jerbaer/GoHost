@@ -4,69 +4,67 @@
  * and open the template in the editor.
  */
 
-function eventsList(){
-    this.events= [], //array of events contained in the list
-    this.accessor= null, //user that is accessing the list
-    this.viewType= 0, // 0 means view events hosting, 1 means events attending, 2 means all visible events
-    this.coreUrl= "http://143.44.67.0:13774/GoHost/api/",
+function eventsList() {
+    this.events = []; //array of events contained in the list
+    this.accessor = null; //user that is accessing the list
+    this.viewType = 0; // 0 means view events hosting, 1 means events attending, 2 means all visible events
+    this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
     this.event1 = null;
 
-    this.create= function (accessor1, viewType) {
+    this.create = function (accessor1, viewType) {
         this.accessor = accessor1;
         this.viewType = viewType;
 
-        if (viewType == 0){
+        if (viewType == 0) {
             this.getEventsHosting();
-        } else if (viewType == 1){
+        } else if (viewType == 1) {
             this.getEventsAttending();
-        } else if (viewType == 2){
+        } else if (viewType == 2) {
             this.getEventsVisible();
         }
+    };
 
-        
-
-    },
-    this.getEventsHosting= function () {
+    this.getEventsHosting = function () {
         //get all events accessor is hosting, put them in events (0)
-        var url = this.coreUrl + "event/idhost?idhost="+this.accessor.getID();
+        var url = this.coreUrl + "event/idhost?idhost=" + this.accessor.getID();
         $.ajax({
             dataType: "json",
             url: url,
             context: this,
             success: this.hostingFollowUp
         });
-    },
-    
-   this.hostingFollowUp= function (data) {
-       this.events = new Array();
-        for (i=0; i<data.length;i++){
+    };
+
+    this.hostingFollowUp = function (data) {
+        this.events = new Array();
+        for (i = 0; i < data.length; i++) {
             this.event1 = new Event();
             this.event1.createFromDB(data[i].idevent, this.accessor)
             this.events.push(this.event1);
         }
-    },
-    
-    this.getEventsAttending= function () {
+    };
+
+    this.getEventsAttending = function () {
         //self explanatory (1)
-        var url = this.coreUrl + "attendee/iduser?iduser="+this.accessor.getID();
+        var url = this.coreUrl + "attendee/iduser?iduser=" + this.accessor.getID();
         $.ajax({
             dataType: "json",
             url: url,
             context: this,
             success: this.attendingFollowUp
         });
-    },
-    
-    this.attendingFollowUp= function (data) {
+    };
+
+    this.attendingFollowUp = function (data) {
         this.events = new Array();
-        for (i=0; i<data.length;i++){
+        for (i = 0; i < data.length; i++) {
             this.event1 = new Event();
             this.events.push(this.event1);
             this.events[i].createFromDB(data[i].idevent, this.accessor);
         }
-    },
-    
-    this.getEventsVisible= function () {
+    };
+
+    this.getEventsVisible = function () {
         var url = this.coreUrl + "event/visibility?visibility=2";
         $.ajax({
             dataType: "json",
@@ -74,21 +72,23 @@ function eventsList(){
             context: this,
             success: this.visibleFollowUp
         });
-        
-    },
-    this.visibleFollowUp= function (data) {
+
+    };
+
+    this.visibleFollowUp = function (data) {
         this.events = new Array();
-        for(var i=0;i<data.length;i++){
+        for (var i = 0; i < data.length; i++) {
             let event1 = new Event();
             event1.createFromDB(data[i].idevent, this.accessor);
             this.events.push(event1);
         }
-    },
-    this.getEventsList= function () {
+    };
+
+    this.getEventsList = function () {
         return this.events;
-    },
-    this.getSize= function(){
+    };
+
+    this.getSize = function () {
         return this.events.length;
     }
-};
-
+}

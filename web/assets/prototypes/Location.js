@@ -21,9 +21,11 @@ function  Location (idlocation1){
     this.nameFollowUp = function(data){
         this.name = data.name;
     };
+    
     this.getID = function(){
         return this.idlocation;
     };
+    
     this.getName = function(){
         return this.name;
     };
