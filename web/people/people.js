@@ -74,3 +74,5 @@ function getStringsFromPeople(friendsList) {
         peopleIDs[i] = list[i].getIDs;
     }
 }
+
+$(window).load(setUpComponents);
