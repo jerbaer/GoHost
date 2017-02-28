@@ -7,16 +7,16 @@ var id = 0;
 var notifications = null;
 var notificationsFeed = null;
 var isSetUp = false;
-coreUrl= "http://143.44.67.0:13774/GoHost/api/";
+coreUrl = "http://143.44.67.0:13774/GoHost/api/";
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
     getNotifications();
 }
-String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
+String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
     var t = this.split(/[- :T]/);
-    return new Date(t[0], t[1]-1, t[2], t[3]||0, t[4]||0, t[5]||0);
+    return new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
 }
 
 //This will go through the list of notifications, checking what type of notification
@@ -30,18 +30,18 @@ function getNotifications(inbox) {
     for (var i = 0; i < inbox.getSize(); i++) {
         notifications.push(inbox.getNotificationsList()[i]);
         //logic for checking what kind of notification it is goes here now
-        if(notifications[i].from.getID() ==0){
+        if (notifications[i].from.getID() == 0) {
             //This is a system notification that doesn't require input from the user. This will probably not be implemented soon
             createSystemNotification(notifications[i]);
         } else {
             //This is a request that requires input from the user
-            if (notifications[i].status == 0){
+            if (notifications[i].status == 0) {
                 //this is an event invite
                 createEventInvite(notifications[i]);
-            } else if (notifications[i].status == 1){
+            } else if (notifications[i].status == 1) {
                 //this is an event request
                 createEventRequest(notifications[i]);
-            } else if (notifications[i].status == 2){
+            } else if (notifications[i].status == 2) {
                 //this is a friend request
                 createFriendRequest(notifications[i]);
             }
@@ -50,105 +50,111 @@ function getNotifications(inbox) {
 }
 //This will not require action from the user. All it will have is dismiss
 //notification button that deletes the notification
-function createSystemNotification(notification){
-        
+function createSystemNotification(notification) {
+
 }
 //This will just have a button that allows the user to join the event
 function createEventInvite(notification) {
-        var newH, newH1, newH2, newH3;
-    newH = $('<hr>');
-    newH1 = $('<p>').text("User " + notification.from.getName() + " has invited you to join "+
-        "their event " + notification.event.getTitle() + ".");
-    newH2 = $('<button>').text("Accept").on('click', function(){
-       if(isSetUp==true){
-           var user = {iduser : id, idevent : notification.event.getID()}
-           $.ajax({
-               url : coreUrl + "attendee",
-               type: 'POST',
-               data: JSON.stringify(user),
-               dataType: 'json',
-               contentType: 'application/json'
-
-           })
-           notification.deleteNotification();
-       } 
-    });
-    newH3 = $('<button>').text("Reject").on('click', function() {    if(isSetUp == true){
-        notification.deleteNotification();
-    }
-});
-    notificationsFeed.append(newH1);
-    notificationsFeed.append(newH2);
-    notificationsFeed.append(newH3);
-    notificationsFeed.append(newH);
-    //What is this for???
-    isSetUp = true;
-         
-}
-function createFriendRequest(notification){
-        var newH, newH1, newH2, newH3;
-    newH = $('<hr>');
-    newH1 = $('<p>').text("User " + notification.from.getName() + " has requested to be your friend.");
-    newH2 = $('<button>').text("Accept").on('click', function(){
-           if(isSetUp==true){
-           var user = {iduser1 : id, iduser2 : notification.from.getID()}
-           $.ajax({
-               url : coreUrl + "friend",
-               type: 'POST',
-               data: JSON.stringify(user),
-               dataType: 'json',
-               contentType: 'application/json'
-               
-           })
-           var user2 = {iduser1 : notification.from.getID(), iduser2 : id}
-           $.ajax({
-               url : coreUrl + "friend",
-               type: 'POST',
-               data: JSON.stringify(user2),
-               dataType: 'json',
-               contentType: 'application/json'
-               
-           })
-           notification.deleteNotification();
-       }
-    });
-    newH3 = $('<button>').text("Reject").on('click', function() {    if(isSetUp == true){
-        notification.deleteNotification();
-    }
-});
-    notificationsFeed.append(newH1);
-    notificationsFeed.append(newH2);
-    notificationsFeed.append(newH3);
-    notificationsFeed.append(newH);
-    //What is this for???
-    isSetUp = true;
-
-       
-};
-     
-function createEventRequest(notification){
     var newH, newH1, newH2, newH3;
     newH = $('<hr>');
-    newH1 = $('<p>').text("User " + notification.from.getName() + " has requested to join "+
-        "your event " + notification.event.getTitle() + ".");
-    newH2 = $('<button>').text("Accept").on('click', function(){
-       if(isSetUp==true){
-           var user = {iduser : notification.from.getID(), idevent : notification.event.getID()}
-           $.ajax({
-               url : coreUrl + "invited",
-               type: 'POST',
-               data: JSON.stringify(user),
-               dataType: 'json',
-               contentType: 'application/json'
+    newH1 = $('<p>').text("User " + notification.from.getName() + " has invited you to join " +
+            "their event " + notification.event.getTitle() + ".");
+    newH2 = $('<button>').text("Accept").on('click', function () {
+        if (isSetUp == true) {
+            var user = {iduser: id, idevent: notification.event.getID()}
+            $.ajax({
+                url: coreUrl + "attendee",
+                type: 'POST',
+                data: JSON.stringify(user),
+                dataType: 'json',
+                contentType: 'application/json'
 
-           })
-           notification.deleteNotification();
-       } 
+            })
+            notification.deleteNotification();
+        }
     });
-    newH3 = $('<button>').text("Reject").on('click', function() {    if(isSetUp == true){
-        notification.deleteNotification();
-    }
-});
+    newH3 = $('<button>').text("Reject").on('click', function () {
+        if (isSetUp == true) {
+            notification.deleteNotification();
+        }
+    });
+    newH2.addClass("btn btn-info");
+    newH3.addClass("btn btn-warning");
+    notificationsFeed.append(newH1);
+    notificationsFeed.append(newH2);
+    notificationsFeed.append(newH3);
+    notificationsFeed.append(newH);
+    //What is this for???
+    isSetUp = true;
+
+}
+function createFriendRequest(notification) {
+    var newH, newH1, newH2, newH3;
+    newH = $('<hr>');
+    newH1 = $('<p>').text("User " + notification.from.getName() + " has requested to be your friend.");
+    newH2 = $('<button>').text("Accept").on('click', function () {
+        if (isSetUp == true) {
+            var user = {iduser1: id, iduser2: notification.from.getID()}
+            $.ajax({
+                url: coreUrl + "friend",
+                type: 'POST',
+                data: JSON.stringify(user),
+                dataType: 'json',
+                contentType: 'application/json'
+
+            })
+            var user2 = {iduser1: notification.from.getID(), iduser2: id}
+            $.ajax({
+                url: coreUrl + "friend",
+                type: 'POST',
+                data: JSON.stringify(user2),
+                dataType: 'json',
+                contentType: 'application/json'
+
+            })
+            notification.deleteNotification();
+        }
+    });
+    newH3 = $('<button>').text("Reject").on('click', function () {
+        if (isSetUp == true) {
+            notification.deleteNotification();
+        }
+    });
+    notificationsFeed.append(newH1);
+    notificationsFeed.append(newH2);
+    notificationsFeed.append(newH3);
+    notificationsFeed.append(newH);
+    //What is this for???
+    isSetUp = true;
+
+
+}
+;
+
+function createEventRequest(notification) {
+    var newH, newH1, newH2, newH3;
+    newH = $('<hr>');
+    newH1 = $('<p>').text("User " + notification.from.getName() + " has requested to join " +
+            "your event " + notification.event.getTitle() + ".");
+    newH2 = $('<button>').text("Accept").on('click', function () {
+        if (isSetUp == true) {
+            var user = {iduser: notification.from.getID(), idevent: notification.event.getID()}
+            $.ajax({
+                url: coreUrl + "invited",
+                type: 'POST',
+                data: JSON.stringify(user),
+                dataType: 'json',
+                contentType: 'application/json'
+
+            })
+            notification.deleteNotification();
+        }
+    });
+    newH3 = $('<button>').text("Reject").on('click', function () {
+        if (isSetUp == true) {
+            notification.deleteNotification();
+        }
+    });
     notificationsFeed.append(newH1);
     notificationsFeed.append(newH2);
     notificationsFeed.append(newH3);
@@ -157,19 +163,19 @@ function createEventRequest(notification){
     isSetUp = true;
 }
 
-function acceptEventRequest(){
+function acceptEventRequest() {
     //adds the this.from user to the list of attendees for this.event
     //This does not have to have the post request here. It should just call
     //add user to event function on the event object
     //Then deletes the notification
 }
-    
-function rejectEventRequest(notification){
-    if(isSetUp == true){
+
+function rejectEventRequest(notification) {
+    if (isSetUp == true) {
         notification.deleteNotification();
-    }   
+    }
 }
-     
+
 //This creates the html associated with the friend request notification
 //Very similar to the create event request function
 
