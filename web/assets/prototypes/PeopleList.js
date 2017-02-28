@@ -8,6 +8,7 @@
 //Why doesn't it recognize the class name when I try to reference it?
 function PeopleList() {
     this.people = null; //array of user objects with people in them
+    this.friends = null;
     this.friendsIDs = null;
     this.owner = null;
     this.idevent = 0;
@@ -49,6 +50,7 @@ function PeopleList() {
 
     this.friendFollowUp = function (data) {
         this.people = [];
+        this.friends = [];
         for (var n = 0; n < data.length; n++) {
             this.user1 = new User();
             this.user1.create(data[n].iduser);
