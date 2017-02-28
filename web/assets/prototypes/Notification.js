@@ -36,7 +36,8 @@ function Notification(){
             dataType: "json",
             url: url,
             context: this,
-            success: this.createFromDBFollowUp
+            success: this.createFromDBFollowUp,
+            async : false
         });
     };
     
@@ -78,7 +79,7 @@ function Notification(){
     
     //returns a div populated according to the type of the notification
     this.getHTML = function (){
-        this.createHTML;
+        this.createHTML();
         return this.newH;
     };
     
@@ -86,20 +87,20 @@ function Notification(){
     //will be. Based on what kind of notification, it will call one of 
     //(four?) functions that will populate the div accordingly
     this.createHTML = function (){
-        if(this.from ==0){
+        if(this.from.getID() ==0){
             //This is a system notification that doesn't require input from the user. This will probably not be implemented soon
-            this.createSystemNotification;
+            this.createSystemNotification();
         } else {
             //This is a request that requires input from the user
             if (this.status == 0){
                 //this is an event invite
-                this.createEventInvite;
+                this.createEventInvite();
             } else if (this.status == 1){
                 //this is an event request
-                this.createEventRequest;
+                this.createEventRequest();
             } else if (this.status == 2){
                 //this is a friend request
-                this.createFriendRequest;
+                this.createFriendRequest();
             }
         }
     };
@@ -118,8 +119,8 @@ function Notification(){
         this.text = "User " + this.from.getName() + " has requested to join "+
                 "your event " + this.event.getTitle() + ".";
         this.newH1 = $('<p>').text(this.text);
-        this.newH2 = $('<button>').text("Accept").on('click', acceptEventRequest());
-        this.newH3 = $('<button>').text("Reject").on('click', rejectEventRequest());
+        this.newH2 = $('<button>').text("Accept").on('click', this.acceptEventRequest());
+        this.newH3 = $('<button>').text("Reject").on('click', this.rejectEventRequest());
         this.newH.append(this.newH1);
         this.newH.append(this.newH2);
         this.newH.append(this.newH3);
@@ -137,7 +138,14 @@ function Notification(){
     };
     
     this.rejectEventRequest = function(){
-        //Simply deletes the notification??
+        $.ajax({
+         url: this.coreUrl + "notification/" + this.idnotification,
+         dataType: 'json',
+         contentType: 'application/json',
+         async: true,
+         type: 'DELETE'        
+        });
+       this.refresh();             
     };
      
     //This creates the html associated with the friend request notification
@@ -184,4 +192,8 @@ function Notification(){
             dataType: 'json'
         });
     };
+    this.refresh = function() {
+    window.location.href = window.location.href;
+    window.location.reload(true);
+};
 }

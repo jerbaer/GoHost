@@ -58,5 +58,6 @@ function friendRequest() {
 }
 
 
+
 $(document).ready(setUpComponents);
 
