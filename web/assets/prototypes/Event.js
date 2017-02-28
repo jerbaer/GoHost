@@ -162,6 +162,15 @@ function Event() {
         return false;
     };
     
+    this.isAccessorInEvent = function (accessor) {
+        for (i = 0; i < this.users.length; i++) {
+            if (accessor.getID() === this.users[i].getID()) {
+                return true;
+            }
+        }
+        return false;
+    };
+    
     this.isEventFull = function () {
         if (this.accessibility === 3) {
             return true;

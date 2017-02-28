@@ -87,7 +87,7 @@ function setUpComponents() {
 }
 function requestToJoinEvent() {
     notification = new Notification();
-    notification.create(event1.getHost().getID(), user.getID(), event1.getID(), new Date(), 0, 1)
+    notification.create(event1.getHost().getID(), user.getID(), event1.getID(), new Date(), 0, 1);
 }
 
 function getCategories() {
@@ -157,7 +157,7 @@ function makeAttendeeAlert(iduser, i) {
         window.location.href = url;
         window.location.reload(true);
     });
-    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").html("&times;").attr('id', "hostOnly")
+    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").html("&times;").attr('id', "hostOnly");
     if (event1.getHostID() !== iduser) {
         newH7.append(newA2);
     }
@@ -302,7 +302,7 @@ function getStringsFromPeople(PeopleList) {
     peopleIDs = new Array(list.length);
     peopleUserIDs = new Array(list.length);
     for (var i = 0; i < list.length; i++) {
-        if (!event1.isUserInEvent(list[i])) {
+        if (!event1.isAccessorInEvent(list[i])) {
             list[i].createProfile();
             peopleNames[i] = list[i].getName();
             peoplePictures[i] = list[i].getPicture();
