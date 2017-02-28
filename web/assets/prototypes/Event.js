@@ -189,10 +189,11 @@ function Event() {
     };
     
     this.canUserSee = function () {
+        
         if (this.visibility === 2) {
             return true;
-            //} else if (this.host.isFriendsWith(accessor) && this.visibility.getID()== 1){
-            //    return true;
+            } else if (this.host.getPeopleList().isUserOnList(accessor) && this.visibility.getID()== 1){
+                return true;
         } else
             return false;
     };
