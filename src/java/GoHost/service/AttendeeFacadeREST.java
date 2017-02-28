@@ -74,9 +74,19 @@ public class AttendeeFacadeREST extends AbstractFacade<Attendee> {
     @GET
     @Path("iduser")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Attendee> getAttending(@QueryParam("iduser") int vis){
+    public List<Attendee> getEventsUserIsAttending(@QueryParam("iduser") int vis){
         return em.createNamedQuery("Attendee.findByIduser", Attendee.class).setParameter("iduser", new Integer(vis)).getResultList();
+    }
+    
+    //This might conflict with the delete function here
+    @GET
+    @Path("idevent")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Attendee> getUsersAttendingEvent(@QueryParam("idevent") int vis){
+        return em.createNamedQuery("Attendee.findByIdevent", Attendee.class).setParameter("idevent", new Integer(vis)).getResultList();
    }
+    
+   
 
     /*@GET
     @Override

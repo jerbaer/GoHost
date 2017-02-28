@@ -36,9 +36,10 @@ function User() {
         this.name = data.name;
         //Do you want me to call these other functions right away or to wait for now?
     };
-
+    //These two functions will probably not be called from here
     this.createPeopleList = function () {
         this.PeopleList = new PeopleList();
+        //
         this.PeopleList.create(this.iduser);
     };
     

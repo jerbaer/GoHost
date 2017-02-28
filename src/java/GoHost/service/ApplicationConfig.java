@@ -35,6 +35,7 @@ public class ApplicationConfig extends Application {
         resources.add(GoHost.service.FriendFacadeREST.class);
         resources.add(GoHost.service.InvitedFacadeREST.class);
         resources.add(GoHost.service.LocationFacadeREST.class);
+        resources.add(GoHost.service.MessageFacadeREST.class);
         resources.add(GoHost.service.NotificationFacadeREST.class);
         resources.add(GoHost.service.ProfileFacadeREST.class);
         resources.add(GoHost.service.UserFacadeREST.class);
