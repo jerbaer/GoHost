@@ -63,6 +63,7 @@ public class LocationFacadeREST extends AbstractFacade<Location> {
     }
 
     @GET
+    @Path("all")
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Location> findAll() {
