@@ -121,7 +121,7 @@ function getHostStrings() {
         newH3 = $('<p>').text(eventEndTimes[n]);
         newH4 = $('<p>').text(eventCategories[n]);
         newH5 = $('<p>').text(eventLocations[n]);
-        newH = $('<p>').append(newA);
+        newH = $('<h4>').append(newA);
         newH1 = $('<p>').append(newA2);
         newHr = $('<hr>');
         
@@ -174,7 +174,7 @@ function getAttendingStrings() {
         newH3 = $('<p>').text(eventEndTimes[n]);
         newH4 = $('<p>').text(eventCategories[n]);
         newH5 = $('<p>').text(eventLocations[n]);
-        newH = $('<p>').append(newA);
+        newH = $('<h4>').append(newA);
         newH1 = $('<p>').append(newA2);
         newHr = $('<hr>');
         
