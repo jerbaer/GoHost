@@ -42,6 +42,7 @@ function PeopleList() {
         var url = this.coreUrl + "friend/iduser?iduser1=" + this.owner.getID();
         $.ajax({
             dataType: "json",
+            type: "get",
             url: url,
             async: false,
             context: this,
