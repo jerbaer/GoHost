@@ -20,7 +20,6 @@ function getNotifications() {
     inbox = new Inbox();
     inbox.create(id);
     inbox.getNotifications();
-    notifications = inbox.getNotificationsList();
 
     setTimeout(getHTMLFromNotifications(inbox), 10000);
     //this is where it connects with HTML to print the feed in objects
@@ -38,9 +37,9 @@ function getNotifications() {
 //objects returned into a singule array. This way, I will only have to append
 //the divs in this one array; notifications
 function getHTMLFromNotifications(inbox) {
-    notifications = new Array(inbox.getSize());
+    notifications = new Array();
     for (var i = 0; i < inbox.getSize(); i++) {
-        notifications[i] = inbox.getNotificationsList()[i].getHTML();
+        notifications.push(inbox.getNotificationsList()[i].getHTML());
     }
 }
 

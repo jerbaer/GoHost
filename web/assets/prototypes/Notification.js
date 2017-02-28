@@ -57,7 +57,7 @@ function Notification(){
     //Make sure vars are parsed properly
     //Go to the entity page that the id is optional = true and @notNull is not there
     this.create = function (iduser, from, idevent, timestamp, read) {
-        var event = {iduser: iduser, from: from, idevent: idevent, status: status, read: 0, timestamp: timestamp};
+        var event = {iduser: iduser, sender: from, idevent: idevent, notificationstatus: status, isread: 0, timesent: timestamp};
         $.ajax({
             url: this.coreUrl + "notification",
             type: 'post',
