@@ -83,7 +83,6 @@ function getEvent() {
     newH6 = $('<div>');
     newHr = $('<hr>');
 
-
     for (i = 0; i < eventAttendees.length; i++) {
         newH7 = $('<p>').text(eventAttendees[i]);
         newH6.append(newH7);//Does this work??
