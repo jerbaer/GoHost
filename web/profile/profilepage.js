@@ -73,28 +73,31 @@ function addFriend() {
 
 function editProfile() {
     if ($('#name').val() !== '') {
-        profile1.editName($('#name').val());
+        //profile1.editName($('#name').val());
     }
     if ($('#picture').val() !== '') {
-        profile1.editPicture($('#picture').val());
+        //profile1.editPicture($('#picture').val());
     }
     // Might need more code here for picture
     if ($('#eventCat').val() !== '') {
         profile1.editDescription($('#desc').val());
     }
+    profile1.refreshEdits()
+    
     window.location.reload();
 }
 
 function editAccount() {
     if ($('#name').val() !== '') {
-    profile1.editName($('#name').val());
+    owner.editName($('#name').val());
     }
     if ($('#password').val() !== '') {
-    profile1.editPassword($('#password').val());
+    owner.editPassword($('#password').val());
     }
     if ($('#email').val() !== '') {
-    profile1.editEmail($('#email').val());
+    owner.editEmail($('#email').val());
     }
+    owner.refreshEdits()
     window.location.reload();
 }
 

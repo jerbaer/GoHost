@@ -87,17 +87,14 @@ function Profile () {
     // Are these necessary since User already does this?
     this.editName = function (name) {
       this.owner.editName(name);
-      this.refreshEdits();
     };
     
     this.editPassword = function (password) {
         this.owner.editPassword(password);
-        this.refreshEdits();
     };
     
     this.editEmail = function (email) {
         this.owner.editEmail(email);
-        this.refreshEdits();
     };
     
     // These next ones I'm not sure about. Also might not need to pass any variables
@@ -143,7 +140,13 @@ function Profile () {
     };
     
     this.refreshEdits = function () {
-        var profile = {}; //long list of member variables
-        // ajax requests here. reference event.refreshEdits
+        var profile = {idprofile : this.idprofile, iduser: this.owner.getID(), description = this.description, idcategory : null}; //long list of member variables
+            $.ajax({
+            url: this.coreUrl + 'profile/' + this.idprofile,
+            type: 'PUT',
+            data: JSON.stringify(profile),
+            contentType: 'application/json',
+            dataType: 'json'
+        });
     };
 }
