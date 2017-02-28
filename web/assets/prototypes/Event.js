@@ -93,7 +93,9 @@ function Event() {
             //}
         //}
     };
-
+    this.getListofAttendees = function () {
+        return this.users;
+    };
     this.getEventStart = function () {
         return this.eventStart;
     };
