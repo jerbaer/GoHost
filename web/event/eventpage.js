@@ -57,27 +57,27 @@ function setUpComponents() {
     } else if (isAttendee) {
         $('#request').hide();
         $('#joinEvent').hide();
-        $('#hostOnly').hide();
+        $('#host').hide();
         $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
     } else if (canJoin) {
         $('#request').hide();
         $('#inviteSpan').hide();
         $('#leaveEvent').hide();
-        $('#hostOnly').hide();
+        $('#host').hide();
         $('#joinEvent').on('click', joinEvent);
     } else if (canSee) {
         $('#joinEvent').hide();
         $('#leaveEvent').hide();
         $('#inviteSpan').hide();
-        $('#hostOnly').hide();
+        $('#host').hide();
         $('#request').on('click', requestToJoinEvent);
     } else {
         $('#eventDetails').hide();
         $('#joinEvent').hide();
         $('#leaveEvent').hide();
         $('#inviteSpan').hide();
-        $('#hostOnly').hide();
+        $('#host').hide();
         // Make error div for can't see
     }
 }
