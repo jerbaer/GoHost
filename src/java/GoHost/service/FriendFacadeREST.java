@@ -5,6 +5,7 @@
  */
 package GoHost.service;
 
+import GoHost.Event;
 import GoHost.Friend;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -60,6 +61,12 @@ public class FriendFacadeREST extends AbstractFacade<Friend> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Friend find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    @GET
+    @Path("iduser")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Friend> findFriends(@PathParam("iduser1") Integer id) {
+        return em.createNamedQuery("Friend.findByIduser1", Friend.class).setParameter("iduser1", id).getResultList();
     }
 
     @GET
