@@ -120,6 +120,7 @@ function Event() {
         }
         return false;
     };
+    
     this.closeEvent = function () {
         //Is this the right way to declare a variable?
         access = 3;
@@ -154,6 +155,7 @@ function Event() {
             type: 'DELETE'
         });
     };
+    
     this.isEventFull = function () {
         if (this.accessibility === 3) {
             return true;
@@ -174,6 +176,7 @@ function Event() {
             dataType: 'json'
         });
     };
+    
     this.canUserJoin = function () {
         if (this.accessibility === 2) {
             return true;
@@ -186,6 +189,7 @@ function Event() {
         //  return false;
         // }
     };
+    
     this.canUserSee = function () {
         if (this.visibility === 2) {
             return true;
@@ -194,14 +198,17 @@ function Event() {
         } else
             return false;
     };
+    
     this.editDescription = function (description) {
         this.description = description;
         this.refreshEdits();
     };
+    
     this.editStartTime = function (startTime) {
         this.startTime = startTime;
         this.refreshEdits();
     };
+    
     this.editEndTime = function (endTime) {
         this.endTime = endTime;
         this.refreshEdits();
@@ -216,10 +223,12 @@ function Event() {
         this.category = category;
         this.refreshEdits();
     };
+    
     this.editLocation = function (location) {
         this.location = location;
         this.refreshEdits();
     };
+    
     this.editVisibility = function (visibility) {
         this.visibility = visibility;
         this.refreshEdits();
