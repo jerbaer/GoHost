@@ -63,6 +63,7 @@ public class AttendeeFacadeREST extends AbstractFacade<Attendee> {
         for (int i = 0; i<list.size(); i++){
             super.remove(super.find(list.get(i).getIdattendee()));
         }
+        em.flush();
     }
 
     @GET

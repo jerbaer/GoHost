@@ -28,7 +28,7 @@ function Profile () {
     };
     
     this.isCurrentUser = function () {
-        if(this.owner === this.accessor)
+        if(this.owner.getID() == this.accessor.getID())
             return true;
         return false;
     };

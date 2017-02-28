@@ -102,13 +102,13 @@ function User() {
     //idk if this is necessary as just doing what Profile does but for conveniene sake
     this.getDescription = function () {
         profile = new Profile();
-        profile.create(iduser);
+        profile.create(this.iduser);
         return profile.getDescription();
     };
     
     this.getPicture = function () {
         profile = new Profile();
-        profile.create(iduser);
+        profile.create(this.iduser);
         return profile.getPicture();
     }
     

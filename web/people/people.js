@@ -63,16 +63,17 @@ function getFriendsStrings() {
 
 // For strangers will need to get a PeopleList of not friends
 function getStringsFromPeople(PeopleList) {
-    list = PeopleList.getFriends();
+    PeopleList.getFriends();
+    list = PeopleList.getFriendsList();
     peopleNames = new Array(list.length);
     peoplePictures = new Array(list.length);
     peopleDescriptions = new Array(list.length);
     peopleIDs = new Array(list.length);
-    for (i = 0; i < list.length(); i++) {
-        peopleNames[i] = list[i].getName;
-        peoplePictures[i] = list[i].getPicture;
-        peopleDescriptions[i] = list[i].getDescription;
-        peopleIDs[i] = list[i].getIDs;
+    for (i = 0; i < list.length; i++) {
+        peopleNames[i] = list[i].getName();
+        peoplePictures[i] = list[i].getPicture();
+        peopleDescriptions[i] = list[i].getDescription();
+        peopleIDs[i] = list[i].getID();
     }
 }
 
