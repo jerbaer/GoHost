@@ -190,18 +190,22 @@ function getAttendingStrings() {
 }
 
 function createEvent() {
-    eventTitle = $('#eventTitle').val();
-    eventCat = $('#eventCat').val();
-    eventStart = $('#eventStart').val();
-    eventEnd = $('#eventEnd').val();
-    eventLoc = 0//$('#eventLoc').val
-    eventVis = $('#eventVis').val();
-    eventAcc = $('#eventAcc').val();
-    maxAttendees = $('#maxAttendees').val();
-    description = $('#description').val();
-    event = new Event();
-    event.create(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc, maxAttendees, user);
-    window.location.reload();
+    if($('#eventStart').val() !== null && ('#eventEnd').val() !== null) {
+        eventTitle = $('#eventTitle').val();
+        eventCat = $('#eventCat').val();
+        eventStart = $('#eventStart').val();
+        eventEnd = $('#eventEnd').val();
+        eventLoc = 0//$('#eventLoc').val
+        eventVis = $('#eventVis').val();
+        eventAcc = $('#eventAcc').val();
+        maxAttendees = $('#maxAttendees').val();
+        description = $('#description').val();
+        event = new Event();
+        event.create(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc, maxAttendees, user);
+        window.location.reload();
+    } else {
+        $('#warningModal').modal('show');
+    }
 }
 
 $.wait = function (ms) {
