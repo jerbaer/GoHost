@@ -259,7 +259,7 @@ function getStringsFromPeople(PeopleList) {
     peopleDescriptions = new Array(list.length);
     peopleIDs = new Array(list.length);
     peopleUserIDs = new Array(list.length);
-    for (i = 0; i < list.length; i++) {
+    for (var i = 0; i < list.length; i++) {
         if (!event1.isUserInEvent(list[i])) {
             list[i].createProfile();
             peopleNames[i] = list[i].getName();
