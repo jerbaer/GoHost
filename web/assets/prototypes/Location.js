@@ -12,6 +12,7 @@ function  Location (idlocation1){
         //get the name of the location from the database
         var url = this.coreUrl + "location/"+this.idlocation;
         $.ajax({
+            type: 'GET',
             dataType: "json",
             url: url,
             context: this,

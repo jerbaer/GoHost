@@ -81,7 +81,7 @@ function Event() {
             data: JSON.stringify(attendee),
             context: this,
             contentType: 'application/json',
-            dataTpye: 'json',
+            dataType: 'json',
             async: false
         });
         if (data.accessibility === 1){
@@ -96,7 +96,7 @@ function Event() {
             data: JSON.stringify(attending),
             context: this,
             contentType: 'application/json',
-            dataTpye: 'json',
+            dataType: 'json',
             async: true
         });
                 
