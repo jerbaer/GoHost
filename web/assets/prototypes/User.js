@@ -105,6 +105,11 @@ function User() {
         profile.create(this.iduser);
         return profile.getDescription();
     };
+    this.getProfileID = function(){
+        profile = new Profile();
+        profile.create(this.iduser);
+        return profile.getID();
+    }
     
     this.getPicture = function () {
         profile = new Profile();

@@ -44,7 +44,7 @@ function getFriendsStrings() {
     // this part might need to change/be more specific with bootstrap classes
     peopleList = $('#friends');
     for (n = friends.getSize() - 1; n > -1; n--) {
-        url = ".../people/index.html#" + peopleIDs[n];
+        url = ".../profile/index.html#" + peopleIDs[n];
         newA = $('<a>').attr('href', url).text(peopleNames[n]).on('click', function () {
             window.locaton.href = url;
             window.location.reload(true);
@@ -73,7 +73,7 @@ function getStringsFromPeople(PeopleList) {
         peopleNames[i] = list[i].getName();
         peoplePictures[i] = list[i].getPicture();
         peopleDescriptions[i] = list[i].getDescription();
-        peopleIDs[i] = list[i].getID();
+        peopleIDs[i] = list[i].getProfileID();
     }
 }
 
