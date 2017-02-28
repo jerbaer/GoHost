@@ -39,7 +39,7 @@ function PeopleList() {
     
     this.getFriends = function () {
         //get friends from database and populate list, fill in size
-        var url = this.coreUrl + "friend/iduser?iduser1=" + this.owner;
+        var url = this.coreUrl + "friend/iduser?iduser=" + this.owner;
         $.ajax({
             dataType: "json",
             type: "get",
