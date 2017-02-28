@@ -81,6 +81,9 @@ function setUpComponents() {
         // Make error div for can't see
     }
 }
+function requestToJoinEvent(){
+    notification.
+}
 
 function getCategories() {
     var url = "http://143.44.67.0:13774/GoHost/api/category/all";
