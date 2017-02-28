@@ -6,6 +6,7 @@
 
 sys_init = {
     coreUrl: "http://143.44.67.0:13774/GoHost/api/",
+    profile: null,
 
     doLogin: function () {
         var url = sys_init.coreUrl + "user?email=" + $('#loginEmail').val() + "&password=" + $('#loginPass').val();
@@ -16,6 +17,10 @@ sys_init = {
         if ($('#regPass').val() !== $('#regPassConf').val()) {
             $('#regPassWarning').show();
         } else {
+            //1. create a user account with an email, password, and name
+            //2. Use the returned userid to create a profile 
+            //3. Take the returned idprofile of that profile
+            //4. PUT it into that user
             var url = sys_init.coreUrl + "user";
             var user = {name:$('#regName').val(), email: $('#regEmail').val(),
                 password: $('#regPass').val(), idprofile:2};
@@ -27,22 +32,35 @@ sys_init = {
                 contentType: 'application/json',
                 dataType: 'json',
                 async : false,
-                success: sys_init.moveToHome
+                success: sys_init.createProfile
             });
         }
     },
-
-    moveToHome: function (data) {
+    
+    createProfile: function (data) {
         if (data !== "0"&& data !== 0) {
             // Storing the id number of the user
             sessionStorage.setItem('id', parseInt(data));
-            //Take them to home page
-            // deleted ".href", maybe this will work
-            window.location.href = 'home/index.html#';
-            sys_init.refresh;
         } else {
             $('#regWarning').show();
         }
+        sys_init.profile = new Profile();
+        sys_init.profile.create(parseInt(sessionStorage.getItem('id')),parseInt(sessionStorage.getItem('id')));
+        var profileId = {idprofile: sys_init.profile.getIdProfile()};
+        $.ajax({
+            url: coreUrl + 'user/' + parseInt(sessionStorage.getItem('id')),
+            type: 'PUT',
+            data: JSON.stringify(profileId),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: sys_init.moveToHome
+        });
+    },
+
+    //Gonna have to get rid of this parameter since it's being passed 
+    moveToHome: function () {
+        window.location.href = 'home/index.html#';
+        sys_init.refresh;
     },
 
     setUpButtons: function () {
