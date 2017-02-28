@@ -282,47 +282,46 @@ function Event() {
     
     this.editDescription = function (description) {
         this.description = description;
-        this.refreshEdits();
+
     };
     
     this.editStartTime = function (startTime) {
         this.startTime = startTime;
-        this.refreshEdits();
+ 
     };
     
     this.editEndTime = function (endTime) {
         this.endTime = endTime;
-        this.refreshEdits();
     };
 
     this.editTitle = function (title) {
         this.title = title;
-        this.refreshEdits();
+
     };
 
     this.editCategory = function (category) {
         this.category = category;
-        this.refreshEdits();
+
     };
     
     this.editLocation = function (location) {
         this.location = location;
-        this.refreshEdits();
+
     };
     
     this.editVisibility = function (visibility) {
         this.visibility = visibility;
-        this.refreshEdits();
+
     };
 
     this.editAccessiblity = function (accessibility) {
         this.accessibility = accessibility;
-        this.refreshEdits();
+
     };
 
     this.editMax = function (max) {
         this.eventMax = max;
-        this.refreshEdits();
+
     };
     this.getInvitedUsers = function(){
         //Need to make sure the attendee facade supports this 
@@ -364,7 +363,7 @@ function Event() {
     };
 
     this.refreshEdits = function () {
-        var event = {idevent: this.idevent, title: this.title, idhost: this.host, maxattendees: this.eventMax, idlocation: this.location.getID(), idvisibility: this.visibility, idaccessibility: this.accessibility, starttime: this.eventStart, endtime: this.eventEnd, description: this.description, idcategory: this.category.getID()};
+        var event = {idevent: parseInt(this.idevent), title: this.title, idhost: this.host.getID(), maxattendees: parseInt(this.eventMax), idlocation: this.location.getID(), idvisibility: parseInt(this.visibility), idaccessibility: parseInt(this.accessibility), starttime: new Date(this.eventStart), endtime: new Date(this.eventEnd), description: this.description, idcategory: parseInt(this.category.getID())};
         $.ajax({
             url: this.coreUrl + 'event/' + this.idevent,
             type: 'PUT',
