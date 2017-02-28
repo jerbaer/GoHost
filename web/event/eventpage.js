@@ -125,7 +125,7 @@ function getEvent() {
     newH3 = $('<p>').text(eventCategory);
     newH4 = $('<p>').text(eventLocation);
     newH5 = $('<p>').text("Event Attendees:");
-    newH6 = $('<div>').addClass("well");
+    newH6 = $('<div>').addClass("alert alert-info alert-dismissable");
     newHr = $('<hr>');
 
     for (i = 0; i < eventAttendees.length; i++) {
@@ -135,6 +135,7 @@ function getEvent() {
             window.location.href = url;
             window.location.reload(true);
         });
+        newA.addClass("alert-link")
         newH6.append(newA);
         newH6.append('<br/>');
     }
