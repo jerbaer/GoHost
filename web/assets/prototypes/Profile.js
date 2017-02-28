@@ -35,8 +35,6 @@ function Profile () {
     };
     
     this.createFollowUp = function (data) {
-        this.iduser = data.idprofile;
-        this.description = data.description;
     };
     
     this.isCurrentUser = function () {
