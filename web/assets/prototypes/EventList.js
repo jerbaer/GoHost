@@ -57,7 +57,7 @@ function eventsList() {
 
     this.attendingFollowUp = function (data) {
         this.events = new Array();
-        for (i = 0; i < data.length; i++) {
+        for (var i = 0; i < data.length; i++) {
             this.event1 = new Event();
             this.events.push(this.event1);
             this.events[i].createFromDB(data[i].idevent, this.accessor);
