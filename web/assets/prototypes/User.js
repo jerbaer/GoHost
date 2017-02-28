@@ -15,6 +15,7 @@ function User() {
     this.eventsAttending = null;
     this.eventsVisible = null;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
+    this.idprofile;
 
     this.create = function (iduser) {
         //This will use the iduser stored in the session by system_init to
@@ -35,6 +36,7 @@ function User() {
         this.email = data.email;
         this.password = data.password;
         this.name = data.name;
+        this.idprofile = data.idprofile
        
         //Do you want me to call these other functions right away or to wait for now?
     };
@@ -142,7 +144,13 @@ function User() {
     };
     
     this.refreshEdits = function () {
-        var user = {}; //long list of member variables
-        // ajax requests here. reference event.refreshEdits
+        var user = {iduser: this.iduser, idprofile: this.idprofile, password:this.password, name: this.name, email: this.email}; //long list of member variables
+             $.ajax({
+            url: this.coreUrl + 'user/' + this.iduser,
+            type: 'PUT',
+            data: JSON.stringify(user),
+            contentType: 'application/json',
+            dataType: 'json'
+        });
     };
 }
