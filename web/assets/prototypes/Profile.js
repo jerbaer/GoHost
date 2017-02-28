@@ -95,7 +95,7 @@ function Profile () {
         this.owner = owner1;
         this.iduser = this.owner.getID();
         this.accessor = accessor1;
-        var url = this.coreUrl + "profile/iduser?iduser=" + iduser;
+        var url = this.coreUrl + "profile/iduser?iduser=" + this.iduser;
         $.ajax({
             dataType: "json",
             url: url,
@@ -107,6 +107,7 @@ function Profile () {
     
     this.createProfileFollowUp = function (data) {
         this.description = data.description;
+        
        
     };
     
