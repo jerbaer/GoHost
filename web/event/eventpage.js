@@ -37,6 +37,7 @@ function setUpComponents() {
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
         $('#joinEvent').hide();
+        $('#leaveEvent').hide();
         $('#delete').on('click', deleteEvent);
         $('#edit').on('click', editEvent);
         $('#invite').on('click', inviteFriends);
@@ -44,18 +45,21 @@ function setUpComponents() {
         $('#joinEvent').hide();
         $('#hostOnly').hide();
         $('#invite').on('click', inviteFriends);
+        $('#leaveEvent').on('click', leaveEvent);
     } else if (canJoin) {
         $('#inviteSpan').hide();
+        $('#leaveEvent').hide();
         $('#hostOnly').hide();
         $('#joinEvent').on('click', joinEvent);
-    }
-    else if (canSee) {
+    } else if (canSee) {
         $('#joinEvent').hide();
+        $('#leaveEvent').hide();
         $('#inviteSpan').hide();
         $('#hostOnly').hide();
-    } else if (!canSee) {
+    } else {
         $('#eventDetails').hide();
         $('#joinEvent').hide();
+        $('#leaveEvent').hide();
         $('#inviteSpan').hide();
         $('#hostOnly').hide();
         // Make error div for can't see
@@ -113,8 +117,17 @@ function inviteFriends() {
 }
 
 function joinEvent() {
-    event1.addUserToEvent(id);
-    window.location.reload();
+    if (event1.isOpenEvent) {
+        event1.addUserToEvent(id);
+        window.location.reload();
+    } else {
+        //send request
+    }
+}
+
+function leaveEvent() {
+    event1.removeUserFromEvent(id);
+    location.href = "../home";
 }
 
 function getStringsFromEvent(event1) {
@@ -142,7 +155,7 @@ $.wait = function (ms) {
 };
 
 function refresh() {
-    window.location.href = window.location.href;
+    //window.location.href = window.location.href; // this is weird
     window.location.reload(true);
 }
 
