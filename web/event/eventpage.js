@@ -157,13 +157,19 @@ function deleteEvent() {
 
 function editEvent() {
     var today = new Date();
-    var startDate = new Date($('#eventStart').val());
-    var endDate = new Date($('#eventEnd').val());
-    if ($('#eventTitle').val() === '') {
-        $('#invTitleModal').modal('show');
-    } else if ($('#eventStart').val() === '' || $('eventEnd').val() === '') {
-        $('#invTimeModal').modal('show');
-    } else if (startDate < today) {
+    var startDate;
+    var endDate;
+    if ($('#eventStart').val() !== '') {
+        startDate = new Date($('#eventStart').val());
+    } else {
+        startDate = event1.getEventStart();
+    }
+    if ($('eventEnd').val() !== '') {
+        endDate = new Date($('#eventEnd').val());
+    } else {
+        endDate = event1.getEventEnd();
+    }
+    if (startDate < today) {
         $('#invTimeModal').modal('show');
     } else if (startDate > endDate) {
         $('#invTimeModal').modal('show');
@@ -173,18 +179,32 @@ function editEvent() {
         //This will get all the input from the edit form and use it call all the
         //edit functions on the event object. After that, it will call the function
         //that flushes all the changes to the database
-        event1.editTitle($('#eventTitle').val());
+        if ($('#eventTitle').val() !== '') {
+            event1.editTitle($('#eventTitle').val());
+        }
         //Need to make sure these two have proper values
         event1.editStartTime(startDate);
         event1.editEndTime(endDate);
         //These two need to be creating objects on the other end
-        event1.editCategory(category);
-        event1.editLocation(location);
+        if ($('#eventCat').val() !== '') {
+            event1.editCategory(category);
+        }
+        if ($('#eventLoc').val() !== '') {
+            event1.editLocation(location);
+        }
         //These two need to be converted to 0,1,2
-        event1.editVisibility($('#eventVis').val());
-        event1.editAccessiblity($('#eventAcc').val());
-        event1.editMax($('#maxAttendees').val());
-        event1.editDescription($('#description').val());
+        if ($('#eventVis').val() !== '') {
+            event1.editVisibility($('#eventVis').val());
+        }
+        if ($('#eventAcc').val() !== '') {
+            event1.editAccessiblity($('#eventAcc').val());
+        }
+        if ($('#maxAttendees').val() !== '') {
+            event1.editMax($('#maxAttendees').val());
+        }
+        if ($('#description').val() !== '') {
+            event1.editDescription($('#description').val());
+        }
         //Flushes everything to the database
         event1.refreshEdits();
         window.location.reload();
@@ -253,6 +273,8 @@ function getFriends() {
 
         peopleList.append(newH);
     }
+    // if(peopleNames.empty()){ // or something like that
+    // $('#noMoreFriends').show();
     $('#friends').show();
 }
 
