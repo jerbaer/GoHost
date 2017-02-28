@@ -43,6 +43,7 @@ function PeopleList() {
         $.ajax({
             dataType: "json",
             url: url,
+            async: false,
             context: this,
             success: this.friendFollowUp
         });
@@ -110,7 +111,7 @@ function PeopleList() {
     }
     
     this.isUserOnList = function (iduser) {
-        for (var i = 0; i < size; i++) {
+        for (var i = 0; i < people.size; i++) {
             if (iduser = people[i].getID()) {
                 return true
             }
