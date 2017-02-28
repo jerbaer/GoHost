@@ -14,12 +14,6 @@
 //read: this will be used to distinguish the different types of system notifications
 //however specific I want to get with those.
 function Notification(){
-    this.newH = $('<div>');
-    this.newH1;
-    this.newH2;
-    this.newH3;
-    this.newH4;
-    this.text;
     this.idnotification = 0;
     this.user = 0;
     this.from = 0;
@@ -78,79 +72,6 @@ function Notification(){
         this.idnotification = data;
     };
     
-    //returns a div populated according to the type of the notification
-    this.getHTML = function (){
-        this.createHTML();
-        return this.newH;
-    };
-    
-    //This is where the logic that checks what kind of notification it is
-    //will be. Based on what kind of notification, it will call one of 
-    //(four?) functions that will populate the div accordingly
-    this.createHTML = function (){
-        if(this.from.getID() ==0){
-            //This is a system notification that doesn't require input from the user. This will probably not be implemented soon
-            this.createSystemNotification();
-        } else {
-            //This is a request that requires input from the user
-            if (this.status == 0){
-                //this is an event invite
-                this.createEventInvite();
-            } else if (this.status == 1){
-                //this is an event request
-                this.createEventRequest();
-            } else if (this.status == 2){
-                //this is a friend request
-                this.createFriendRequest();
-            }
-        }
-    };
-    
-    //This will not require action from the user. All it will have is dismiss
-    //notification button that deletes the notification
-    this.createSystemNotification = function(){
-        
-    };
-    //This will just have a button that allows the user to join the event
-    this.createEventInvite = function() {
-         
-    };
-     
-    this.createEventRequest = function(){
-        this.text = "User " + this.from.getName() + " has requested to join "+
-                "your event " + this.event.getTitle() + ".";
-        this.newH1 = $('<p>').text(this.text);
-        this.newH2 = $('<button>').text("Accept").on('click', this.acceptEventRequest());
-        this.newH3 = $('<button>').text("Reject").on('click', this.rejectEventRequest());
-        this.newH.append(this.newH1);
-        this.newH.append(this.newH2);
-        this.newH.append(this.newH3);
-        this.isSetUp = true;
-        //Might need to come back and tweak the html if it doesn't look good
-    };
-    
-    //Should these two functions be here in the first place??
-    //Will these functions still be called even if they are being called
-    //from a different js?
-    this.acceptEventRequest = function(){
-        //adds the this.from user to the list of attendees for this.event
-        //This does not have to have the post request here. It should just call
-        //add user to event function on the event object
-        //Then deletes the notification
-    };
-    
-    this.rejectEventRequest = function(){
-        if(this.isSetUp == true)
-        this.deleteNotification();
-        
-    };
-     
-    //This creates the html associated with the friend request notification
-    //Very similar to the create event request function
-    this.createFriendRequest = function(){
-         
-    };
-    
     this.getRead = function (){
         return this.read;
     };
@@ -162,22 +83,10 @@ function Notification(){
         this.refreshEdits();
     };
     
-    //This gets called each time the user interacts with a notification
-    //Does this delete every trace of the notification from the db?
-    this.deleteNotification = function () {
-        $.ajax({
-            url: this.coreUrl + 'notification/' + this.idnotification,
-            type: 'DELETE',
-            async:false
-        });
-        this.refresh();
-    };
-    
     this.editStatus = function(status){
         this.status = status;
         this.refreshEdits();
     };
-    
     
     //Copied this from event. Change everything to fit notification
     //Also, this hasn't been debugged in event so it could be incorrect
@@ -191,8 +100,24 @@ function Notification(){
             dataType: 'json'
         });
     };
+    
+    //This gets called each time the user interacts with a notification
+    //Does this delete every trace of the notification from the db?
+    this.deleteNotification = function () {
+        $.ajax({
+            url: this.coreUrl + 'notification/' + this.idnotification,
+            type: 'DELETE',
+            async:false
+        });
+        this.refresh();
+    };
+    
+    
+    
+    
     this.refresh = function() {
     window.location.href = window.location.href;
     window.location.reload(true);
-};
+    };
+    
 }
