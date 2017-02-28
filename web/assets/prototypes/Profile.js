@@ -11,6 +11,8 @@ function Profile () {
     this.description = '';
     this.photoURL - '';
     this.accessor = null;
+    this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
+
     
     this.create = function (iduser, accessor1) { // might pass iduser instead as mentioned above
         this.iduser = iduser;
@@ -89,9 +91,11 @@ function Profile () {
     };
     
     // Might move this to the top and change create like Event is organized
-    this.createProfileFromDB = function (iostream) {
-        // var url = 
-        //ajax stuff
+    this.createProfileFromDB = function (iduser) {
+        var url = this.coreUrl + "profile/iduser?iduser=" + iduser;
+        $.ajax({
+            
+        })
     };
     
     this.createProfileFollowUp = function (data) {
