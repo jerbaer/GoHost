@@ -32,12 +32,12 @@ function getStrangersStrings(){
     if (strangers !== null)
         stragners = null;
     user.createPeopleList();
-    friends = user.getPeopleList();
+    strangers = user.getStrangerList();
     peopleNames = null;
     peoplePictures = null;
     peopleDescriptions = null;
     peopleIDs = null;
-    getStringsFromPeople(friends);
+    getStringsFromPeople(strangers);
     var newH, newA, newP, peopleList;
     var n, url;
     // this part might need to change/be more specific with bootstrap classes

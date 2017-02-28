@@ -47,6 +47,7 @@ function User() {
     
     this.createStrangersList = function () {
         this.StrangerList = new PeopleList();
+        this.StrangerList.create(this.iduser, null, 2);
     };
 
     this.createHostedEventsList = function () {
