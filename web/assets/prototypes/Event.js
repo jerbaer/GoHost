@@ -88,7 +88,17 @@ function Event() {
             var user = new User();
             user.create(this.tempID);
             var PeopleList = user.getPeopleList();
-            for(var i = 0; i<PeopleList.size(); i++){
+            for(var i = 0; i<PeopleList.getSize(); i++){
+                var attending = {iduser: user.getPeopleList().getFriendsList[i].getID(), idevent: id} 
+            $.ajax({
+            url: this.coreUrl + "attendee",
+            type: 'POST',
+            data: JSON.stringify(attending),
+            context: this,
+            contentType: 'application/json',
+            dataTpye: 'json',
+            async: true
+        });
                 
             }
         }
