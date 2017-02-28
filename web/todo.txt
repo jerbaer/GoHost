@@ -12,3 +12,4 @@ add footer to login page
 bootstrap.js cdn in header replace
 hide all divs, show as needed as opposed to vice versa
 event page join event button push/pull col
+for inv friends display no friends to invite message if no more friends to inv
