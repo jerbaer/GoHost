@@ -291,7 +291,7 @@ function Event() {
     };
     this.getInvitedUsers = function(){
         //Need to make sure the attendee facade supports this 
-        var url = this.coreUrl + "invited?idevent=" + this.idevent;
+        var url = this.coreUrl + "invited/idevent?idevent=" + this.idevent;
         $.ajax({
             dataType: "json",
             url: url,
@@ -309,7 +309,7 @@ function Event() {
     };
     this.getUsersAttending = function () {
         //Need to make sure the attendee facade supports this 
-        var url = this.coreUrl + "attendee?idevent=" + this.idevent;
+        var url = this.coreUrl + "attendee/idevent?idevent=" + this.idevent;
         $.ajax({
             dataType: "json",
             url: url,
