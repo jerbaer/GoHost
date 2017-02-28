@@ -11,9 +11,9 @@ var eventEndTimes;
 var eventCategories;
 var eventLocations;
 var id;
-String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
+String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
     var t = this.split(/[- :T]/);
-    return new Date(t[0], t[1]-1, t[2], t[3]||0, t[4]||0, t[5]||0);
+    return new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
 };
 
 function setUpComponents() {
@@ -124,7 +124,7 @@ function getHostStrings() {
         newH = $('<h4>').append(newA);
         newH1 = $('<p>').append(newA2);
         newHr = $('<hr>');
-        
+
         eventsList.append(newH);
         eventsList.append(newH1);
         eventsList.append(newH2);
@@ -177,7 +177,7 @@ function getAttendingStrings() {
         newH = $('<h4>').append(newA);
         newH1 = $('<p>').append(newA2);
         newHr = $('<hr>');
-        
+
         eventsList.append(newH);
         eventsList.append(newH1);
         eventsList.append(newH2);
@@ -190,7 +190,18 @@ function getAttendingStrings() {
 }
 
 function createEvent() {
-    if($('#eventStart').val() !== '' && $('#eventEnd').val() !== '') {
+    var today = new Date();
+    var startDate = new Date($('#eventStart').val());
+    var endDate = new Date($('#eventEnd').val());
+    if ($('#eventTitle').val() === '') {
+        $('#invTitleModal').modal('show');
+    } else if ($('#eventStart').val() === '' || $('eventEnd').val() === '') {
+        $('#invTimeModal').modal('show');
+    } else if (startDate < today) {
+        $('#invTimeModal').modal('show');
+    } else if(startDate > endDate) {
+        $('#invTimeModal').modal('show');
+    } else {
         eventTitle = $('#eventTitle').val();
         eventCat = $('#eventCat').val();
         eventStart = $('#eventStart').val();
@@ -203,8 +214,6 @@ function createEvent() {
         event = new Event();
         event.create(user.getID(), eventCat, eventStart, eventEnd, description, eventTitle, eventVis, eventAcc, eventLoc, maxAttendees, user);
         window.location.reload();
-    } else {
-        $('#warningModal').modal('show');
     }
 }
 
