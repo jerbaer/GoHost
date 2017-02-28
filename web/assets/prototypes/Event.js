@@ -271,6 +271,7 @@ function Event() {
         });
         
     };
+    
     this.getRight = function(data){
         var idattendee = 0;
         for(var i =0; i<data.length; i++){
@@ -280,14 +281,14 @@ function Event() {
             }
           
         }
-        
-    }
+    };
+    
     this.removeUser = function(idattendee){
         $.ajax({
             url: this.coreUrl + 'attendee/' + idattendee,
             type: 'DELETE'
         });
-    }
+    };
     
     this.editDescription = function (description) {
         this.description = description;
@@ -332,6 +333,7 @@ function Event() {
         this.eventMax = max;
 
     };
+    
     this.getInvitedUsers = function(){
         //Need to make sure the attendee facade supports this 
         var url = this.coreUrl + "invited/idevent?idevent=" + this.idevent;
@@ -351,6 +353,11 @@ function Event() {
             this.invitedUsers.push(this.user1);
         }
     };
+    
+    this.inviteUser = function (iduser) {
+        
+    };
+    
     this.getUsersAttending = function () {
         //Need to make sure the attendee facade supports this 
         var url = this.coreUrl + "attendee/idevent?idevent=" + this.idevent;

@@ -22,6 +22,8 @@ var peopleNames;
 var peoplePictures;
 var peopleDescriptions;
 var peopleIDs;
+var peopleList = null;
+var count;
 
 //Still don't know where to call this
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
@@ -271,26 +273,37 @@ function getFriends() {
     peopleDescriptions = null;
     peopleIDs = null;
     getStringsFromPeople(friends);
-    var newH, newA, peopleList;
+    var newH, newA;
     var n, url;
     // this part might need to change/be more specific with bootstrap classes
     peopleList = $('#friends');
-    for (n = friends.getSize() - 1; n > -1; n--) {
-        url = "../profile/index.html#" + peopleUserIDs[n];
-        newA = $('<a>').attr('href', url).text(peopleNames[n]).on('click', function () {
-            window.locaton.href = url;
-            window.location.reload(true);
-            //double check this session storage part
-            sessionStorage.setItem('peopleid'), peopleIDs[n];
-        });
-        newH = $('<p>').append(newA);
-        // figure out how to do picture
-
-        peopleList.append(newH);
+    for (var n = friends.getSize() - 1; n > -1; n--) {
+        if (peopleUserIDs[n] !== undefined) {
+            makeFriendAlert(peopleUserIDs[n], n);
+        }
     }
     // if(peopleNames.empty()){ // or something like that
     // $('#noMoreFriends').show();
     $('#friends').show();
+}
+
+function makeFriendAlert(iduser, n) {
+    newH7 = $('<div>').addClass("alert alert-info alert-dismissable").on('close.bs.alert', function () {
+        var n = iduser;
+        event1.inviteUser(n);
+    });
+    url = "../profile/index.html#" + iduser;
+    newA = $('<a>').addClass("alert-link").attr('href', url).text(peopleNames[n]).on('click', function () {
+        window.locaton.href = url;
+        window.location.reload(true);
+        //double check this session storage part
+        sessionStorage.setItem('peopleid'), peopleIDs[n];
+    });
+    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").attr('id', "hostOnly");
+    newI = $('<i>').addClass("fa fa-envelope-o").attr('aria-hidden', "true");
+    newA2.append(newI);
+    newH7.append(newA2).append(newA);
+    peopleList.append(newH7);
 }
 
 function getStringsFromPeople(PeopleList) {
@@ -301,6 +314,7 @@ function getStringsFromPeople(PeopleList) {
     peopleDescriptions = new Array(list.length);
     peopleIDs = new Array(list.length);
     peopleUserIDs = new Array(list.length);
+    count = 0;
     for (var i = 0; i < list.length; i++) {
         if (!event1.isAccessorInEvent(list[i])) {
             list[i].createProfile();
@@ -309,6 +323,7 @@ function getStringsFromPeople(PeopleList) {
             peopleDescriptions[i] = list[i].getDescription();
             peopleIDs[i] = list[i].getProfileID();
             peopleUserIDs[i] = list[i].getID();
+            count++;
         }
     }
 }
