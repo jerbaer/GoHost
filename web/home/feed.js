@@ -50,6 +50,7 @@ function getEvents() {
         newH4 = $('<p>').text(eventCategories[n]);
         newH5 = $('<p>').text(eventLocations[n]);
         newH = $('<p>').append(newA);
+        newH.addClass("text-default");
         newH1 = $('<p>').append(newA2);
         newHr = $('<hr>');
 
