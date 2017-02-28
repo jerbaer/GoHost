@@ -255,10 +255,14 @@ function Event() {
     this.removeUserFromEvent = function (iduser) {
         $.ajax({
             url: this.coreUrl + 'attendee/leave?iduser=' + this.iduser,
-            type: 'DELETE'
+            type: 'DELETE',
+            success: this.getRight
         });
         
     };
+    this.getRight = function(){
+        
+    }
     
     this.editDescription = function (description) {
         this.description = description;
