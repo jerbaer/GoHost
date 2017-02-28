@@ -82,7 +82,7 @@ function PeopleList() {
             this.people.push(this.user1);
         }
         for (var i = 0; i < data.length; i++) {
-            var index = people.indexOf(friends[i]);
+            var index = this.people.indexOf(friends[i]);
             if (index > -1) {
                 people.splice(index, 1);
             }
