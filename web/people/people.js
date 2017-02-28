@@ -15,6 +15,7 @@ function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
     getPeople();
+    getProfile();
 }
 
 function getPeople() {
@@ -44,7 +45,7 @@ function getFriendsStrings() {
     peopleList = $('#friends');
     for (n = friends.getSize() - 1; n > -1; n--) {
         url = ".../people/index.html#" + peopleIDs[n];
-        newA = $('<a>').attr('href',url).text(peopleNames[n]).on('click', function () {
+        newA = $('<a>').attr('href', url).text(peopleNames[n]).on('click', function () {
             window.locaton.href = url;
             window.location.reload(true);
             //double check this session storage part
@@ -53,7 +54,7 @@ function getFriendsStrings() {
         newH = $('<h3>').append(newA);
         newP = $('<p>').append(peopleDescriptions[n]);
         // figure out how to do picture
-        
+
         peopleList.append(newH);
         peopleList.append(newP);
     }
@@ -73,6 +74,30 @@ function getStringsFromPeople(PeopleList) {
         peopleDescriptions[i] = list[i].getDescription;
         peopleIDs[i] = list[i].getIDs;
     }
+}
+
+function getProfile() {
+    profile1 = new Profile();
+    profile1.createFromDB(user, user);
+    getStringsFromProfile(profile1);
+    // Popualte the html page
+    profName = $('#profName');
+    newH1 = $('<h1>').text(profileName);
+
+    profPic = $('#profPic');
+    // Do picture stuff
+
+    profDesc = $('#profDesc');
+    newP = $('<p>').text(profileDescription);
+
+    profName.append(newH1);
+    profDesc.append(hewP);
+}
+
+function getStringsFromProfile(profile1) {
+    profileName = profile1.getName();
+    profilePicture = profile1.getPicture();
+    profileDescription = profile1.getDescriprion();
 }
 
 $(window).load(setUpComponents);
