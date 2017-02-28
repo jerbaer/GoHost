@@ -153,7 +153,7 @@ function makeAttendeeAlert(iduser, i) {
         window.location.href = url;
         window.location.reload(true);
     });
-    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").html("&times;").attr('id', "hostOnly")
+    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").html("&times;").attr('id', "host")
     if (event1.getHostID() !== iduser) {
         newH7.append(newA2);
     }
