@@ -248,7 +248,7 @@ function getFriends() {
             //double check this session storage part
             sessionStorage.setItem('peopleid'), peopleIDs[n];
         });
-        newH = $('<h3>').append(newA);
+        newH = $('<p>').append(newA);
         // figure out how to do picture
 
         peopleList.append(newH);
