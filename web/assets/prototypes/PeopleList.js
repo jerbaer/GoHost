@@ -87,25 +87,7 @@ function PeopleList() {
     };
     
     //Does a get request for all users attending a certain event
-    this.getUsersAttending = function () {
-        //Need to make sure the attendee facade supports this 
-        var url = this.coreUrl + "attendee?idevent=" + this.idevent;
-        $.ajax({
-            dataType: "json",
-            url: url,
-            context: this,
-            success: this.attendingFollowUp
-        });
-    };
-    
-    this.attendingFollowUp = function (data) {
-        this.people = [];
-        for (var n = 0; n < data.length; n++) {
-            this.user1 = new User();
-            this.user1.create(data[n].iduser);
-            this.people.push(this.user1);
-        }
-    };
+
 
     this.getPeopleList = function () {
         return this.people;
