@@ -82,6 +82,7 @@ function getEvent() {
     newH4 = $('<p>').text(eventLocation);
     newH5 = $('<p>').text("Event Attendees:");
     newH6 = $('<div>').addClass("well");
+    newHr = $('<hr>');
 
     for (i = 0; i < eventAttendees.length; i++) {
         newH7 = $('<p>').text(eventAttendees[i]);
