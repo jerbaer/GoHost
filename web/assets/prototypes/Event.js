@@ -166,8 +166,13 @@ function Event() {
     this.addUserToEvent = function (iduser) {
         //adds user to the users array as well as the database and refresh
         n = this.users.length;
-        this.users[n] = iduser;
-        var user = {iduser: iduser, idevent: idevent};
+        var u = new User();
+        u.create(iduser);
+        this.users[n] = u;
+        if(this.users.length == this.eventMax){
+            this.accessibility = 3;
+        }
+        var user = {iduser: iduser, idevent: this.idevent};
         $.ajax({
             url: this.coreUrl + 'attendee',
             type: 'POST',

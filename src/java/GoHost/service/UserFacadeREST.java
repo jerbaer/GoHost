@@ -89,6 +89,14 @@ public class UserFacadeREST extends AbstractFacade<User> {
     public List<User> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
+    
+    @GET
+    @Path("all")
+    @Override
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<User> findAll() {
+        return super.findAll();
+    }
 
     @GET
     @Path("count")

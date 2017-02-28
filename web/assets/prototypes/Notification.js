@@ -28,15 +28,17 @@ function Notification(){
     this.read = null;
     this.timestamp = 0;
     this.coreUrl= "http://143.44.67.0:13774/GoHost/api/";
+    this.isSetUp = false;
     
     //Need to make sure that the facade actually supports this request
-    this.creatFromDB = function (iduser){
+    this.createFromDB = function (iduser){
         var url = this.coreUrl + "notification/" + iduser;
         $.ajax({
             dataType: "json",
             url: url,
             context: this,
-            success: this.createFromDBFollowUp
+            success: this.createFromDBFollowUp,
+            async : false
         });
     };
     
@@ -45,19 +47,19 @@ function Notification(){
         this.user = new User();
         this.user.create(data.iduser)
         this.from = new User();
-        this.from.create(data.from);
+        this.from.create(data.sender);
         this.event = new Event();
         this.event.createFromDB(data.idevent, this.user);
-        this.status = data.status;
-        this.read = data.read;
-        this.timestamp = data.timestamp;
+        this.status = data.notificationstatus;
+        this.read = data.isread;
+        this.timestamp = data.timesent;
     };
     
     //Need to decide what values read and status can take. What 0,1, and 2 mean
     //Make sure vars are parsed properly
     //Go to the entity page that the id is optional = true and @notNull is not there
     this.create = function (iduser, from, idevent, timestamp, read) {
-        var event = {iduser: iduser, from: from, idevent: idevent, status: status, read: 0, timestamp: timestamp};
+        var event = {iduser: iduser, sender: from, idevent: idevent, notificationstatus: status, isread: 0, timesent: timestamp};
         $.ajax({
             url: this.coreUrl + "notification",
             type: 'post',
@@ -78,7 +80,7 @@ function Notification(){
     
     //returns a div populated according to the type of the notification
     this.getHTML = function (){
-        this.createHTML;
+        this.createHTML();
         return this.newH;
     };
     
@@ -86,20 +88,20 @@ function Notification(){
     //will be. Based on what kind of notification, it will call one of 
     //(four?) functions that will populate the div accordingly
     this.createHTML = function (){
-        if(this.from ==0){
+        if(this.from.getID() ==0){
             //This is a system notification that doesn't require input from the user. This will probably not be implemented soon
-            this.createSystemNotification;
+            this.createSystemNotification();
         } else {
             //This is a request that requires input from the user
             if (this.status == 0){
                 //this is an event invite
-                this.createEventInvite;
+                this.createEventInvite();
             } else if (this.status == 1){
                 //this is an event request
-                this.createEventRequest;
+                this.createEventRequest();
             } else if (this.status == 2){
                 //this is a friend request
-                this.createFriendRequest;
+                this.createFriendRequest();
             }
         }
     };
@@ -118,11 +120,12 @@ function Notification(){
         this.text = "User " + this.from.getName() + " has requested to join "+
                 "your event " + this.event.getTitle() + ".";
         this.newH1 = $('<p>').text(this.text);
-        this.newH2 = $('<button>').text("Accept").on('click', acceptEventRequest());
-        this.newH3 = $('<button>').text("Reject").on('click', rejectEventRequest());
+        this.newH2 = $('<button>').text("Accept").on('click', this.acceptEventRequest());
+        this.newH3 = $('<button>').text("Reject").on('click', this.rejectEventRequest());
         this.newH.append(this.newH1);
         this.newH.append(this.newH2);
         this.newH.append(this.newH3);
+        this.isSetUp = true;
         //Might need to come back and tweak the html if it doesn't look good
     };
     
@@ -137,7 +140,9 @@ function Notification(){
     };
     
     this.rejectEventRequest = function(){
-        //Simply deletes the notification??
+        if(this.isSetUp == true)
+        this.deleteNotification();
+        
     };
      
     //This creates the html associated with the friend request notification
@@ -159,11 +164,13 @@ function Notification(){
     
     //This gets called each time the user interacts with a notification
     //Does this delete every trace of the notification from the db?
-    this.deleteEvent = function () {
+    this.deleteNotification = function () {
         $.ajax({
             url: this.coreUrl + 'notification/' + this.idnotification,
-            type: 'DELETE'
+            type: 'DELETE',
+            async:false
         });
+        this.refresh();
     };
     
     this.editStatus = function(status){
@@ -184,4 +191,8 @@ function Notification(){
             dataType: 'json'
         });
     };
+    this.refresh = function() {
+    window.location.href = window.location.href;
+    window.location.reload(true);
+};
 }

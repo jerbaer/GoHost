@@ -28,8 +28,8 @@ function getNotifications() {
     //inside the notifications array into the notifications div
     
     notificationsFeed = $('#notifications');
-    for (n = inbox.getSize() - 1; n > -1; n--) {
-        notificationsFeed.append(notifications[i]);
+    for (var n = inbox.getSize() - 1; n > -1; n--) {
+        notificationsFeed.append(notifications[n]);
     }
 }
 //This will go through all the different notifications, calling getHTML on them
@@ -37,9 +37,9 @@ function getNotifications() {
 //objects returned into a singule array. This way, I will only have to append
 //the divs in this one array; notifications
 function getHTMLFromNotifications(inbox) {
-    notifications = new Array(inbox.getSize());
-    for (i = 0; i < inbox.getSize(); i++) {
-        notifications[i] = inbox.getNotificationsList()[i].getHTML();
+    notifications = new Array();
+    for (var i = 0; i < inbox.getSize(); i++) {
+        notifications.push(inbox.getNotificationsList()[i].getHTML());
     }
 }
 
@@ -55,6 +55,12 @@ function eventRequest() {
     
 function friendRequest() {
         //Initializes a FriendRequest object and pushes to the db
+}
+function acceptRequest(){
+    
+}
+function rejectRequest(){
+    
 }
 
 
