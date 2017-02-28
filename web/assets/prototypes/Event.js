@@ -367,7 +367,7 @@ function Event() {
         $.ajax({
             url: this.coreUrl + 'event/' + this.idevent,
             type: 'PUT',
-            data: JSON.stringify(user),
+            data: JSON.stringify(event),
             contentType: 'application/json',
             dataType: 'json'
         });
