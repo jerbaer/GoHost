@@ -73,7 +73,7 @@ function Event() {
     };
 
     this.createFollowUp2 = function (data) { //when PeopleList is working, do some of this stuff
-        var id = parseInt(data);
+        var id = parseInt(data.idevent);
         var attendee = {iduser : this.tempID, idevent : id};
         $.ajax({
             url: this.coreUrl + "attendee",
@@ -91,7 +91,7 @@ function Event() {
             for(var i = 0; i<PeopleList.getSize(); i++){
                 var attending = {iduser: user.getPeopleList().getFriendsList[i].getID(), idevent: id} 
             $.ajax({
-            url: this.coreUrl + "attendee",
+            url: this.coreUrl + "invited",
             type: 'POST',
             data: JSON.stringify(attending),
             context: this,
