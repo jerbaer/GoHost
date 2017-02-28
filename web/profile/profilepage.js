@@ -83,19 +83,19 @@ function editProfile() {
         profile1.editDescription($('#desc').val());
     }
     profile1.refreshEdits()
-    
+
     window.location.reload();
 }
 
 function editAccount() {
-    if ($('#name').val() !== '') {
-    owner.editName($('#name').val());
+    if ($('#userName').val() !== '') {
+        owner.editName($('#userName').val());
     }
     if ($('#password').val() !== '') {
-    owner.editPassword($('#password').val());
+        owner.editPassword($('#password').val());
     }
     if ($('#email').val() !== '') {
-    owner.editEmail($('#email').val());
+        owner.editEmail($('#email').val());
     }
     owner.refreshEdits()
     window.location.reload();

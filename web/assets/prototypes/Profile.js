@@ -76,12 +76,10 @@ function Profile () {
     
     this.editDescription = function (description) {
         this.description = description;
-        this.refreshEdits();
     };
     
     this.editPicture = function (photoURL) {
         this.photoURL = photoURL;
-        this.refreshEdits();
     };
     
     // Are these necessary since User already does this?
@@ -115,7 +113,8 @@ function Profile () {
             url: url,
             type: 'GET',
             context: this,
-            success: this.createProfileFollowUp
+            success: this.createProfileFollowUp,
+            async: false
         })
     };
     
@@ -140,7 +139,7 @@ function Profile () {
     };
     
     this.refreshEdits = function () {
-        var profile = {idprofile : this.idprofile, iduser: this.owner.getID(), description : this.description, idcategory : null}; //long list of member variables
+        var profile = {idprofile : this.idprofile, iduser: this.owner.getID(), description : this.description, idcategory : 1}; //long list of member variables
             $.ajax({
             url: this.coreUrl + 'profile/' + this.idprofile,
             type: 'PUT',
