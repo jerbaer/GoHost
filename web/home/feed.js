@@ -93,12 +93,18 @@ function getVisibleStrings() {
 }
 
 function getProfile() {
+    var url, newA;
     profile1 = new Profile();
     profile1.createFromDB(user, user);
     getStringsFromProfile(profile1);
     // Popualte the html page
     profName = $('#profName');
-    newH1 = $('<h1>').text(profileName);
+    url = "../profile/index.html#" + profile1.getIdUser();
+    newA = $('<a>').attr('href', url).text(profileName).on('click', function () {
+        window.location.href = url;
+        window.location.reload(true);
+    });
+    newH1 = $('<h1>').append(newA);
 
     profPic = $('#profPic');
     // Do picture stuff
