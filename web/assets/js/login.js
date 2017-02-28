@@ -17,8 +17,8 @@ sys_init = {
             $('#regPassWarning').show();
         } else {
             var url = sys_init.coreUrl + "user";
-            var user = {email: $('#regEmail').val(),
-                password: $('#regPass').val(), name:"", idprofile:2};
+            var user = {name:$('#regName').val(), email: $('#regEmail').val(),
+                password: $('#regPass').val(), idprofile:2};
             var toSend = JSON.stringify(user);
             $.ajax({
                 url: url,
