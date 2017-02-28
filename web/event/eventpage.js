@@ -51,8 +51,7 @@ function setUpComponents() {
         $('#leaveEvent').hide();
         $('#hostOnly').hide();
         $('#joinEvent').on('click', joinEvent);
-    }
-    else if (canSee) {
+    } else if (canSee) {
         $('#joinEvent').hide();
         $('#leaveEvent').hide();
         $('#inviteSpan').hide();
@@ -118,8 +117,12 @@ function inviteFriends() {
 }
 
 function joinEvent() {
-    event1.addUserToEvent(id);
-    window.location.reload();
+    if (event1.isOpenEvent) {
+        event1.addUserToEvent(id);
+        window.location.reload();
+    } else {
+        //send request
+    }
 }
 
 function leaveEvent() {
