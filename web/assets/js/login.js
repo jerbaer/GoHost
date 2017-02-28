@@ -48,7 +48,7 @@ sys_init = {
         sys_init.profile.create(parseInt(sessionStorage.getItem('id')),parseInt(sessionStorage.getItem('id')));
         var profileId = {idprofile: sys_init.profile.getIdProfile()};
         $.ajax({
-            url: coreUrl + 'user/' + parseInt(sessionStorage.getItem('id')),
+            url: sys_init.coreUrl + 'user/' + parseInt(sessionStorage.getItem('id')),
             type: 'PUT',
             data: JSON.stringify(profileId),
             contentType: 'application/json',
