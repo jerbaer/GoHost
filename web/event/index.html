@@ -144,7 +144,9 @@
                                     <label for="eventVis" class="col-sm-3 control-label">Visibility</label>
                                     <div class="col-sm-9">
                                         <select class="form-control col-sm-9" id="eventVis">
-                                            <!-- Visibilities populated from database -->
+                                            <option value="2">Public</option>
+                                            <option value="1">Friends</option>
+                                            <option value="0">Hidden</option>
                                         </select>
                                     </div>
                                 </div>
@@ -152,7 +154,9 @@
                                     <label for="eventAcc" class="col-sm-3 control-label">Access</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" id="eventAcc">
-                                            <!-- Accesses populated from database -->
+                                            <option value="0">Open To Join</option>
+                                            <option value="1">Requests Only</option>
+                                            <option value="2">Invites Only</option>
                                         </select>
                                     </div>
                                 </div>
