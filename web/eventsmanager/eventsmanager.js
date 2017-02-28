@@ -190,12 +190,12 @@ function getAttendingStrings() {
 }
 
 function createEvent() {
-    if($('#eventStart').val() !== '' && ('#eventEnd').val() !== '') {
+    if($('#eventStart').val() !== '' && $('#eventEnd').val() !== '') {
         eventTitle = $('#eventTitle').val();
         eventCat = $('#eventCat').val();
         eventStart = $('#eventStart').val();
         eventEnd = $('#eventEnd').val();
-        eventLoc = 0//$('#eventLoc').val
+        eventLoc = 0//$('#eventLoc').val();
         eventVis = $('#eventVis').val();
         eventAcc = $('#eventAcc').val();
         maxAttendees = $('#maxAttendees').val();
