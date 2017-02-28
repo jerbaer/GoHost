@@ -44,7 +44,7 @@ function getFriendsStrings() {
     // this part might need to change/be more specific with bootstrap classes
     peopleList = $('#friends');
     for (n = friends.getSize() - 1; n > -1; n--) {
-        url = ".../people/index.html#" + peopleIDs[n];
+        url = ".../profile/index.html#" + peopleIDs[n];
         newA = $('<a>').attr('href', url).text(peopleNames[n]).on('click', function () {
             window.locaton.href = url;
             window.location.reload(true);
@@ -63,16 +63,18 @@ function getFriendsStrings() {
 
 // For strangers will need to get a PeopleList of not friends
 function getStringsFromPeople(PeopleList) {
-    list = PeopleList.getFriends();
+    PeopleList.getFriends();
+    list = PeopleList.getFriendsList();
     peopleNames = new Array(list.length);
     peoplePictures = new Array(list.length);
     peopleDescriptions = new Array(list.length);
     peopleIDs = new Array(list.length);
-    for (i = 0; i < list.length(); i++) {
-        peopleNames[i] = list[i].getName;
-        peoplePictures[i] = list[i].getPicture;
-        peopleDescriptions[i] = list[i].getDescription;
-        peopleIDs[i] = list[i].getIDs;
+    for (i = 0; i < list.length; i++) {
+        list[i].createProfile();
+        peopleNames[i] = list[i].getName();
+        peoplePictures[i] = list[i].getPicture();
+        peopleDescriptions[i] = list[i].getDescription();
+        peopleIDs[i] = list[i].getProfileID();
     }
 }
 
@@ -91,13 +93,13 @@ function getProfile() {
     newP = $('<p>').text(profileDescription);
 
     profName.append(newH1);
-    profDesc.append(hewP);
+    profDesc.append(newP);
 }
 
 function getStringsFromProfile(profile1) {
     profileName = profile1.getName();
     profilePicture = profile1.getPicture();
-    profileDescription = profile1.getDescriprion();
+    profileDescription = profile1.getDescription();
 }
 
 $(window).load(setUpComponents);

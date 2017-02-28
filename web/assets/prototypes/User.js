@@ -101,14 +101,17 @@ function User() {
     
     //idk if this is necessary as just doing what Profile does but for conveniene sake
     this.getDescription = function () {
-        profile = new Profile();
-        profile.create(iduser);
         return profile.getDescription();
     };
+    this.createProfile = function(accessor1){
+        profile = new Profile();
+        profile.createFromDB(this, accessor1);
+    };
+    this.getProfileID = function(){
+        return profile.getID();
+    }
     
     this.getPicture = function () {
-        profile = new Profile();
-        profile.create(iduser);
         return profile.getPicture();
     }
     

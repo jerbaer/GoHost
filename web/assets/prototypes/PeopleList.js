@@ -109,6 +109,9 @@ function PeopleList() {
     this.getSize = function () {
         return this.people.length;
     }
+    this.getFriendsList = function(){
+        return this.friends;
+    }
     
     this.isUserOnList = function (user) {
         var userid = user.getID();
