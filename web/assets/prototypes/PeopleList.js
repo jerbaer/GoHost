@@ -27,7 +27,6 @@ function PeopleList() {
         this.owner.create(iduser);
         this.viewType = viewType;
         this.idevent = idevent;
-        //Checks what kind of PeopleList is needed
         if (viewType == 0) {
             this.getUsersAttending();
         } else if (viewType == 1) {

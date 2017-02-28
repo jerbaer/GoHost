@@ -20,12 +20,23 @@ function Profile () {
         this.owner = new User();
         this.owner.create(iduser);
         this.accessor = accessor1;
-        // Ajax stuff here
+        var profile = {iduser: this.iduser, descritpion: this.description};
+        $.ajax({
+            url: this.coreUrl + "profile",
+            type: 'post',
+            data: JSON.stringify(profile),
+            contentType: 'application/json',
+            dataType: 'json',
+            context: this,
+            async: false,
+            success: this.createFollowUp
+        });
+        //POST request
     };
     
     this.createFollowUp = function (data) {
+        this.iduser = data.idprofile;
         this.description = data.description;
-        this.photoURL = data.photoURL;
     };
     
     this.isCurrentUser = function () {
@@ -43,8 +54,10 @@ function Profile () {
     
     this.canUserSee = function () {
         // For if we want to implement blocking people
-    }
-    
+    };
+    this.getIdProfile = function () {
+        return this.iduser;
+    };
     this.getName = function () {
         return this.owner.getName();
     };
@@ -123,10 +136,6 @@ function Profile () {
     
     this.isUserOnList = function () {
         // idk which user and which list so yeah
-    };
-    
-    this.deleteAccount = function (){
-        // Fill this in
     };
     
     this.refreshEdits = function () {
