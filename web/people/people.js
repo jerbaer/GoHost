@@ -14,6 +14,8 @@ var id;
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
+    $('#friendsTab').on('click', getFriendsStrings);
+    $('#strangersTab').on('click', getStrangersStrings);
     getPeople();
     getProfile();
 }
@@ -32,7 +34,7 @@ function getStrangersStrings(){
     if (strangers !== null)
         stragners = null;
     user.createPeopleList();
-    strangers = user.getStrangerList();
+    strangers = user.getStrangersList();
     peopleNames = null;
     peoplePictures = null;
     peopleDescriptions = null;
