@@ -59,6 +59,12 @@ sys_init = {
 
     //Gonna have to get rid of this parameter since it's being passed 
     moveToHome: function () {
+        if (data !== "0"&& data !== 0) {
+            // Storing the id number of the user
+            sessionStorage.setItem('id', parseInt(data));
+        } else {
+            $('#regWarning').show();
+        }
         window.location.href = 'home/index.html#';
         sys_init.refresh;
     },
