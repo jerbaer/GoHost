@@ -54,7 +54,7 @@ function Notification(){
     //Need to decide what values read and status can take. What 0,1, and 2 mean
     //Make sure vars are parsed properly
     //Go to the entity page that the id is optional = true and @notNull is not there
-    this.create = function (iduser, from, idevent, timestamp, read) {
+    this.create = function (iduser, from, idevent, timestamp, read, status) {
         var event = {iduser: iduser, sender: from, idevent: idevent, notificationstatus: status, isread: 0, timesent: timestamp};
         $.ajax({
             url: this.coreUrl + "notification",

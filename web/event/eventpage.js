@@ -82,7 +82,8 @@ function setUpComponents() {
     }
 }
 function requestToJoinEvent(){
-    notification.
+    notification = new Notification();
+    notification.create(event1.getHost().getID(), user.getID(), event1.getID(), new Date(), 0, 1)
 }
 
 function getCategories() {
