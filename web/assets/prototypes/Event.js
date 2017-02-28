@@ -256,6 +256,8 @@ function Event() {
         $.ajax({
             url: this.coreUrl + 'attendee/iduser?iduser=' + this.iduser,
             type: 'GET',
+            dataType: 'application/json',
+            context: this,
             success: this.getRight
         });
         
