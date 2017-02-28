@@ -178,21 +178,21 @@ function Event() {
     this.canUserJoin = function () {
         if (this.accessibility === 2) {
             return true;
-        } //else {
-        //for (i = 0; i < this.invited.size(); i++) {
-        //   if (this.accessor.getID() == this.invited[i].getID() && (this.accessibility==1||this.accessibility==0)) {
-        //        return true;
-        //    }
-        //  }
-        //  return false;
-        // }
+        } else {
+        for (i = 0; i < this.invitedUsers.length; i++) {
+           if (this.accessor.getID() == this.invitedUsers[i].getID() && (this.accessibility==1||this.accessibility==0)) {
+                return true;
+           }
+          }
+          return false;
+         }
     };
     
     this.canUserSee = function () {
         
         if (this.visibility === 2) {
             return true;
-            } else if (this.host.getPeopleList().isUserOnList(accessor) && this.visibility.getID()== 1){
+            } else if (this.host.getPeopleList().isUserOnList(this.accessor) && this.visibility == 1){
                 return true;
         } else
             return false;
