@@ -8,6 +8,7 @@ var isAttendee = false;
 var canJoin = false;
 var canSee = false;
 var eventAttendees = [];
+var attendeeIDs = [];
 var eventTitle;
 var eventHost;
 var eventStartTime;
@@ -80,12 +81,16 @@ function getEvent() {
     newH3 = $('<p>').text(eventCategory);
     newH4 = $('<p>').text(eventLocation);
     newH5 = $('<p>').text("Event Attendees:");
-    newH6 = $('<div>');
-    newHr = $('<hr>');
+    newH6 = $('<div>').addClass("well");
 
     for (i = 0; i < eventAttendees.length; i++) {
         newH7 = $('<p>').text(eventAttendees[i]);
-        newH6.append(newH7);//Does this work??
+        url = "../profile/index.html#" + attendeeIDs[i];
+        newA = $('<a>').attr('href', url).text(eventAttendees[i]).on('click', function () {
+            window.location.href = url;
+            window.location.reload(true);
+        });
+        newH6.append(newA);//Does this work??
     }
 
     eventDetails.append(newH);
@@ -156,6 +161,9 @@ function getStringsFromEvent(event1) {
     //Goes through and fills out eventAttendees
     for (i = 0; i < event1.getListofAttendees().length; i++) {
         eventAttendees.push(event1.getListofAttendees()[i].getName());
+    }
+    for (i = 0; i < event1.getListofAttendees().length; i++) {
+        attendeeIDs.push(event1.getListofAttendees()[i].getID());
     }
     //eventID = event.getID(); or this
 }
