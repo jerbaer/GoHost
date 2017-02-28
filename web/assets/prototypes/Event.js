@@ -17,9 +17,9 @@ function Event() {
     this.title = "";
     this.visibility = 0;
     this.accessibility = 0;
-    this.invitedUsers = null;
+    this.invitedUsers = [];
     this.location = null;
-    this.users = null;
+    this.users = [];
     this.tempID;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
 
@@ -282,6 +282,28 @@ function Event() {
     this.editMax = function (max) {
         this.eventMax = max;
         this.refreshEdits();
+    };
+    this.getInvitedUsers = function(){
+        
+    };
+    this.getUsersAttending = function () {
+        //Need to make sure the attendee facade supports this 
+        var url = this.coreUrl + "attendee?idevent=" + this.idevent;
+        $.ajax({
+            dataType: "json",
+            url: url,
+            context: this,
+            success: this.attendingFollowUp
+        });
+    };
+    
+    this.attendingFollowUp = function (data) {
+        this.people = [];
+        for (var n = 0; n < data.length; n++) {
+            this.user1 = new User();
+            this.user1.create(data[n].iduser);
+            this.people.push(this.user1);
+        }
     };
 
     this.refreshEdits = function () {
