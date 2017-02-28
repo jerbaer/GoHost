@@ -55,7 +55,7 @@ function createSystemNotification(notification) {
 }
 //This will just have a button that allows the user to join the event
 function createEventInvite(notification) {
-    var newH, newH1, newH2, newH3;
+    var newH, newH1, newH2, newH3, newH4;
     newH = $('<hr>');
     newH1 = $('<p>').text("User " + notification.from.getName() + " has invited you to join " +
             "their event " + notification.event.getTitle() + ".");
@@ -80,9 +80,11 @@ function createEventInvite(notification) {
     });
     newH2.addClass("btn btn-info");
     newH3.addClass("btn btn-warning");
+    newH4 = $('<div>').addClass("btn-toolbar");
+    newH4.append(newH2);
+    newH4.append(newH3);
     notificationsFeed.append(newH1);
-    notificationsFeed.append(newH2);
-    notificationsFeed.append(newH3);
+    notificationsFeed.append(newH4);
     notificationsFeed.append(newH);
     //What is this for???
     isSetUp = true;
