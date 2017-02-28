@@ -366,7 +366,7 @@ function Event() {
     this.refreshEdits = function () {
         var event = {idevent: this.idevent, title: this.title, idhost: this.host, maxattendees: this.eventMax, idlocation: this.location.getID(), idvisibility: this.visibility, idaccessibility: this.accessibility, starttime: this.eventStart, endtime: this.eventEnd, description: this.description, idcategory: this.category.getID()};
         $.ajax({
-            url: coreUrl + 'event/' + this.idevent,
+            url: this.coreUrl + 'event/' + this.idevent,
             type: 'PUT',
             data: JSON.stringify(user),
             contentType: 'application/json',
