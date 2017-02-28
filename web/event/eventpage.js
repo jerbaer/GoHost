@@ -48,6 +48,11 @@ function setUpComponents() {
         $('#inviteSpan').hide();
         $('#hostOnly').hide();
         $('#joinEvent').on('click', joinEvent);
+    }
+    else if (canSee) {
+        $('#joinEvent').hide();
+        $('#inviteSpan').hide();
+        $('#hostOnly').hide();
     } else if (!canSee) {
         $('#eventDetails').hide();
         $('#joinEvent').hide();
