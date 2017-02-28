@@ -140,7 +140,7 @@ function Profile () {
     };
     
     this.refreshEdits = function () {
-        var profile = {idprofile : this.idprofile, iduser: this.owner.getID(), description = this.description, idcategory : null}; //long list of member variables
+        var profile = {idprofile : this.idprofile, iduser: this.owner.getID(), description : this.description, idcategory : null}; //long list of member variables
             $.ajax({
             url: this.coreUrl + 'profile/' + this.idprofile,
             type: 'PUT',
