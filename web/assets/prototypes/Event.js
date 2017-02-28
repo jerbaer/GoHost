@@ -145,7 +145,7 @@ function Event() {
     
     this.isUserInEvent = function () {
         for (i = 0; i < this.users.length; i++) {
-            if (this.accessor.getID() === this.user[i].getID()) {
+            if (this.accessor.getID() === this.users[i].getID()) {
                 return true;
             }
         }
