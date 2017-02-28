@@ -16,7 +16,7 @@ function Event() {
     this.description = "";
     this.title = "";
     this.visibility = 0;
-    this.accessibility = 0;
+    this.accessibility = 0; //0 means open to everyone, 1 means friends can join without request, 2, everyone must request
     this.invitedUsers = [];
     this.location = null;
     this.users = [];
@@ -176,11 +176,11 @@ function Event() {
     }
     
     this.canUserJoin = function () {
-        if (this.accessibility === 2) {
+        if (this.accessibility === 0) {
             return true;
         } else {
         for (i = 0; i < this.invitedUsers.length; i++) {
-           if (this.accessor.getID() == this.invitedUsers[i].getID() && (this.accessibility==1)) {
+           if (this.accessor.getID() == this.invitedUsers[i].getID()) {
                 return true;
            }
           }

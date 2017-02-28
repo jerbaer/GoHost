@@ -146,7 +146,7 @@ function createEventRequest(notification) {
         if (isSetUp == true) {
             var user = {iduser: notification.from.getID(), idevent: notification.event.getID()}
             $.ajax({
-                url: coreUrl + "invited",
+                url: coreUrl + "attendee",
                 type: 'POST',
                 data: JSON.stringify(user),
                 dataType: 'json',
