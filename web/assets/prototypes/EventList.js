@@ -57,7 +57,7 @@ function eventsList() {
 
     this.attendingFollowUp = function (data) {
         this.events = new Array();
-        for (i = 0; i < data.length; i++) {
+        for (var i = 0; i < data.length; i++) {
             this.event1 = new Event();
             this.events.push(this.event1);
             this.events[i].createFromDB(data[i].idevent, this.accessor);
@@ -65,22 +65,34 @@ function eventsList() {
     };
 
     this.getEventsVisible = function () {
+        this.events = new Array();
         var url = this.coreUrl + "event/visibility?visibility=2";
         $.ajax({
             dataType: "json",
             url: url,
             context: this,
-            success: this.visibleFollowUp
+            success: this.visibleFollowUp,
+            async: false
+        });
+        var url2 = this.coreUrl + "invited/user?iduser=" + this.accessor.getID();
+        $.ajax({
+            dataType: "json",
+            url: url2,
+            context: this,
+            success: this.visibleFollowUp,
+            async: false
         });
     };
 
     this.visibleFollowUp = function (data) {
-        this.events = new Array();
+        
+        if(data.length>0){
         for (var i = 0; i < data.length; i++) {
             let event1 = new Event();
             event1.createFromDB(data[i].idevent, this.accessor);
             this.events.push(event1);
         }
+    }
     };
 
     this.getEventsList = function () {

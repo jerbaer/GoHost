@@ -73,7 +73,7 @@ function Event() {
     };
 
     this.createFollowUp2 = function (data) { //when PeopleList is working, do some of this stuff
-        var id = parseInt(data);
+        var id = parseInt(data.idevent);
         var attendee = {iduser : this.tempID, idevent : id};
         $.ajax({
             url: this.coreUrl + "attendee",
@@ -84,14 +84,14 @@ function Event() {
             dataType: 'json',
             async: false
         });
-        if (data.accessibility === 1){
+        if (data.visibility == 1){
             var user = new User();
             user.create(this.tempID);
             var PeopleList = user.getPeopleList();
             for(var i = 0; i<PeopleList.getSize(); i++){
-                var attending = {iduser: user.getPeopleList().getFriendsList[i].getID(), idevent: id} 
+            var attending = {iduser: user.getPeopleList().getFriendsList()[i].getID(), idevent: id}; 
             $.ajax({
-            url: this.coreUrl + "attendee",
+            url: this.coreUrl + "invited",
             type: 'POST',
             data: JSON.stringify(attending),
             context: this,
@@ -178,21 +178,22 @@ function Event() {
     this.canUserJoin = function () {
         if (this.accessibility === 2) {
             return true;
-        } //else {
-        //for (i = 0; i < this.invited.size(); i++) {
-        //   if (this.accessor.getID() == this.invited[i].getID() && (this.accessibility==1||this.accessibility==0)) {
-        //        return true;
-        //    }
-        //  }
-        //  return false;
-        // }
+        } else {
+        for (i = 0; i < this.invitedUsers.length; i++) {
+           if (this.accessor.getID() == this.invitedUsers[i].getID() && (this.accessibility==1||this.accessibility==0)) {
+                return true;
+           }
+          }
+          return false;
+         }
     };
     
     this.canUserSee = function () {
+        
         if (this.visibility === 2) {
             return true;
-            //} else if (this.host.isFriendsWith(accessor) && this.visibility.getID()== 1){
-            //    return true;
+            } else if (this.host.getPeopleList().isUserOnList(this.accessor) && this.visibility == 1){
+                return true;
         } else
             return false;
     };

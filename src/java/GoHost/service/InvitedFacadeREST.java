@@ -75,9 +75,15 @@ public class InvitedFacadeREST extends AbstractFacade<Invited> {
     @GET
     @Path("idevent")
     @Produces({MediaType.APPLICATION_JSON})
-    public List<Invited> getUsersAttendingEvent(@QueryParam("idevent") int vis){
+    public List<Invited> getUsersInvitedEvent(@QueryParam("idevent") int vis){
         return em.createNamedQuery("Invited.findByIdevent", Invited.class).setParameter("idevent", new Integer(vis)).getResultList();
    }
+    @GET
+    @Path("user")
+    public List<Invited> getEventsUserIsInvitedTo(@QueryParam("iduser") int iduser){
+        return em.createNamedQuery("Invited.findByIduser", Invited.class).setParameter("iduser", iduser).getResultList();
+    
+}
 
     @GET
     @Path("all")
