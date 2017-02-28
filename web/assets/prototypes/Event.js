@@ -294,5 +294,3 @@ function Event() {
         //End-all function everytime an edit happens
     };
 }
-
-
