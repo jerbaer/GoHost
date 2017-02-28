@@ -82,9 +82,7 @@ function Profile () {
     };
     
     // These next ones I'm not sure about. Also might not need to pass any variables
-    this.createFriendRequest = function (accessor1, owner) {
-        // Not sure how to do this
-    };
+
     
     this.Inbox = function (owner) {
         // Not sure what this is

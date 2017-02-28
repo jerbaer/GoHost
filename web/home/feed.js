@@ -7,6 +7,8 @@ var eventStartTimes;
 var eventEndTimes;
 var eventCategories;
 var eventLocations;
+var eventIDs;
+var hostIDs;
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
@@ -27,8 +29,8 @@ function getEvents() {
 
     setTimeout(getVisibleStrings(), 10000);
     //this is where it connects with HTML to print the feed in objects
-    var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
-    var n, url;
+    var newH, newA, newA2, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
+    var n, url, url2;
     // Find the newestBlogs div that will house newly created blogs
     eventsFeed = $('#eventsFeed');
 
@@ -38,12 +40,17 @@ function getEvents() {
             window.location.href = url;
             window.location.reload(true);
         });
-        newH1 = $('<p>').text(eventHosts[n]);
+        url2 = "../profile/index.html#" + hostIDs[n];
+        newA2 = $('<a>').attr('href', url2).text(eventHosts[n]).on('click', function () {
+            window.location.href = url2;
+            window.location.reload(true);
+        });
         newH2 = $('<p>').text(eventStartTimes[n]);
         newH3 = $('<p>').text(eventEndTimes[n]);
         newH4 = $('<p>').text(eventCategories[n]);
         newH5 = $('<p>').text(eventLocations[n]);
         newH = $('<p>').append(newA);
+        newH1 = $('<p>').append(newA2);
         newHr = $('<hr>');
 
         eventsFeed.append(newH);
@@ -57,23 +64,27 @@ function getEvents() {
 }
 
 function getStringsFromEvents(eventList) {
-    eventTitles = new Array(eventList.getSize());
-    eventHosts = new Array(eventList.getSize());
-    eventStartTimes = new Array(eventList.getSize());
-    eventEndTimes = new Array(eventList.getSize());
-    eventCategories = new Array(eventList.getSize());
-    eventLocations = new Array(eventList.getSize());
-    eventIDs = new Array(eventList.getSize());
-    for (i = 0; i < eventList.getSize(); i++) {
-        eventTitles[i] = eventList.getEventsList()[i].getTitle();
-        eventHosts [i] = eventList.getEventsList()[i].getHost().getName();
-        var d = eventList.getEventsList()[i].getEventStart().mysqlToDate();
+    list = eventList.getEventsList();
+    eventTitles = new Array(list.length);
+    eventHosts = new Array(list.length);
+    eventStartTimes = new Array(list.length);
+    eventEndTimes = new Array(list.length);
+    eventCategories = new Array(list.length);
+    eventLocations = new Array(list.length);
+    eventIDs = new Array(list.length);
+    hostIDs = new Array(list.length);
+    for (i = 0; i < list.length; i++) {
+        eventTitles[i] = list[i].getTitle();
+        eventHosts [i] = list[i].getHost().getName();
+        //var t = list[i].getEventStart().split(/[- T :]/);
+        var d = list[i].getEventStart().mysqlToDate();
         eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
-        var x = eventList.getEventsList()[i].getEventEnd().mysqlToDate();
+        var x = list[i].getEventEnd().mysqlToDate();
         eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
-        eventCategories[i] = eventList.getEventsList()[i].getCategory();
-        eventLocations[i] = eventList.getEventsList()[i].getLocation();
-        eventIDs[i] = eventList.getEventsList()[i].getID();
+        eventCategories[i] = list[i].getCategory();
+        eventLocations[i] = list[i].getLocation();
+        eventIDs[i] = list[i].getID();
+        hostIDs[i] = list[i].getHostID();
     }
 }
 

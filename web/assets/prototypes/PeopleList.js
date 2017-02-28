@@ -87,7 +87,9 @@ function PeopleList() {
     };
     
     //Does a get request for all users attending a certain event
-
+    this.sendFriendRequest = function(newfriend){
+        
+    }
 
     this.getPeopleList = function () {
         return this.people;
