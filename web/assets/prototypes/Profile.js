@@ -9,7 +9,7 @@ function Profile () {
     // might not need to make owner object and just make it in the functions everytime we need it instead
     this.owner = null;
     this.description = '';
-    this.photoURL - '';
+    this.photoURL = '';
     this.accessor = null;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
 
