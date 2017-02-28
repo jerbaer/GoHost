@@ -119,7 +119,8 @@ function getEvent() {
             window.location.href = url;
             window.location.reload(true);
         });
-        newH6.append(newA);//Does this work??
+        newH6.append(newA);
+        newH6.append('<br/>');
     }
 
     eventDetails.append(newH);
