@@ -152,7 +152,7 @@ $.wait = function (ms) {
 };
 
 function refresh() {
-    window.location.href = window.location.href;
+    //window.location.href = window.location.href; // this is weird
     window.location.reload(true);
 }
 
