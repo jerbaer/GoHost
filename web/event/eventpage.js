@@ -81,13 +81,16 @@ function getEvent() {
     newH4 = $('<p>').text(eventLocation);
     newH5 = $('<p>').text("Event Attendees:");
     newH6 = $('<div>');
-    
+    newHr = $('<hr>');
+
+
     for (i = 0; i < eventAttendees.length; i++) {
         newH7 = $('<p>').text(eventAttendees[i]);
         newH6.append(newH7);//Does this work??
     }
 
     eventDetails.append(newH);
+    eventDetails.append(newHr);
     eventDetails.append(newH1);
     eventDetails.append(newH2);
     eventDetails.append(newH3);
@@ -152,7 +155,7 @@ function getStringsFromEvent(event1) {
     eventCategory = event1.getCategory();
     eventLocation = event1.getLocation();
     //Goes through and fills out eventAttendees
-    for (i = 0; i < event1.getListofAttendees.length; i++) {
+    for (i = 0; i < event1.getListofAttendees().length; i++) {
         eventAttendees.push(event1.getListofAttendees()[i].getName());
     }
     //eventID = event.getID(); or this
