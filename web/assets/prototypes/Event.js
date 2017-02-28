@@ -173,7 +173,7 @@ function Event() {
         if(this.accessibility === 0) // if event is open
             return true;
         return false;
-    }
+    };
     
     this.canUserJoin = function () {
         if (this.accessibility === 0) {

@@ -135,7 +135,6 @@ function createFriendRequest(notification) {
 
 
 }
-;
 
 function createEventRequest(notification) {
     var newH, newH1, newH2, newH3;

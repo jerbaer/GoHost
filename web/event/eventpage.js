@@ -128,18 +128,8 @@ function getEvent() {
     newH6 = $('<div>');
     newHr = $('<hr>');
 
-    for (i = 0; i < eventAttendees.length; i++) {
-        newH7 = $('<div>').addClass("alert alert-info alert-dismissable");
-        url = "../profile/index.html#" + attendeeIDs[i];
-        newA = $('<a>').attr('href', url).text(eventAttendees[i]).on('click', function () {
-            window.location.href = url;
-            window.location.reload(true);
-        });
-        newA2 = $('<a>').attr('href', "#").addClass("alert-link close").attr('data-dismiss', "alert").attr('aria-label', "close");
-        newH7.append(newA2);
-        newH7.append(newA);
-        newH6.append(newH7);
-        newH6.append('<br/>');
+    for (var i = 0; i < eventAttendees.length; i++) {
+        makeAttendeeAlert(attendeeIDs[i], i);
     }
 
     eventDetails.append(newH);
@@ -151,6 +141,24 @@ function getEvent() {
     eventDetails.append(newH5);
     eventDetails.append(newH6);
     eventDetails.append('<br />');
+}
+
+function makeAttendeeAlert(iduser, i) {
+    newH7 = $('<div>').addClass("alert alert-info alert-dismissable").on('close.bs.alert', function () {
+        var n = iduser;
+        event1.removeUserFromEvent(n);
+    });
+    url = "../profile/index.html#" + iduser;
+    newA = $('<a>').addClass("alert-link").attr('href', url).text(eventAttendees[i]).on('click', function () {
+        window.location.href = url;
+        window.location.reload(true);
+    });
+    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").html("&times;").attr('id', "hostOnly")
+    if (event1.getHostID() !== iduser) {
+        newH7.append(newA2);
+    }
+    newH7.append(newA);
+    newH6.append(newH7);
 }
 
 function deleteEvent() {
