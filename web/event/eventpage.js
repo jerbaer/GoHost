@@ -152,7 +152,7 @@ function getStringsFromEvent(event1) {
     eventCategory = event1.getCategory();
     eventLocation = event1.getLocation();
     //Goes through and fills out eventAttendees
-    for (i = 0; i < event1.getListofAttendees.length; i++) {
+    for (i = 0; i < event1.getListofAttendees().length; i++) {
         eventAttendees.push(event1.getListofAttendees()[i].getName());
     }
     //eventID = event.getID(); or this
