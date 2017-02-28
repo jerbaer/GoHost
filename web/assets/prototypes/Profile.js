@@ -53,9 +53,15 @@ function Profile () {
     this.canUserSee = function () {
         // For if we want to implement blocking people
     };
+    
     this.getIdProfile = function () {
-        return this.iduser;
+        return this.idprofile;
     };
+    
+    this.getIdUser = function () {
+        return this.iduser;
+    }
+    
     this.getName = function () {
         return this.owner.getName();
     };
