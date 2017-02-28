@@ -135,7 +135,7 @@ function getEvent() {
             window.location.href = url;
             window.location.reload(true);
         });
-        newA.addClass("alert-link");
+        newA.addClass("alert-link close").attr('data-dismiss', alert).attr('aria-label', close);
         newH7.append(newA);
         newH6.append(newH7);
         newH6.append('<br/>');
