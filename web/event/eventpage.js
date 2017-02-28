@@ -17,6 +17,7 @@ var eventCategory;
 var eventLocation;
 var eventIDs;
 
+//Still don't know where to call this
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
     var t = this.split(/[- :T]/);
     return new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
@@ -28,6 +29,8 @@ function setUpComponents() {
     eventid = (window.location.href.split('#'))[1];
     user = new User();
     user.create(id);
+    getCategories();
+    getLocations();
 
     //Call function to display the event based on the relation of the
     //userto that event. Host, Attendee, neither
@@ -65,6 +68,31 @@ function setUpComponents() {
         $('#inviteSpan').hide();
         $('#hostOnly').hide();
         // Make error div for can't see
+    }
+}
+
+function getCategories() {
+    var url = "http://143.44.67.0:13774/GoHost/api/category/all";
+    $.getJSON(url).done(categoriesFollowUp);
+}
+function getLocations() {
+    var url = "http://143.44.67.0:13774/GoHost/api/location/all";
+    $.getJSON(url).done(locationsFollowUp);
+}
+
+function categoriesFollowUp(data) {
+    eventsCat = $('#eventCat');
+    for (i = 0; i < data.length; i++) {
+        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        eventsCat.append(newHr);
+    }
+}
+
+function locationsFollowUp(data) {
+    eventsLoc = $('#eventLoc');
+    for (i = 0; i < data.length; i++) {
+        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        eventsLoc.append(newHr);
     }
 }
 
