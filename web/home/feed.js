@@ -14,7 +14,7 @@ function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
-    //getProfile();
+    getProfile();
 }
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
     var t = this.split(/[- :T]/);
