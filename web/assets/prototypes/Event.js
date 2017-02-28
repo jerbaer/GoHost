@@ -253,6 +253,7 @@ function Event() {
     };
     
     this.removeUserFromEvent = function (iduser) {
+
         
     };
     
