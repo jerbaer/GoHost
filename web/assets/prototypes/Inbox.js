@@ -28,7 +28,7 @@ function Inbox() {
         this.notifications = new Array();
         for(var i=0;i<data.length;i++){
             var notification1 = new Notification();
-            notification1.createFromDB(data[i].idevent);
+            notification1.createFromDB(data[i].idnotification);
             this.notifications.push(notification1);
         }
     };
