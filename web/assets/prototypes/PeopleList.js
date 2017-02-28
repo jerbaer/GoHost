@@ -80,7 +80,7 @@ function PeopleList() {
         for (var n = 0; n < data.length; n++) {
             this.user1 = new User();
             this.user1.create(data[n].iduser);
-            if (!this.isUserOnList(user1)&& user1.getID()!=this.owner.getID())
+            if (!this.isUserOnList(this.user1)&& this.user1.getID()!=this.owner.getID())
             this.people.push(this.user1);
         }
 

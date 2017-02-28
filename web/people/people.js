@@ -43,8 +43,8 @@ function getStrangersStrings(){
     var newH, newA, newP, peopleList;
     var n, url;
     // this part might need to change/be more specific with bootstrap classes
-    peopleList = $('#friends');
-    for (n = friends.getSize() - 1; n > -1; n--) {
+    peopleList = $('#strangers');
+    for (n = strangers.getSize() - 1; n > -1; n--) {
         url = ".../profile/index.html#" + peopleUserIDs[n];
         newA = $('<a>').attr('href', url).text(peopleNames[n]).on('click', function () {
             window.locaton.href = url;
@@ -59,7 +59,7 @@ function getStrangersStrings(){
         peopleList.append(newH);
         peopleList.append(newP);
     }
-    $('#friends').show();    
+    $('#strangers').show();    
 }
 
 function getFriendsStrings() {
@@ -76,7 +76,7 @@ function getFriendsStrings() {
     peoplePictures = null;
     peopleDescriptions = null;
     peopleIDs = null;
-    getStringsFromPeople(friends);
+    getStringsFromStrangers(friends);
     var newH, newA, newP, peopleList;
     var n, url;
     // this part might need to change/be more specific with bootstrap classes
@@ -103,6 +103,23 @@ function getFriendsStrings() {
 function getStringsFromPeople(PeopleList) {
     PeopleList.getFriends();
     list = PeopleList.getFriendsList();
+    peopleNames = new Array(list.length);
+    peoplePictures = new Array(list.length);
+    peopleDescriptions = new Array(list.length);
+    peopleIDs = new Array(list.length);
+    peopleUserIDs = new Array(list.length);
+    for (i = 0; i < list.length; i++) {
+        list[i].createProfile();
+        peopleNames[i] = list[i].getName();
+        peoplePictures[i] = list[i].getPicture();
+        peopleDescriptions[i] = list[i].getDescription();
+        peopleIDs[i] = list[i].getProfileID();
+        peopleUserIDs[i] = list[i].getID();
+    }
+}
+function getStringsFromStrangers(PeopleList) {
+    
+    list = PeopleList.getPeopleList();
     peopleNames = new Array(list.length);
     peoplePictures = new Array(list.length);
     peopleDescriptions = new Array(list.length);
