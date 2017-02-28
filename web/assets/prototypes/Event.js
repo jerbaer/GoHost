@@ -52,6 +52,7 @@ function Event() {
         this.category.retrieveName();
         this.accessibility = data.accessibility;
         this.visibility = data.visibility;
+        // Need to populate users
     };
 
 
