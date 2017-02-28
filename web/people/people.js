@@ -32,7 +32,7 @@ function getStrangersStrings(){
     if (friends !== null)
         friends = null;
     if (strangers !== null)
-        stragners = null;
+        strangers = null;
     user.createStrangersList();
     strangers = user.getStrangersList();
     peopleNames = null;
