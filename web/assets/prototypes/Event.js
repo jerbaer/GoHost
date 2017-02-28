@@ -254,14 +254,28 @@ function Event() {
     
     this.removeUserFromEvent = function (iduser) {
         $.ajax({
-            url: this.coreUrl + 'attendee/leave?iduser=' + this.iduser,
-            type: 'DELETE',
+            url: this.coreUrl + 'attendee/iduser?iduser=' + this.iduser,
+            type: 'GET',
             success: this.getRight
         });
         
     };
-    this.getRight = function(){
+    this.getRight = function(data){
+        var idattendee = 0;
+        for(var i =0; i<data.length; i++){
+            if (data[i].idevent == this.idevent){
+                idattendee = data[i].idattendee;
+                this.removeUser(idattendee);
+            }
+          
+        }
         
+    }
+    this.removeUser = function(idattendee){
+        $.ajax({
+            url: this.coreUrl + 'attendee/' + this.idattendee,
+            type: 'DELETE',
+        });
     }
     
     this.editDescription = function (description) {
