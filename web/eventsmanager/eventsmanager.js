@@ -102,8 +102,8 @@ function getHostStrings() {
     eventCategories = null;
     eventLocations = null;
     getStringsFromEvents(eventsHosted);
-    var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsList;
-    var n, url;
+    var newH, newA, newA2, newHr, newH1, newH2, newH3, newH4, newH5, eventsList;
+    var n, url, url2;
     eventsList = $('#host');
     eventsList.append('<br />');
     for (n = eventsHosted.getSize() - 1; n > -1; n--) {
@@ -111,15 +111,18 @@ function getHostStrings() {
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;
             window.location.reload(true);
-            sessionStorage.setItem('eventid', eventIDs[n]);
         });
-        // make host name a link (for attendng too)
-        newH1 = $('<p>').text(eventHosts[n]);
+        url2 = "../profile/index.html#" + hostIDs[n];
+        newA2 = $('<a>').attr('href', url2).text(eventHosts[n]).on('click', function () {
+            window.location.href = url2;
+            window.location.reload(true);
+        });
         newH2 = $('<p>').text(eventStartTimes[n]);
         newH3 = $('<p>').text(eventEndTimes[n]);
         newH4 = $('<p>').text(eventCategories[n]);
         newH5 = $('<p>').text(eventLocations[n]);
         newH = $('<p>').append(newA);
+        newH1 = $('<p>').append(newA2);
         newHr = $('<hr>');
         
         eventsList.append(newH);
@@ -152,25 +155,29 @@ function getAttendingStrings() {
     eventCategories = null;
     eventLocations = null;
     getStringsFromEvents(eventsAttending);
-    var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsList;
-    var n, url;
+    var newH, newA, newA2, newHr, newH1, newH2, newH3, newH4, newH5, eventsList;
+    var n, url, url2;
     eventsList = $('#attend');
     eventsList.append('<br />');
-    for (n = eventsAttending.getSize() -1 ; n > -1; n--) {
+    for (n = eventsHosted.getSize() - 1; n > -1; n--) {
         url = "../event/index.html#" + eventIDs[n];
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;
             window.location.reload(true);
-            sessionStorage.setItem('eventid', eventIDs[n]);
         });
-        newH1 = $('<p>').text(eventHosts[n]);
+        url2 = "../profile/index.html#" + hostIDs[n];
+        newA2 = $('<a>').attr('href', url2).text(eventHosts[n]).on('click', function () {
+            window.location.href = url2;
+            window.location.reload(true);
+        });
         newH2 = $('<p>').text(eventStartTimes[n]);
         newH3 = $('<p>').text(eventEndTimes[n]);
         newH4 = $('<p>').text(eventCategories[n]);
-        newH4 = $('<p>').text(eventLocations[n]);
+        newH5 = $('<p>').text(eventLocations[n]);
         newH = $('<p>').append(newA);
+        newH1 = $('<p>').append(newA2);
         newHr = $('<hr>');
-
+        
         eventsList.append(newH);
         eventsList.append(newH1);
         eventsList.append(newH2);

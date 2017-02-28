@@ -57,7 +57,6 @@ function Event() {
         // Need to populate users
     };
 
-
     this.create = function (idhost, idcategory, eventStart, eventEnd, description, title, idvisibility, idaccessibility, idlocation, eventMax) {
         this.tempID = idhost;
         var event = {title: title, idhost: idhost, maxattendees: parseInt(eventMax), /*idlocation: idlocation,*/ visibility: parseInt(idvisibility), accessibility: parseInt(idaccessibility), starttime: new Date(eventStart), endtime: new Date(eventEnd), description: description, idcategory: parseInt(idcategory)};
@@ -94,7 +93,9 @@ function Event() {
             //}
         //}
     };
-
+    this.getListofAttendees = function () {
+        return this.users;
+    };
     this.getEventStart = function () {
         return this.eventStart;
     };

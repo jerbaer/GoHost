@@ -26,20 +26,19 @@ function setUpComponents() {
     canSee = profile1.canUserSee();
 
     if (isOwner) {
-        // Hide add friend button
-        // Show edit/delete settings
+        $('#addFriend').hide();
         $('#joinEvent').hide();
         $('#editProfile').on('click', editProfile);
         $('#editUser').on('click', editAccount);
         $('#deleteAcc').on('click', deleteAccount);
     } else if (isFriend) {
-        // Hide add friend button
-        // Hide edit/delete settings
+        $('#addFriend').hide();
+        $('#ownerOnly').hide();
     } else if (canSee) {
-        // Hide edit/delete settings
-        // Show add friend
+        $('#ownerOnly').hide();
+        $('#addFriend').on('click', addFriend);
     } else {
-        // Show error div
+        $('#profileDetails').hide();
     }
 }
 

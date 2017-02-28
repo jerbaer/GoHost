@@ -7,6 +7,7 @@ var isHost = false;
 var isAttendee = false;
 var canJoin = false;
 var canSee = false;
+var eventAttendees = [];
 var eventTitle;
 var eventHost;
 var eventStartTime;
@@ -78,12 +79,21 @@ function getEvent() {
     newH2 = $('<p>').text(eventEndTime);
     newH3 = $('<p>').text(eventCategory);
     newH4 = $('<p>').text(eventLocation);
+    newH5 = $('<p>').text("Event Attendees:");
+    newH6 = $('<div>');
+    
+    for (i = 0; i < eventAttendees.length; i++) {
+        newH7 = $('<p>').text(eventAttendees[i]);
+        newH6.append(newH7);//Does this work??
+    }
 
     eventDetails.append(newH);
     eventDetails.append(newH1);
     eventDetails.append(newH2);
     eventDetails.append(newH3);
     eventDetails.append(newH4);
+    eventDetails.append(newH5);
+    eventDetails.append(newH6);
     eventDetails.append('<br />');
 }
 
@@ -140,7 +150,11 @@ function getStringsFromEvent(event1) {
     var x = event1.getEventEnd().mysqlToDate();
     eventEndTime = x.toString().replace("GMT-0600 (Central Standard Time)", "");
     eventCategory = event1.getCategory();
-    eventCategory = event1.getLocation();
+    eventLocation = event1.getLocation();
+    //Goes through and fills out eventAttendees
+    for (i = 0; i < event1.getListofAttendees.length; i++) {
+        eventAttendees.push(event1.getListofAttendees()[i].getName());
+    }
     //eventID = event.getID(); or this
 }
 
