@@ -44,56 +44,73 @@
         </div>
         <div class="container">
             <br>
-            <!-- List of friends, clicking one takes you to their user page -->
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#friends" id="friendsTab">My Friends</a></li>
-                <li><a data-toggle="tab" href="#strangers" id="strangersTab">Discover People</a></li>
-            </ul>
+            <div class="row">
+                <div class="col-sm-8">
+                    <!-- List of friends, clicking one takes you to their user page -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#friends" id="friendsTab">My Friends</a></li>
+                        <li><a data-toggle="tab" href="#strangers" id="strangersTab">Discover People</a></li>
+                    </ul>
 
-            <div class="tab-content">
-                <div id="friends" class="tab-pane fade in active">
-                    <br>
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <img class="img-responsive thumbnail" style="width:75%" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
+                    <div class="tab-content">
+                        <div id="friends" class="tab-pane fade in active">
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <img class="img-responsive thumbnail" style="width:75%" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
+                                </div>
+                                <div class="col-xs-10">
+                                    <h3><a href="../profile/index.html">Friend</a></h3>
+                                    <p>Description</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <img class="img-responsive thumbnail" style="width:75%" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
+                                </div>
+                                <div class="col-xs-10">
+                                    <h3><a href="../profile/index.html">Friend</a></h3>
+                                    <p>Description</p>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="col-xs-10">
-                            <h3><a href="../profile/index.html">Friend</a></h3>
-                            <p>Description</p>
+                        <div id="strangers" class="tab-pane fade">
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <img class="img-responsive thumbnail" style="width:75%" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
+                                </div>
+                                <div class="col-xs-10">
+                                    <h3><a href="../profile/index.html">Not Friend</a></h3>
+                                    <p>Description</p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <img class="img-responsive thumbnail" style="width:75%" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
+                                </div>
+                                <div class="col-xs-10">
+                                    <h3><a href="../profile/index.html">Not Friend</a></h3>
+                                    <p>Description</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <img class="img-responsive thumbnail" style="width:75%" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
-                        </div>
-                        <div class="col-xs-10">
-                            <h3><a href="../profile/index.html">Friend</a></h3>
-                            <p>Description</p>
-                        </div>
-                    </div>
-                    
                 </div>
-                <div id="strangers" class="tab-pane fade">
-                    <br>
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <img class="img-responsive thumbnail" style="width:75%" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
-                        </div>
-                        <div class="col-xs-10">
-                            <h3><a href="../profile/index.html">Not Friend</a></h3>
-                            <p>Description</p>
-                        </div>
+                <div class="col-xs-2 col-sm-offset-2">
+                    <!-- User Profile Information Here -->
+                    <div class="row" id="profPic">
+                        <!-- Profile Picture Here -->
+                        <img class="img-responsive" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
                     </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <img class="img-responsive thumbnail" style="width:75%" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
-                        </div>
-                        <div class="col-xs-10">
-                            <h3><a href="../profile/index.html">Not Friend</a></h3>
-                            <p>Description</p>
-                        </div>
+                    <div class="row" id="profName">
+                        <!-- User Name -->
+                    </div>
+                    <div class="row" id="profDesc">
+                        <!-- User Description -->
                     </div>
                 </div>
             </div>
