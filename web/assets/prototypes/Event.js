@@ -339,7 +339,7 @@ function Event() {
     };
 
     this.refreshEdits = function () {
-        var event = {title: title, idhost: host, maxattendees: eventMax, idlocation: this.location.getID(), idvisibility: visibility, idaccessibility: accessibility, starttime: eventStart, endtime: eventEnd, description: description, idcategory: this.category.getID()};
+        var event = {idevent: this.idevent, title: this.title, idhost: this.host, maxattendees: this.eventMax, idlocation: this.location.getID(), idvisibility: this.visibility, idaccessibility: this.accessibility, starttime: this.eventStart, endtime: this.eventEnd, description: this.description, idcategory: this.category.getID()};
         $.ajax({
             url: coreUrl + 'event/' + this.idevent,
             type: 'PUT',
