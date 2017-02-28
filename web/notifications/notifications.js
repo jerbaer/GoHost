@@ -5,6 +5,7 @@
  */
 var id = 0;
 var notifications = null;
+var notificationsFeed = null;
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
@@ -14,55 +15,80 @@ function setUpComponents() {
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
     var t = this.split(/[- :T]/);
     return new Date(t[0], t[1]-1, t[2], t[3]||0, t[4]||0, t[5]||0);
-};
+}
 
-function getNotifications() {
+//This will go through the list of notifications, checking what type of notification
+//it is all
+function getNotifications(inbox) {
     inbox = new Inbox();
     inbox.create(id);
     inbox.getNotifications();
-
-    setTimeout(getHTMLFromNotifications(inbox), 10000);
-    //this is where it connects with HTML to print the feed in objects
-    
-    //The way I have this set up, I would only need to append the shit
-    //inside the notifications array into the notifications div
-    
     notificationsFeed = $('#notifications');
-    for (var n = inbox.getSize() - 1; n > -1; n--) {
-        notificationsFeed.append(notifications[n]);
-    }
-}
-//This will go through all the different notifications, calling getHTML on them
-//Which calls createHTML inside the notification object. It stores all the div
-//objects returned into a singule array. This way, I will only have to append
-//the divs in this one array; notifications
-function getHTMLFromNotifications(inbox) {
     notifications = new Array();
     for (var i = 0; i < inbox.getSize(); i++) {
-        notifications.push(inbox.getNotificationsList()[i].getHTML());
+        notifications.push(inbox.getNotificationsList()[i]);
+        //logic for checking what kind of notification it is goes here now
+        if(notifications[i].from.getID() ==0){
+            //This is a system notification that doesn't require input from the user. This will probably not be implemented soon
+            createSystemNotification(notifications[i]);
+        } else {
+            //This is a request that requires input from the user
+            if (notifications[i].status == 0){
+                //this is an event invite
+                createEventInvite(notifications[i]);
+            } else if (notifications[i].status == 1){
+                //this is an event request
+                createEventRequest(notifications[i]);
+            } else if (notifications[i].status == 2){
+                //this is a friend request
+                createFriendRequest(notifications[i]);
+            }
+        }
     }
 }
+//This will not require action from the user. All it will have is dismiss
+//notification button that deletes the notification
+function createSystemNotification(notification){
+        
+}
+//This will just have a button that allows the user to join the event
+function createEventInvite(notification) {
+         
+}
+     
+function createEventRequest(notification){
+    var newH, newH1, newH2, newH3;
+    newH = $('<hr>');
+    newH1 = $('<p>').text("User " + notification.from.getName() + " has requested to join "+
+        "your event " + notification.event.getTitle() + ".");
+    newH2 = $('<button>').text("Accept").on('click', acceptEventRequest());
+    newH3 = $('<button>').text("Reject").on('click', rejectEventRequest());
+    notificationsFeed.append(newH1);
+    notificationsFeed.append(newH2);
+    notificationsFeed.append(newH3);
+    notificationsFeed.append(newH);
+    //What is this for???
+    this.isSetUp = true;
+}
 
-//I have those functions inside the notification prototype. Keeping those empty
-//functions here in case they actually need to be here.
-function eventInvite() {
-        //Initializes an EventInvite object and pushes it to the db
+function acceptEventRequest(){
+    //adds the this.from user to the list of attendees for this.event
+    //This does not have to have the post request here. It should just call
+    //add user to event function on the event object
+    //Then deletes the notification
 }
     
-function eventRequest() {
-        //Initializes an EventRequest object and pushes to the db
+function rejectEventRequest(){
+    if(this.isSetUp == true)
+    this.deleteNotification();
+        
 }
-    
-function friendRequest() {
-        //Initializes a FriendRequest object and pushes to the db
+     
+//This creates the html associated with the friend request notification
+//Very similar to the create event request function
+function createFriendRequest(notification){
+         
 }
-function acceptRequest(){
-    
-}
-function rejectRequest(){
-    
-}
-
 
 $(document).ready(setUpComponents);
 
