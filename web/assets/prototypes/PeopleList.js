@@ -9,7 +9,7 @@
 function PeopleList() {
     this.people = null; //array of user objects with people in them
     this.friendsIDs = null;
-    this.owner = 0;
+    this.owner = null;
     this.idevent = 0;
     this.viewType =0;
     this.size = 0;
@@ -87,8 +87,16 @@ function PeopleList() {
     };
     
     //Does a get request for all users attending a certain event
-    this.sendFriendRequest = function(newfriend){
-        
+    this.addFriend = function(newfriend){
+           var note = {sender : newfriend.getID(), iduser : this.owner.getID(), isread: 0, notificationstatus: 2, timesent: }
+           $.ajax({
+               url : coreUrl + "attendee",
+               type: 'POST',
+               data: JSON.stringify(user),
+               dataType: 'json',
+               contentType: 'application/json'
+
+           })
     }
 
     this.getPeopleList = function () {

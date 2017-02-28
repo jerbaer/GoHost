@@ -68,7 +68,8 @@ function getStringsFromProfile(profile1) {
 }
 
 function addFriend() {
-    // Add accesor to owner's friend PeopleList
+    owner.createPeopleList();
+    owner.getPeopleList().addFriend(user);
     window.location.reload();
 }
 
