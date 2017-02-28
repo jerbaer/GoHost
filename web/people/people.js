@@ -39,7 +39,7 @@ function getStrangersStrings(){
     peoplePictures = null;
     peopleDescriptions = null;
     peopleIDs = null;
-    getStringsFromPeople(strangers);
+    getStringsFromStrangers(strangers);
     var newH, newA, newP, peopleList;
     var n, url;
     // this part might need to change/be more specific with bootstrap classes
@@ -76,7 +76,7 @@ function getFriendsStrings() {
     peoplePictures = null;
     peopleDescriptions = null;
     peopleIDs = null;
-    getStringsFromStrangers(friends);
+    getStringsFromPeople(friends);
     var newH, newA, newP, peopleList;
     var n, url;
     // this part might need to change/be more specific with bootstrap classes
