@@ -9,7 +9,7 @@ function Profile () {
     // might not need to make owner object and just make it in the functions everytime we need it instead
     this.owner = null;
     this.description = '';
-    this.photoURL - '';
+    this.photoURL = '';
     this.accessor = null;
     
     this.create = function (iduser, accessor1) { // might pass iduser instead as mentioned above
