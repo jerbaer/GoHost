@@ -50,11 +50,9 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public String editIdprofile(@PathParam("id") Integer id, User entity) {
-        entity.setIdprofile(id);
+    public void editIdprofile(@PathParam("id") Integer id, User entity) {
         super.edit(entity);
-        em.flush();
-        return entity.getIdprofile().toString();
+
     }
 
     @DELETE

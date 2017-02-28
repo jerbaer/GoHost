@@ -103,6 +103,12 @@ function User() {
     this.getName = function () {
         return this.name;
     };
+    this.getEmail = function(){
+        return this.email;
+    };
+    this.getPassword = function(){
+        return this.password;
+    };
     
     //idk if this is necessary as just doing what Profile does but for conveniene sake
     this.getDescription = function () {

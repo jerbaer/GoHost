@@ -44,9 +44,15 @@ sys_init = {
         } else {
             $('#regWarning').show();
         }
+        var user = new User();
+        user.create(parseInt(sessionStorage.getItem('id')));
+        var iduser = user.getID();
+        var email = user.getEmail();
+        var password = user.getPassword();
+        var name = user.getName();
         sys_init.profile = new Profile();
         sys_init.profile.create(parseInt(sessionStorage.getItem('id')),parseInt(sessionStorage.getItem('id')));
-        var profileId = {idprofile: sys_init.profile.getIdProfile()};
+        var profileId = {idprofile: sys_init.profile.getIdProfile(), iduser: iduser, password: password, name: name, email: email};
         $.ajax({
             url: sys_init.coreUrl + 'user/' + parseInt(sessionStorage.getItem('id')),
             type: 'PUT',
