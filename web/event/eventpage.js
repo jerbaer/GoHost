@@ -58,6 +58,7 @@ function setUpComponents() {
         $('#request').hide();
         $('#joinEvent').hide();
         $('#host').hide();
+        $('#hostOnly').hide();
         $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
     } else if (canJoin) {
@@ -65,12 +66,14 @@ function setUpComponents() {
         $('#inviteSpan').hide();
         $('#leaveEvent').hide();
         $('#host').hide();
+        $('#hostOnly').hide();
         $('#joinEvent').on('click', joinEvent);
     } else if (canSee) {
         $('#joinEvent').hide();
         $('#leaveEvent').hide();
         $('#inviteSpan').hide();
         $('#host').hide();
+        $('#hostOnly').hide();
         $('#request').on('click', requestToJoinEvent);
     } else {
         $('#eventDetails').hide();
@@ -78,6 +81,7 @@ function setUpComponents() {
         $('#leaveEvent').hide();
         $('#inviteSpan').hide();
         $('#host').hide();
+        $('#hostOnly').hide();
         // Make error div for can't see
     }
 }
@@ -153,7 +157,7 @@ function makeAttendeeAlert(iduser, i) {
         window.location.href = url;
         window.location.reload(true);
     });
-    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").html("&times;").attr('id', "host")
+    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").html("&times;").attr('id', "hostOnly")
     if (event1.getHostID() !== iduser) {
         newH7.append(newA2);
     }
