@@ -11,6 +11,8 @@ function Profile () {
     this.description = '';
     this.photoURL = '';
     this.accessor = null;
+    this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
+
     
     this.create = function (iduser, accessor1) { // might pass iduser instead as mentioned above
         this.iduser = iduser;
@@ -26,15 +28,14 @@ function Profile () {
     };
     
     this.isCurrentUser = function () {
-        if(this.owner === accessor)
+        if(this.owner === this.accessor)
             return true;
         return false;
     };
     
     this.isFriend = function () {
-        friends = new PeopleList();
-        friends.create(iduser);
-        if(friends.isUserOnList(this.accessor.getID()))
+        owner.createPeopleList()
+        if(owner.getPeopleList().isUserOnList(this.accessor))
             return true;
         return false;
     };
@@ -89,13 +90,24 @@ function Profile () {
     };
     
     // Might move this to the top and change create like Event is organized
-    this.createProfileFromDB = function (iostream) {
-        // var url = 
-        //ajax stuff
+    this.createFromDB = function (owner1, accessor1) {
+        this.owner = owner1;
+        this.iduser = this.owner.getID();
+        this.accessor = accessor1;
+        var url = this.coreUrl + "profile/iduser?iduser=" + this.iduser;
+        $.ajax({
+            dataType: "json",
+            url: url,
+            type: 'GET',
+            context: this,
+            success: this.createProfileFollowUp
+        })
     };
     
     this.createProfileFollowUp = function (data) {
-        // populate member variables
+        this.description = data.description;
+        
+       
     };
     
     this.getPeopleList = function () {

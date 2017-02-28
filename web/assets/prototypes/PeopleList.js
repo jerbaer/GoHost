@@ -10,7 +10,7 @@ function PeopleList() {
     this.people = null; //array of user objects with people in them
     this.friends = null;
     this.friendsIDs = null;
-    this.owner = 0;
+    this.owner = null;
     this.idevent = 0;
     this.viewType =0;
     this.size = 0;
@@ -39,11 +39,12 @@ function PeopleList() {
     
     this.getFriends = function () {
         //get friends from database and populate list, fill in size
-        var url = this.coreUrl + "friend/iduser?iduser=" + this.owner;
+        var url = this.coreUrl + "friend/iduser?iduser1=" + this.owner.getID();
         $.ajax({
             dataType: "json",
             type: "get",
             url: url,
+            async: false,
             context: this,
             success: this.friendFollowUp
         });
@@ -54,7 +55,7 @@ function PeopleList() {
         this.friends = [];
         for (var n = 0; n < data.length; n++) {
             this.user1 = new User();
-            this.user1.create(data[n].iduser);
+            this.user1.create(data[n].iduser1);
             this.people.push(this.user1);
             //this array is only being populated so I can splice its
             //contents out of the people array for the not friends list
@@ -90,8 +91,16 @@ function PeopleList() {
     };
     
     //Does a get request for all users attending a certain event
-    this.sendFriendRequest = function(newfriend){
-        
+    this.addFriend = function(newfriend){
+           var note = {sender : newfriend.getID(), iduser : this.owner.getID(), isread: 0, notificationstatus: 2, timesent: new Date()}
+           $.ajax({
+               url : this.coreUrl + "notification",
+               type: 'POST',
+               data: JSON.stringify(note),
+               dataType: 'json',
+               contentType: 'application/json'
+
+           })
     }
 
     this.getPeopleList = function () {
@@ -102,10 +111,10 @@ function PeopleList() {
         return this.people.length;
     }
     
-    this.isUserOnList = function (iduser) {
-        for (var i = 0; i < size; i++) {
-            if (iduser = people[i].getID()) {
-                return true
+    this.isUserOnList = function (user) {
+        for (var i = 0; i < this.friends.size; i++) {
+            if (user.getID() == this.friends[i].getID()) {
+                return true;
             }
         }
         return false;

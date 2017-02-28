@@ -41,7 +41,7 @@ function User() {
     this.createPeopleList = function () {
         this.PeopleList = new PeopleList();
         //
-        this.PeopleList.create(this.iduser);
+        this.PeopleList.create(this.iduser, null, 1);
     };
     
     this.createStrangersList = function () {

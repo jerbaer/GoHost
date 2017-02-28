@@ -24,7 +24,9 @@ function setUpComponents() {
     isOwner = profile1.isCurrentUser();
     isFriend = profile1.isFriend();
     canSee = profile1.canUserSee();
-
+    isOwner = false;
+    isFriend = false;
+    canSee = true;
     if (isOwner) {
         $('#addFriend').hide();
         $('#joinEvent').hide();
@@ -44,7 +46,7 @@ function setUpComponents() {
 
 function getProfile() {
     profile1 = new Profile();
-    profile1.createFromDB(user, accessor);
+    profile1.createFromDB(owner, accessor);
     getStringsFromProfile(profile1);
     // Popualte the html page
     profName = $('#profName');
@@ -57,17 +59,18 @@ function getProfile() {
     newP = $('<p>').text(profileDescription);
 
     profName.append(newH1);
-    profDesc.append(hewP);
+    profDesc.append(newP);
 }
 
 function getStringsFromProfile(profile1) {
     profileName = profile1.getName();
-    profilePicture = profile1.getPicture();
-    profileDescription = profile1.getDescriprion();
+    //profilePicture = profile1.getPicture();
+    profileDescription = profile1.getDescription();
 }
 
 function addFriend() {
-    // Add accesor to owner's friend PeopleList
+    owner.createPeopleList();
+    owner.getPeopleList().addFriend(accessor);
     window.location.reload();
 }
 

@@ -293,6 +293,7 @@ function Event() {
         //Need to make sure the attendee facade supports this 
         var url = this.coreUrl + "invited/idevent?idevent=" + this.idevent;
         $.ajax({
+            type: 'get',
             dataType: "json",
             url: url,
             context: this,
@@ -313,6 +314,7 @@ function Event() {
         $.ajax({
             dataType: "json",
             url: url,
+            type: 'GET',
             context: this,
             success: this.attendingFollowUp
         });
