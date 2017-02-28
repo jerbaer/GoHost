@@ -190,7 +190,7 @@ function getAttendingStrings() {
 }
 
 function createEvent() {
-    if($('#eventStart').val() !== null && ('#eventEnd').val() !== null) {
+    if($('#eventStart').val() !== null || ('#eventEnd').val() !== null) {
         eventTitle = $('#eventTitle').val();
         eventCat = $('#eventCat').val();
         eventStart = $('#eventStart').val();
