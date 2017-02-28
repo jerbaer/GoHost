@@ -61,7 +61,7 @@ function createEventInvite(notification) {
             "their event " + notification.event.getTitle() + ".");
     newH2 = $('<button>').text("Accept").on('click', function () {
         if (isSetUp == true) {
-            var user = {iduser: id, idevent: notification.event.getID()};
+            var user = {iduser: id, idevent: notification.event.getID()}
             $.ajax({
                 url: coreUrl + "attendee",
                 type: 'POST',
@@ -69,7 +69,7 @@ function createEventInvite(notification) {
                 dataType: 'json',
                 contentType: 'application/json'
 
-            });
+            })
             notification.deleteNotification();
         }
     });
@@ -96,7 +96,7 @@ function createFriendRequest(notification) {
     newH1 = $('<p>').text("User " + notification.from.getName() + " has requested to be your friend.");
     newH2 = $('<button>').text("Accept").on('click', function () {
         if (isSetUp == true) {
-            var user = {iduser1: id, iduser2: notification.from.getID()};
+            var user = {iduser1: id, iduser2: notification.from.getID()}
             $.ajax({
                 url: coreUrl + "friend",
                 type: 'POST',
@@ -104,8 +104,8 @@ function createFriendRequest(notification) {
                 dataType: 'json',
                 contentType: 'application/json'
 
-            });
-            var user2 = {iduser1: notification.from.getID(), iduser2: id};
+            })
+            var user2 = {iduser1: notification.from.getID(), iduser2: id}
             $.ajax({
                 url: coreUrl + "friend",
                 type: 'POST',
@@ -113,7 +113,7 @@ function createFriendRequest(notification) {
                 dataType: 'json',
                 contentType: 'application/json'
 
-            });
+            })
             notification.deleteNotification();
         }
     });
@@ -133,6 +133,9 @@ function createFriendRequest(notification) {
     //What is this for???
     isSetUp = true;
 
+
+}
+
 function createEventRequest(notification) {
     var newH, newH1, newH2, newH3;
     newH = $('<hr>');
@@ -140,7 +143,7 @@ function createEventRequest(notification) {
             "your event " + notification.event.getTitle() + ".");
     newH2 = $('<button>').text("Accept").on('click', function () {
         if (isSetUp == true) {
-            var user = {iduser: notification.from.getID(), idevent: notification.event.getID()};
+            var user = {iduser: notification.from.getID(), idevent: notification.event.getID()}
             $.ajax({
                 url: coreUrl + "attendee",
                 type: 'POST',
@@ -148,7 +151,7 @@ function createEventRequest(notification) {
                 dataType: 'json',
                 contentType: 'application/json'
 
-            });
+            })
             notification.deleteNotification();
         }
     });

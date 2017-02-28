@@ -354,10 +354,6 @@ function Event() {
         }
     };
     
-    this.inviteUser = function (iduser) {
-        
-    };
-    
     this.getUsersAttending = function () {
         //Need to make sure the attendee facade supports this 
         var url = this.coreUrl + "attendee/idevent?idevent=" + this.idevent;

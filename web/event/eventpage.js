@@ -87,9 +87,15 @@ function setUpComponents() {
         // Make error div for can't see
     }
 }
+
 function requestToJoinEvent() {
     notification = new Notification();
     notification.create(event1.getHost().getID(), user.getID(), event1.getID(), new Date(), 0, 1);
+}
+
+function inviteToEvent(iduser) {
+    notification = new Notification();
+    notification.create(iduser, event1.getHost().getID(), event1.getID(), new Date(), 0, 0);
 }
 
 function getCategories() {
@@ -152,7 +158,7 @@ function getEvent() {
 function makeAttendeeAlert(iduser, i) {
     newH7 = $('<div>').addClass("alert alert-info alert-dismissable").on('close.bs.alert', function () {
         var n = iduser;
-        event1.removeUserFromEvent(n);
+        inviteToEvent(n);
     });
     url = "../profile/index.html#" + iduser;
     newA = $('<a>').addClass("alert-link").attr('href', url).text(eventAttendees[i]).on('click', function () {
