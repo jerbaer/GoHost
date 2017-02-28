@@ -107,7 +107,7 @@ function getProfile() {
     newP = $('<p>').text(profileDescription);
 
     profName.append(newH1);
-    profDesc.append(hewP);
+    profDesc.append(newP);
 }
 
 function getStringsFromProfile(profile1) {
