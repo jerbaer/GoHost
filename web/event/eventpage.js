@@ -129,14 +129,13 @@ function getEvent() {
     newHr = $('<hr>');
 
     for (i = 0; i < eventAttendees.length; i++) {
-        newH7 = $('<p>').text(eventAttendees[i]);
+        newH7 = $('<div>').addClass("alert alert-info alert-dismissable");
         url = "../profile/index.html#" + attendeeIDs[i];
         newA = $('<a>').attr('href', url).text(eventAttendees[i]).on('click', function () {
             window.location.href = url;
             window.location.reload(true);
         });
         newA.addClass("alert-link");
-        newH7.addClass("alert alert-info alert-dismissable");
         newH7.append(newA);
         newH6.append(newH7);
         newH6.append('<br/>');
