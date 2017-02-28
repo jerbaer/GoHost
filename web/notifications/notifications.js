@@ -56,7 +56,12 @@ function eventRequest() {
 function friendRequest() {
         //Initializes a FriendRequest object and pushes to the db
 }
-
+function acceptRequest(){
+    
+}
+function rejectRequest(){
+    
+}
 
 
 $(document).ready(setUpComponents);

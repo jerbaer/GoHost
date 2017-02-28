@@ -28,6 +28,7 @@ function Notification(){
     this.read = null;
     this.timestamp = 0;
     this.coreUrl= "http://143.44.67.0:13774/GoHost/api/";
+    this.isSetUp = false;
     
     //Need to make sure that the facade actually supports this request
     this.createFromDB = function (iduser){
@@ -124,6 +125,7 @@ function Notification(){
         this.newH.append(this.newH1);
         this.newH.append(this.newH2);
         this.newH.append(this.newH3);
+        this.isSetUp = true;
         //Might need to come back and tweak the html if it doesn't look good
     };
     
@@ -138,14 +140,9 @@ function Notification(){
     };
     
     this.rejectEventRequest = function(){
-        $.ajax({
-         url: this.coreUrl + "notification/" + this.idnotification,
-         dataType: 'json',
-         contentType: 'application/json',
-         async: true,
-         type: 'DELETE'        
-        });
-       this.refresh();             
+        if(this.isSetUp == true)
+        this.deleteNotification();
+        
     };
      
     //This creates the html associated with the friend request notification
@@ -167,11 +164,13 @@ function Notification(){
     
     //This gets called each time the user interacts with a notification
     //Does this delete every trace of the notification from the db?
-    this.deleteEvent = function () {
+    this.deleteNotification = function () {
         $.ajax({
             url: this.coreUrl + 'notification/' + this.idnotification,
-            type: 'DELETE'
+            type: 'DELETE',
+            async:false
         });
+        this.refresh();
     };
     
     this.editStatus = function(status){
