@@ -55,7 +55,7 @@ function PeopleList() {
         this.friends = [];
         for (var n = 0; n < data.length; n++) {
             this.user1 = new User();
-            this.user1.create(data[n].iduser1);
+            this.user1.create(data[n].iduser2);
             this.people.push(this.user1);
             //this array is only being populated so I can splice its
             //contents out of the people array for the not friends list
@@ -112,8 +112,9 @@ function PeopleList() {
     }
     
     this.isUserOnList = function (user) {
-        for (var i = 0; i < this.friends.size; i++) {
-            if (user.getID() == this.friends[i].getID()) {
+        var userid = user.getID();
+        for (var i = 0; i < this.friends.length; i++) {
+            if (userid == this.friends[i].getID()) {
                 return true;
             }
         }

@@ -19,6 +19,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -65,7 +66,7 @@ public class FriendFacadeREST extends AbstractFacade<Friend> {
     @GET
     @Path("iduser")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Friend> findFriends(@PathParam("iduser1") Integer id) {
+    public List<Friend> findFriends(@QueryParam("iduser1") Integer id) {
         return em.createNamedQuery("Friend.findByIduser1", Friend.class).setParameter("iduser1", id).getResultList();
     }
 
