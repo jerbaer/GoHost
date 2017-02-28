@@ -61,26 +61,26 @@ function createEventRequest(notification){
     newH = $('<hr>');
     newH1 = $('<p>').text("User " + notification.from.getName() + " has requested to join "+
         "your event " + notification.event.getTitle() + ".");
-    newH2 = $('<button>').text("Accept").on('click', acceptEventRequest());
-    newH3 = $('<button>').text("Reject").on('click', rejectEventRequest());
+    newH2 = $('<button>').text("Accept").on('click', acceptEventRequest(notification));
+    newH3 = $('<button>').text("Reject").on('click', rejectEventRequest(notification));
     notificationsFeed.append(newH1);
     notificationsFeed.append(newH2);
     notificationsFeed.append(newH3);
     notificationsFeed.append(newH);
     //What is this for???
-    this.isSetUp = true;
+    //this.isSetUp = true;
 }
 
-function acceptEventRequest(){
+function acceptEventRequest(notification){
     //adds the this.from user to the list of attendees for this.event
     //This does not have to have the post request here. It should just call
     //add user to event function on the event object
     //Then deletes the notification
 }
     
-function rejectEventRequest(){
-    if(this.isSetUp == true)
-    this.deleteNotification();
+function rejectEventRequest(notification){
+    //if(this.isSetUp == true)
+    notification.deleteNotification();
         
 }
      
