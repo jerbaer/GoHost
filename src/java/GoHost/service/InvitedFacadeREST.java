@@ -55,7 +55,7 @@ public class InvitedFacadeREST extends AbstractFacade<Invited> {
     public void remove(@PathParam("id") Integer id) {
         super.remove(super.find(id));
     }
-        @DELETE
+    @DELETE
     @Path("delete")
     public void removeByEvent(@QueryParam("idevent") Integer id) {
         List<Invited> list = em.createNamedQuery("Invited.findByIdevent", Invited.class).setParameter("idevent", new Integer(id)).getResultList();
@@ -70,8 +70,17 @@ public class InvitedFacadeREST extends AbstractFacade<Invited> {
     public Invited find(@PathParam("id") Integer id) {
         return super.find(id);
     }
+    
+    //This might conflict with the 
+    @GET
+    @Path("idevent")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Invited> getUsersAttendingEvent(@QueryParam("idevent") int vis){
+        return em.createNamedQuery("Invited.findByIdevent", Invited.class).setParameter("idevent", new Integer(vis)).getResultList();
+   }
 
     @GET
+    @Path("all")
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Invited> findAll() {
