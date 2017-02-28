@@ -20,11 +20,13 @@ function setUpComponents() {
     accessor = new User();
     accessor.create(id);
 
-    getProfile();
-    isOwner = profile1.isCurrentUser();
-    isFriend = profile1.isFriend();
-    canSee = profile1.canUserSee();
-
+    //getProfile();
+    //isOwner = profile1.isCurrentUser();
+    //isFriend = profile1.isFriend();
+    //canSee = profile1.canUserSee();
+    isOwner = false;
+    isFriend = false;
+    canSee = true;
     if (isOwner) {
         $('#addFriend').hide();
         $('#joinEvent').hide();

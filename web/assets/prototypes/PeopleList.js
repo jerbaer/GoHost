@@ -88,11 +88,11 @@ function PeopleList() {
     
     //Does a get request for all users attending a certain event
     this.addFriend = function(newfriend){
-           var note = {sender : newfriend.getID(), iduser : this.owner.getID(), isread: 0, notificationstatus: 2, timesent: }
+           var note = {sender : newfriend.getID(), iduser : this.owner.getID(), isread: 0, notificationstatus: 2, timesent: new Date()}
            $.ajax({
-               url : coreUrl + "attendee",
+               url : coreUrl + "notification",
                type: 'POST',
-               data: JSON.stringify(user),
+               data: JSON.stringify(note),
                dataType: 'json',
                contentType: 'application/json'
 
