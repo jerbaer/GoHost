@@ -48,20 +48,20 @@ function setUpComponents() {
     
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
-        ('#request').hide();
+        $('#request').hide();
         $('#joinEvent').hide();
         $('#leaveEvent').hide();
         $('#delete').on('click', deleteEvent);
         $('#edit').on('click', editEvent);
         $('#invite').on('click', getFriends);
     } else if (isAttendee) {
-        ('#request').hide();
+        $('#request').hide();
         $('#joinEvent').hide();
         $('#hostOnly').hide();
         $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
     } else if (canJoin) {
-        ('#request').hide();
+        $('#request').hide();
         $('#inviteSpan').hide();
         $('#leaveEvent').hide();
         $('#hostOnly').hide();
