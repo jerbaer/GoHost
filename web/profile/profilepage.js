@@ -79,8 +79,8 @@ function editProfile() {
         //profile1.editPicture($('#picture').val());
     }
     // Might need more code here for picture
-    if ($('#eventCat').val() !== '') {
-        profile1.editDescription($('#desc').val());
+    if ($('#description').val() !== '') {
+        profile1.editDescription($('#description').val());
     }
     profile1.refreshEdits()
 
