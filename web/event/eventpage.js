@@ -47,17 +47,20 @@ function setUpComponents() {
     canSee = event1.canUserSee();
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
+        ('#request').hide();
         $('#joinEvent').hide();
         $('#leaveEvent').hide();
         $('#delete').on('click', deleteEvent);
         $('#edit').on('click', editEvent);
         $('#invite').on('click', getFriends);
     } else if (isAttendee) {
+        ('#request').hide();
         $('#joinEvent').hide();
         $('#hostOnly').hide();
         $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
     } else if (canJoin) {
+        ('#request').hide();
         $('#inviteSpan').hide();
         $('#leaveEvent').hide();
         $('#hostOnly').hide();
@@ -67,6 +70,7 @@ function setUpComponents() {
         $('#leaveEvent').hide();
         $('#inviteSpan').hide();
         $('#hostOnly').hide();
+        $('#request').on('click', requestToJoinEvent);
     } else {
         $('#eventDetails').hide();
         $('#joinEvent').hide();
@@ -227,7 +231,7 @@ function getFriends() {
     peopleDescriptions = null;
     peopleIDs = null;
     getStringsFromPeople(friends);
-    var newH, newA, newP, peopleList;
+    var newH, newA, peopleList;
     var n, url;
     // this part might need to change/be more specific with bootstrap classes
     peopleList = $('#friends');
