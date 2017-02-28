@@ -6,6 +6,8 @@
 var id = 0;
 var notifications = null;
 var notificationsFeed = null;
+var isSetUp = false;
+coreUrl= "http://143.44.67.0:13774/GoHost/api/";
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
@@ -61,17 +63,32 @@ function createEventRequest(notification){
     newH = $('<hr>');
     newH1 = $('<p>').text("User " + notification.from.getName() + " has requested to join "+
         "your event " + notification.event.getTitle() + ".");
-    newH2 = $('<button>').text("Accept").on('click', acceptEventRequest(notification));
-    newH3 = $('<button>').text("Reject").on('click', rejectEventRequest(notification));
+    newH2 = $('<button>').text("Accept").on('click', function(){
+       if(isSetUp==true){
+           var user = {iduser1 : id, iduser2 : notification.from.getID()}
+           $.ajax({
+               url : coreUrl + "friend",
+               type: 'POST',
+               data: JSON.stringify(user),
+               dataType: 'json',
+               contentType: 'application/json'
+               
+           })
+       } 
+    });
+    newH3 = $('<button>').text("Reject").on('click', function() {    if(isSetUp == true){
+        notification.deleteNotification();
+    }
+});
     notificationsFeed.append(newH1);
     notificationsFeed.append(newH2);
     notificationsFeed.append(newH3);
     notificationsFeed.append(newH);
     //What is this for???
-    //this.isSetUp = true;
+    isSetUp = true;
 }
 
-function acceptEventRequest(notification){
+function acceptEventRequest(){
     //adds the this.from user to the list of attendees for this.event
     //This does not have to have the post request here. It should just call
     //add user to event function on the event object
@@ -79,9 +96,9 @@ function acceptEventRequest(notification){
 }
     
 function rejectEventRequest(notification){
-    //if(this.isSetUp == true)
-    notification.deleteNotification();
-        
+    if(isSetUp == true){
+        notification.deleteNotification();
+    }   
 }
      
 //This creates the html associated with the friend request notification

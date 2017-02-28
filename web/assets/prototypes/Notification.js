@@ -22,13 +22,13 @@ function Notification(){
     this.read = null;
     this.timestamp = 0;
     this.coreUrl= "http://143.44.67.0:13774/GoHost/api/";
-    this.isSetUp = false;
     
     //Need to make sure that the facade actually supports this request
-    this.createFromDB = function (iduser){
-        var url = this.coreUrl + "notification/" + iduser;
+    this.createFromDB = function (idnotification){
+        var url = this.coreUrl + "notification/" + idnotification;
         $.ajax({
-            dataType: "json",
+            dataType: 'json',
+            type: 'GET',
             url: url,
             context: this,
             success: this.createFromDBFollowUp,
