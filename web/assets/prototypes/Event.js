@@ -163,6 +163,34 @@ function Event() {
             return false;
     };
     
+    this.isOpenEvent = function () {
+        if(this.accessibility === 0) // if event is open
+            return true;
+        return false;
+    }
+    
+    this.canUserJoin = function () {
+        if (this.accessibility === 2) {
+            return true;
+        } //else {
+        //for (i = 0; i < this.invited.size(); i++) {
+        //   if (this.accessor.getID() == this.invited[i].getID() && (this.accessibility==1||this.accessibility==0)) {
+        //        return true;
+        //    }
+        //  }
+        //  return false;
+        // }
+    };
+    
+    this.canUserSee = function () {
+        if (this.visibility === 2) {
+            return true;
+            //} else if (this.host.isFriendsWith(accessor) && this.visibility.getID()== 1){
+            //    return true;
+        } else
+            return false;
+    };
+    
     this.closeEvent = function () {
         //Is this the right way to declare a variable?
         access = 3;
@@ -217,27 +245,9 @@ function Event() {
         });
     };
     
-    this.canUserJoin = function () {
-        if (this.accessibility === 2) {
-            return true;
-        } //else {
-        //for (i = 0; i < this.invited.size(); i++) {
-        //   if (this.accessor.getID() == this.invited[i].getID() && (this.accessibility==1||this.accessibility==0)) {
-        //        return true;
-        //    }
-        //  }
-        //  return false;
-        // }
-    };
-    
-    this.canUserSee = function () {
-        if (this.visibility === 2) {
-            return true;
-            //} else if (this.host.isFriendsWith(accessor) && this.visibility.getID()== 1){
-            //    return true;
-        } else
-            return false;
-    };
+    this.removeUserFromEvent = function (iduser) {
+        
+    }
     
     this.editDescription = function (description) {
         this.description = description;
