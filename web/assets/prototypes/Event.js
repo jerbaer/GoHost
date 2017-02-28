@@ -180,7 +180,7 @@ function Event() {
             return true;
         } else {
         for (i = 0; i < this.invitedUsers.length; i++) {
-           if (this.accessor.getID() == this.invitedUsers[i].getID() && (this.accessibility==1||this.accessibility==0)) {
+           if (this.accessor.getID() == this.invitedUsers[i].getID() && (this.accessibility==1)) {
                 return true;
            }
           }

@@ -39,6 +39,7 @@ function setUpComponents() {
     isAttendee = event1.isUserInEvent();
     canJoin = (event1.canUserJoin() && !event1.isUserInEvent());
     canSee = event1.canUserSee();
+    
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
         $('#joinEvent').hide();
