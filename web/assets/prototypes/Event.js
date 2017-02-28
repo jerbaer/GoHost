@@ -254,9 +254,9 @@ function Event() {
     
     this.removeUserFromEvent = function (iduser) {
         $.ajax({
-            url: this.coreUrl + 'attendee/iduser?iduser=' + this.iduser,
+            url: this.coreUrl + 'attendee/iduser?iduser=' + iduser,
             type: 'GET',
-            dataType: 'application/json',
+            dataType: 'json',
             context: this,
             success: this.getRight
         });
@@ -275,8 +275,8 @@ function Event() {
     }
     this.removeUser = function(idattendee){
         $.ajax({
-            url: this.coreUrl + 'attendee/' + this.idattendee,
-            type: 'DELETE',
+            url: this.coreUrl + 'attendee/' + idattendee,
+            type: 'DELETE'
         });
     }
     
