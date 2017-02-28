@@ -45,7 +45,7 @@ function setUpComponents() {
     isAttendee = event1.isUserInEvent();
     canJoin = (event1.canUserJoin() && !event1.isUserInEvent());
     canSee = event1.canUserSee();
-    
+
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
         $('#request').hide();
@@ -81,7 +81,7 @@ function setUpComponents() {
         // Make error div for can't see
     }
 }
-function requestToJoinEvent(){
+function requestToJoinEvent() {
     notification = new Notification();
     notification.create(event1.getHost().getID(), user.getID(), event1.getID(), new Date(), 0, 1)
 }
@@ -135,7 +135,9 @@ function getEvent() {
             window.location.href = url;
             window.location.reload(true);
         });
-        newA.addClass("alert-link close").attr('data-dismiss', alert).attr('aria-label', close);
+        newA.addClass("alert-link close");
+        newA.attr('data-dismiss', alert);
+        newA.attr('aria-label', close);
         newH7.append(newA);
         newH6.append(newH7);
         newH6.append('<br/>');
