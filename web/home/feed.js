@@ -54,6 +54,7 @@ function getEvents() {
         eventsFeed.append(newHr);
     }
 }
+
 function getStringsFromEvents(eventList) {
     eventTitles = new Array(eventList.getSize());
     eventHosts = new Array(eventList.getSize());
@@ -74,8 +75,33 @@ function getStringsFromEvents(eventList) {
         eventIDs[i] = eventList.getEventsList()[i].getID();
     }
 }
+
 function getVisibleStrings() {
     getStringsFromEvents(visibleEvents);
+}
+
+function getProfile() {
+    profile1 = new Profile();
+    profile1.createFromDB(user, user);
+    getStringsFromProfile(profile1);
+    // Popualte the html page
+    profName = $('#profName');
+    newH1 = $('<h1>').text(profileName);
+
+    profPic = $('#profPic');
+    // Do picture stuff
+
+    profDesc = $('#profDesc');
+    newP = $('<p>').text(profileDescription);
+
+    profName.append(newH1);
+    profDesc.append(hewP);
+}
+
+function getStringsFromProfile(profile1) {
+    profileName = profile1.getName();
+    profilePicture = profile1.getPicture();
+    profileDescription = profile1.getDescriprion();
 }
 
 $(document).ready(setUpComponents);
