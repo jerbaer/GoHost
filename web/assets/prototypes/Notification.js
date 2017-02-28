@@ -42,8 +42,10 @@ function Notification(){
         this.user.create(data.iduser)
         this.from = new User();
         this.from.create(data.sender);
+        if(data.idevent!= null){
         this.event = new Event();
         this.event.createFromDB(data.idevent, this.user);
+    }
         this.status = data.notificationstatus;
         this.read = data.isread;
         this.timestamp = data.timesent;

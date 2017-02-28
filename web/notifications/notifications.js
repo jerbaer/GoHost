@@ -55,13 +55,40 @@ function createSystemNotification(notification){
 }
 //This will just have a button that allows the user to join the event
 function createEventInvite(notification) {
-         
-}
-function createFriendRequest(){
         var newH, newH1, newH2, newH3;
     newH = $('<hr>');
-    newH1 = $('<p>').text("User " + notification.from.getName() + " has requested to join "+
-        "your event " + notification.event.getTitle() + ".");
+    newH1 = $('<p>').text("User " + notification.from.getName() + " has invited you to join "+
+        "their event " + notification.event.getTitle() + ".");
+    newH2 = $('<button>').text("Accept").on('click', function(){
+       if(isSetUp==true){
+           var user = {iduser : id, idevent : notification.event.getID()}
+           $.ajax({
+               url : coreUrl + "attendee",
+               type: 'POST',
+               data: JSON.stringify(user),
+               dataType: 'json',
+               contentType: 'application/json'
+
+           })
+           notification.deleteNotification();
+       } 
+    });
+    newH3 = $('<button>').text("Reject").on('click', function() {    if(isSetUp == true){
+        notification.deleteNotification();
+    }
+});
+    notificationsFeed.append(newH1);
+    notificationsFeed.append(newH2);
+    notificationsFeed.append(newH3);
+    notificationsFeed.append(newH);
+    //What is this for???
+    isSetUp = true;
+         
+}
+function createFriendRequest(notification){
+        var newH, newH1, newH2, newH3;
+    newH = $('<hr>');
+    newH1 = $('<p>').text("User " + notification.from.getName() + " has requested to be your friend.");
     newH2 = $('<button>').text("Accept").on('click', function(){
            if(isSetUp==true){
            var user = {iduser1 : id, iduser2 : notification.from.getID()}
@@ -82,6 +109,7 @@ function createFriendRequest(){
                contentType: 'application/json'
                
            })
+           notification.deleteNotification();
        }
     });
     newH3 = $('<button>').text("Reject").on('click', function() {    if(isSetUp == true){
