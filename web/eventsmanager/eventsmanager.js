@@ -24,11 +24,16 @@ function setUpComponents() {
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
     getCategories();
+    getLocations();
 }
 
 function getCategories() {
     var url = "http://143.44.67.0:13774/GoHost/api/category/all";
     $.getJSON(url).done(categoriesFollowUp);
+}
+function getLocations() {
+    var url = "http://143.44.67.0:13774/GoHost/api/location/all";
+    $.getJSON(url).done(locationsFollowUp);
 }
 
 function categoriesFollowUp(data) {
@@ -36,6 +41,14 @@ function categoriesFollowUp(data) {
     for (i = 0; i < data.length; i++) {
         newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
         eventsCat.append(newHr);
+    }
+}
+
+function locationsFollowUp(data) {
+    eventsLoc = $('#eventLoc');
+    for (i = 0; i < data.length; i++) {
+        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        eventsLoc.append(newHr);
     }
 }
 
