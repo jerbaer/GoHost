@@ -80,7 +80,6 @@ function Event() {
             async: false,
             success: this.createFollowUp2
         });
-
     };
 
     this.createFollowUp2 = function (data) { //when PeopleList is working, do some of this stuff
@@ -105,6 +104,42 @@ function Event() {
         //}
     };
 
+    this.getEventStart = function () {
+        return this.eventStart;
+    };
+
+    this.getEventEnd = function () {
+        return this.eventEnd;
+    };
+
+    this.getHost = function () {
+        return this.host;
+    };
+
+    this.getCategory = function () {
+        return this.category.getName();
+    };
+
+    this.getTitle = function () {
+        return this.title;
+    };
+
+    this.getLocation = function () {
+        return this.location.getName();
+    };
+
+    this.getDescription = function () {
+        return this.description;
+    };
+
+    this.getUsers = function () {
+        return Event.users;
+    };
+
+    this.getID = function () {
+        return this.idevent;
+    };
+
     this.isAccessorHost = function () {
         if (this.accessor.getID() === this.host.getID()) {
             return true;
@@ -119,6 +154,13 @@ function Event() {
             }
         }
         return false;
+    };
+    
+    this.isEventFull = function () {
+        if (this.accessibility === 3) {
+            return true;
+        } else
+            return false;
     };
     
     this.closeEvent = function () {
@@ -154,13 +196,6 @@ function Event() {
             url: this.coreUrl + 'notification/delete?idevent=' + this.idevent,
             type: 'DELETE'
         });
-    };
-    
-    this.isEventFull = function () {
-        if (this.accessibility === 3) {
-            return true;
-        } else
-            return false;
     };
     
     this.addUserToEvent = function (iduser) {
@@ -249,47 +284,6 @@ function Event() {
         this.refreshEdits();
     };
 
-    this.getEventStart = function () {
-        return this.eventStart;
-    };
-
-    this.getEventEnd = function () {
-        return this.eventEnd;
-    };
-
-    this.getHost = function () {
-        return this.host;
-    };
-
-    this.getCategory = function () {
-        return this.category.getName();
-    };
-
-    this.getTitle = function () {
-        return this.title;
-    };
-
-    this.getLocation = function () {
-        return this.location.getName();
-    };
-
-    this.getDescription = function () {
-        return this.description;
-    };
-
-    this.getUsers = function () {
-        return Event.users;
-    };
-
-    this.getID = function () {
-        return this.idevent;
-    };
-    this.createAttending = function(){
-        this.PeopleList = new peopleList();
-        
-    };
-
-
     this.refreshEdits = function () {
         var event = {title: title, idhost: host, maxattendees: eventMax, idlocation: this.location.getID(), idvisibility: visibility, idaccessibility: accessibility, starttime: eventStart, endtime: eventEnd, description: description, idcategory: this.category.getID()};
         $.ajax({
@@ -304,5 +298,3 @@ function Event() {
         //End-all function everytime an edit happens
     };
 }
-
-
