@@ -67,6 +67,7 @@ function getStringsFromEvents(eventList) {
     eventCategories = new Array(list.length);
     eventLocations = new Array(list.length);
     eventIDs = new Array(list.length);
+    hostIDs = new Array(list.length);
     for (i = 0; i < list.length; i++) {
         eventTitles[i] = list[i].getTitle();
         eventHosts [i] = list[i].getHost().getName();
@@ -78,6 +79,7 @@ function getStringsFromEvents(eventList) {
         eventCategories[i] = list[i].getCategory();
         eventLocations[i] = list[i].getLocation();
         eventIDs[i] = list[i].getID();
+        hostIDs[i] = list[i].getHostID();
     }
 }
 

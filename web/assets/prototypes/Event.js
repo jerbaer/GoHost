@@ -116,6 +116,10 @@ function Event() {
     this.getHost = function () {
         return this.host;
     };
+    
+    this.getHostID = function () {
+        return this.host.getID();
+    }
 
     this.getCategory = function () {
         return this.category.getName();
