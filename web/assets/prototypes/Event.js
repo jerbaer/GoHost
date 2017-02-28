@@ -294,6 +294,28 @@ function Event() {
         this.eventMax = max;
         this.refreshEdits();
     };
+    this.getInvitedUsers = function(){
+        
+    };
+    this.getUsersAttending = function () {
+        //Need to make sure the attendee facade supports this 
+        var url = this.coreUrl + "attendee?idevent=" + this.idevent;
+        $.ajax({
+            dataType: "json",
+            url: url,
+            context: this,
+            success: this.attendingFollowUp
+        });
+    };
+    
+    this.attendingFollowUp = function (data) {
+        this.people = [];
+        for (var n = 0; n < data.length; n++) {
+            this.user1 = new User();
+            this.user1.create(data[n].iduser);
+            this.people.push(this.user1);
+        }
+    };
 
     this.refreshEdits = function () {
         var event = {title: title, idhost: host, maxattendees: eventMax, idlocation: this.location.getID(), idvisibility: visibility, idaccessibility: accessibility, starttime: eventStart, endtime: eventEnd, description: description, idcategory: this.category.getID()};

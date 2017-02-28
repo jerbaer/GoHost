@@ -34,6 +34,7 @@ function User() {
         this.email = data.email;
         this.password = data.password;
         this.name = data.name;
+       
         //Do you want me to call these other functions right away or to wait for now?
     };
     //These two functions will probably not be called from here
