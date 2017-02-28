@@ -88,12 +88,13 @@ public class AttendeeFacadeREST extends AbstractFacade<Attendee> {
     
    
 
-    /*@GET
+    @GET
+    @Path("all")
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Attendee> findAll() {
         return super.findAll();
-    }*/
+    }
 
     @GET
     @Path("{from}/{to}")

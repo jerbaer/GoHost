@@ -52,21 +52,11 @@ function Event() {
         this.category.retrieveName();
         this.accessibility = data.accessibility;
         this.visibility = data.visibility;
+        this.getUsersAttending();
+        this.getInvitedUsers();
         // Need to populate users
     };
 
-
-    this.invitedFollowUp = function (data) {
-        for (n = 0; n < data.length; n++) {
-            this.invitedUsers[n] = data[n].iduser;
-        }
-    };
-
-    this.attendeeFollowUp = function (data) {
-        for (n = 0; n < data.length; n++) {
-            this.users[n] = data[n].iduser;
-        }
-    };
 
     this.create = function (idhost, idcategory, eventStart, eventEnd, description, title, idvisibility, idaccessibility, idlocation, eventMax) {
         this.tempID = idhost;
@@ -116,6 +106,10 @@ function Event() {
     this.getHost = function () {
         return this.host;
     };
+    
+    this.getHostID = function () {
+        return this.host.getID();
+    }
 
     this.getCategory = function () {
         return this.category.getName();
@@ -248,7 +242,7 @@ function Event() {
     
     this.removeUserFromEvent = function (iduser) {
         
-    }
+    };
     
     this.editDescription = function (description) {
         this.description = description;
@@ -295,7 +289,22 @@ function Event() {
         this.refreshEdits();
     };
     this.getInvitedUsers = function(){
-        
+        //Need to make sure the attendee facade supports this 
+        var url = this.coreUrl + "invited?idevent=" + this.idevent;
+        $.ajax({
+            dataType: "json",
+            url: url,
+            context: this,
+            success: this.invitedFollowUp
+        });
+    };
+    
+    this.invitedFollowUp = function (data) {
+        for (var n = 0; n < data.length; n++) {
+            this.user1 = new User();
+            this.user1.create(data[n].iduser);
+            this.invitedUsers.push(this.user1);
+        }
     };
     this.getUsersAttending = function () {
         //Need to make sure the attendee facade supports this 
@@ -309,11 +318,10 @@ function Event() {
     };
     
     this.attendingFollowUp = function (data) {
-        this.people = [];
         for (var n = 0; n < data.length; n++) {
             this.user1 = new User();
             this.user1.create(data[n].iduser);
-            this.people.push(this.user1);
+            this.users.push(this.user1);
         }
     };
 

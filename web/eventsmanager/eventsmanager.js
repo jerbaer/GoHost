@@ -24,11 +24,16 @@ function setUpComponents() {
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
     getCategories();
+    getLocations();
 }
 
 function getCategories() {
     var url = "http://143.44.67.0:13774/GoHost/api/category/all";
     $.getJSON(url).done(categoriesFollowUp);
+}
+function getLocations() {
+    var url = "http://143.44.67.0:13774/GoHost/api/location/all";
+    $.getJSON(url).done(locationsFollowUp);
 }
 
 function categoriesFollowUp(data) {
@@ -36,6 +41,14 @@ function categoriesFollowUp(data) {
     for (i = 0; i < data.length; i++) {
         newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
         eventsCat.append(newHr);
+    }
+}
+
+function locationsFollowUp(data) {
+    eventsLoc = $('#eventLoc');
+    for (i = 0; i < data.length; i++) {
+        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        eventsLoc.append(newHr);
     }
 }
 
@@ -54,6 +67,7 @@ function getStringsFromEvents(eventList) {
     eventCategories = new Array(list.length);
     eventLocations = new Array(list.length);
     eventIDs = new Array(list.length);
+    hostIDs = new Array(list.length);
     for (i = 0; i < list.length; i++) {
         eventTitles[i] = list[i].getTitle();
         eventHosts [i] = list[i].getHost().getName();
@@ -65,6 +79,7 @@ function getStringsFromEvents(eventList) {
         eventCategories[i] = list[i].getCategory();
         eventLocations[i] = list[i].getLocation();
         eventIDs[i] = list[i].getID();
+        hostIDs[i] = list[i].getHostID();
     }
 }
 
