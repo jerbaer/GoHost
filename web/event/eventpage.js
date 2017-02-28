@@ -140,23 +140,39 @@ function deleteEvent() {
 }
 
 function editEvent() {
-    //This will get all the input from the edit form and use it call all the
-    //edit functions on the event object. After that, it will call the function
-    //that flushes all the changes to the database
-    event1.editDescription($('#description').val());
-    event1.editTitle($('#eventTitle').val());
-    //Need to make sure these two have proper values
-    event1.editStartTime($('#eventStart').val());
-    event1.editEndTime($('#eventEnd').val());
-    //These two need to be creating objects on the other end
-    event1.editCategory($('#eventCat').val());
-    event1.editLocation($('#eventLoc').val());
-    //These two need to be converted to 0,1,2
-    event1.editAccessiblity($('#eventAcc').val());
-    event1.editVisibility($('#eventVis').val());
-    //Flushes everything to the database
-    event1.refreshEdits();
-    window.location.reload();
+    var today = new Date();
+    var startDate = new Date($('#eventStart').val());
+    var endDate = new Date($('#eventEnd').val());
+    if ($('#eventTitle').val() === '') {
+        $('#invTitleModal').modal('show');
+    } else if ($('#eventStart').val() === '' || $('eventEnd').val() === '') {
+        $('#invTimeModal').modal('show');
+    } else if (startDate < today) {
+        $('#invTimeModal').modal('show');
+    } else if (startDate > endDate) {
+        $('#invTimeModal').modal('show');
+    } else {
+        var category = new Category($('#eventCat').val());
+        var location = new Location($('#eventLoc').val() + 1);
+        //This will get all the input from the edit form and use it call all the
+        //edit functions on the event object. After that, it will call the function
+        //that flushes all the changes to the database
+        event1.editTitle($('#eventTitle').val());
+        //Need to make sure these two have proper values
+        event1.editStartTime(startDate);
+        event1.editEndTime(endDate);
+        //These two need to be creating objects on the other end
+        event1.editCategory(category);
+        event1.editLocation(location);
+        //These two need to be converted to 0,1,2
+        event1.editVisibility($('#eventVis').val());
+        event1.editAccessiblity($('#eventAcc').val());
+        event1.editMax($('#maxAttendees').val());
+        event1.editDescription($('#description').val());
+        //Flushes everything to the database
+        event1.refreshEdits();
+        window.location.reload();
+    }
 }
 
 function inviteFriends() {

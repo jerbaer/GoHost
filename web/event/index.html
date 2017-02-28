@@ -107,64 +107,64 @@
                         <form class="form-horizontal" id="eventForm">
                             <fieldset>
                                 <div class="form-group">
-                                    <label for="eventTitle" class="col-sm-2 control-label">Title</label>
-                                    <div class="col-sm-10">
+                                    <label for="eventTitle" class="col-sm-3 control-label">Title</label>
+                                    <div class="col-sm-9">
                                         <input class="form-control" id="eventTitle" name="eventTitle" placeholder="Event Title" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="eventCat" class="col-sm-2 control-label">Event Type</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control col-sm-10" id="eventCat">
+                                    <label for="eventStart" class="col-sm-3 control-label">Start Time</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" id="eventStart" name="eventStart" type="datetime-local">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventEnd" class="col-sm-3 control-label">End Time</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" id="eventEnd" name="eventEnd" type="datetime-local">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="eventCat" class="col-sm-3 control-label">Event Type</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control col-sm-9" id="eventCat">
                                             <!-- Categories populated from database -->
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="eventStart" class="col-sm-2 control-label">Start Time</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" id="eventStart" name="eventStart" type="datetime-local">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="eventEnd" class="col-sm-2 control-label">End Time</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" id="eventEnd" name="eventEnd" type="datetime-local">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="eventLoc" class="col-sm-2 control-label">Location</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control col-sm-10" id="eventLoc">
+                                    <label for="eventLoc" class="col-sm-3 control-label">Location</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control col-sm-9" id="eventLoc">
                                             <!-- Locations populated from database, don't forget "Other" option -->
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="eventVis" class="col-sm-2 control-label">Visibility</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control col-sm-10" id="eventVis">
+                                    <label for="eventVis" class="col-sm-3 control-label">Visibility</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control col-sm-9" id="eventVis">
                                             <!-- Visibilities populated from database -->
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="eventAcc" class="col-sm-2 control-label">Access</label>
-                                    <div class="col-sm-10">
+                                    <label for="eventAcc" class="col-sm-3 control-label">Access</label>
+                                    <div class="col-sm-9">
                                         <select class="form-control" id="eventAcc">
                                             <!-- Accesses populated from database -->
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="maxAttendees" class="col-sm-2 control-label">Max Attendees</label>
-                                    <div class="col-sm-10">
+                                    <label for="maxAttendees" class="col-sm-3 control-label">Max Attendees</label>
+                                    <div class="col-sm-9">
                                         <input class="form-control" id="maxAttendees" name="maxAttendees" type="number">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="description" class="col-sm-2 control-label">Description</label>
-                                    <div class="col-sm-10">
+                                    <label for="description" class="col-sm-3 control-label">Description</label>
+                                    <div class="col-sm-9">
                                         <textarea class="form-control" rows="5" id="description"></textarea>
                                     </div>
                                 </div>
@@ -196,6 +196,47 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button class="btn btn-warning" id="delete" type="button">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Error Warning Modals -->
+        <div class="modal fade" id="invTitleModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Delete Event</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="invForm">
+                            <fieldset>
+                                <p>There was an error with your title. Please try again.</p>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="invTimeModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Delete Event</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="invForm">
+                            <fieldset>
+                                <p>There was an error with your start and end times. Please try again.</p>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

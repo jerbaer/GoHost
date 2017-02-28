@@ -199,13 +199,13 @@ function createEvent() {
         $('#invTimeModal').modal('show');
     } else if (startDate < today) {
         $('#invTimeModal').modal('show');
-    } else if(startDate > endDate) {
+    } else if (startDate > endDate) {
         $('#invTimeModal').modal('show');
     } else {
         eventTitle = $('#eventTitle').val();
-        eventCat = $('#eventCat').val();
         eventStart = $('#eventStart').val();
         eventEnd = $('#eventEnd').val();
+        eventCat = $('#eventCat').val();
         eventLoc = $('#eventLoc').val() + 1;
         eventVis = $('#eventVis').val();
         eventAcc = $('#eventAcc').val();
