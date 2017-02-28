@@ -111,8 +111,8 @@ function PeopleList() {
     }
     
     this.isUserOnList = function (iduser) {
-        for (var i = 0; i < people.size; i++) {
-            if (iduser = people[i].getID()) {
+        for (var i = 0; i < friends.size; i++) {
+            if (iduser = friends[i].getID()) {
                 return true
             }
         }
