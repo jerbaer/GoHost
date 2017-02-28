@@ -113,9 +113,8 @@ function PeopleList() {
     
     this.isUserOnList = function (user) {
         var userid = user.getID();
-        for (var i = 0; i < this.friends.size; i++) {
-            var friend = this.friends[i];
-            if (user == this.friends[i]) {
+        for (var i = 0; i < this.friends.length; i++) {
+            if (userid == this.friends[i].getID()) {
                 return true;
             }
         }
