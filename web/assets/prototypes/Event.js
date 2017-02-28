@@ -17,9 +17,9 @@ function Event() {
     this.title = "";
     this.visibility = 0;
     this.accessibility = 0;
-    this.invitedUsers = [];
+    this.invitedUsers = null;
     this.location = null;
-    this.users = [];
+    this.users = null;
     this.tempID;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
 
@@ -284,6 +284,11 @@ function Event() {
     this.getID = function () {
         return this.idevent;
     };
+    this.createAttending = function(){
+        this.PeopleList = new peopleList();
+        
+    };
+
 
     this.refreshEdits = function () {
         var event = {title: title, idhost: host, maxattendees: eventMax, idlocation: this.location.getID(), idvisibility: visibility, idaccessibility: accessibility, starttime: eventStart, endtime: eventEnd, description: description, idcategory: this.category.getID()};
