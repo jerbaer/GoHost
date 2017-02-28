@@ -10,6 +10,7 @@ function User() {
     this.password = "";
     this.name = "";
     this.PeopleList = null;
+    this.StrangerList = null;
     this.eventsHosting = null;
     this.eventsAttending = null;
     this.eventsVisible = null;
@@ -45,7 +46,7 @@ function User() {
     };
     
     this.createStrangersList = function () {
-        // Get a (shortened?) list of people who aren't friends
+        this.StrangerList = new PeopleList();
     };
 
     this.createHostedEventsList = function () {
