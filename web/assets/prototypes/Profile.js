@@ -91,15 +91,22 @@ function Profile () {
     };
     
     // Might move this to the top and change create like Event is organized
-    this.createProfileFromDB = function (iduser) {
+    this.createProfileFromDB = function (iduser, accessor1) {
+        this.iduser = iduser
+        this.accessor = accessor1;
         var url = this.coreUrl + "profile/iduser?iduser=" + iduser;
         $.ajax({
-            
+            dataType: "json",
+            url: url,
+            type: 'GET',
+            context: this,
+            success: this.createProfileFollowUp
         })
     };
     
     this.createProfileFollowUp = function (data) {
-        // populate member variables
+        this.description = data.description;
+       
     };
     
     this.getPeopleList = function () {
