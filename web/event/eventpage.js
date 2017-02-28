@@ -7,7 +7,6 @@ var isHost = false;
 var isAttendee = false;
 var canJoin = false;
 var canSee = false;
-
 var eventTitle;
 var eventHost;
 var eventStartTime;
