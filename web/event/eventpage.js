@@ -121,7 +121,7 @@ function joinEvent() {
         event1.addUserToEvent(id);
         window.location.reload();
     } else {
-        //send request
+        //send request to join event
     }
 }
 
