@@ -125,7 +125,7 @@ function getEvent() {
     newH3 = $('<p>').text(eventCategory);
     newH4 = $('<p>').text(eventLocation);
     newH5 = $('<p>').text("Event Attendees:");
-    newH6 = $('<div>').addClass("alert alert-info alert-dismissable");
+    newH6 = $('<div>');
     newHr = $('<hr>');
 
     for (i = 0; i < eventAttendees.length; i++) {
@@ -135,8 +135,10 @@ function getEvent() {
             window.location.href = url;
             window.location.reload(true);
         });
-        newA.addClass("alert-link")
-        newH6.append(newA);
+        newA.addClass("alert-link");
+        newH7.addClass("alert alert-info alert-dismissable");
+        newH7.append(newA);
+        newH6.append(newH7);
         newH6.append('<br/>');
     }
 
