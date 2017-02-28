@@ -25,7 +25,7 @@ import javax.ws.rs.core.MediaType;
  * @author Jerry
  */
 @Stateless
-@Path("gohost.friend")
+@Path("friend")
 public class FriendFacadeREST extends AbstractFacade<Friend> {
 
     @PersistenceContext(unitName = "GoHostPU")
