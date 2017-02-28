@@ -12,6 +12,7 @@ var profileDescription;
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
+    $('#addFriend').on('click', addFriend);
     id = parseInt(sessionStorage.getItem('id'));
     profileid = (window.location.href.split('#'))[1];
     owner = new User();

@@ -29,7 +29,7 @@ function getEvents() {
 
     setTimeout(getVisibleStrings(), 10000);
     //this is where it connects with HTML to print the feed in objects
-    var newH, newA, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
+    var newH, newA, newA2, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
     var n, url, url2;
     // Find the newestBlogs div that will house newly created blogs
     eventsFeed = $('#eventsFeed');
