@@ -90,7 +90,7 @@ function PeopleList() {
     this.addFriend = function(newfriend){
            var note = {sender : newfriend.getID(), iduser : this.owner.getID(), isread: 0, notificationstatus: 2, timesent: new Date()}
            $.ajax({
-               url : coreUrl + "notification",
+               url : this.coreUrl + "notification",
                type: 'POST',
                data: JSON.stringify(note),
                dataType: 'json',

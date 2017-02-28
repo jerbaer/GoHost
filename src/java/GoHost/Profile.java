@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
@@ -34,16 +36,16 @@ public class Profile implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idprofile")
     private Integer idprofile;
     @Column(name = "iduser")
     private Integer iduser;
     @Lob
     @Size(max = 2147483647)
-    @Column(name = "descritpion")
-    private String descritpion;
+    @Column(name = "description")
+    private String description;
     @Column(name = "idcategory")
     private Integer idcategory;
 
@@ -70,12 +72,12 @@ public class Profile implements Serializable {
         this.iduser = iduser;
     }
 
-    public String getDescritpion() {
-        return descritpion;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescritpion(String descritpion) {
-        this.descritpion = descritpion;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getIdcategory() {
