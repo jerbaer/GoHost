@@ -253,7 +253,10 @@ function Event() {
     };
     
     this.removeUserFromEvent = function (iduser) {
-
+        $.ajax({
+            url: this.coreUrl + 'attendee/leave?iduser=' + this.iduser,
+            type: 'DELETE'
+        });
         
     };
     
