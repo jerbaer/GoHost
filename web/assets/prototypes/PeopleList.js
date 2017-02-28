@@ -65,6 +65,7 @@ function PeopleList() {
     //Then goes through the friends array splicing each of its elements out of
     //the people array
     this.getNotFriends = function () {
+        this.getFriends();
         var url = this.coreUrl + "user/all";
         $.ajax({
             dataType: "json",
@@ -79,14 +80,11 @@ function PeopleList() {
         for (var n = 0; n < data.length; n++) {
             this.user1 = new User();
             this.user1.create(data[n].iduser);
+            if (!this.isUserOnList(this.user1)&& this.user1.getID()!=this.owner.getID())
             this.people.push(this.user1);
         }
-        for (var i = 0; i < data.length; i++) {
-            var index = people.indexOf(friends[i]);
-            if (index > -1) {
-                people.splice(index, 1);
-            }
-        }
+
+        
     };
     
     //Does a get request for all users attending a certain event

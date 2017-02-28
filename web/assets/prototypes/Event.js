@@ -59,7 +59,7 @@ function Event() {
 
     this.create = function (idhost, idcategory, eventStart, eventEnd, description, title, idvisibility, idaccessibility, idlocation, eventMax) {
         this.tempID = idhost;
-        var event = {title: title, idhost: idhost, maxattendees: parseInt(eventMax), /*idlocation: idlocation,*/ visibility: parseInt(idvisibility), accessibility: parseInt(idaccessibility), starttime: new Date(eventStart), endtime: new Date(eventEnd), description: description, idcategory: parseInt(idcategory)};
+        var event = {title: title, idhost: idhost, maxattendees: parseInt(eventMax), idlocation: idlocation, visibility: parseInt(idvisibility), accessibility: parseInt(idaccessibility), starttime: new Date(eventStart), endtime: new Date(eventEnd), description: description, idcategory: parseInt(idcategory)};
         $.ajax({
             url: this.coreUrl + "event",
             type: 'post',
@@ -81,17 +81,27 @@ function Event() {
             data: JSON.stringify(attendee),
             context: this,
             contentType: 'application/json',
-            dataTpye: 'json',
+            dataType: 'json',
             async: false
         });
-        //if (data.accessibility === 1){
-            //var user = new User();
-            //user.create(this.tempID);
-            //var PeopleList = user.getPeopleList();
-            //for(var i = 0; i<PeopleList.size(); i++){
+        if (data.accessibility === 1){
+            var user = new User();
+            user.create(this.tempID);
+            var PeopleList = user.getPeopleList();
+            for(var i = 0; i<PeopleList.getSize(); i++){
+                var attending = {iduser: user.getPeopleList().getFriendsList[i].getID(), idevent: id} 
+            $.ajax({
+            url: this.coreUrl + "attendee",
+            type: 'POST',
+            data: JSON.stringify(attending),
+            context: this,
+            contentType: 'application/json',
+            dataType: 'json',
+            async: true
+        });
                 
-            //}
-        //}
+            }
+        }
     };
     this.getListofAttendees = function () {
         return this.users;

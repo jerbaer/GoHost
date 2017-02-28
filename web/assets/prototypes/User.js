@@ -10,6 +10,7 @@ function User() {
     this.password = "";
     this.name = "";
     this.PeopleList = null;
+    this.StrangerList = null;
     this.eventsHosting = null;
     this.eventsAttending = null;
     this.eventsVisible = null;
@@ -45,7 +46,11 @@ function User() {
     };
     
     this.createStrangersList = function () {
-        // Get a (shortened?) list of people who aren't friends
+        this.StrangerList = new PeopleList();
+        this.StrangerList.create(this.iduser, null, 2);
+    };
+    this.getStrangersList = function(){
+        return this.StrangerList;
     };
 
     this.createHostedEventsList = function () {
@@ -97,6 +102,12 @@ function User() {
 
     this.getName = function () {
         return this.name;
+    };
+    this.getEmail = function(){
+        return this.email;
+    };
+    this.getPassword = function(){
+        return this.password;
     };
     
     //idk if this is necessary as just doing what Profile does but for conveniene sake

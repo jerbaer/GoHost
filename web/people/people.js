@@ -14,6 +14,8 @@ var id;
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
+    $('#friendsTab').on('click', getFriendsStrings);
+    $('#strangersTab').on('click', getStrangersStrings);
     getPeople();
     getProfile();
 }
@@ -22,6 +24,42 @@ function getPeople() {
     user = new User();
     user.create(id);
     getFriendsStrings();
+}
+function getStrangersStrings(){
+    $('#friends').hide();
+    $('#friends').empty();
+    $('#strangers').empty();
+    if (friends !== null)
+        friends = null;
+    if (strangers !== null)
+        strangers = null;
+    user.createStrangersList();
+    strangers = user.getStrangersList();
+    peopleNames = null;
+    peoplePictures = null;
+    peopleDescriptions = null;
+    peopleIDs = null;
+    getStringsFromStrangers(strangers);
+    var newH, newA, newP, peopleList;
+    var n, url;
+    // this part might need to change/be more specific with bootstrap classes
+    peopleList = $('#strangers');
+    for (n = strangers.getSize() - 1; n > -1; n--) {
+        url = ".../profile/index.html#" + peopleUserIDs[n];
+        newA = $('<a>').attr('href', url).text(peopleNames[n]).on('click', function () {
+            window.locaton.href = url;
+            window.location.reload(true);
+            //double check this session storage part
+            sessionStorage.setItem('peopleid'), peopleIDs[n];
+        });
+        newH = $('<h3>').append(newA);
+        newP = $('<p>').append(peopleDescriptions[n]);
+        // figure out how to do picture
+
+        peopleList.append(newH);
+        peopleList.append(newP);
+    }
+    $('#strangers').show();    
 }
 
 function getFriendsStrings() {
@@ -44,7 +82,7 @@ function getFriendsStrings() {
     // this part might need to change/be more specific with bootstrap classes
     peopleList = $('#friends');
     for (n = friends.getSize() - 1; n > -1; n--) {
-        url = ".../profile/index.html#" + peopleIDs[n];
+        url = ".../profile/index.html#" + peopleUserIDs[n];
         newA = $('<a>').attr('href', url).text(peopleNames[n]).on('click', function () {
             window.locaton.href = url;
             window.location.reload(true);
@@ -69,12 +107,31 @@ function getStringsFromPeople(PeopleList) {
     peoplePictures = new Array(list.length);
     peopleDescriptions = new Array(list.length);
     peopleIDs = new Array(list.length);
+    peopleUserIDs = new Array(list.length);
     for (i = 0; i < list.length; i++) {
         list[i].createProfile();
         peopleNames[i] = list[i].getName();
         peoplePictures[i] = list[i].getPicture();
         peopleDescriptions[i] = list[i].getDescription();
         peopleIDs[i] = list[i].getProfileID();
+        peopleUserIDs[i] = list[i].getID();
+    }
+}
+function getStringsFromStrangers(PeopleList) {
+    
+    list = PeopleList.getPeopleList();
+    peopleNames = new Array(list.length);
+    peoplePictures = new Array(list.length);
+    peopleDescriptions = new Array(list.length);
+    peopleIDs = new Array(list.length);
+    peopleUserIDs = new Array(list.length);
+    for (i = 0; i < list.length; i++) {
+        list[i].createProfile();
+        peopleNames[i] = list[i].getName();
+        peoplePictures[i] = list[i].getPicture();
+        peopleDescriptions[i] = list[i].getDescription();
+        peopleIDs[i] = list[i].getProfileID();
+        peopleUserIDs[i] = list[i].getID();
     }
 }
 

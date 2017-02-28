@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+jQuery.ajaxSetup({async: false});
 sys_init = {
     coreUrl: "http://143.44.67.0:13774/GoHost/api/",
     profile: null,
+   
 
     doLogin: function () {
         var url = sys_init.coreUrl + "user?email=" + $('#loginEmail').val() + "&password=" + $('#loginPass').val();
@@ -23,7 +24,7 @@ sys_init = {
             //4. PUT it into that user
             var url = sys_init.coreUrl + "user";
             var user = {name:$('#regName').val(), email: $('#regEmail').val(),
-                password: $('#regPass').val(), idprofile:2};
+                password: $('#regPass').val()};
             var toSend = JSON.stringify(user);
             $.ajax({
                 url: url,
@@ -44,9 +45,15 @@ sys_init = {
         } else {
             $('#regWarning').show();
         }
+        var user = new User();
+        user.create(parseInt(sessionStorage.getItem('id')));
+        var iduser = user.getID();
+        var email = user.getEmail();
+        var password = user.getPassword();
+        var name = user.getName();
         sys_init.profile = new Profile();
         sys_init.profile.create(parseInt(sessionStorage.getItem('id')),parseInt(sessionStorage.getItem('id')));
-        var profileId = {idprofile: sys_init.profile.getIdProfile()};
+        var profileId = {idprofile: sys_init.profile.getIdProfile(), iduser: iduser, password: password, name: name, email: email};
         $.ajax({
             url: sys_init.coreUrl + 'user/' + parseInt(sessionStorage.getItem('id')),
             type: 'PUT',
