@@ -91,8 +91,9 @@ function Profile () {
     };
     
     // Might move this to the top and change create like Event is organized
-    this.createProfileFromDB = function (iduser, accessor1) {
-        this.iduser = iduser
+    this.createFromDB = function (owner1, accessor1) {
+        this.owner = owner1;
+        this.iduser = this.owner.getID();
         this.accessor = accessor1;
         var url = this.coreUrl + "profile/iduser?iduser=" + iduser;
         $.ajax({

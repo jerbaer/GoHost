@@ -46,7 +46,7 @@ function setUpComponents() {
 
 function getProfile() {
     profile1 = new Profile();
-    profile1.createFromDB(user, accessor);
+    profile1.createFromDB(owner, accessor);
     getStringsFromProfile(profile1);
     // Popualte the html page
     profName = $('#profName');
@@ -64,8 +64,8 @@ function getProfile() {
 
 function getStringsFromProfile(profile1) {
     profileName = profile1.getName();
-    profilePicture = profile1.getPicture();
-    profileDescription = profile1.getDescriprion();
+    //profilePicture = profile1.getPicture();
+    profileDescription = profile1.getDescription();
 }
 
 function addFriend() {
