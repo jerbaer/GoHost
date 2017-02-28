@@ -159,7 +159,7 @@ function getAttendingStrings() {
     var n, url, url2;
     eventsList = $('#attend');
     eventsList.append('<br />');
-    for (n = eventsHosted.getSize() - 1; n > -1; n--) {
+    for (n = eventsAttending.getSize() - 1; n > -1; n--) {
         url = "../event/index.html#" + eventIDs[n];
         newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;

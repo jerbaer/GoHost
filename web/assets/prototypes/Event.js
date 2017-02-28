@@ -205,7 +205,7 @@ function Event() {
             url: this.coreUrl + 'attendee/delete?idevent=' + this.idevent,
             type: 'DELETE'
         });
-        //Delets all invited rows of this evnet
+        //Delets all invited rows of this event
         $.ajax({
             url: this.coreUrl + 'invited/delete?idevent=' + this.idevent,
             type: 'DELETE'
