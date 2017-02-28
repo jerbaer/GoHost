@@ -20,7 +20,7 @@ function Profile () {
         this.owner = new User();
         this.owner.create(iduser);
         this.accessor = accessor1;
-        var profile = {iduser: this.iduser, descritpion: this.description};
+        var profile = {iduser: this.iduser, description: this.description};
         $.ajax({
             url: this.coreUrl + "profile",
             type: 'post',
