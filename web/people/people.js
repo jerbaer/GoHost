@@ -70,6 +70,7 @@ function getStringsFromPeople(PeopleList) {
     peopleDescriptions = new Array(list.length);
     peopleIDs = new Array(list.length);
     for (i = 0; i < list.length; i++) {
+        list[i].createProfile();
         peopleNames[i] = list[i].getName();
         peoplePictures[i] = list[i].getPicture();
         peopleDescriptions[i] = list[i].getDescription();
