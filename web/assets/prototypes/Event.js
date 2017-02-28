@@ -84,12 +84,12 @@ function Event() {
             dataType: 'json',
             async: false
         });
-        if (data.accessibility === 1){
+        if (data.visibility == 1){
             var user = new User();
             user.create(this.tempID);
             var PeopleList = user.getPeopleList();
             for(var i = 0; i<PeopleList.getSize(); i++){
-                var attending = {iduser: user.getPeopleList().getFriendsList[i].getID(), idevent: id} 
+            var attending = {iduser: user.getPeopleList().getFriendsList()[i].getID(), idevent: id}; 
             $.ajax({
             url: this.coreUrl + "invited",
             type: 'POST',
