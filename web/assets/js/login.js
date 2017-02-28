@@ -23,7 +23,7 @@ sys_init = {
             //4. PUT it into that user
             var url = sys_init.coreUrl + "user";
             var user = {name:$('#regName').val(), email: $('#regEmail').val(),
-                password: $('#regPass').val(), idprofile:2};
+                password: $('#regPass').val()};
             var toSend = JSON.stringify(user);
             $.ajax({
                 url: url,
