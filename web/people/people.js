@@ -118,6 +118,7 @@ function getStringsFromPeople(PeopleList) {
         peopleUserIDs[i] = list[i].getID();
     }
 }
+
 function getStringsFromStrangers(PeopleList) {
 
     list = PeopleList.getPeopleList();

@@ -7,6 +7,7 @@ var isHost = false;
 var isAttendee = false;
 var canJoin = false;
 var canSee = false;
+
 var eventAttendees = [];
 var attendeeIDs = [];
 var eventTitle;
@@ -16,6 +17,11 @@ var eventEndTime;
 var eventCategory;
 var eventLocation;
 var eventIDs;
+
+var peopleNames;
+var peoplePictures;
+var peopleDescriptions;
+var peopleIDs;
 
 //Still don't know where to call this
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
@@ -42,17 +48,20 @@ function setUpComponents() {
     
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
+        ('#request').hide();
         $('#joinEvent').hide();
         $('#leaveEvent').hide();
         $('#delete').on('click', deleteEvent);
         $('#edit').on('click', editEvent);
-        $('#invite').on('click', inviteFriends);
+        $('#invite').on('click', getFriends);
     } else if (isAttendee) {
+        ('#request').hide();
         $('#joinEvent').hide();
         $('#hostOnly').hide();
-        $('#invite').on('click', inviteFriends);
+        $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
     } else if (canJoin) {
+        ('#request').hide();
         $('#inviteSpan').hide();
         $('#leaveEvent').hide();
         $('#hostOnly').hide();
@@ -62,6 +71,7 @@ function setUpComponents() {
         $('#leaveEvent').hide();
         $('#inviteSpan').hide();
         $('#hostOnly').hide();
+        $('#request').on('click', requestToJoinEvent);
     } else {
         $('#eventDetails').hide();
         $('#joinEvent').hide();
@@ -76,6 +86,7 @@ function getCategories() {
     var url = "http://143.44.67.0:13774/GoHost/api/category/all";
     $.getJSON(url).done(categoriesFollowUp);
 }
+
 function getLocations() {
     var url = "http://143.44.67.0:13774/GoHost/api/location/all";
     $.getJSON(url).done(locationsFollowUp);
@@ -176,12 +187,6 @@ function editEvent() {
     }
 }
 
-function inviteFriends() {
-    //This will pull up a list of the user's friends and then the other button
-    //would actually allow you to invite people?
-    window.location.reload();
-}
-
 function joinEvent() {
     if (event1.isOpenEvent) {
         event1.addUserToEvent(id);
@@ -213,6 +218,56 @@ function getStringsFromEvent(event1) {
         attendeeIDs.push(event1.getListofAttendees()[i].getID());
     }
     //eventID = event.getID(); or this
+}
+
+function getFriends() {
+    var friends = null;
+    $('#friends').empty();
+    if (friends !== null)
+        friends = null;
+    user.createPeopleList();
+    friends = user.getPeopleList();
+    peopleNames = null;
+    peoplePictures = null;
+    peopleDescriptions = null;
+    peopleIDs = null;
+    getStringsFromPeople(friends);
+    var newH, newA, peopleList;
+    var n, url;
+    // this part might need to change/be more specific with bootstrap classes
+    peopleList = $('#friends');
+    for (n = friends.getSize() - 1; n > -1; n--) {
+        url = ".../profile/index.html#" + peopleUserIDs[n];
+        newA = $('<a>').attr('href', url).text(peopleNames[n]).on('click', function () {
+            window.locaton.href = url;
+            window.location.reload(true);
+            //double check this session storage part
+            sessionStorage.setItem('peopleid'), peopleIDs[n];
+        });
+        newH = $('<h3>').append(newA);
+        // figure out how to do picture
+
+        peopleList.append(newH);
+    }
+    $('#friends').show();
+}
+
+function getStringsFromPeople(PeopleList) {
+    PeopleList.getFriends();
+    list = PeopleList.getFriendsList();
+    peopleNames = new Array(list.length);
+    peoplePictures = new Array(list.length);
+    peopleDescriptions = new Array(list.length);
+    peopleIDs = new Array(list.length);
+    peopleUserIDs = new Array(list.length);
+    for (i = 0; i < list.length; i++) {
+        list[i].createProfile();
+        peopleNames[i] = list[i].getName();
+        peoplePictures[i] = list[i].getPicture();
+        peopleDescriptions[i] = list[i].getDescription();
+        peopleIDs[i] = list[i].getProfileID();
+        peopleUserIDs[i] = list[i].getID();
+    }
 }
 
 //This will be coded in iteration 2.0?? hehe ecks dee

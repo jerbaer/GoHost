@@ -11,3 +11,4 @@ change all bootstrap columns to sm instead of lg
 add footer to login page
 bootstrap.js cdn in header replace
 hide all divs, show as needed as opposed to vice versa
+event page join event button push/pull col
