@@ -83,7 +83,7 @@ function getFriendsStrings() {
     // this part might need to change/be more specific with bootstrap classes
     peopleList = $('#friends');
     for (n = friends.getSize() - 1; n > -1; n--) {
-        url = ".../profile/index.html#" + peopleUserIDs[n];
+        url = "../profile/index.html#" + peopleUserIDs[n];
         newA = $('<a>').attr('href', url).text(peopleNames[n]).on('click', function () {
             window.locaton.href = url;
             window.location.reload(true);
