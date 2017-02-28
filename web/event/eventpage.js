@@ -12,6 +12,7 @@ var eventHost;
 var eventStartTime;
 var eventEndTime;
 var eventCategory;
+var eventLocation;
 var eventIDs;
 
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
@@ -76,11 +77,13 @@ function getEvent() {
     newH1 = $('<p>').text(eventStartTime);
     newH2 = $('<p>').text(eventEndTime);
     newH3 = $('<p>').text(eventCategory);
+    newH4 = $('<p>').text(eventLocation);
 
     eventDetails.append(newH);
     eventDetails.append(newH1);
     eventDetails.append(newH2);
     eventDetails.append(newH3);
+    eventDetails.append(newH4);
     eventDetails.append('<br />');
 }
 
@@ -137,6 +140,7 @@ function getStringsFromEvent(event1) {
     var x = event1.getEventEnd().mysqlToDate();
     eventEndTime = x.toString().replace("GMT-0600 (Central Standard Time)", "");
     eventCategory = event1.getCategory();
+    eventCategory = event1.getLocation();
     //eventID = event.getID(); or this
 }
 
