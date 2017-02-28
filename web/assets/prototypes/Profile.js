@@ -28,15 +28,14 @@ function Profile () {
     };
     
     this.isCurrentUser = function () {
-        if(this.owner === accessor)
+        if(this.owner === this.accessor)
             return true;
         return false;
     };
     
     this.isFriend = function () {
-        friends = new PeopleList();
-        friends.create(iduser);
-        if(friends.isUserOnList(this.accessor.getID()))
+        owner.createPeopleList()
+        if(owner.getPeopleList().isUserOnList(this.accessor))
             return true;
         return false;
     };
