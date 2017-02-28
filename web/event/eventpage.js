@@ -131,10 +131,12 @@ function getEvent() {
     for (i = 0; i < eventAttendees.length; i++) {
         newH7 = $('<div>').addClass("alert alert-info alert-dismissable");
         url = "../profile/index.html#" + attendeeIDs[i];
-        newA = $('<a>').attr('href', url).attr('data-dismiss', "alert").attr('aria-label', "close").addClass("alert-link close").text(eventAttendees[i]).on('click', function () {
+        newA = $('<a>').attr('href', url).text(eventAttendees[i]).on('click', function () {
             window.location.href = url;
             window.location.reload(true);
         });
+        newA2 = $('<a>').attr('href', "#").addClass("alert-link close").attr('data-dismiss', "alert").attr('aria-label', "close");
+        newH7.append(newA2);
         newH7.append(newA);
         newH6.append(newH7);
         newH6.append('<br/>');
