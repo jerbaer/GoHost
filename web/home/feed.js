@@ -107,13 +107,13 @@ function getProfile() {
     newP = $('<p>').text(profileDescription);
 
     profName.append(newH1);
-    profDesc.append(hewP);
+    profDesc.append(newP);
 }
 
 function getStringsFromProfile(profile1) {
     profileName = profile1.getName();
     profilePicture = profile1.getPicture();
-    profileDescription = profile1.getDescriprion();
+    profileDescription = profile1.getDescription();
 }
 
 $(document).ready(setUpComponents);

@@ -120,6 +120,8 @@ function createFriendRequest(notification) {
             notification.deleteNotification();
         }
     });
+    newH2.addClass("btn btn-info");
+    newH3.addClass("btn btn-warning");
     notificationsFeed.append(newH1);
     notificationsFeed.append(newH2);
     notificationsFeed.append(newH3);
@@ -155,6 +157,8 @@ function createEventRequest(notification) {
             notification.deleteNotification();
         }
     });
+    newH2.addClass("btn btn-info");
+    newH3.addClass("btn btn-warning");
     notificationsFeed.append(newH1);
     notificationsFeed.append(newH2);
     notificationsFeed.append(newH3);
