@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+jQuery.ajaxSetup({async: false});
 sys_init = {
     coreUrl: "http://143.44.67.0:13774/GoHost/api/",
     profile: null,
+   
 
     doLogin: function () {
         var url = sys_init.coreUrl + "user?email=" + $('#loginEmail').val() + "&password=" + $('#loginPass').val();
