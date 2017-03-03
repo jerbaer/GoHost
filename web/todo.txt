@@ -7,9 +7,11 @@ wrong email/password combo check aka form warnings
 use profile pic of host if no pic chosen
     add sr-only to font awesome icons. (refer to fa accessibility page)
         fa-comment/fa-comments for chat bubble icons
-change all bootstrap columns to sm instead of lg
+            change all bootstrap columns to sm instead of lg
 add footer to login page
 bootstrap.js cdn in header replace
 hide all divs, show as needed as opposed to vice versa
 event page join event button push/pull col
 for inv friends display no friends to invite message if no more friends to inv
+home: events feed, calender view, map view
+Browse by category/location
