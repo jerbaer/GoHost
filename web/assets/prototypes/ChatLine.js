@@ -9,6 +9,7 @@ function ChatLine () {
     this.user = null;
     this.text = "";
     this.time = "";
+    this.messageID = 0;
     
     this.create = function () {
         
@@ -34,6 +35,7 @@ function ChatLine () {
         this.parent.createFromDB(data.idevent);
         this.text = data.content;
         this.time = data.timesent;
+        this.idmessage = data.idmessage;
     };
     
     this.getParent = function () {
@@ -52,5 +54,7 @@ function ChatLine () {
         return this.time;
     };
     
-    
+    this.getID = function () {
+        return this.idmessage;
+    }
 }
