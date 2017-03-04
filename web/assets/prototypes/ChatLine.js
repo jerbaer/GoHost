@@ -14,6 +14,28 @@ function ChatLine () {
         
     };
     
+    this.createFollowUp = function (data){
+        
+    };
+    
+    this.createFromDB = function (idmessage, user){
+        var url = this.coreUrl + "event/" + idmessage;
+        this.user = user;
+        $.ajax({
+            dataType: "json",
+            url: url,
+            context: this,
+            success: this.createFollowUp
+        });
+    };
+    
+    this.createFromDBFollowUp = function (data) {
+        this.parent = new Event();
+        this.parent.createFromDB(data.idevent);
+        this.text = data.content;
+        this.time = data.timesent;
+    };
+    
     this.getParent = function () {
         return this.parent;
     };
