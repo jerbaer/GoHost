@@ -15,3 +15,10 @@ event page join event button push/pull col
 for inv friends display no friends to invite message if no more friends to inv
 home: events feed, calender view, map view
 Browse by category/location
+
+event chat:
+    button from event page -> event chat
+    div to populate messages (event lines)
+    for each message want the name of the sender to be a link to their profile
+    under comments div needs to be text field for comments and button to submit
+    (blog.html)
