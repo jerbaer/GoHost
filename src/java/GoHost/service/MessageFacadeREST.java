@@ -70,6 +70,12 @@ public class MessageFacadeREST extends AbstractFacade<Message> {
     public Message find(@PathParam("id") Integer id) {
         return super.find(id);
     }
+    @GET
+    @Path("idevent")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Message> getOpen(@QueryParam("idevent") int vis){
+        return em.createNamedQuery("Message.findByIdevent", Message.class).setParameter("idevent", new Integer(vis)).getResultList();
+    }  
 
     @GET
     @Override
