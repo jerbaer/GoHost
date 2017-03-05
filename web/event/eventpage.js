@@ -65,6 +65,7 @@ function setUpComponents() {
         $('#delete').on('click', deleteEvent);
         $('#edit').on('click', editEvent);
         $('#invite').on('click', getFriends);
+        $('#sendMessage').on('click', sendMessage);
     } else if (isAttendee) {
         $('#request').hide();
         $('#joinEvent').hide();
@@ -72,7 +73,9 @@ function setUpComponents() {
         $('#hostOnly').hide();
         $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
+        $('#sendMessage').on('click', sendMessage);
     } else if (canJoin) {
+        $('#chat').hide();
         $('#request').hide();
         $('#inviteSpan').hide();
         $('#leaveEvent').hide();
@@ -80,6 +83,7 @@ function setUpComponents() {
         $('#hostOnly').hide();
         $('#joinEvent').on('click', joinEvent);
     } else if (canSee) {
+        $('#chat').hide();
         $('#joinEvent').hide();
         $('#leaveEvent').hide();
         $('#inviteSpan').hide();
@@ -87,6 +91,7 @@ function setUpComponents() {
         $('#hostOnly').hide();
         $('#request').on('click', requestToJoinEvent);
     } else {
+        $('#chat').hide();
         $('#eventDetails').hide();
         $('#joinEvent').hide();
         $('#leaveEvent').hide();
@@ -106,7 +111,6 @@ function getMessages() {
     setTimeout(getMessageStrings(eventChat), 10000);
     var newH, newA, newHr, newH1, chat;
     var n, url;
-    // Find the newestBlogs div that will house newly created blogs
     chat = $('#chat');
     //This might not look nice but it should work. Go back and fix the how
     //it looks later.
@@ -140,6 +144,10 @@ function getMessageStrings(eventChat) {
         times[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
         messageIDs[i] = chatLog[i].getID();
     }
+}
+
+function sendMessage() {
+    
 }
 
 
