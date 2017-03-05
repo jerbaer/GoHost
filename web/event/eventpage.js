@@ -100,17 +100,17 @@ function setUpComponents() {
 //Next two functions migrated from eventChat. Will need to make sure it is 
 //connecting to the right div that Jerry is going to make
 function getMessages() {
-    
+    $('#chat').empty();
     eventChat = new EventChat();
     eventChat.create(idevent);
     setTimeout(getMessageStrings(eventChat), 10000);
-    var newH, newA, newA2, newHr, newH1, newH2, newH3, newH4, newH5, chat;
-    var n, url, url2;
+    var newH, newA, newHr, newH1, chat;
+    var n, url;
     // Find the newestBlogs div that will house newly created blogs
     chat = $('#chat');
     //This might not look nice but it should work. Go back and fix the how
     //it looks later.
-    for (var n = eventChat.getSize() - 1; n > -1; n--) {
+    for (n = eventChat.getSize() - 1; n > -1; n--) {
         url = "../profile/index.html#" + senders[n].getID();
         newA = $('<a>').attr('href', url).text(senders[n] + ": ").on('click', function () {
             window.location.href = url;
@@ -125,7 +125,7 @@ function getMessages() {
         chat.append(newHr);
     }
 }
-//I'm keeping track of all the times and the ids for the purpose of deleting
+//I'm keeping track of all the times and the ids in case we need them for the purpose of deleting
 //messages and soritng by timesent although I am not showing these
 function getMessageStrings(eventChat) {
     chatLog = eventChat.getChatLog();
