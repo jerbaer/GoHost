@@ -22,10 +22,7 @@ function Event() {
     this.users = [];
     this.tempID;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
-    this.idAttendees = [];
-    this.idInvited = [];
-    this.idNotifications = [];
-    this.idMessages = [];
+
 
     this.createFromDB = function (idevent, accessor1) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
