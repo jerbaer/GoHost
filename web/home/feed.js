@@ -65,6 +65,9 @@ function getEvents() {
 
 function getStringsFromEvents(eventList) {
     list = eventList.getEventsList();
+    list.sort(function(a, b) {
+    return parseFloat(a.eventStart) - parseFloat(b.eventStart);
+});
     eventTitles = new Array(list.length);
     eventHosts = new Array(list.length);
     eventStartTimes = new Array(list.length);
