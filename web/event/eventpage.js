@@ -100,6 +100,7 @@ function setUpComponents() {
 //Next two functions migrated from eventChat. Will need to make sure it is 
 //connecting to the right div that Jerry is going to make
 function getMessages() {
+    
     eventChat = new EventChat();
     eventChat.create(idevent);
     setTimeout(getMessageStrings(eventChat), 10000);
