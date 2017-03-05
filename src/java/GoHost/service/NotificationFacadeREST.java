@@ -71,6 +71,13 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
     public Notification find(@PathParam("id") Integer id) {
         return super.find(id);
     }
+    @GET
+    @Path("idevent")
+    @Produces({MediaType.APPLICATION_JSON})
+    public List<Notification> getOpen(@QueryParam("idevent") int vis){
+        return em.createNamedQuery("Notification.findByIdevent", Notification.class).setParameter("idevent", new Integer(vis)).getResultList();
+    }  
+
     
     @GET
     @Path("iduser")

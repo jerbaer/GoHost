@@ -22,6 +22,10 @@ function Event() {
     this.users = [];
     this.tempID;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
+    this.idAttendees = [];
+    this.idInvited = [];
+    this.idNotifications = [];
+    this.idMessages = [];
 
     this.createFromDB = function (idevent, accessor1) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
@@ -222,25 +226,69 @@ function Event() {
         });
         //Deletes all attendee rows of this event
         $.ajax({
-            url: this.coreUrl + 'attendee/delete?idevent=' + this.idevent,
-            type: 'DELETE'
+            url: this.coreUrl + 'attendee/idevent?idevent=' + this.idevent,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteAttendees
         });
         //Delets all invited rows of this event
         $.ajax({
-            url: this.coreUrl + 'invited/delete?idevent=' + this.idevent,
-            type: 'DELETE'
+            url: this.coreUrl + 'invited/idevent?idevent=' + this.idevent,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteInvited
         });
         //Delets all messages of this event
         $.ajax({
-            url: this.coreUrl + 'message/delete?idevent=' + this.idevent,
-            type: 'DELETE'
+            url: this.coreUrl + 'message/idevent?idevent=' + this.idevent,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteMessages
         });
         //Deletes all notifications of this event
         $.ajax({
-            url: this.coreUrl + 'notification/delete?idevent=' + this.idevent,
-            type: 'DELETE'
+            url: this.coreUrl + 'notification/idevent?idevent=' + this.idevent,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteNotifications
         });
     };
+    this.deleteAttendees = function(data){
+        for(var i = 0; i<data.length; i++){      
+        $.ajax({
+            url: this.coreUrl + 'attendee/' + data.idattendee,
+            type: 'DELETE'
+        });
+    }
+    };
+    this.deleteInvited = function(data){
+                for(var i = 0; i<data.length; i++){      
+        $.ajax({
+            url: this.coreUrl + 'invited/' + data.idinvited,
+            type: 'DELETE'
+        });
+    }
+    };
+    this.deleteNotifications = function(data){
+                for(var i = 0; i<data.length; i++){      
+        $.ajax({
+            url: this.coreUrl + 'notification/' + data.idnotification,
+            type: 'DELETE'
+        });
+    }
+    };
+    this.deleteMessages = function(data){
+                for(var i = 0; i<data.length; i++){      
+        $.ajax({
+            url: this.coreUrl + 'message/' + data.idmessage,
+            type: 'DELETE'
+        });
+    }
+    }
     
     this.addUserToEvent = function (iduser) {
         //adds user to the users array as well as the database and refresh
