@@ -125,6 +125,10 @@ function Event() {
     this.getCategory = function () {
         return this.category.getName();
     };
+    
+    this.getCategoryID = function () {
+        return this.category.getID();
+    };
 
     this.getTitle = function () {
         return this.title;
@@ -132,6 +136,9 @@ function Event() {
 
     this.getLocation = function () {
         return this.location.getName();
+    };
+    this.getLocationID = function () {
+        return this.location.getID();
     };
 
     this.getDescription = function () {

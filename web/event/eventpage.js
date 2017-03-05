@@ -25,6 +25,8 @@ var peopleIDs;
 var peopleList = null;
 var count;
 
+//Global variables for 
+
 //Still don't know where to call this
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
     var t = this.split(/[- :T]/);

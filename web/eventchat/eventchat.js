@@ -3,6 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+//There is no need for this html or js anymore. The chat will go in the event page directly.
+//Move the code here to the event page js
+
+
 var id = 0;
 var idevent = 0;
 var eventChat = null;
