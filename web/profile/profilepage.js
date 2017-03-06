@@ -129,7 +129,8 @@ function editAccount() {
 
 function deleteAccount() {
     accessor.deleteUser();
-    url = "../../index.html"
+    url = "../index.html"
+    sessionStorage.clear();
     window.location.href = url;
     window.location.reload(true);
 }
