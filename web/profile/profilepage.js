@@ -66,10 +66,10 @@ function addFriend() {
 
 function editProfile() {
     if ($('#name').val() !== '') {
-        //profile1.editName($('#name').val());
+        profile1.editName($('#name').val());
     }
     if ($('#picture').val() !== '') {
-        //profile1.editPicture($('#picture').val());
+        profile1.editPicture($('#picture').val());
     }
     // Might need more code here for picture
     if ($('#description').val() !== '') {
