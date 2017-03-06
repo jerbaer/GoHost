@@ -60,21 +60,20 @@ function setUpComponents() {
 
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
-        $('#delete').removeClass('hidden');
-        $('#edit').removeClass('hidden');
-        $('#invite').removeClass('hidden');
-        $('#sendMessage').removeClass('hidden');
+        $('#inviteSpan').removeClass('hidden');
+        $('#host').removeClass('hidden');
+        $('#eventChat').removeClass('hidden');
         $('#delete').on('click', deleteEvent);
         $('#edit').on('click', editEvent);
         $('#invite').on('click', getFriends);
-        $('#sendMessage').on('click', sendMessage);
+        $('#sendChat').on('click', sendMessage);
     } else if (isAttendee) {
-        $('#invite').removeClass('hidden');
+        $('#inviteSpan').removeClass('hidden');
         $('#leaveEvent').removeClass('hidden');
-        $('#sendMessage').removeClass('hidden');
+        $('#eventChat').removeClass('hidden');
         $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
-        $('#sendMessage').on('click', sendMessage);
+        $('#sendChat').on('click', sendMessage);
     } else if (canJoin) {
         $('#joinEvent').removeClass('hidden');
         $('#joinEvent').on('click', joinEvent);
@@ -124,7 +123,7 @@ function getMessageStrings(eventChat) {
         senders[i] = chatLog[i].getUser();
         messages[i] = chatLog[i].getText();
         var d = chatLog[i].getTime().mysqlToDate();
-        times[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
+        times[i] = d.toString().substring(0,21);
         messageIDs[i] = chatLog[i].getID();
     }
 }
@@ -132,7 +131,6 @@ function getMessageStrings(eventChat) {
 function sendMessage() {
     
 }
-
 
 function requestToJoinEvent() {
     notification = new Notification();
@@ -297,7 +295,7 @@ function leaveEvent() {
     location.href = "../home";
 }
 function removeUser(iduser){
-    event1.removeUserFromEvent(iduser)
+    event1.removeUserFromEvent(iduser);
     window.location.reload();
 }
 
@@ -349,8 +347,7 @@ function getFriends() {
 
 function makeFriendAlert(iduser, n) {
     newH7 = $('<div>').addClass("alert alert-info alert-dismissable").on('close.bs.alert', function () {
-        var n = iduser;
-        event1.inviteUser(n);
+
     });
     url = "../profile/index.html#" + iduser;
     newA = $('<a>').addClass("alert-link").attr('href', url).text(peopleNames[n]).on('click', function () {
@@ -360,12 +357,15 @@ function makeFriendAlert(iduser, n) {
         sessionStorage.setItem('peopleid'), peopleIDs[n];
     });
     newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").attr('id', "hostOnly");
-    newI = $('<i>').addClass("fa fa-envelope-o").attr('aria-hidden', "true").on('click', function(){
+    newI = $('<i>').addClass("fa fa-envelope").attr('aria-hidden', "true").on('click', function(){
         event1.inviteUser(iduser);
+        window.location.reload(true);
     });
     newA2.append(newI);
-    newH7.append(newA2).append(newA);
-    peopleList.append(newH7);
+    if (!event1.isUserInvited(iduser)) {
+        newH7.append(newA2).append(newA);};
+    if (!event1.isUserInvited(iduser)) {
+        peopleList.append(newH7);};
 }
 
 function getStringsFromPeople(PeopleList) {

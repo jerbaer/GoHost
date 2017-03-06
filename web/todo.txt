@@ -32,3 +32,5 @@ Admin shit:
     b. Modify the notifications js to check if the user is an admin right away
 4. Create on click functions where the admin either approves the report (deleting the event and the notification)
 or rejects the report (simply deleting the notification)
+
+Modify the user facade to not allow making an account with the same name as an existing account
