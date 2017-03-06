@@ -18,12 +18,12 @@ function setUpComponents() {
     getCategories();
     getLocations();
     $('#categoryButton').on('click', function () {
-        visibleEvents.getEventsByCategory(('#category').val());
+        visibleEvents.getEventsByCategory($('#category').val());
         setTimeout(getStringsFromEvents(visibleEvents), 10000);
         populateFeed();
     });
     $('#locationButton').on('click', function () {
-        visibleEvents.getEventsByLocation(('#location').val());
+        visibleEvents.getEventsByLocation($('#location').val());
         setTimeout(getStringsFromEvents(visibleEvents), 10000);
         populateFeed();
     });
