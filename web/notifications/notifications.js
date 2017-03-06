@@ -91,8 +91,7 @@ function createUserReport(notification) {
             notification.user.getName() + ".");
     newH2 = $('<button>').text("Delete User").on('click', function () {
         if (isSetUp == true) {
-            //This is very low priority now. If we have time, we would have to
-            //delete all trace of that user from the SuD.
+            notification.user.deleteUser();
             notification.deleteNotification();
         }
     });
@@ -109,7 +108,6 @@ function createUserReport(notification) {
     notificationsFeed.append(newH1);
     notificationsFeed.append(newH4);
     notificationsFeed.append(newH);
-    //What is this for???
     isSetUp = true;
 }
 //This will not require action from the user. All it will have is dismiss
