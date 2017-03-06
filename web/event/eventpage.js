@@ -93,6 +93,7 @@ function setUpComponents() {
 function reportEvent() {
     notification = new Notification();
     notification.create(0, user.getID(), event1.getID(), new Date(), 0, 3);
+    alert("Thank you. This event has now been reported to the administrator.");
 }
 
 //Next two functions migrated from eventChat. Will need to make sure it is 
