@@ -41,7 +41,8 @@ function User() {
         this.password = data.password;
         this.name = data.name;
         this.idprofile = data.idprofile;
-        this.isAdmin = data.admin;
+        if(data.admin == 1)
+        this.isAdmin = true;
         //Do you want me to call these other functions right away or to wait for now?
     };
     //This will be called in one of two places:

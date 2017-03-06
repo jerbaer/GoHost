@@ -14,7 +14,8 @@ function setUpComponents() {
     id = parseInt(sessionStorage.getItem('id'));
     getNotifications();
     
-    var owner = new User(id);
+    var owner = new User();
+    owner.create(id);
     var isAdmin = owner.isAdmin; // Isn't getting the right value
     if(isAdmin) {
         $('.notAdmin').hide();
