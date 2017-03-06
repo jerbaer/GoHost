@@ -9,7 +9,7 @@
 //this will be a system notification if from is 0. Otherwise, it's a request.
 
 //status: this will be used to distinguish the different types of requests
-//(0: eventInvite, 1: eventRequest, 2: friendRequest, 3: report)
+//(0: eventInvite, 1: eventRequest, 2: friendRequest, 3: eventReport, 4: userReport)
 
 //read: this will be used to distinguish the different types of system notifications
 //however specific I want to get with those.
@@ -39,7 +39,7 @@ function Notification(){
     this.createFromDBFollowUp = function (data){
         this.idnotification = data.idnotification;
         this.user = new User();
-        this.user.create(data.iduser)
+        this.user.create(data.iduser);
         this.from = new User();
         this.from.create(data.sender);
         if(data.idevent!= null){
@@ -79,6 +79,9 @@ function Notification(){
     };
     this.getStatus = function () {
         return this.status;
+    };
+    this.getUser = function () {
+        return this.user;
     };
     this.editRead = function (read) {
         this.read = read;
