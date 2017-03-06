@@ -90,6 +90,15 @@ public class UserFacadeREST extends AbstractFacade<User> {
     public List<User> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
+    @GET
+    @Path("admin")
+    @Produces({MediaType.APPLICATION_JSON})
+    public boolean isAdmin(@QueryParam("iduser") Integer id){
+        User u = null;
+        u = em.createNamedQuery("User.findByIduser", User.class).setParameter("iduser", id).getSingleResult();
+        if (u.getAdmin() == 1) return true;
+        else return false;
+    }
     
     @GET
     @Path("all")
