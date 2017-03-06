@@ -80,11 +80,12 @@ public class InvitedFacadeREST extends AbstractFacade<Invited> {
         return em.createNamedQuery("Invited.findByIdevent", Invited.class).setParameter("idevent", new Integer(vis)).getResultList();
    }
     @GET
-    @Path("user")
+    @Path("iduser")
     public List<Invited> getEventsUserIsInvitedTo(@QueryParam("iduser") int iduser){
         return em.createNamedQuery("Invited.findByIduser", Invited.class).setParameter("iduser", iduser).getResultList();
     
-}
+    }
+    
 
     @GET
     @Path("all")

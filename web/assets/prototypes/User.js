@@ -70,7 +70,6 @@ function User() {
             success: this.deleteEvents
         });
         //Gets all the attendee rows where he is an attendee
-        //Need to make sure my attendee facade supports this call
         $.ajax({
             url: this.coreUrl + 'attendee/iduser?iduser=' + this.iduser,
             type: 'GET',
@@ -79,7 +78,6 @@ function User() {
             success: this.deleteAttendees
         });
         //Gets all the invited rows where he is invited
-        //Need to make sure my invited facade supports this call
         $.ajax({
             url: this.coreUrl + 'invited/iduser?iduser=' + this.iduser,
             type: 'GET',
@@ -88,16 +86,14 @@ function User() {
             success: this.deleteInvited
         });
         //Gets all the friend rows where he is user1
-        //Need to make sure my friend facade supports this call
         $.ajax({
-            url: this.coreUrl + 'friend/iduser1?iduser1=' + this.iduser,
+            url: this.coreUrl + 'friend/iduser?iduser=' + this.iduser,
             type: 'GET',
             context: this,
             dataType : 'json',
             success: this.deleteFriend
         });
         //Gets all the friend rows where he is user2
-        //Need to make sure my friend facade supports this call
         //This calls the same callback function as the last one
         $.ajax({
             url: this.coreUrl + 'friend/iduser2?iduser2=' + this.iduser,
