@@ -66,7 +66,6 @@ function reportUser() {
     alert("Thank you. This event has now been reported to the administrator.");
 }
 
-
 function getProfile() {
     profile1 = new Profile();
     profile1.createFromDB(owner, accessor);
