@@ -128,8 +128,9 @@ function getMessageStrings(eventChat) {
         messageIDs[i] = chatLog[i].getID();
     }
 }
-
+//Need to fill this in now
 function sendMessage() {
+    
 }
 
 
