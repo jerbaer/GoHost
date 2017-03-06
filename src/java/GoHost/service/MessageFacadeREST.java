@@ -82,7 +82,7 @@ public class MessageFacadeREST extends AbstractFacade<Message> {
     @Path("iduser")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Message> findMessages(@QueryParam("iduser") Integer id) {
-        return em.createNamedQuery("Friend.findByIduser", Message.class).setParameter("iduser", id).getResultList();
+        return em.createNamedQuery("Message.findByIduser", Message.class).setParameter("iduser", id).getResultList();
     }
 
     @GET
