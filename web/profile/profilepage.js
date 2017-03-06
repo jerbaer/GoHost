@@ -25,6 +25,7 @@ function setUpComponents() {
     isOwner = profile1.isCurrentUser();
     isFriend = profile1.isFriend();
     if (isOwner) {
+        $('#favCat').removeClass('hidden');
         $('#ownerOnly').removeClass('hidden');
         $('#editProfile').on('click', editProfile);
         $('#editUser').on('click', editAccount);
@@ -51,18 +52,19 @@ function getProfile() {
     profDesc = $('#profileDesc');
     newP = $('<p>').text(profileDescription);
     
-    favCat = new Category($('#favCat').val());
-    newP2 = $('<p>').text(favCat);
+    favCat = $('#favCat');
+    newP2 = $('<p>').text(favCategory.getName());
 
     profName.append(newH1);
     profDesc.append(newP);
-    favCat.append(newP2)
+    favCat.append(newP2);
 }
 
 function getStringsFromProfile(profile1) {
     profileName = profile1.getName();
-    //profilePicture = profile1.getPicture();
+    profilePicture = profile1.getPicture();
     profileDescription = profile1.getDescription();
+    favCategory = new Category(profile1.getCategory());
 }
 
 function addFriend() {

@@ -97,10 +97,10 @@ function Profile () {
     };
     this.editCategory = function(idcategory){
         this.favCategory = idcategory;
-    }
+    };
     this.getCategory = function(){
         return this.favCategory;
-    }
+    };
     
     // These next ones I'm not sure about. Also might not need to pass any variables
 
@@ -122,7 +122,7 @@ function Profile () {
             context: this,
             success: this.createProfileFollowUp,
             async: false
-        })
+        });
     };
     
     this.createProfileFollowUp = function (data) {
@@ -135,7 +135,7 @@ function Profile () {
     };
     this.getID = function(){
         return this.idprofile;
-    }
+    };
     
     this.getPeopleList = function () {
         friends = new PeopleList();
