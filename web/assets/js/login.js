@@ -75,11 +75,12 @@ sys_init = {
         if (data !== "0"&& data !== 0) {
             // Storing the id number of the user
             sessionStorage.setItem('id', parseInt(data));
+            window.location.href = 'home/index.html#';
+            sys_init.refresh;
         } else {
             $('#regWarning').show();
         }
-        window.location.href = 'home/index.html#';
-        sys_init.refresh;
+
     },
 
     setUpButtons: function () {
