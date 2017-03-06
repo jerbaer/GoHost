@@ -15,6 +15,8 @@ function setUpComponents() {
     id = parseInt(sessionStorage.getItem('id'));
     getEvents();
     getProfile();
+    getCategories();
+    getLocations();
 }
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
     var t = this.split(/[- :T]/);
@@ -124,6 +126,30 @@ function getStringsFromProfile(profile1) {
     profileName = profile1.getName();
     profilePicture = profile1.getPicture();
     profileDescription = profile1.getDescription();
+}
+function getCategories() {
+    var url = "http://143.44.67.0:13774/GoHost/api/category/all";
+    $.getJSON(url).done(categoriesFollowUp);
+}
+function getLocations() {
+    var url = "http://143.44.67.0:13774/GoHost/api/location/all";
+    $.getJSON(url).done(locationsFollowUp);
+}
+
+function categoriesFollowUp(data) {
+    eventsCat = $('#category');
+    for (i = 0; i < data.length; i++) {
+        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        eventsCat.append(newHr);
+    }
+}
+
+function locationsFollowUp(data) {
+    eventsLoc = $('#location');
+    for (i = 0; i < data.length; i++) {
+        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        eventsLoc.append(newHr);
+    }
 }
 
 $(document).ready(setUpComponents);
