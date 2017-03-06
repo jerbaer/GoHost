@@ -42,6 +42,15 @@ public class UserFacadeREST extends AbstractFacade<User> {
     @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public String createUser(User entity) {
+        User other = null;
+        try {
+            other = em.createNamedQuery("User.findByName", User.class).setParameter("name", entity.getName()).getSingleResult();
+        } catch (Exception ex) {
+           
+        }
+        if(other != null)
+            return "0";
+        
         super.create(entity);
         em.flush();
         return entity.getIduser().toString();
