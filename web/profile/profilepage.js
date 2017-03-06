@@ -67,7 +67,7 @@ function getProfile() {
     newH1 = $('<h1>').text(profileName);
 
     profPic = $('#profPic');
-    // Do picture stuff
+    profPic.attr('src', profile1.getPicture());
 
     profDesc = $('#profileDesc');
     newP = $('<span>').text(profileDescription);
