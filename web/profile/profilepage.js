@@ -45,7 +45,7 @@ function getProfile() {
     profPic = $('#profPic');
     // Do picture stuff
 
-    profDesc = $('#profDesc');
+    profDesc = $('#profileDesc');
     newP = $('<p>').text(profileDescription);
 
     profName.append(newH1);
