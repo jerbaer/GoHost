@@ -77,7 +77,13 @@ public class MessageFacadeREST extends AbstractFacade<Message> {
     @Produces({MediaType.APPLICATION_JSON})
     public List<Message> getOpen(@QueryParam("idevent") int vis){
         return em.createNamedQuery("Message.findByIdevent", Message.class).setParameter("idevent", new Integer(vis)).getResultList();
-    }  
+    }
+    @GET
+    @Path("iduser")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Message> findMessages(@QueryParam("iduser") Integer id) {
+        return em.createNamedQuery("Message.findByIduser", Message.class).setParameter("iduser", id).getResultList();
+    }
 
     @GET
     @Override

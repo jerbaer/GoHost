@@ -42,6 +42,162 @@ function User() {
         this.isAdmin = data.admin;
         //Do you want me to call these other functions right away or to wait for now?
     };
+    //This will be called in one of two places:
+    //1. The user themselves does it. After that they are taken back to the login page.
+    //2. The admin does it.
+    //This needs to delete ALL traces of this user from the database
+    //1. Delete the user from the user table
+    //2. Delete all the events being hosted by this user
+    //3. Remove him from the attendee table
+    //4. Remove him from the invited table
+    //5. Remove all friend rows that have him on either side
+    //6. Remove all messages that have been sent by him
+    //7. Delete that user's profile
+    //8. Delete all the notification sent by that user
+    //9. Delete all the notification sent to that user
+    this.deleteUser = function () {
+        //Deletes the user from the user table
+        $.ajax({
+            url: this.coreUrl + 'user/' + this.iduser,
+            type: 'DELETE'
+        });
+        //Gets all the events being hosted by this user
+        $.ajax({
+            url: this.coreUrl + 'event/idhost?idhost=' + this.iduser,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteEvents
+        });
+        //Gets all the attendee rows where he is an attendee
+        $.ajax({
+            url: this.coreUrl + 'attendee/iduser?iduser=' + this.iduser,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteAttendees
+        });
+        //Gets all the invited rows where he is invited
+        $.ajax({
+            url: this.coreUrl + 'invited/iduser?iduser=' + this.iduser,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteInvited
+        });
+        //Gets all the friend rows where he is user1
+        $.ajax({
+            url: this.coreUrl + 'friend/iduser?iduser=' + this.iduser,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteFriend
+        });
+        //Gets all the friend rows where he is user2
+        //This calls the same callback function as the last one
+        $.ajax({
+            url: this.coreUrl + 'friend/iduser2?iduser2=' + this.iduser,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteFriend
+        });
+        //Gets all the message rows where he is the sender
+        //Need to make sure my message facade supports this call
+        $.ajax({
+            url: this.coreUrl + 'message/iduser?iduser=' + this.iduser,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteMessage
+        });
+        //Gets the profile associated with the user
+        //Need to make sure my profile facade supports this call
+        $.ajax({
+            url: this.coreUrl + 'profile/iduser?iduser=' + this.iduser,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteProfile
+        });
+        //Gets all the notification rows where he is the sender
+        //Need to make sure my notification facade supports this call
+        $.ajax({
+            url: this.coreUrl + 'notification/iduser?iduser=' + this.iduser,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteNotification
+        });
+        //Gets all the notification rows where he is the recipient
+        //Need to make sure my notification facade supports this call
+        //This has the same callback function as the last one
+        $.ajax({
+            url: this.coreUrl + 'notification/from?from=' + this.iduser,
+            type: 'GET',
+            context: this,
+            dataType : 'json',
+            success: this.deleteNotification
+        });
+    };
+    //This is incorrect. It needs to call the delete function on the event object
+    this.deleteEvents = function(data){
+        for(var i = 0; i<data.length; i++){      
+        $.ajax({
+            url: this.coreUrl + 'event/' + data[i].idevent,
+            type: 'DELETE'
+        });
+        }
+    };
+    this.deleteAttendees = function(data){
+        for(var i = 0; i<data.length; i++){      
+        $.ajax({
+            url: this.coreUrl + 'attendee/' + data[i].idattendee,
+            type: 'DELETE'
+        });
+        }
+    };
+    this.deleteInvited = function(data){
+        for(var i = 0; i<data.length; i++){      
+        $.ajax({
+            url: this.coreUrl + 'invited/' + data[i].idinvited,
+            type: 'DELETE'
+        });
+        }
+    };
+    this.deleteFriend = function(data){
+        for(var i = 0; i<data.length; i++){      
+        $.ajax({
+            url: this.coreUrl + 'friend/' + data[i].idfriend,
+            type: 'DELETE'
+        });
+        }
+    };
+    this.deleteMessage = function(data){
+        for(var i = 0; i<data.length; i++){      
+        $.ajax({
+            url: this.coreUrl + 'message/' + data[i].idmessage,
+            type: 'DELETE'
+        });
+        }
+    };
+    this.deleteProfile = function(data){
+        for(var i = 0; i<data.length; i++){      
+        $.ajax({
+            url: this.coreUrl + 'profile/' + data[i].idprofile,
+            type: 'DELETE'
+        });
+        }
+    };
+    this.deleteNotification = function(data){
+        for(var i = 0; i<data.length; i++){      
+        $.ajax({
+            url: this.coreUrl + 'notification/' + data[i].idnotification,
+            type: 'DELETE'
+        });
+        }
+    };
+    
     //These two functions will probably not be called from here
     this.createPeopleList = function () {
         this.PeopleList = new PeopleList();

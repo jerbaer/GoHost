@@ -36,3 +36,9 @@ or rejects the report (simply deleting the notification)
 Modify the user facade to not allow making an account with the same name as an existing account
 
 Report font awesome icon: fa-flag
+
+
+
+Profile <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<محمود>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Add a button that pops up for the user themselves that allows the user to delete their account
+It should take them back to the login page after that.
