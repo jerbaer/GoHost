@@ -54,30 +54,30 @@
                     <div id="eventDetails">
                         <!-- Event details go here -->
                     </div>
-                    <button type="button" class="btn btn-info" id="joinEvent">Join Event</button>
-                    <button type="button" class="btn btn-info" id="request">Request to Join Event</button>
+                    <button type="button" class="btn btn-info hidden" id="joinEvent">Join Event</button>
+                    <button type="button" class="btn btn-info hidden" id="request">Request to Join Event</button>
                 </div>
                 <br>
                 <div class="col-lg-2 col-sm-offset-2">
                     <div class="row">
-                    <span id="inviteSpan">
-                        <a class="btn btn-info" href="#invModal" data-toggle="modal" data-target="#invModal" aria-label="Invite" id="invite">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </a>
-                    </span>
-                    <span id="host">
-                        <a class="btn btn-info" href="#editModal" data-toggle="modal" data-target="#editModal" aria-label="Edit">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                        </a>
-                        <a class="btn btn-warning" href="#delModal" data-toggle="modal" data-target="#delModal" aria-label="Delete">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
-                    </span>
-                    <button type="button" class="btn btn-warning" id="leaveEvent">Leave Event</button>
+                        <span class="hidden" id="inviteSpan">
+                            <a class="btn btn-info" href="#invModal" data-toggle="modal" data-target="#invModal" aria-label="Invite" id="invite">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                        <span class="hidden" id="host">
+                            <a class="btn btn-info" href="#editModal" data-toggle="modal" data-target="#editModal" aria-label="Edit">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                            <a class="btn btn-warning" href="#delModal" data-toggle="modal" data-target="#delModal" aria-label="Delete">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                        <button type="button" class="btn btn-warning hidden" id="leaveEvent">Leave Event</button>
                     </div>
                     <br>
                     <div class="row">
-                        <button type="button" class="btn btn-info" id="eventChat">Event Chat</button>
+                        <button type="button" class="btn btn-info hidden" data-toggle="modal" data-target="#chatModal" aria-label="Chat" id="eventChat">Event Chat</button>
                     </div>
                 </div>
             </div>
@@ -224,6 +224,25 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="chatModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Event Chat</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="chatLines"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="input-group">
+                            <textarea class="form-control custom-control" rows="2" style="resize:none"></textarea>     
+                            <span class="input-group-addon btn btn-info" id="sendChat">Send</span>
+                        </div>
                     </div>
                 </div>
             </div>
