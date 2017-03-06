@@ -338,7 +338,7 @@ function getFriends() {
     peopleList = $('#friends');
     for (var n = friends.getSize() - 1; n > -1; n--) {
         if (peopleUserIDs[n] !== undefined) {
-            if(event1.isUserInvited(peopleUserIDs[n]))
+            if(!event1.isUserInvited(peopleUserIDs[n]))
             makeFriendAlert(peopleUserIDs[n], n);
         }
     }
