@@ -25,19 +25,13 @@ function setUpComponents() {
     isFriend = profile1.isFriend();
     canSee = true;
     if (isOwner) {
-        $('#addFriend').hide();
-        $('#joinEvent').hide();
+        $('#ownerOnly').removeClass('hidden');
         $('#editProfile').on('click', editProfile);
         $('#editUser').on('click', editAccount);
         $('#deleteAcc').on('click', deleteAccount);
-    } else if (isFriend) {
-        $('#addFriend').hide();
-        $('#ownerOnly').hide();
     } else if (canSee) {
-        $('#ownerOnly').hide();
+        $('#addFriend').removeClass('hidden');
         $('#addFriend').on('click', addFriend);
-    } else {
-        $('#profileDetails').hide();
     }
 }
 
