@@ -99,7 +99,6 @@ function Event() {
             contentType: 'application/json',
             dataType: 'json',
             async: true,
-            success: invitedFollowUp
         });
                 
             }
