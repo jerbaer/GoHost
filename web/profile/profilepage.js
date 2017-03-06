@@ -23,13 +23,12 @@ function setUpComponents() {
     getProfile();
     isOwner = profile1.isCurrentUser();
     isFriend = profile1.isFriend();
-    canSee = true;
     if (isOwner) {
         $('#ownerOnly').removeClass('hidden');
         $('#editProfile').on('click', editProfile);
         $('#editUser').on('click', editAccount);
         $('#deleteAcc').on('click', deleteAccount);
-    } else if (canSee) {
+    } else if (!isFriend) {
         $('#addFriend').removeClass('hidden');
         $('#addFriend').on('click', addFriend);
     }
