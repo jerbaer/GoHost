@@ -263,7 +263,7 @@ function Event() {
     this.deleteAttendees = function(data){
         for(var i = 0; i<data.length; i++){      
         $.ajax({
-            url: this.coreUrl + 'attendee/' + data.idattendee,
+            url: this.coreUrl + 'attendee/' + data[i].idattendee,
             type: 'DELETE'
         });
     }
@@ -271,7 +271,7 @@ function Event() {
     this.deleteInvited = function(data){
                 for(var i = 0; i<data.length; i++){      
         $.ajax({
-            url: this.coreUrl + 'invited/' + data.idinvited,
+            url: this.coreUrl + 'invited/' + data[i].idinvited,
             type: 'DELETE'
         });
     }
@@ -279,7 +279,7 @@ function Event() {
     this.deleteNotifications = function(data){
                 for(var i = 0; i<data.length; i++){      
         $.ajax({
-            url: this.coreUrl + 'notification/' + data.idnotification,
+            url: this.coreUrl + 'notification/' + data[i].idnotification,
             type: 'DELETE'
         });
     }
@@ -287,7 +287,7 @@ function Event() {
     this.deleteMessages = function(data){
                 for(var i = 0; i<data.length; i++){      
         $.ajax({
-            url: this.coreUrl + 'message/' + data.idmessage,
+            url: this.coreUrl + 'message/' + data[i].idmessage,
             type: 'DELETE'
         });
     }
