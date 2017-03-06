@@ -69,6 +69,12 @@ public class FriendFacadeREST extends AbstractFacade<Friend> {
     public List<Friend> findFriends(@QueryParam("iduser1") Integer id) {
         return em.createNamedQuery("Friend.findByIduser1", Friend.class).setParameter("iduser1", id).getResultList();
     }
+    @GET
+    @Path("iduser2")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Friend> findFriends2(@QueryParam("iduser2") Integer id) {
+        return em.createNamedQuery("Friend.findByIduser2", Friend.class).setParameter("iduser2", id).getResultList();
+    }
 
     @GET
     @Override
