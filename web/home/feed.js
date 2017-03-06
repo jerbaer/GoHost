@@ -19,11 +19,13 @@ function setUpComponents() {
     getLocations();
     $('#categoryButton').on('click', function () {
         visibleEvents.getEventsByCategory(('#category').val());
-        refresh();
+        setTimeout(getStringsFromEvents(visibleEvents), 10000);
+        populateFeed();
     });
     $('#locationButton').on('click', function () {
         visibleEvents.getEventsByLocation(('#location').val());
-        refresh();
+        setTimeout(getStringsFromEvents(visibleEvents), 10000);
+        populateFeed();
     });
 }
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
@@ -37,12 +39,16 @@ function getEvents() {
     user.createVisibleList();
     visibleEvents = user.getVisibleEvents();
 
-    setTimeout(getVisibleStrings(), 10000);
+    setTimeout(getStringsFromEvents(visibleEvents), 10000);
+    populateFeed();
+}
+function populateFeed() {
     //this is where it connects with HTML to print the feed in objects
     var newH, newA, newA2, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
     var n, url, url2;
     // Find the newestBlogs div that will house newly created blogs
     eventsFeed = $('#eventsFeed');
+    eventsFeed.empty();
 
     for (n = visibleEvents.getSize() - 1; n > -1; n--) {
         url = "../event/index.html#" + eventIDs[n];
@@ -100,10 +106,6 @@ function getStringsFromEvents(eventList) {
         eventIDs[i] = list[i].getID();
         hostIDs[i] = list[i].getHostID();
     }
-}
-
-function getVisibleStrings() {
-    getStringsFromEvents(visibleEvents);
 }
 
 function getProfile() {
