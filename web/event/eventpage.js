@@ -254,9 +254,9 @@ function getStringsFromEvent(event1) {
     eventTitle = event1.getTitle();
     //eventHost = event.getHost(); don't need to display this
     var d = event1.getEventStart().mysqlToDate();
-    eventStartTime = d.toString().replace("GMT-0600 (Central Standard Time)", "");
+    eventStartTimes = d.toString().substring(0,21);
     var x = event1.getEventEnd().mysqlToDate();
-    eventEndTime = x.toString().replace("GMT-0600 (Central Standard Time)", "");
+    eventEndTime = x.toString().substring(0,21);
     eventCategory = event1.getCategory();
     eventLocation = event1.getLocation();
     //Goes through and fills out eventAttendees
