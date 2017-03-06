@@ -419,7 +419,7 @@ function Event() {
     };
     this.inviteUser = function(iduser){
         var url = this.coreUrl + "invited";
-        toSend ={ iduser: iduser};
+        var toSend ={ iduser: iduser};
         $.ajax({
             dataType: "json",
             data: toSend,
@@ -430,8 +430,8 @@ function Event() {
         });
     }
     this.isUserInvited = function(iduser){
-        for(var i = 0; i<invitedUsers.length; i++){
-            if (iduser == invitedUsers[i].getID())
+        for(var i = 0; i<this.invitedUsers.size; i++){
+            if (iduser == this.invitedUsers[i].getID())
                 return true;
         }
         return false;
