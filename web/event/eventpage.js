@@ -360,6 +360,7 @@ function makeFriendAlert(iduser, n) {
     newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").attr('id', "hostOnly");
     newI = $('<i>').addClass("fa fa-envelope-o").attr('aria-hidden', "true").on('click', function(){
         event1.inviteUser(iduser);
+        window.location.reload(true);
     });
     newA2.append(newI);
     if (!event1.isUserInvited(iduser)) {

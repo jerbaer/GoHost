@@ -37,10 +37,11 @@ public class InvitedFacadeREST extends AbstractFacade<Invited> {
     }
 
     @POST
-    @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Invited entity) {
+    public int createNote(Invited entity) {
         super.create(entity);
+        em.flush();
+        return entity.getIduser();
     }
 
     @PUT

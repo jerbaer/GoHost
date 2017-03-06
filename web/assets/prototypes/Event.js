@@ -98,7 +98,8 @@ function Event() {
             context: this,
             contentType: 'application/json',
             dataType: 'json',
-            async: true
+            async: true,
+            success: invitedFollowUp
         });
                 
             }
@@ -430,10 +431,9 @@ function Event() {
             success: this.inviteUserFollowUp
         });
     }
-    this.inviteUserFollowUp = function(){
+    this.inviteUserFollowUp = function(data){
         var note = new Notification();
-        note.create(this.accessor.getID(), this.host.getID(), this.idevent, new Date(), 0, 0);
-        
+        note.create(data, this.host.getID(), this.idevent, new Date(), 0, 0);        
     }
     this.isUserInvited = function(iduser){
         for(var i = 0; i<this.invitedUsers.length; i++){
