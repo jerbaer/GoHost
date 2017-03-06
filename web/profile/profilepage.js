@@ -11,6 +11,15 @@ var profileName;
 var profilePicture;
 var profileDescription;
 var favCat;
+var favCategory;
+
+var eventsHosted = null;
+var eventsAttending = null;
+var visibleEvents = null;
+String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
+    var t = this.split(/[- :T]/);
+    return new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
+};
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
@@ -20,6 +29,8 @@ function setUpComponents() {
     owner.create(profileid);
     accessor = new User();
     accessor.create(id);
+    
+    $('.ownerName').text(owner.getName());
 
     getProfile();
     getCategories();
@@ -33,14 +44,14 @@ function setUpComponents() {
     $('#flagUser').removeClass('hidden');
     $('#report').on('click', reportUser);
     if (isOwner) {
-        $('#favCat').removeClass('hidden');
         $('#ownerOnly').removeClass('hidden');
         $('#editProfile').on('click', editProfile);
         $('#editUser').on('click', editAccount);
         $('#deleteAcc').on('click', deleteAccount);
+        $('#attendingtab').on('click', getAttendingStrings);
+        $('#hostingtab').on('click', getHostStrings);
     } else if (isFriend) {
         $('#friendsOnly').removeClass('hidden');
-        $('#favCat').removeClass('hidden');
         $('#attendingtab').on('click', getAttendingStrings);
         $('#hostingtab').on('click', getHostStrings);
     } else {
@@ -68,11 +79,11 @@ function getProfile() {
     // Do picture stuff
 
     profDesc = $('#profileDesc');
-    newP = $('<p>').text(profileDescription);
+    newP = $('<span>').text(profileDescription);
 
     favCat = $('#favCat');
     favCategory.retrieveName();
-    newP2 = $('<p>').text(favCategory.getName());
+    newP2 = $('<span>').text(favCategory.getName());
 
     profName.append(newH1);
     profDesc.append(newP);
@@ -104,7 +115,7 @@ function editProfile() {
         profile1.editDescription($('#description').val());
     }
     if ($('category').val() !== '') {
-        profile1.editCategory($('category').val());
+        profile1.editCategory($('category').val()); // Isn't passing the profile object for some reason
     }
     profile1.refreshEdits();
 
@@ -127,7 +138,7 @@ function editAccount() {
 
 function deleteAccount() {
     accessor.deleteUser();
-    url = "../index.html"
+    url = "http://143.44.67.0:13774/GoHost/"
     sessionStorage.clear();
     window.location.href = url;
     window.location.reload(true);
@@ -177,10 +188,10 @@ function getHostStrings() {
     $('#attend').hide();
     $('#attend').empty();
     $('#host').empty();
-    if (eventsHosted != null) {
+    if (eventsHosted !== null) {
         eventsHosted = null;
     }
-    if (eventsAttending != null) {
+    if (eventsAttending !== null) {
         eventsAttending = null;
     }
     user.createHostedEventsList();
@@ -230,10 +241,10 @@ function getAttendingStrings() {
     $('#host').hide();
     $('#host').empty();
     $('#attend').empty();
-    if (eventsAttending != null) {
+    if (eventsAttending !== null) {
         eventsAttending = null;
     }
-    if (eventsHosted != null) {
+    if (eventsHosted !== null) {
         eventsHosted = null;
     }
     user.createEventsAttendingList();
@@ -339,7 +350,7 @@ $.wait = function (ms) {
         defer.resolve();
     }, ms);
     return defer;
-}
+};
 
 function refresh() {
     window.location.href = window.location.href;

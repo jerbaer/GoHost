@@ -2,7 +2,7 @@
 <html>
     <head>
         <!-- Change this to reflect user name -->
-        <title>User Name</title>
+        <title class="ownerName"></title>
         <!-- Add description + keywords -->
         <meta name="description" content="" />
         <meta name="keywords" content="" />
@@ -11,7 +11,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/4ba65f929c.js"></script>
+        <script src="../assets/prototypes/Event.js"></script>
         <script src="../assets/prototypes/User.js"></script>
+        <script src="../assets/prototypes/EventList.js"></script>
+        <script src="../assets/prototypes/Location.js"></script>
         <script src="../assets/prototypes/Category.js"></script>
         <script src="../assets/prototypes/PeopleList.js"></script>
         <script src="../assets/prototypes/Profile.js"></script>
@@ -76,35 +79,28 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-xs-7 col-sm-offset-2 col-xs-offset-1">
-                            <div id="profileDesc">
-                                <!-- Description -->
-                            </div>
-                            <div class="hidden" id="favCat"></div>
+                            <h4>About <span class="ownerName"></span>:</h4>
+                            <span id="profileDesc"></span>
+                            <h4>Favorite Category: </h4>
+                            <span id="favCat"></span>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Make error div for can't see -->
-            <br>
-            <div class="row" id="friendsOnly">
-                <div class="col-sm-push-8 col-sm-2 col-sm-offset-2">
-                    <br>
-                    <ul class="nav nav-pills">
-                        <li><a href="#eventModal" data-toggle="modal" data-target="#eventModal" class="btn btn-info btn-lg">Create Event</a></li>
-                    </ul>
-                    <br>
-                </div>
-                <div class="col-sm-pull-4 col-sm-8">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#host" id="hostingtab">Hosting</a></li>
-                        <li><a data-toggle="tab" href="#attend" id="attendingtab">Attending</a></li>
-                    </ul>
+            <div class="row hidden" id="friendsOnly">
+                <hr>
+                <h3>Events that <span id="ownerName"></span> is in.</h3>
+                <br>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#host" id="hostingtab">Hosting</a></li>
+                    <li><a data-toggle="tab" href="#attend" id="attendingtab">Attending</a></li>
+                </ul>
 
-                    <div class="tab-content">
-                        <div id="host" class="tab-pane fade in active">
-                        </div>
-                        <div id="attend" class="tab-pane fade">
-                        </div>
+                <div class="tab-content">
+                    <div id="host" class="tab-pane fade in active">
+                    </div>
+                    <div id="attend" class="tab-pane fade">
                     </div>
                 </div>
             </div>

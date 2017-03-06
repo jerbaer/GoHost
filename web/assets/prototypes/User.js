@@ -18,6 +18,8 @@ function User() {
     this.idprofile;
     //0 if not admin, 1 if is admin
     this.isAdmin = false;
+    
+    var profile = null;
 
     this.create = function (iduser) {
         //This will use the iduser stored in the session by system_init to
@@ -39,7 +41,8 @@ function User() {
         this.password = data.password;
         this.name = data.name;
         this.idprofile = data.idprofile;
-        this.isAdmin = data.admin;
+        if(data.admin == 1)
+        this.isAdmin = true;
         //Do you want me to call these other functions right away or to wait for now?
     };
     //This will be called in one of two places:
@@ -182,12 +185,12 @@ function User() {
         }
     };
     this.deleteProfile = function(data){
-        for(var i = 0; i<data.length; i++){      
+    
         $.ajax({
-            url: this.coreUrl + 'profile/' + data[i].idprofile,
+            url: this.coreUrl + 'profile/' + data.idprofile,
             type: 'DELETE'
         });
-        }
+        
     };
     this.deleteNotification = function(data){
         for(var i = 0; i<data.length; i++){      
@@ -284,11 +287,11 @@ function User() {
     };
     this.getProfileID = function(){
         return profile.getID();
-    }
+    };
     
     this.getPicture = function () {
         return profile.getPicture();
-    }
+    };
     
     this.editName = function (name) {
         this.name = name;
