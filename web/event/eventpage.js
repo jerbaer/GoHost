@@ -142,7 +142,8 @@ function getMessageStrings(eventChat) {
 //This needs to refresh the event page after it sends the message
 function sendMessage() {
     newMessage = $('#newMessage').val();
-      
+    chatLine = new ChatLine();
+    chatLine.create(newMessage, id, eventid, new Date());
     refresh();
 }
 
