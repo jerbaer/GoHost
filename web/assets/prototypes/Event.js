@@ -98,7 +98,7 @@ function Event() {
             context: this,
             contentType: 'application/json',
             dataType: 'json',
-            async: true
+            async: true,
         });
                 
             }
@@ -410,7 +410,7 @@ function Event() {
         //Need to make sure the attendee facade supports this 
         var url = this.coreUrl + "attendee/idevent?idevent=" + this.idevent;
         $.ajax({
-            dataType: "json",
+            dataType: 'json',
             url: url,
             type: 'GET',
             context: this,
@@ -419,20 +419,27 @@ function Event() {
     };
     this.inviteUser = function(iduser){
         var url = this.coreUrl + "invited";
-        toSend ={ iduser: iduser};
+        var toSend ={ iduser: iduser, idevent : this.idevent};
         $.ajax({
-            dataType: "json",
-            data: toSend,
+            dataType: 'json',
+            data: JSON.stringify(toSend),
             url: url,
-            contentType: "application/json",
+            contentType: 'application/json',
             type: 'POST',
-            context: this
+            context: this,
+            success: this.inviteUserFollowUp
         });
     }
+    this.inviteUserFollowUp = function(data){
+        var note = new Notification();
+        note.create(data, this.host.getID(), this.idevent, new Date(), 0, 0);        
+    }
     this.isUserInvited = function(iduser){
-        for(var i = 0; i<invitedUsers.length; i++){
-            if (iduser == invitedUsers[i].getID())
+        for(var i = 0; i<this.invitedUsers.length; i++){
+            var invitedID = this.invitedUsers[i].getID();
+            if (iduser === invitedID){
                 return true;
+            }
         }
         return false;
     }
