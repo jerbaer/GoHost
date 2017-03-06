@@ -25,6 +25,14 @@ var peopleIDs;
 var peopleList = null;
 var count;
 
+//Global variables for event chat
+var eventChat = null;
+var chatLog;
+var senders;
+var messages;
+var times;
+var messageIDs;
+
 //Still don't know where to call this
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
     var t = this.split(/[- :T]/);
@@ -39,6 +47,7 @@ function setUpComponents() {
     user.create(id);
     getCategories();
     getLocations();
+    getMessages();
 
     //Call function to display the event based on the relation of the
     //userto that event. Host, Attendee, neither
@@ -56,11 +65,13 @@ function setUpComponents() {
         $('#delete').on('click', deleteEvent);
         $('#edit').on('click', editEvent);
         $('#invite').on('click', getFriends);
+        $('#sendMessage').on('click', sendMessage);
     } else if (isAttendee) {
         $('#invite').removeClass('hidden');
         $('#leaveEvent').removeClass('hidden');
         $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
+        $('#sendMessage').on('click', sendMessage);
     } else if (canJoin) {
         $('#joinEvent').removeClass('hidden');
         $('#joinEvent').on('click', joinEvent);
@@ -70,6 +81,55 @@ function setUpComponents() {
         // Make error div for can't see
     }
 }
+
+//Next two functions migrated from eventChat. Will need to make sure it is 
+//connecting to the right div that Jerry is going to make
+function getMessages() {
+    $('#chat').empty();
+    eventChat = new EventChat();
+    eventChat.create(idevent);
+    setTimeout(getMessageStrings(eventChat), 10000);
+    var newH, newA, newHr, newH1, chat;
+    var n, url;
+    chat = $('#chat');
+    //This might not look nice but it should work. Go back and fix the how
+    //it looks later.
+    for (n = eventChat.getSize() - 1; n > -1; n--) {
+        url = "../profile/index.html#" + senders[n].getID();
+        newA = $('<a>').attr('href', url).text(senders[n] + ": ").on('click', function () {
+            window.location.href = url;
+            window.location.reload(true);
+        });
+        newH = $('<p>').append(newA);
+        newH1 = $('<p>').text(messages[n]);
+        newHr = $('<hr>');
+
+        chat.append(newH);
+        chat.append(newH1);
+        chat.append(newHr);
+    }
+}
+//I'm keeping track of all the times and the ids in case we need them for the purpose of deleting
+//messages and soritng by timesent although I am not showing these
+function getMessageStrings(eventChat) {
+    chatLog = eventChat.getChatLog();
+    senders = new Array(chatLog.length);
+    messages = new Array(chatLog.length);
+    times = new Array(chatLog.length);
+    messageIDs = new Array(chatLog.length);
+    for (i = 0; i < chatLog.length; i++) {
+        senders[i] = chatLog[i].getUser();
+        messages[i] = chatLog[i].getText();
+        var d = chatLog[i].getTime().mysqlToDate();
+        times[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
+        messageIDs[i] = chatLog[i].getID();
+    }
+}
+
+function sendMessage() {
+    
+}
+
 
 function requestToJoinEvent() {
     notification = new Notification();

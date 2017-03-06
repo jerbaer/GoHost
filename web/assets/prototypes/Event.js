@@ -22,10 +22,7 @@ function Event() {
     this.users = [];
     this.tempID;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
-    this.idAttendees = [];
-    this.idInvited = [];
-    this.idNotifications = [];
-    this.idMessages = [];
+
 
     this.createFromDB = function (idevent, accessor1) {
         //fill all the relevant fields from SQL, get accessor from session, create objects
@@ -129,6 +126,10 @@ function Event() {
     this.getCategory = function () {
         return this.category.getName();
     };
+    
+    this.getCategoryID = function () {
+        return this.category.getID();
+    };
 
     this.getTitle = function () {
         return this.title;
@@ -136,6 +137,9 @@ function Event() {
 
     this.getLocation = function () {
         return this.location.getName();
+    };
+    this.getLocationID = function () {
+        return this.location.getID();
     };
 
     this.getDescription = function () {

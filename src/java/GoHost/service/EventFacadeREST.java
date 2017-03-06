@@ -63,6 +63,13 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     public Event find(@PathParam("id") Integer id) {
         return super.find(id);
     }
+    @GET
+    @Path("all")
+    @Override
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Event> findAll() {
+        return super.findAll();
+    }
 
     @GET
     @Path("visibility")
