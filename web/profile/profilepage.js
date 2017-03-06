@@ -22,6 +22,8 @@ function setUpComponents() {
     accessor.create(id);
 
     getProfile();
+    getCategories()
+    
     isOwner = profile1.isCurrentUser();
     isFriend = profile1.isFriend();
     if (isOwner) {
@@ -53,7 +55,7 @@ function getProfile() {
     newP = $('<p>').text(profileDescription);
     
     favCat = $('#favCat');
-    newP2 = $('<p>').text(favCategory.getName());
+    newP2 = $('<p>').text(favCategory.retrieveName());
 
     profName.append(newH1);
     profDesc.append(newP);
@@ -111,4 +113,18 @@ function deleteAccount() {
     location.href = "../";
 
 }
+
+function getCategories() {
+    var url = "http://143.44.67.0:13774/GoHost/api/category/all";
+    $.getJSON(url).done(categoriesFollowUp);
+}
+
+function categoriesFollowUp(data) {
+    var eventsCat = $('#category');
+    for (i = 0; i < data.length; i++) {
+        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        eventsCat.append(newHr);
+    }
+}
+
 $(window).load(setUpComponents);
