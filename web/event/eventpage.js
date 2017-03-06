@@ -59,45 +59,27 @@ function setUpComponents() {
 
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
-        $('#request').hide();
-        $('#joinEvent').hide();
-        $('#leaveEvent').hide();
+        $('#delete').removeClass('hidden');
+        $('#edit').removeClass('hidden');
+        $('#invite').removeClass('hidden');
+        $('#sendMessage').removeClass('hidden');
         $('#delete').on('click', deleteEvent);
         $('#edit').on('click', editEvent);
         $('#invite').on('click', getFriends);
         $('#sendMessage').on('click', sendMessage);
     } else if (isAttendee) {
-        $('#request').hide();
-        $('#joinEvent').hide();
-        $('#host').hide();
-        $('#hostOnly').hide();
+        $('#invite').removeClass('hidden');
+        $('#leaveEvent').removeClass('hidden');
+        $('#sendMessage').removeClass('hidden');
         $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
         $('#sendMessage').on('click', sendMessage);
     } else if (canJoin) {
-        $('#chat').hide();
-        $('#request').hide();
-        $('#inviteSpan').hide();
-        $('#leaveEvent').hide();
-        $('#host').hide();
-        $('#hostOnly').hide();
+        $('#joinEvent').removeClass('hidden');
         $('#joinEvent').on('click', joinEvent);
     } else if (canSee) {
-        $('#chat').hide();
-        $('#joinEvent').hide();
-        $('#leaveEvent').hide();
-        $('#inviteSpan').hide();
-        $('#host').hide();
-        $('#hostOnly').hide();
+        $('#request').removeClass('hidden');
         $('#request').on('click', requestToJoinEvent);
-    } else {
-        $('#chat').hide();
-        $('#eventDetails').hide();
-        $('#joinEvent').hide();
-        $('#leaveEvent').hide();
-        $('#inviteSpan').hide();
-        $('#host').hide();
-        $('#hostOnly').hide();
         // Make error div for can't see
     }
 }
@@ -107,7 +89,7 @@ function setUpComponents() {
 function getMessages() {
     $('#chat').empty();
     eventChat = new EventChat();
-    eventChat.create(idevent);
+    eventChat.create(event1, user);
     setTimeout(getMessageStrings(eventChat), 10000);
     var newH, newA, newHr, newH1, chat;
     var n, url;
@@ -314,9 +296,9 @@ function getStringsFromEvent(event1) {
     eventTitle = event1.getTitle();
     //eventHost = event.getHost(); don't need to display this
     var d = event1.getEventStart().mysqlToDate();
-    eventStartTime = d.toString().replace("GMT-0600 (Central Standard Time)", "");
+    eventStartTimes = d.toString().substring(0,21);
     var x = event1.getEventEnd().mysqlToDate();
-    eventEndTime = x.toString().replace("GMT-0600 (Central Standard Time)", "");
+    eventEndTime = x.toString().substring(0,21);
     eventCategory = event1.getCategory();
     eventLocation = event1.getLocation();
     //Goes through and fills out eventAttendees

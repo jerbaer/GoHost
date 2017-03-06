@@ -14,7 +14,7 @@ function EventChat () {
     
     this.create = function (parent, user) {
         this.parent = parent;
-        this.user;
+        this.user = user;
         var url = this.coreUrl + "message/idevent?idevent=" + this.parent.getID();
         $.ajax({
             dataType: "json",

@@ -60,6 +60,15 @@ function getEvents() {
 
 function getStringsFromEvents(eventList) {
     list = eventList.getEventsList();
+    list.sort(function (a, b) {
+        if (a.eventStart > b.eventStart)
+            return -1;
+        else if (a.eventStart < b.eventStart)
+            return 1;
+        else
+            return 0;
+    });
+    list.sort;
     eventTitles = new Array(list.length);
     eventHosts = new Array(list.length);
     eventStartTimes = new Array(list.length);
@@ -73,11 +82,9 @@ function getStringsFromEvents(eventList) {
         eventHosts [i] = list[i].getHost().getName();
         //var t = list[i].getEventStart().split(/[- T :]/);
         var d = list[i].getEventStart().mysqlToDate();
-        eventStartTimes[i] = d.toString().replace("GMT-0600 (Central Standard Time)", "");
-        eventStartTimes[i] = d.toString().replace("GMT-0500 (Eastern Standard Time)", "");
+        eventStartTimes[i] = d.toString().substring(0,21);
         var x = list[i].getEventEnd().mysqlToDate();
-        eventEndTimes[i] = x.toString().replace("GMT-0600 (Central Standard Time)", "");
-        eventEndTimes[i] = x.toString().replace("GMT-0500 (Eastern Standard Time)", "");
+        eventEndTimes[i] = x.toString().substring(0,21);
         eventCategories[i] = list[i].getCategory();
         eventLocations[i] = list[i].getLocation();
         eventIDs[i] = list[i].getID();
