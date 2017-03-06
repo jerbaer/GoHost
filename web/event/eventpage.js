@@ -57,7 +57,9 @@ function setUpComponents() {
     isAttendee = event1.isUserInEvent();
     canJoin = (event1.canUserJoin() && !event1.isUserInEvent());
     canSee = event1.canUserSee();
-
+    
+    //This is out here because I want it to be visible to all users
+    $('#report').on('click', reportEvent);
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
         $('#inviteSpan').removeClass('hidden');
@@ -82,6 +84,14 @@ function setUpComponents() {
         $('#request').on('click', requestToJoinEvent);
         // Make error div for can't see
     }
+}
+//This should create a notification of status = 3 and idevent = this one
+//Note: The iduser value doesn't change anything in this kind of notification
+//It will not show up in any user's notification feed because of the logic I 
+//added in notifications.getNotifications(). Defaulting it to 0 because why not.
+function reportEvent() {
+    notification = new Notification();
+    notification.create(event1.getHost().getID(), user.getID(), 0, new Date(), 0, 3);
 }
 
 //Next two functions migrated from eventChat. Will need to make sure it is 
