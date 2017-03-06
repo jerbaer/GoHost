@@ -34,3 +34,5 @@ Admin shit:
 or rejects the report (simply deleting the notification)
 
 Modify the user facade to not allow making an account with the same name as an existing account
+
+Report font awesome icon: fa-flag
