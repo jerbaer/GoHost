@@ -16,6 +16,8 @@ function User() {
     this.eventsVisible = null;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
     this.idprofile;
+    //0 if not admin, 1 if is admin
+    this.isAdmin = false;
 
     this.create = function (iduser) {
         //This will use the iduser stored in the session by system_init to
@@ -36,8 +38,8 @@ function User() {
         this.email = data.email;
         this.password = data.password;
         this.name = data.name;
-        this.idprofile = data.idprofile
-       
+        this.idprofile = data.idprofile;
+        this.isAdmin = data.admin;
         //Do you want me to call these other functions right away or to wait for now?
     };
     //These two functions will probably not be called from here
@@ -96,6 +98,10 @@ function User() {
     this.getEventsHosting = function () {
         this.createHostedEventsList();
         return this.eventsHosting;
+    };
+    
+    this.getIsAdmin = function () {
+        return this.isAdmin;
     };
 
     this.getID = function () {

@@ -9,7 +9,7 @@
 //this will be a system notification if from is 0. Otherwise, it's a request.
 
 //status: this will be used to distinguish the different types of requests
-//(0: eventInvite, 1: eventRequest, 2: friendRequest)
+//(0: eventInvite, 1: eventRequest, 2: friendRequest, 3: report)
 
 //read: this will be used to distinguish the different types of system notifications
 //however specific I want to get with those.

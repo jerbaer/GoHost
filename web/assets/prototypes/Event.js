@@ -417,6 +417,25 @@ function Event() {
             success: this.attendingFollowUp
         });
     };
+    this.inviteUser = function(iduser){
+        var url = this.coreUrl + "invited";
+        toSend ={ iduser: iduser};
+        $.ajax({
+            dataType: "json",
+            data: toSend,
+            url: url,
+            contentType: "application/json",
+            type: 'POST',
+            context: this
+        });
+    }
+    this.isUserInvited = function(iduser){
+        for(var i = 0; i<invitedUsers.length; i++){
+            if (iduser == invitedUsers[i].getID())
+                return true;
+        }
+        return false;
+    }
     
     this.attendingFollowUp = function (data) {
         for (var n = 0; n < data.length; n++) {

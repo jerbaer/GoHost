@@ -32,7 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
     , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
     , @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name")
-    , @NamedQuery(name = "User.findByIdprofile", query = "SELECT u FROM User u WHERE u.idprofile = :idprofile")})
+    , @NamedQuery(name = "User.findByIdprofile", query = "SELECT u FROM User u WHERE u.idprofile = :idprofile")
+    , @NamedQuery (name = "User.findByAdmin", query = "SELECT u FROM User u WHERE u.admin = :admin")})
+
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,6 +59,8 @@ public class User implements Serializable {
     private String name;
     @Column(name = "idprofile")
     private Integer idprofile;
+    @Column(name = "admin")
+    private Integer admin;
 
     public User() {
     }
@@ -74,7 +78,12 @@ public class User implements Serializable {
     public Integer getIduser() {
         return iduser;
     }
-
+    public Integer getAdmin(){
+        return admin;
+    }
+    public void setAdmin(Integer admin){
+        this.admin = admin;
+    }
     public void setIduser(Integer iduser) {
         this.iduser = iduser;
     }
