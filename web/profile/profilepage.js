@@ -30,8 +30,7 @@ function setUpComponents() {
     accessor = new User();
     accessor.create(id);
     
-    $('#pageTitle').text(owner.getName());
-    $('#ownerName').text(owner.getName());
+    $('.ownerName').text(owner.getName());
 
     getProfile();
     getCategories();
@@ -73,14 +72,13 @@ function getProfile() {
     // Do picture stuff
 
     profDesc = $('#profileDesc');
-    newP = $('<p>').text(profileDescription);
 
     favCat = $('#favCat');
     favCategory.retrieveName();
     newP2 = $('<p>').text(favCategory.getName());
 
     profName.append(newH1);
-    profDesc.append(newP);
+    profDesc.text(profileDescription);
     favCat.append(newP2);
 }
 
