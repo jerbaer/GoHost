@@ -11,6 +11,11 @@ var profileName;
 var profilePicture;
 var profileDescription;
 var favCat;
+var favCategory;
+
+var eventsHosted = null;
+var eventsAttending = null;
+var visibleEvents = null;
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
@@ -20,6 +25,8 @@ function setUpComponents() {
     owner.create(profileid);
     accessor = new User();
     accessor.create(id);
+    
+    $('#pageTitle').text(owner.getName());
 
     getProfile();
     getCategories();
@@ -166,10 +173,10 @@ function getHostStrings() {
     $('#attend').hide();
     $('#attend').empty();
     $('#host').empty();
-    if (eventsHosted != null) {
+    if (eventsHosted !== null) {
         eventsHosted = null;
     }
-    if (eventsAttending != null) {
+    if (eventsAttending !== null) {
         eventsAttending = null;
     }
     user.createHostedEventsList();

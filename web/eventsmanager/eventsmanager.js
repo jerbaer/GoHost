@@ -96,10 +96,10 @@ function getHostStrings() {
     $('#attend').hide();
     $('#attend').empty();
     $('#host').empty();
-    if (eventsHosted != null) {
+    if (eventsHosted !== null) {
         eventsHosted = null;
     }
-    if (eventsAttending != null) {
+    if (eventsAttending !== null) {
         eventsAttending = null;
     }
     user.createHostedEventsList();
@@ -149,10 +149,10 @@ function getAttendingStrings() {
     $('#host').hide();
     $('#host').empty();
     $('#attend').empty();
-    if (eventsAttending != null) {
+    if (eventsAttending !== null) {
         eventsAttending = null;
     }
-    if (eventsHosted != null) {
+    if (eventsHosted !== null) {
         eventsHosted = null;
     }
     user.createEventsAttendingList();
@@ -232,7 +232,7 @@ $.wait = function (ms) {
         defer.resolve();
     }, ms);
     return defer;
-}
+};
 
 function refresh() {
     window.location.href = window.location.href;
