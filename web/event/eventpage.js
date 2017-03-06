@@ -50,40 +50,23 @@ function setUpComponents() {
 
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
-        $('#request').hide();
-        $('#joinEvent').hide();
-        $('#leaveEvent').hide();
+        $('#delete').removeClass('hidden');
+        $('#edit').removeClass('hidden');
+        $('#invite').removeClass('hidden');
         $('#delete').on('click', deleteEvent);
         $('#edit').on('click', editEvent);
         $('#invite').on('click', getFriends);
     } else if (isAttendee) {
-        $('#request').hide();
-        $('#joinEvent').hide();
-        $('#host').hide();
-        $('#hostOnly').hide();
+        $('#invite').removeClass('hidden');
+        $('#leaveEvent').removeClass('hidden');
         $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
     } else if (canJoin) {
-        $('#request').hide();
-        $('#inviteSpan').hide();
-        $('#leaveEvent').hide();
-        $('#host').hide();
-        $('#hostOnly').hide();
+        $('#joinEvent').removeClass('hidden');
         $('#joinEvent').on('click', joinEvent);
     } else if (canSee) {
-        $('#joinEvent').hide();
-        $('#leaveEvent').hide();
-        $('#inviteSpan').hide();
-        $('#host').hide();
-        $('#hostOnly').hide();
+        $('#request').removeClass('hidden');
         $('#request').on('click', requestToJoinEvent);
-    } else {
-        $('#eventDetails').hide();
-        $('#joinEvent').hide();
-        $('#leaveEvent').hide();
-        $('#inviteSpan').hide();
-        $('#host').hide();
-        $('#hostOnly').hide();
         // Make error div for can't see
     }
 }
