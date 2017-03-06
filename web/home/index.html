@@ -54,18 +54,26 @@
                     <!-- Events Feed Here -->
                     <div id="eventsFeed"></div>
                 </div>
-                <div class="col-xs-2 col-sm-offset-2">
+                <div class="col-sm-3 col-sm-offset-1">
                     <!-- User Profile Information Here -->
-                    <div class="row" id="profPic">
-                        <!-- Profile Picture Here -->
-                        <img class="img-responsive" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
+                    <div class="row">
+                        <div class="col-sm-5" id="profPic">
+                            <!-- Profile Picture Here -->
+                            <img class="img-responsive" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
+                        </div>
+                        <div class="col-sm-offset-1 col-sm-6">
+                            <div class="row" id="profName">
+                                <!-- User Name -->
+                            </div>
+                        </div>
                     </div>
-                    <div class="row" id="profName">
-                        <!-- User Name -->
-                    </div>
-                    <div class="row" id="profDesc">
-                        <!-- User Description -->
-                    </div>
+                    <br>
+                    <select class="form-control" id="category">
+                        <!-- Categories populated from database -->
+                    </select>
+                    <select class="form-control" id="location">
+                        <!-- Categories populated from database -->
+                    </select>
                 </div>
             </div>
         </div>

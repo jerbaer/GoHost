@@ -13,6 +13,7 @@ function Profile () {
     this.accessor = null;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
     this.idprofile = 0;
+    this.favCategory = 0;
 
     
     this.create = function (iduser, accessor1) { // might pass iduser instead as mentioned above
@@ -94,6 +95,12 @@ function Profile () {
     this.editEmail = function (email) {
         this.owner.editEmail(email);
     };
+    this.editCategory = function(idcategory){
+        this.favCategory = idcategory;
+    }
+    this.getCategory = function(){
+        return this.favCategory;
+    }
     
     // These next ones I'm not sure about. Also might not need to pass any variables
 
@@ -121,6 +128,8 @@ function Profile () {
     this.createProfileFollowUp = function (data) {
         this.description = data.description;
         this.idprofile = data.idprofile;
+        this.photoURL = data.picture;
+        this.favCategory = data.idcategory;
         
        
     };
@@ -139,7 +148,7 @@ function Profile () {
     };
     
     this.refreshEdits = function () {
-        var profile = {idprofile : this.idprofile, iduser: this.owner.getID(), description : this.description, idcategory : 1}; //long list of member variables
+        var profile = {idprofile : this.idprofile, iduser: this.owner.getID(), description : this.description, idcategory : this.favCategory, picture:this.photoURL}; //long list of member variables
             $.ajax({
             url: this.coreUrl + 'profile/' + this.idprofile,
             type: 'PUT',

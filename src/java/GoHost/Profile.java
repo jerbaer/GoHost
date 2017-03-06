@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Profile.findAll", query = "SELECT p FROM Profile p")
     , @NamedQuery(name = "Profile.findByIdprofile", query = "SELECT p FROM Profile p WHERE p.idprofile = :idprofile")
     , @NamedQuery(name = "Profile.findByIduser", query = "SELECT p FROM Profile p WHERE p.iduser = :iduser")
-    , @NamedQuery(name = "Profile.findByIdcategory", query = "SELECT p FROM Profile p WHERE p.idcategory = :idcategory")})
+    , @NamedQuery(name = "Profile.findByIdcategory", query = "SELECT p FROM Profile p WHERE p.idcategory = :idcategory"),
+    @NamedQuery(name = "Profile.findByPicture", query = "SELECT p FROM Profile p WHERE p.picture = :picture")})
 public class Profile implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,6 +49,8 @@ public class Profile implements Serializable {
     private String description;
     @Column(name = "idcategory")
     private Integer idcategory;
+    @Column (name = "picture")
+    private String picture;
 
     public Profile() {
     }
@@ -62,6 +65,12 @@ public class Profile implements Serializable {
 
     public void setIdprofile(Integer idprofile) {
         this.idprofile = idprofile;
+    }
+    public String getPicture(){
+        return picture;
+    }
+    public void setPicture(String picture){
+        this.picture = picture;
     }
 
     public Integer getIduser() {

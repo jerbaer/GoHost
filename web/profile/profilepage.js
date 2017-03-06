@@ -45,7 +45,7 @@ function getProfile() {
     profPic = $('#profPic');
     // Do picture stuff
 
-    profDesc = $('#profDesc');
+    profDesc = $('#profileDesc');
     newP = $('<p>').text(profileDescription);
 
     profName.append(newH1);
@@ -71,9 +71,12 @@ function editProfile() {
     if ($('#picture').val() !== '') {
         profile1.editPicture($('#picture').val());
     }
-    // Might need more code here for picture
+
     if ($('#description').val() !== '') {
         profile1.editDescription($('#description').val());
+    }
+    if ($('category').val() !== ''){
+        profile1.editCategory($('category').val());
     }
     profile1.refreshEdits()
 
