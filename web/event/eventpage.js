@@ -47,11 +47,12 @@ function setUpComponents() {
     user.create(id);
     getCategories();
     getLocations();
-    getMessages();
+    
 
     //Call function to display the event based on the relation of the
     //userto that event. Host, Attendee, neither
     getEvent();
+    getMessages();
     isHost = event1.isAccessorHost();
     isAttendee = event1.isUserInEvent();
     canJoin = (event1.canUserJoin() && !event1.isUserInEvent());
@@ -210,8 +211,11 @@ function makeAttendeeAlert(iduser, i) {
         window.location.href = url;
         window.location.reload(true);
     });
-    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").html("&times;").attr('id', "hostOnly");
+    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").html("&times;").attr('id', "hostOnly").on('click', function(){
+        removeUser(iduser);
+    });
     if (event1.getHostID() !== iduser) {
+        if(event1.isAccessorHost())
         newH7.append(newA2);
     }
     newH7.append(newA);
@@ -292,6 +296,10 @@ function leaveEvent() {
     event1.removeUserFromEvent(id);
     location.href = "../home";
 }
+function removeUser(iduser){
+    event1.removeUserFromEvent(iduser)
+    window.location.reload();
+}
 
 function getStringsFromEvent(event1) {
     eventTitle = event1.getTitle();
@@ -330,6 +338,7 @@ function getFriends() {
     peopleList = $('#friends');
     for (var n = friends.getSize() - 1; n > -1; n--) {
         if (peopleUserIDs[n] !== undefined) {
+            if(event1.isUserInvited(peopleUserIDs[n]))
             makeFriendAlert(peopleUserIDs[n], n);
         }
     }
@@ -351,7 +360,9 @@ function makeFriendAlert(iduser, n) {
         sessionStorage.setItem('peopleid'), peopleIDs[n];
     });
     newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").attr('id', "hostOnly");
-    newI = $('<i>').addClass("fa fa-envelope-o").attr('aria-hidden', "true");
+    newI = $('<i>').addClass("fa fa-envelope-o").attr('aria-hidden', "true").on('click', function(){
+        event1.inviteUser(iduser);
+    });
     newA2.append(newI);
     newH7.append(newA2).append(newA);
     peopleList.append(newH7);
