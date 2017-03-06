@@ -17,6 +17,14 @@ function setUpComponents() {
     getProfile();
     getCategories();
     getLocations();
+    $('#categoryButton').on('click', function () {
+        visibleEvents.getEventsByCategory(('#category').val());
+        refresh();
+    });
+    $('#locationButton').on('click', function () {
+        visibleEvents.getEventsByLocation(('#location').val());
+        refresh();
+    });
 }
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
     var t = this.split(/[- :T]/);
@@ -27,7 +35,7 @@ function getEvents() {
     user = new User();
     user.create(id);
     user.createVisibleList();
-    visibleEvents = user.getVisibleEvents()
+    visibleEvents = user.getVisibleEvents();
 
     setTimeout(getVisibleStrings(), 10000);
     //this is where it connects with HTML to print the feed in objects
@@ -147,9 +155,13 @@ function categoriesFollowUp(data) {
 function locationsFollowUp(data) {
     eventsLoc = $('#location');
     for (i = 0; i < data.length; i++) {
-        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        newHr = $('<option>').val(data[i].idlocation).text(data[i].name);
         eventsLoc.append(newHr);
     }
+}
+function refresh() {
+    //window.location.href = window.location.href; // this is weird
+    window.location.reload(true);
 }
 
 $(document).ready(setUpComponents);
