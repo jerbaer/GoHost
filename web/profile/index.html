@@ -80,6 +80,29 @@
                 </div>
             </div>
             <!-- Make error div for can't see -->
+            <br>
+            <div class="row" id="friendsOnly">
+                <div class="col-sm-push-8 col-sm-2 col-sm-offset-2">
+                    <br>
+                    <ul class="nav nav-pills">
+                        <li><a href="#eventModal" data-toggle="modal" data-target="#eventModal" class="btn btn-info btn-lg">Create Event</a></li>
+                    </ul>
+                    <br>
+                </div>
+                <div class="col-sm-pull-4 col-sm-8">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#host" id="hostingtab">Hosting</a></li>
+                        <li><a data-toggle="tab" href="#attend" id="attendingtab">Attending</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="host" class="tab-pane fade in active">
+                        </div>
+                        <div id="attend" class="tab-pane fade">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Modals -->
         <div class="modal fade" id="settingsModal" role="dialog">
