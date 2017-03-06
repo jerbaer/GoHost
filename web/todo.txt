@@ -22,3 +22,13 @@ event chat:
     for each message want the name of the sender to be a link to their profile
     under comments div needs to be text field for comments and button to submit
     (blog.html)
+
+Admin shit:
+1. Modify user table and facades to accommodate isAdmin column
+    a. the associated url is coreUrl + user/admin?iduser= iduser
+2. Modify user object to accommodate isAdmin
+3. Modify the inbox and notification to accommodate for report notifications
+    a. Modify the notifications js to accommodate if status is 3 (Meaning it's a report)
+    b. Modify the notifications js to check if the user is an admin right away
+4. Create on click functions where the admin either approves the report (deleting the event and the notification)
+or rejects the report (simply deleting the notification)
