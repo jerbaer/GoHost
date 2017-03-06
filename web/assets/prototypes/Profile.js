@@ -95,6 +95,12 @@ function Profile () {
     this.editEmail = function (email) {
         this.owner.editEmail(email);
     };
+    this.editCategory = function(idcategory){
+        this.favCategory = idcategory;
+    }
+    this.getCategory = function(){
+        return this.favCategory;
+    }
     
     // These next ones I'm not sure about. Also might not need to pass any variables
 
@@ -142,7 +148,7 @@ function Profile () {
     };
     
     this.refreshEdits = function () {
-        var profile = {idprofile : this.idprofile, iduser: this.owner.getID(), description : this.description, idcategory : 1}; //long list of member variables
+        var profile = {idprofile : this.idprofile, iduser: this.owner.getID(), description : this.description, idcategory : this.favCategory, picture:this.photoURL}; //long list of member variables
             $.ajax({
             url: this.coreUrl + 'profile/' + this.idprofile,
             type: 'PUT',

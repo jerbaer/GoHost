@@ -150,7 +150,11 @@ function User() {
     };
     
     this.refreshEdits = function () {
-        var user = {iduser: this.iduser, idprofile: this.idprofile, password:this.password, name: this.name, email: this.email}; //long list of member variables
+        if (isAdmin == true){
+            var admin = 1;
+        }else
+            var admin = 0;
+        var user = {iduser: this.iduser, idprofile: this.idprofile, password:this.password, name: this.name, email: this.email, admin: admin}; //long list of member variables
              $.ajax({
             url: this.coreUrl + 'user/' + this.iduser,
             type: 'PUT',
