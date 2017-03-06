@@ -147,7 +147,6 @@ function getMessageStrings(eventChat) {
 }
 
 function sendMessage() {
-    
 }
 
 
