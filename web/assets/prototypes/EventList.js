@@ -93,7 +93,7 @@ function eventsList() {
     //events that don't have that idlocation
     this.getEventsByLocation = function (idlocation) {
         this.tempEvents = new Array();
-        this.tempEvents = events;
+        this.tempEvents = this.events;
         this.events = [];
         for (var i = 0; i < tempEvents.length; i++) {
             if(this.tempEvents[i].getLocationID() == idlocation) {
@@ -105,7 +105,7 @@ function eventsList() {
     //events that don't have that idcategory
     this.getEventsByCategory = function (idcategory) {
         this.tempEvents = new Array();
-        this.tempEvents = events;
+        this.tempEvents = this.events;
         this.events = [];
         for (var i = 0; i < tempEvents.length; i++) {
             if(this.tempEvents[i].getCategoryID() == idcategory) {
