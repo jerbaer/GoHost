@@ -22,6 +22,8 @@ function setUpComponents() {
     accessor.create(id);
 
     getProfile();
+    getCategories()
+    
     isOwner = profile1.isCurrentUser();
     isFriend = profile1.isFriend();
     if (isOwner) {
@@ -118,7 +120,7 @@ function getCategories() {
 }
 
 function categoriesFollowUp(data) {
-    eventsCat = $('#category');
+    var eventsCat = $('#category');
     for (i = 0; i < data.length; i++) {
         newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
         eventsCat.append(newHr);
