@@ -17,6 +17,16 @@ function setUpComponents() {
     getProfile();
     getCategories();
     getLocations();
+    $('#categoryButton').on('click', function () {
+        visibleEvents.getEventsByCategory(('#category').val());
+        setTimeout(getStringsFromEvents(visibleEvents), 10000);
+        populateFeed();
+    });
+    $('#locationButton').on('click', function () {
+        visibleEvents.getEventsByLocation(('#location').val());
+        setTimeout(getStringsFromEvents(visibleEvents), 10000);
+        populateFeed();
+    });
 }
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
     var t = this.split(/[- :T]/);
@@ -27,14 +37,18 @@ function getEvents() {
     user = new User();
     user.create(id);
     user.createVisibleList();
-    visibleEvents = user.getVisibleEvents()
+    visibleEvents = user.getVisibleEvents();
 
-    setTimeout(getVisibleStrings(), 10000);
+    setTimeout(getStringsFromEvents(visibleEvents), 10000);
+    populateFeed();
+}
+function populateFeed() {
     //this is where it connects with HTML to print the feed in objects
     var newH, newA, newA2, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
     var n, url, url2;
     // Find the newestBlogs div that will house newly created blogs
     eventsFeed = $('#eventsFeed');
+    eventsFeed.empty();
 
     for (n = visibleEvents.getSize() - 1; n > -1; n--) {
         url = "../event/index.html#" + eventIDs[n];
@@ -94,10 +108,6 @@ function getStringsFromEvents(eventList) {
     }
 }
 
-function getVisibleStrings() {
-    getStringsFromEvents(visibleEvents);
-}
-
 function getProfile() {
     var url, newA;
     profile1 = new Profile();
@@ -147,9 +157,13 @@ function categoriesFollowUp(data) {
 function locationsFollowUp(data) {
     eventsLoc = $('#location');
     for (i = 0; i < data.length; i++) {
-        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        newHr = $('<option>').val(data[i].idlocation).text(data[i].name);
         eventsLoc.append(newHr);
     }
+}
+function refresh() {
+    //window.location.href = window.location.href; // this is weird
+    window.location.reload(true);
 }
 
 $(document).ready(setUpComponents);
