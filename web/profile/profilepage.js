@@ -55,7 +55,8 @@ function getProfile() {
     newP = $('<p>').text(profileDescription);
     
     favCat = $('#favCat');
-    newP2 = $('<p>').text(favCategory.retrieveName());
+    favCategory.retrieveName();
+    newP2 = $('<p>').text(favCategory.getName());
 
     profName.append(newH1);
     profDesc.append(newP);
