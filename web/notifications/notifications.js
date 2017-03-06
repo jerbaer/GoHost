@@ -90,7 +90,7 @@ function createEventReport(notification) {
     notificationsFeed.append(newH);
     isSetUp = true;
 }
-//This is not important for now. Not complete.
+//This needs to be fixed still
 function createUserReport(notification) {
     var newH, newH1, newH2, newH3, newH4;
     newH = $('<hr>');

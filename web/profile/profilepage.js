@@ -129,9 +129,10 @@ function editAccount() {
 }
 
 function deleteAccount() {
-    profile1.deleteAccount();
-    location.href = "../";
-
+    accessor.deleteUser();
+    url = "../../index.html"
+    window.location.href = url;
+    window.location.reload(true);
 }
 
 function getEvents() {
