@@ -66,7 +66,6 @@ function reportUser() {
     alert("Thank you. This event has now been reported to the administrator.");
 }
 
-
 function getProfile() {
     profile1 = new Profile();
     profile1.createFromDB(owner, accessor);
@@ -76,7 +75,7 @@ function getProfile() {
     newH1 = $('<h1>').text(profileName);
 
     profPic = $('#profPic');
-    // Do picture stuff
+    profPic.attr('src', profile1.getPicture());
 
     profDesc = $('#profileDesc');
     newP = $('<span>').text(profileDescription);
