@@ -140,7 +140,7 @@ function User() {
             success: this.deleteNotification
         });
     };
-    
+    //This is incorrect. It needs to call the delete function on the event object
     this.deleteEvents = function(data){
         for(var i = 0; i<data.length; i++){      
         $.ajax({
