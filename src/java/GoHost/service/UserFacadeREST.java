@@ -41,7 +41,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
 
     @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public String createUser(User entity) {
+    public User createUser(User entity) {
         User other = null;
         try {
             other = em.createNamedQuery("User.findByName", User.class).setParameter("name", entity.getName()).getSingleResult();
@@ -49,7 +49,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
            
         }
         if(other != null)
-            return "0";
+            return null;
         
         super.create(entity);
         em.flush();
@@ -78,18 +78,19 @@ public class UserFacadeREST extends AbstractFacade<User> {
     }
 
     @GET
-    @Produces({"text/plain"})
-    public String checkUser(@QueryParam("email") String user, @QueryParam("password") String password) {
+    @Path("login")
+    @Produces({"application/json"})
+    public User checkUser(@QueryParam("email") String user, @QueryParam("password") String password) {
         User u = null;
         try {
             u = em.createNamedQuery("User.findByEmail", User.class).setParameter("email", user).getSingleResult();
         } catch (Exception ex) {
-            return "0";
+            return null;
         }
         if (u.getPassword().equals(password)) {
-            return u.getIduser().toString();
+            return u;
         } else {
-            return "0";
+            return null;
         }
     }
 

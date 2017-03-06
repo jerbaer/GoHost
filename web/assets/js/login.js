@@ -10,7 +10,7 @@ sys_init = {
    
 
     doLogin: function () {
-        var url = sys_init.coreUrl + "user?email=" + $('#loginEmail').val() + "&password=" + $('#loginPass').val();
+        var url = sys_init.coreUrl + "user/login?email=" + $('#loginEmail').val() + "&password=" + $('#loginPass').val();
         $.getJSON(url).done(sys_init.moveToHome);
     },
 
@@ -24,7 +24,7 @@ sys_init = {
             //4. PUT it into that user
             var url = sys_init.coreUrl + "user";
             var user = {name:$('#regName').val(), email: $('#regEmail').val(),
-                password: $('#regPass').val()};
+                password: $('#regPass').val(), admin: 0};
             var toSend = JSON.stringify(user);
             $.ajax({
                 url: url,
@@ -41,7 +41,7 @@ sys_init = {
     createProfile: function (data) {
         if (data.iduser>0) {
             // Storing the id number of the user
-            sessionStorage.setItem('id', parseInt(data));
+            sessionStorage.setItem('id', parseInt(data.iduser));
         } else if (data.iduser == "0" || data.iduser == 0) {
             $('#regWarning2').show();
         } else {
@@ -72,18 +72,21 @@ sys_init = {
     },
     //Gonna have to get rid of this parameter since it's being passed 
     moveToHome: function (data) {
-        if (data.iduser>0 && data.isAdmin != 1) {
+        if(data!==null){
+        if (data.iduser>0 && data.admin != 1) {
             // Storing the id number of the user
-            sessionStorage.setItem('id', parseInt(data));
+            sessionStorage.setItem('id', parseInt(data.iduser));
             window.location.href = 'home/index.html#';
             sys_init.refresh;
-        } else if(data.isAdmin ==1){
+        } else if(data.admin ==1){
+            sessionStorage.setItem('id', parseInt(data.iduser));
             window.location.href = 'notifications/index.html#';
+            sys_init.refresh;
         }
         else {
             $('#regWarning').show();
         }
-
+        }
     },
 
     setUpButtons: function () {
