@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-function Profile () {
+function Profile() {
     this.iduser = 0; // assuming the index of the profile and the user is the same
     // might not need to make owner object and just make it in the functions everytime we need it instead
     this.owner = null;
@@ -15,7 +15,7 @@ function Profile () {
     this.idprofile = 0;
     this.favCategory = 0;
 
-    
+
     this.create = function (iduser, accessor1) { // might pass iduser instead as mentioned above
         this.iduser = iduser;
         this.owner = new User();
@@ -34,81 +34,81 @@ function Profile () {
         });
         //POST request
     };
-    
+
     this.createFollowUp = function (data) {
     };
-    
+
     this.isCurrentUser = function () {
-        if(this.owner.getID() == this.accessor.getID())
+        if (this.owner.getID() == this.accessor.getID())
             return true;
         return false;
     };
-    
+
     this.isFriend = function () {
         owner.createPeopleList()
-        if(owner.getPeopleList().isUserOnList(this.accessor))
+        if (owner.getPeopleList().isUserOnList(this.accessor))
             return true;
         return false;
     };
-    
+
     this.canUserSee = function () {
         // For if we want to implement blocking people
     };
-    
+
     this.getIdProfile = function () {
         return this.idprofile;
     };
-    
+
     this.getIdUser = function () {
         return this.iduser;
     }
-    
+
     this.getName = function () {
         return this.owner.getName();
     };
-    
+
     this.getDescription = function () {
         return this.description;
     };
-    
+
     this.getPicture = function () {
         return this.photoURL;
     };
-    
+
     this.editDescription = function (description) {
         this.description = description;
     };
-    
+
     this.editPicture = function (photoURL) {
         this.photoURL = photoURL;
     };
-    
+
     // Are these necessary since User already does this?
     this.editName = function (name) {
-      this.owner.editName(name);
+        this.owner.editName(name);
     };
-    
+
     this.editPassword = function (password) {
         this.owner.editPassword(password);
     };
-    
+
     this.editEmail = function (email) {
         this.owner.editEmail(email);
     };
-    this.editCategory = function(idcategory){
+    this.editCategory = function (idcategory) {
         this.favCategory = idcategory;
     };
-    this.getCategory = function(){
+    this.getCategory = function () {
         return this.favCategory;
     };
-    
+
     // These next ones I'm not sure about. Also might not need to pass any variables
 
-    
+
     this.Inbox = function (owner) {
         // Not sure what this is
     };
-    
+
     // Might move this to the top and change create like Event is organized
     this.createFromDB = function (owner1, accessor1) {
         this.owner = owner1;
@@ -124,30 +124,30 @@ function Profile () {
             async: false
         });
     };
-    
+
     this.createProfileFollowUp = function (data) {
         this.description = data.description;
         this.idprofile = data.idprofile;
         this.photoURL = data.picture;
         this.favCategory = data.idcategory;
     };
-    this.getID = function(){
+    this.getID = function () {
         return this.idprofile;
     };
-    
+
     this.getPeopleList = function () {
         friends = new PeopleList();
         friends.create(iduser);
         return friends.getFriends();
     };
-    
+
     this.isUserOnList = function () {
         // idk which user and which list so yeah
     };
-    
+
     this.refreshEdits = function () {
-        var profile = {idprofile : this.idprofile, iduser: this.owner.getID(), description : this.description, idcategory : this.favCategory, picture:this.photoURL}; //long list of member variables
-            $.ajax({
+        var profile = {idprofile: this.idprofile, iduser: this.owner.getID(), description: this.description, idcategory: this.favCategory, picture: this.photoURL};
+        $.ajax({
             url: this.coreUrl + 'profile/' + this.idprofile,
             type: 'PUT',
             data: JSON.stringify(profile),

@@ -16,6 +16,10 @@ var favCategory;
 var eventsHosted = null;
 var eventsAttending = null;
 var visibleEvents = null;
+String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
+    var t = this.split(/[- :T]/);
+    return new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
+};
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
@@ -27,6 +31,7 @@ function setUpComponents() {
     accessor.create(id);
     
     $('#pageTitle').text(owner.getName());
+    $('#ownerName').text(owner.getName());
 
     getProfile();
     getCategories();
@@ -43,6 +48,8 @@ function setUpComponents() {
         $('#editProfile').on('click', editProfile);
         $('#editUser').on('click', editAccount);
         $('#deleteAcc').on('click', deleteAccount);
+        $('#attendingtab').on('click', getAttendingStrings);
+        $('#hostingtab').on('click', getHostStrings);
     } else if (isFriend) {
         $('#friendsOnly').removeClass('hidden');
         $('#favCat').removeClass('hidden');
@@ -102,7 +109,7 @@ function editProfile() {
         profile1.editDescription($('#description').val());
     }
     if ($('category').val() !== '') {
-        profile1.editCategory($('category').val());
+        profile1.editCategory($('category').val()); // Isn't passing the profile object for some reason
     }
     profile1.refreshEdits();
 
@@ -226,10 +233,10 @@ function getAttendingStrings() {
     $('#host').hide();
     $('#host').empty();
     $('#attend').empty();
-    if (eventsAttending != null) {
+    if (eventsAttending !== null) {
         eventsAttending = null;
     }
-    if (eventsHosted != null) {
+    if (eventsHosted !== null) {
         eventsHosted = null;
     }
     user.createEventsAttendingList();
@@ -335,7 +342,7 @@ $.wait = function (ms) {
         defer.resolve();
     }, ms);
     return defer;
-}
+};
 
 function refresh() {
     window.location.href = window.location.href;

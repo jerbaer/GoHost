@@ -18,6 +18,8 @@ function User() {
     this.idprofile;
     //0 if not admin, 1 if is admin
     this.isAdmin = false;
+    
+    var profile = null;
 
     this.create = function (iduser) {
         //This will use the iduser stored in the session by system_init to
@@ -284,11 +286,11 @@ function User() {
     };
     this.getProfileID = function(){
         return profile.getID();
-    }
+    };
     
     this.getPicture = function () {
         return profile.getPicture();
-    }
+    };
     
     this.editName = function (name) {
         this.name = name;

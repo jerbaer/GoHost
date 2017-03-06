@@ -13,7 +13,7 @@
         <script src="https://use.fontawesome.com/4ba65f929c.js"></script>
         <script src="../assets/prototypes/Event.js"></script>
         <script src="../assets/prototypes/User.js"></script>
-        <script src="../assets/prototypes/EventsList.js"></script>
+        <script src="../assets/prototypes/EventList.js"></script>
         <script src="../assets/prototypes/Location.js"></script>
         <script src="../assets/prototypes/Category.js"></script>
         <script src="../assets/prototypes/PeopleList.js"></script>
@@ -77,32 +77,25 @@
                             <div id="profileDesc">
                                 <!-- Description -->
                             </div>
-                            <div class="hidden" id="favCat"></div>
+                            <p>Favorite Category: <span class="hidden" id="favCat"></span></p>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Make error div for can't see -->
-            <br>
-            <div class="row" id="friendsOnly">
-                <div class="col-sm-push-8 col-sm-2 col-sm-offset-2">
-                    <br>
-                    <ul class="nav nav-pills">
-                        <li><a href="#eventModal" data-toggle="modal" data-target="#eventModal" class="btn btn-info btn-lg">Create Event</a></li>
-                    </ul>
-                    <br>
-                </div>
-                <div class="col-sm-pull-4 col-sm-8">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#host" id="hostingtab">Hosting</a></li>
-                        <li><a data-toggle="tab" href="#attend" id="attendingtab">Attending</a></li>
-                    </ul>
+            <div class="row hidden" id="friendsOnly">
+                <hr>
+                <h3>Events that <span id="ownerName"></span> is in.</h3>
+                <br>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#host" id="hostingtab">Hosting</a></li>
+                    <li><a data-toggle="tab" href="#attend" id="attendingtab">Attending</a></li>
+                </ul>
 
-                    <div class="tab-content">
-                        <div id="host" class="tab-pane fade in active">
-                        </div>
-                        <div id="attend" class="tab-pane fade">
-                        </div>
+                <div class="tab-content">
+                    <div id="host" class="tab-pane fade in active">
+                    </div>
+                    <div id="attend" class="tab-pane fade">
                     </div>
                 </div>
             </div>
