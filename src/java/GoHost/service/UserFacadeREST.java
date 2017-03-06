@@ -53,7 +53,7 @@ public class UserFacadeREST extends AbstractFacade<User> {
         
         super.create(entity);
         em.flush();
-        return entity.getIduser().toString();
+        return entity;
     }
 
     @PUT

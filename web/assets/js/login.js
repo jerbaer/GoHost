@@ -39,10 +39,10 @@ sys_init = {
     },
     
     createProfile: function (data) {
-        if (data !== "0"&& data !== 0) {
+        if (data.iduser>0) {
             // Storing the id number of the user
             sessionStorage.setItem('id', parseInt(data));
-        } else if (data == "0" || data == 0) {
+        } else if (data.iduser == "0" || data.iduser == 0) {
             $('#regWarning2').show();
         } else {
             $('#regWarning').show();
@@ -72,12 +72,15 @@ sys_init = {
     },
     //Gonna have to get rid of this parameter since it's being passed 
     moveToHome: function (data) {
-        if (data>0) {
+        if (data.iduser>0 && data.isAdmin != 1) {
             // Storing the id number of the user
             sessionStorage.setItem('id', parseInt(data));
             window.location.href = 'home/index.html#';
             sys_init.refresh;
-        } else {
+        } else if(data.isAdmin ==1){
+            window.location.href = 'notifications/index.html#';
+        }
+        else {
             $('#regWarning').show();
         }
 
