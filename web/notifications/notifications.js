@@ -54,7 +54,7 @@ function getNotifications(inbox) {
         }
     }
 }
-//This does things
+//Self explanatory
 function createEventReport(notification) {
     var newH, newH1, newH2, newH3, newH4, newH5;
     newH = $('<hr>');
@@ -83,13 +83,13 @@ function createEventReport(notification) {
     notificationsFeed.append(newH);
     isSetUp = true;
 }
-//This is not important for now
+//This is not important for now. Not complete.
 function createUserReport(notification) {
     var newH, newH1, newH2, newH3, newH4;
     newH = $('<hr>');
     newH1 = $('<p>').text("User " + notification.from.getName() + " has reported user " +
             notification.user.getName() + ".");
-    newH2 = $('<button>').text("Accept").on('click', function () {
+    newH2 = $('<button>').text("Delete User").on('click', function () {
         if (isSetUp == true) {
             //This is very low priority now. If we have time, we would have to
             //delete all trace of that user from the SuD.
