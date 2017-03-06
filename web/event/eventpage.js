@@ -132,7 +132,6 @@ function sendMessage() {
     
 }
 
-
 function requestToJoinEvent() {
     notification = new Notification();
     notification.create(event1.getHost().getID(), user.getID(), event1.getID(), new Date(), 0, 1);
@@ -296,7 +295,7 @@ function leaveEvent() {
     location.href = "../home";
 }
 function removeUser(iduser){
-    event1.removeUserFromEvent(iduser)
+    event1.removeUserFromEvent(iduser);
     window.location.reload();
 }
 
@@ -358,7 +357,7 @@ function makeFriendAlert(iduser, n) {
         sessionStorage.setItem('peopleid'), peopleIDs[n];
     });
     newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").attr('id', "hostOnly");
-    newI = $('<i>').addClass("fa fa-envelope-o").attr('aria-hidden', "true").on('click', function(){
+    newI = $('<i>').addClass("fa fa-envelope").attr('aria-hidden', "true").on('click', function(){
         event1.inviteUser(iduser);
         window.location.reload(true);
     });

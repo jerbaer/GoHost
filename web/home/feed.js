@@ -36,7 +36,7 @@ function getEvents() {
 
     for (n = visibleEvents.getSize() - 1; n > -1; n--) {
         url = "../event/index.html#" + eventIDs[n];
-        newA = $('<a>').attr('href', url).text(eventTitles[n]).addClass("text-primary").on('click', function () {
+        newA = $('<a>').attr('href', url).text(eventTitles[n]).on('click', function () {
             window.location.href = url;
             window.location.reload(true);
         });
@@ -49,7 +49,7 @@ function getEvents() {
         newH3 = $('<p>').text(eventEndTimes[n]);
         newH4 = $('<p>').text(eventCategories[n]);
         newH5 = $('<p>').text(eventLocations[n]);
-        newH = $('<h4>').append(newA);
+        newH = $('<h4>').append(newA).addClass("text-primary");
         newH1 = $('<p>').append(newA2);
         newHr = $('<hr>');
 
