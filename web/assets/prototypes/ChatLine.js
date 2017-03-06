@@ -13,7 +13,7 @@ function ChatLine () {
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
     
     this.create = function (content, iduser, idevent, timesent) {
-        var event = {content: content, iduser: iduser, idevent: idevent, timesent: timesent};
+        var event = {content: content, iduser: iduser, idevent: idevent};
         $.ajax({
             url: this.coreUrl + "event",
             type: 'post',

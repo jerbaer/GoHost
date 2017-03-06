@@ -86,7 +86,7 @@ sys_init = {
         // Hide the warning divisions upon loading
         $('#loginWarning').hide();
         $('#regWarning').hide();
-        $('#regWarning2').hide
+        $('#regWarning2').hide();
 
         // Button for submitting login info
         //$('button#login').on('click', sys_init.doLogin);
