@@ -95,7 +95,7 @@ function eventsList() {
         this.tempEvents = new Array();
         this.tempEvents = this.events;
         this.events = [];
-        for (var i = 0; i < tempEvents.length; i++) {
+        for (var i = 0; i < this.tempEvents.length; i++) {
             if(this.tempEvents[i].getLocationID() == idlocation) {
                 this.events.push(this.tempEvents[i]);
             }
@@ -107,7 +107,7 @@ function eventsList() {
         this.tempEvents = new Array();
         this.tempEvents = this.events;
         this.events = [];
-        for (var i = 0; i < tempEvents.length; i++) {
+        for (var i = 0; i < this.tempEvents.length; i++) {
             if(this.tempEvents[i].getCategoryID() == idcategory) {
                 this.events.push(this.tempEvents[i]);
             }
