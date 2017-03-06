@@ -10,6 +10,7 @@ var owner = null;
 var profileName;
 var profilePicture;
 var profileDescription;
+var favCat;
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
@@ -28,7 +29,9 @@ function setUpComponents() {
         $('#editProfile').on('click', editProfile);
         $('#editUser').on('click', editAccount);
         $('#deleteAcc').on('click', deleteAccount);
-    } else if (!isFriend) {
+    } else if(isFriend) {
+        $('#favCat').removeClass('hidden');
+    } else {
         $('#addFriend').removeClass('hidden');
         $('#addFriend').on('click', addFriend);
     }
@@ -47,9 +50,13 @@ function getProfile() {
 
     profDesc = $('#profileDesc');
     newP = $('<p>').text(profileDescription);
+    
+    favCat = new Category($('#favCat').val());
+    newP2 = $('<p>').text(favCat);
 
     profName.append(newH1);
     profDesc.append(newP);
+    favCat.append(newP2)
 }
 
 function getStringsFromProfile(profile1) {
@@ -78,7 +85,7 @@ function editProfile() {
     if ($('category').val() !== ''){
         profile1.editCategory($('category').val());
     }
-    profile1.refreshEdits()
+    profile1.refreshEdits();
 
     window.location.reload();
 }
@@ -93,7 +100,7 @@ function editAccount() {
     if ($('#email').val() !== '') {
         owner.editEmail($('#email').val());
     }
-    owner.refreshEdits()
+    owner.refreshEdits();
     window.location.reload();
 }
 
