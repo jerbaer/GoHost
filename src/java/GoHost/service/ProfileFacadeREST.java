@@ -37,10 +37,13 @@ public class ProfileFacadeREST extends AbstractFacade<Profile> {
     }
 
     @POST
-    @Override
+    
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Profile entity) {
+    public Profile createProfile(Profile entity) {
         super.create(entity);
+        em.flush();
+        return entity;
+               
     }
 
     @PUT

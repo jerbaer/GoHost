@@ -184,12 +184,12 @@ function User() {
         }
     };
     this.deleteProfile = function(data){
-        for(var i = 0; i<data.length; i++){      
+    
         $.ajax({
-            url: this.coreUrl + 'profile/' + data[i].idprofile,
+            url: this.coreUrl + 'profile/' + data.idprofile,
             type: 'DELETE'
         });
-        }
+        
     };
     this.deleteNotification = function(data){
         for(var i = 0; i<data.length; i++){      

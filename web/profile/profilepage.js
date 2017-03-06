@@ -129,7 +129,7 @@ function editAccount() {
 
 function deleteAccount() {
     accessor.deleteUser();
-    url = "../index.html"
+    url = "http://143.44.67.0:13774/GoHost/"
     sessionStorage.clear();
     window.location.href = url;
     window.location.reload(true);
