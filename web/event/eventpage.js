@@ -92,7 +92,7 @@ function setUpComponents() {
 //added in notifications.getNotifications(). Defaulting it to 0 because why not.
 function reportEvent() {
     notification = new Notification();
-    notification.create(event1.getHost().getID(), user.getID(), 0, new Date(), 0, 3);
+    notification.create(0, user.getID(), event1.getID(), new Date(), 0, 3);
 }
 
 //Next two functions migrated from eventChat. Will need to make sure it is 
