@@ -41,6 +41,8 @@ function setUpComponents() {
 
     isOwner = profile1.isCurrentUser();
     isFriend = profile1.isFriend();
+    $('#flagUser').removeClass('hidden');
+    $('#report').on('click', reportUser);
     if (isOwner) {
         $('#ownerOnly').removeClass('hidden');
         $('#editProfile').on('click', editProfile);
@@ -57,6 +59,13 @@ function setUpComponents() {
         $('#addFriend').on('click', addFriend);
     }
 }
+
+function reportUser() {
+    notification = new Notification();
+    notification.create(accessor.getID(), owner.getID(), 0, new Date(), 0, 4);
+    alert("Thank you. This event has now been reported to the administrator.");
+}
+
 
 function getProfile() {
     profile1 = new Profile();
