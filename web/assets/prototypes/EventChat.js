@@ -29,7 +29,7 @@ function EventChat () {
         for (i = 0; i < data.length; i++) {
             this.line1 = new ChatLine();
             this.line1.createFromDB(data[i].idmessage, this.user);
-            this.events.push(this.line1);
+            this.chatLog.push(this.line1);
         }
     };
     

@@ -103,7 +103,7 @@ function getMessages() {
     $('#chatLines').empty();
     eventChat = new EventChat();
     eventChat.create(event1, user);
-    setTimeout(getMessageStrings(eventChat), 10000);
+    getMessageStrings(eventChat);
     var newH, newA, newHr, newH1, chat;
     var n, url;
     chat = $('#chatLines');
@@ -111,7 +111,7 @@ function getMessages() {
     //it looks later.
     for (n = eventChat.getSize() - 1; n > -1; n--) {
         url = "../profile/index.html#" + senders[n].getID();
-        newA = $('<a>').attr('href', url).text(senders[n] + ": ").on('click', function () {
+        newA = $('<a>').attr('href', url).text(senders[n].getName() + ": ").on('click', function () {
             window.location.href = url;
             window.location.reload(true);
         });
@@ -132,7 +132,7 @@ function getMessageStrings(eventChat) {
     messages = new Array(chatLog.length);
     times = new Array(chatLog.length);
     messageIDs = new Array(chatLog.length);
-    for (i = 0; i < chatLog.length; i++) {
+    for (var i = 0; i < chatLog.length; i++) {
         senders[i] = chatLog[i].getUser();
         messages[i] = chatLog[i].getText();
         var d = chatLog[i].getTime().mysqlToDate();
@@ -180,7 +180,7 @@ function categoriesFollowUp(data) {
 function locationsFollowUp(data) {
     eventsLoc = $('#eventLoc');
     for (i = 0; i < data.length; i++) {
-        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        newHr = $('<option>').val(data[i].idlocation).text(data[i].name);
         eventsLoc.append(newHr);
     }
 }
