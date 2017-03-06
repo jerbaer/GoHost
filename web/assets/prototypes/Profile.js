@@ -130,8 +130,6 @@ function Profile () {
         this.idprofile = data.idprofile;
         this.photoURL = data.picture;
         this.favCategory = data.idcategory;
-        
-       
     };
     this.getID = function(){
         return this.idprofile;
