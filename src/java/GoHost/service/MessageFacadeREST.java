@@ -37,10 +37,12 @@ public class MessageFacadeREST extends AbstractFacade<Message> {
     }
 
     @POST
-    @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Message entity) {
+    public Message createMessage(Message entity) {
         super.create(entity);
+        em.flush();
+        return entity;
+               
     }
 
     @PUT

@@ -15,29 +15,29 @@ function ChatLine () {
     this.create = function (content, iduser, idevent, timesent) {
         var event = {content: content, iduser: iduser, idevent: idevent, timesent: timesent};
         $.ajax({
-            url: this.coreUrl + "event",
+            url: this.coreUrl + "message",
             type: 'post',
             data: JSON.stringify(event),
             contentType: 'application/json',
             dataType: 'json',
             context: this,
             async: false,
-            success: this.createFollowUp2
+            success: this.createFollowUp
         });
     };
     
     this.createFollowUp = function (data){
-        this.messageID = parseInt(data.idevent);
+        this.messageID = parseInt(data.idmessage);
     };
     
     this.createFromDB = function (idmessage, user){
-        var url = this.coreUrl + "event/" + idmessage;
+        var url = this.coreUrl + "message/" + idmessage;
         this.user = user;
         $.ajax({
             dataType: "json",
             url: url,
             context: this,
-            success: this.createFollowUp
+            success: this.createFromDBFollowUp
         });
     };
     

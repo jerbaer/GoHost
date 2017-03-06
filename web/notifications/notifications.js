@@ -75,11 +75,11 @@ function createEventReport(notification) {
     newH3.addClass("btn btn-info");
     newH4.addClass("btn btn-warning");
     newH5 = $('<div>').addClass("btn-toolbar");
-    newH5.append(newH2);
     newH5.append(newH3);
+    newH5.append(newH4);
     notificationsFeed.append(newH1);
     notificationsFeed.append(newH2);
-    notificationsFeed.append(newH4);
+    notificationsFeed.append(newH5);
     notificationsFeed.append(newH);
     isSetUp = true;
 }

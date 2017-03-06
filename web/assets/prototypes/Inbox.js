@@ -31,7 +31,7 @@ function Inbox() {
                 success: this.getNotificationsFollowUp
             });
         }else {
-            var url = this.coreUrl + "notification/status?satus=3";
+            var url = this.coreUrl + "notification/status?status=3";
             $.ajax({
                 dataType: "json",
                 url: url,

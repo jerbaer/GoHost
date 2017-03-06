@@ -81,7 +81,7 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
     @Path("status")
     @Produces({MediaType.APPLICATION_JSON})
     public List<Notification> getReports(@QueryParam("status") int vis){
-        return em.createNamedQuery("Notification.findByNotificationstatus", Notification.class).setParameter("status", new Integer(vis)).getResultList();
+        return em.createNamedQuery("Notification.findByNotificationstatus", Notification.class).setParameter("notificationstatus", new Integer(vis)).getResultList();
     }
 
     

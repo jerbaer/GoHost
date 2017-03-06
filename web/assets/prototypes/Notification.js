@@ -38,8 +38,10 @@ function Notification(){
     
     this.createFromDBFollowUp = function (data){
         this.idnotification = data.idnotification;
+        if(data.iduser!=0){
         this.user = new User();
         this.user.create(data.iduser);
+    }
         this.from = new User();
         this.from.create(data.sender);
         if(data.idevent!= null){
