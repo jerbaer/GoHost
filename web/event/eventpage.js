@@ -62,6 +62,7 @@ function setUpComponents() {
         $('#delete').removeClass('hidden');
         $('#edit').removeClass('hidden');
         $('#invite').removeClass('hidden');
+        $('#sendMessage').removeClass('hidden');
         $('#delete').on('click', deleteEvent);
         $('#edit').on('click', editEvent);
         $('#invite').on('click', getFriends);
@@ -69,6 +70,7 @@ function setUpComponents() {
     } else if (isAttendee) {
         $('#invite').removeClass('hidden');
         $('#leaveEvent').removeClass('hidden');
+        $('#sendMessage').removeClass('hidden');
         $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
         $('#sendMessage').on('click', sendMessage);
