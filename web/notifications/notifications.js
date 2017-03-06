@@ -35,18 +35,82 @@ function getNotifications(inbox) {
             createSystemNotification(notifications[i]);
         } else {
             //This is a request that requires input from the user
-            if (notifications[i].status == 0) {
-                //this is an event invite
-                createEventInvite(notifications[i]);
-            } else if (notifications[i].status == 1) {
-                //this is an event request
-                createEventRequest(notifications[i]);
-            } else if (notifications[i].status == 2) {
-                //this is a friend request
-                createFriendRequest(notifications[i]);
+            if (notifications[i].status < 3){//this checks if it's a report or not
+                if (notifications[i].status == 0) {
+                    //this is an event invite
+                    createEventInvite(notifications[i]);
+                } else if (notifications[i].status == 1) {
+                    //this is an event request
+                    createEventRequest(notifications[i]);
+                } else if (notifications[i].status == 2) {
+                    //this is a friend request
+                    createFriendRequest(notifications[i]);
+                }
+            } else if (notifications[i].status == 3) {
+                createEventReport(notifications[i]);
+            }  else if (notifications[i].status == 4) {
+                createUserReport(notifications[i]);
             }
         }
     }
+}
+//This does things
+function createEventReport(notification) {
+    var newH, newH1, newH2, newH3, newH4, newH5;
+    newH = $('<hr>');
+    newH1 = $('<p>').text("User " + notification.from.getName() + " has reported " +
+            "the event " + notification.event.getTitle() + ".");
+    newH2 = $('<p>').text(notification.event.getDescription())
+    newH3 = $('<button>').text("Delete Event").on('click', function () {
+        if (isSetUp == true) {
+            notification.event.deleteEvent();
+            notification.deleteNotification();
+        }
+    });
+    newH4 = $('<button>').text("Reject Report").on('click', function () {
+        if (isSetUp == true) {
+            notification.deleteNotification();
+        }
+    });
+    newH3.addClass("btn btn-info");
+    newH4.addClass("btn btn-warning");
+    newH5 = $('<div>').addClass("btn-toolbar");
+    newH5.append(newH2);
+    newH5.append(newH3);
+    notificationsFeed.append(newH1);
+    notificationsFeed.append(newH2);
+    notificationsFeed.append(newH4);
+    notificationsFeed.append(newH);
+    isSetUp = true;
+}
+//This is not important for now
+function createUserReport(notification) {
+    var newH, newH1, newH2, newH3, newH4;
+    newH = $('<hr>');
+    newH1 = $('<p>').text("User " + notification.from.getName() + " has reported user " +
+            notification.user.getName() + ".");
+    newH2 = $('<button>').text("Accept").on('click', function () {
+        if (isSetUp == true) {
+            //This is very low priority now. If we have time, we would have to
+            //delete all trace of that user from the SuD.
+            notification.deleteNotification();
+        }
+    });
+    newH3 = $('<button>').text("Reject").on('click', function () {
+        if (isSetUp == true) {
+            notification.deleteNotification();
+        }
+    });
+    newH2.addClass("btn btn-info");
+    newH3.addClass("btn btn-warning");
+    newH4 = $('<div>').addClass("btn-toolbar");
+    newH4.append(newH2);
+    newH4.append(newH3);
+    notificationsFeed.append(newH1);
+    notificationsFeed.append(newH4);
+    notificationsFeed.append(newH);
+    //What is this for???
+    isSetUp = true;
 }
 //This will not require action from the user. All it will have is dismiss
 //notification button that deletes the notification
