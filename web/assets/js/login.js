@@ -42,6 +42,8 @@ sys_init = {
         if (data !== "0"&& data !== 0) {
             // Storing the id number of the user
             sessionStorage.setItem('id', parseInt(data));
+        } else if (data == "0" || data == 0) {
+            $('#regWarning2').show();
         } else {
             $('#regWarning').show();
         }
@@ -83,9 +85,8 @@ sys_init = {
     setUpButtons: function () {
         // Hide the warning divisions upon loading
         $('#loginWarning').hide();
-        // I've removed these two warnings for now
-        //$('#regWarning').hide();
-        //$('#regPassWarning').hide
+        $('#regWarning').hide();
+        $('#regWarning2').hide
 
         // Button for submitting login info
         //$('button#login').on('click', sys_init.doLogin);
