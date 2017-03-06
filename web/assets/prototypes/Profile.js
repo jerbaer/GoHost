@@ -13,6 +13,7 @@ function Profile () {
     this.accessor = null;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
     this.idprofile = 0;
+    this.favCategory = 0;
 
     
     this.create = function (iduser, accessor1) { // might pass iduser instead as mentioned above
@@ -121,6 +122,8 @@ function Profile () {
     this.createProfileFollowUp = function (data) {
         this.description = data.description;
         this.idprofile = data.idprofile;
+        this.photoURL = data.picture;
+        this.favCategory = data.idcategory;
         
        
     };
