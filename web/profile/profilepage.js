@@ -42,7 +42,6 @@ function setUpComponents() {
     isOwner = profile1.isCurrentUser();
     isFriend = profile1.isFriend();
     if (isOwner) {
-        $('#favCat').removeClass('hidden');
         $('#ownerOnly').removeClass('hidden');
         $('#editProfile').on('click', editProfile);
         $('#editUser').on('click', editAccount);
@@ -51,7 +50,6 @@ function setUpComponents() {
         $('#hostingtab').on('click', getHostStrings);
     } else if (isFriend) {
         $('#friendsOnly').removeClass('hidden');
-        $('#favCat').removeClass('hidden');
         $('#attendingtab').on('click', getAttendingStrings);
         $('#hostingtab').on('click', getHostStrings);
     } else {
@@ -72,13 +70,14 @@ function getProfile() {
     // Do picture stuff
 
     profDesc = $('#profileDesc');
+    newP = $('<span>').text(profileDescription);
 
     favCat = $('#favCat');
     favCategory.retrieveName();
-    newP2 = $('<p>').text(favCategory.getName());
+    newP2 = $('<span>').text(favCategory.getName());
 
     profName.append(newH1);
-    profDesc.text(profileDescription);
+    profDesc.append(newP);
     favCat.append(newP2);
 }
 
