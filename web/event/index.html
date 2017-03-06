@@ -82,8 +82,8 @@
                         <button type="button" class="btn btn-warning hidden" id="leaveEvent">Leave Event</button>
                     </div>
                     <br>
-                    <div class="row">
-                        <button type="button" class="btn btn-info hidden" data-toggle="modal" data-target="#chatModal" aria-label="Chat" id="eventChat">Event Chat</button>
+                    <div class="row" id = "chatSpan">
+                        <button type="button" class="btn btn-info hidden" data-toggle="modal" data-target="#chatModal" aria-label="Chat" id="chatModal">Event Chat</button>
                     </div>
                 </div>
             </div>
@@ -246,7 +246,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="input-group">
-                            <textarea class="form-control custom-control" rows="2" style="resize:none"></textarea>     
+                            <textarea class="form-control custom-control" rows="2" style="resize:none" id = "newMessage"></textarea>     
                             <span class="input-group-addon btn btn-info" id="sendChat">Send</span>
                         </div>
                     </div>

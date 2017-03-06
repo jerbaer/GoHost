@@ -32,6 +32,7 @@ var senders;
 var messages;
 var times;
 var messageIDs;
+var newMessage;
 
 //Still don't know where to call this
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
@@ -64,7 +65,7 @@ function setUpComponents() {
     if (isHost) {
         $('#inviteSpan').removeClass('hidden');
         $('#host').removeClass('hidden');
-        $('#eventChat').removeClass('hidden');
+        $('#chatSpan').removeClass('hidden');
         $('#delete').on('click', deleteEvent);
         $('#edit').on('click', editEvent);
         $('#invite').on('click', getFriends);
@@ -72,7 +73,7 @@ function setUpComponents() {
     } else if (isAttendee) {
         $('#inviteSpan').removeClass('hidden');
         $('#leaveEvent').removeClass('hidden');
-        $('#eventChat').removeClass('hidden');
+        $('#chatSpan').removeClass('hidden');
         $('#invite').on('click', getFriends);
         $('#leaveEvent').on('click', leaveEvent);
         $('#sendChat').on('click', sendMessage);
@@ -97,13 +98,13 @@ function reportEvent() {
 //Next two functions migrated from eventChat. Will need to make sure it is 
 //connecting to the right div that Jerry is going to make
 function getMessages() {
-    $('#chat').empty();
+    $('#chatLines').empty();
     eventChat = new EventChat();
     eventChat.create(event1, user);
     setTimeout(getMessageStrings(eventChat), 10000);
     var newH, newA, newHr, newH1, chat;
     var n, url;
-    chat = $('#chat');
+    chat = $('#chatLines');
     //This might not look nice but it should work. Go back and fix the how
     //it looks later.
     for (n = eventChat.getSize() - 1; n > -1; n--) {
@@ -138,8 +139,12 @@ function getMessageStrings(eventChat) {
     }
 }
 //Need to fill this in now
+//This needs to refresh the event page after it sends the message
 function sendMessage() {
-    
+    newMessage = $('#newMessage').val();
+    chatLine = new ChatLine();
+    chatLine.create(newMessage, id, eventid, new Date());
+    refresh();
 }
 
 function requestToJoinEvent() {
@@ -412,7 +417,7 @@ $.wait = function (ms) {
     }, ms);
     return defer;
 };
-
+//Make sure this is actually working
 function refresh() {
     //window.location.href = window.location.href; // this is weird
     window.location.reload(true);
