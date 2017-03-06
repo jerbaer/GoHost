@@ -348,8 +348,7 @@ function getFriends() {
 
 function makeFriendAlert(iduser, n) {
     newH7 = $('<div>').addClass("alert alert-info alert-dismissable").on('close.bs.alert', function () {
-        var n = iduser;
-        event1.inviteUser(n);
+
     });
     url = "../profile/index.html#" + iduser;
     newA = $('<a>').addClass("alert-link").attr('href', url).text(peopleNames[n]).on('click', function () {
@@ -363,8 +362,10 @@ function makeFriendAlert(iduser, n) {
         event1.inviteUser(iduser);
     });
     newA2.append(newI);
-    newH7.append(newA2).append(newA);
-    peopleList.append(newH7);
+    if (!event1.isUserInvited(iduser)) {
+        newH7.append(newA2).append(newA);};
+    if (!event1.isUserInvited(iduser)) {
+        peopleList.append(newH7);};
 }
 
 function getStringsFromPeople(PeopleList) {
