@@ -89,7 +89,7 @@ function setUpComponents() {
 function getMessages() {
     $('#chat').empty();
     eventChat = new EventChat();
-    eventChat.create(eventid);
+    eventChat.create(event1, user);
     setTimeout(getMessageStrings(eventChat), 10000);
     var newH, newA, newHr, newH1, chat;
     var n, url;
