@@ -42,6 +42,23 @@ function User() {
         this.isAdmin = data.admin;
         //Do you want me to call these other functions right away or to wait for now?
     };
+    //This will be called in one of two places:
+    //1. The user themselves does it. After that they are taken back to the login page.
+    //2. The admin does it.
+    //This needs to delete ALL traces of this user from the database
+    //1. Delete the user from the user table
+    //2. Delete all the events being hosted by this user
+    //3. Remove him from the attendee table
+    //4. Remove him from the invited table
+    //5. Remove all friend rows that have him on either side
+    //6. Remove all messages that have been sent by him
+    //7. Delete that user's profile
+    //8. Delete all the notification sent by that user
+    //9. Delete all the notification sent to that user
+    this.deleteUser = function () {
+        
+    }
+    
     //These two functions will probably not be called from here
     this.createPeopleList = function () {
         this.PeopleList = new PeopleList();
