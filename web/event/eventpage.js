@@ -243,6 +243,7 @@ function getEvent() {
     }
 
     eventDetails.append(newH);
+    eventDetails.append('<br>');
     newDiv.append(newH1);
     newDiv.append(newH2);
     newDiv.append(newH3);
