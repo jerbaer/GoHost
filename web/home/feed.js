@@ -39,6 +39,7 @@ function setUpComponents() {
         setTimeout(getStringsFromEvents(visibleEvents), 10000);
         populateFeed();
     });
+    $('#refreshPage').on('click', refresh);
 }
 
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
