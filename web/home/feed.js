@@ -118,11 +118,10 @@ function getProfile() {
     var url, newA;
     profile1 = new Profile();
     profile1.createFromDB(user, user);
-    getStringsFromProfile(profile1);
     // Popualte the html page
     profName = $('#profName');
     url = "../profile/index.html#" + profile1.getIdUser();
-    newA = $('<a>').attr('href', url).text(profileName).on('click', function () {
+    newA = $('<a>').attr('href', url).text(profile1.getName()).on('click', function () {
         window.location.href = url;
         window.location.reload(true);
     });
@@ -131,18 +130,9 @@ function getProfile() {
     profPic = $('#profPic');
     profPic.attr('src', profile1.getPicture());
 
-    profDesc = $('#profDesc');
-    newP = $('<p>').text(profileDescription);
-
     profName.append(newH1);
-    profDesc.append(newP);
 }
 
-function getStringsFromProfile(profile1) {
-    profileName = profile1.getName();
-    profilePicture = profile1.getPicture();
-    profileDescription = profile1.getDescription();
-}
 function getCategories() {
     var url = "http://143.44.67.0:13774/GoHost/api/category/all";
     $.getJSON(url).done(categoriesFollowUp);
