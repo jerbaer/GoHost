@@ -104,6 +104,7 @@ function setUpComponents() {
         window.location.reload();
     });
 }
+
 //This should create a notification of status = 3 and idevent = this one
 //Note: The iduser value doesn't change anything in this kind of notification
 //It will not show up in any user's notification feed because of the logic I 
