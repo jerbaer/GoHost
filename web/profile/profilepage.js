@@ -67,18 +67,26 @@ function setUpComponents() {
         $('#flagUser').removeClass('hidden');
         $('#report').on('click', reportUser);
     }
+
+    $('#reportModal').on('hidden.bs.modal', function () {
+        window.location.reload();
+    })
 }
 
 function reportUser() {
-    notification = new Notification();
-    notification.create(owner.getID(), accessor.getID(), 0, new Date(), 0, 4);
-    alert("Thank you. This user has now been reported to the administrator.");
+    if (canFlag) {
+        notification = new Notification();
+        notification.create(owner.getID(), accessor.getID(), 0, new Date(), 0, 4);
+        $('#reportModal').modal();
+    } else {
+        $('#reportedModal').modal();
+    }
 }
-function canFlagProfile(){
+function canFlagProfile() {
     profile1.hasFlag();
     canFlag = profile1.canFlag;
 }
-function canFriendRequestProfile(){
+function canFriendRequestProfile() {
     profile1.hasFriendRequest();
     canRequest = profile1.canFriend;
 }
