@@ -59,7 +59,7 @@
                     <div class="row">
                         <div class="col-sm-5" id="profPic">
                             <!-- Profile Picture Here -->
-                            <img class="img-responsive" src="../assets/img/profile-placeholder.png" alt="profile-placeholder">
+                            <img class="img-responsive" id="profPic" alt="profile-placeholder">
                         </div>
                         <div class="col-sm-offset-1 col-sm-6">
                             <div class="row" id="profName">
@@ -67,18 +67,22 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
+                    <p>Search by Category:</p>
+                    <div class="input-group">
+                        <select class="form-control" id="category">
+                            <!-- Categories populated from database -->
+                        </select>
+                        <span class="input-group-addon btn btn-info" id="categoryButton">Search</span>
+                    </div>
                     <br>
-                    <p>Filter Events by Category:</p>
-                    <select class="form-control" id="category">
-                        <!-- Categories populated from database -->
+                    <p>Search by Location:</p>
+                    <div class="input-group">
+                        <select class="form-control" id="location">
+                        <!-- Locations populated from database -->
                     </select>
-                    <button id = "categoryButton">Submit</button>
-                    <br>
-                    <p>Filter Events by Location:</p>
-                    <select class="form-control" id="location">
-                        <!-- Categories populated from database -->
-                    </select>
-                    <button id = "locationButton">Submit</button>
+                        <span class="input-group-addon btn btn-info" id="locationButton">Search</span>
+                    </div>
                 </div>
             </div>
         </div>
