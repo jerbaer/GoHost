@@ -50,11 +50,18 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#friends" id="friendsTab">My Friends</a></li>
                         <li><a data-toggle="tab" href="#strangers" id="strangersTab">Discover People</a></li>
+                        <li><a data-toggle="tab" href="#search" id="searchTab">Search For People</a></li>
                     </ul>
 
                     <div class="tab-content">
                         <div id="friends" class="tab-pane fade in active"></div>
                         <div id="strangers" class="tab-pane fade"></div>
+                        <div id="search" class="tab-pane fade">
+                            <label for="userName" class="col-sm-3 control-label">Enter user name: <span class="text-warning">*</span></label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="userName" name="userName" placeholder="Full or part of user name" type="text">
+                                </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-2 col-sm-offset-2">

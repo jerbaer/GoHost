@@ -16,13 +16,15 @@ function setUpComponents() {
     
     user = new User();
     user.create(id);
-    profPic = $('#profPic');
-    profPic.attr('src', user.getPicture());
+
     
     getEvents();
     getProfile();
     getCategories();
     getLocations();
+    profPic = $('#profPic');
+    user.createProfile(user);
+    profPic.attr('src', user.getPicture());
     $('#categoryButton').on('click', function () {
         visibleEvents.getEventsByCategory($('#category').val());
         setTimeout(getStringsFromEvents(visibleEvents), 10000);

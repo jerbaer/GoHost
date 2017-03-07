@@ -33,6 +33,7 @@ function getNotifications(inbox) {
     inbox = new Inbox();
     inbox.create(id);
     inbox.getNotifications();
+    inbox.readNotifications();
     notificationsFeed = $('#notifications');
     notifications = new Array();
     for (var i = 0; i < inbox.getSize(); i++) {

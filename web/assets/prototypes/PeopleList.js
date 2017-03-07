@@ -10,6 +10,7 @@ function PeopleList() {
     this.people = null; //array of user objects with people in them
     this.friends = null;
     this.friendsIDs = null;
+    this.word = "";
     this.owner = null;
     this.idevent = 0;
     this.viewType =0;
@@ -33,8 +34,34 @@ function PeopleList() {
             this.getFriends();
         } else if (viewType == 2) {
             this.getNotFriends();
+        } else if (viewType == 3) {
+            this.getSearchResults();
         }
     };
+    //Gets a list of people that have part of that in their
+    this.getSearchResults = function () {
+        var url = this.coreUrl + "user/name?name=" + this.word;
+        $.ajax({
+            dataType: "json",
+            type: "get",
+            url: url,
+            async: false,
+            context: this,
+            success: this.searchFollowUp
+        });
+    };
+    
+    this.searchFollowUp = function (data) {
+        this.people = [];
+        this.friends = [];
+        for (var n = 0; n < data.length; n++) {
+            this.user1 = new User();
+            this.user1.create(data[n].iduser);
+            this.people.push(this.user1);
+        }
+    };
+    
+
     
     this.getFriends = function () {
         //get friends from database and populate list, fill in size
@@ -119,5 +146,9 @@ function PeopleList() {
             }
         }
         return false;
+    };
+    
+    this.setWord = function (word){
+      this.word = word;  
     };
 };
