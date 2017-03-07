@@ -233,7 +233,7 @@ function getEvent() {
     newH2 = $('<p>').text(eventEndTime);
     newH3 = $('<p>').text(eventCategory);
     newH4 = $('<p>').text(eventLocation);
-    newH7 = $('<p>').text(eventDescription);
+    newH8 = $('<p>').text(eventDescription);
     newH5 = $('<p>').text("Event Attendees:");
     newH6 = $('<div>');
     newHr = $('<hr>');
@@ -248,7 +248,7 @@ function getEvent() {
     eventDetails.append(newH2);
     eventDetails.append(newH3);
     eventDetails.append(newH4);
-    eventDetails.append(newH7);
+    eventDetails.append(newH8);
     eventDetails.append(newH5);
     eventDetails.append(newH6);
     eventDetails.append('<br />');
