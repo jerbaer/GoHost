@@ -29,7 +29,7 @@ function Inbox() {
                 dataType: "json",
                 url: url,
                 context: this,
-                success: this.getNotificationsFollowUp
+                success: this.getNotificationsFollowUp1
             });
         }else {
             var url = this.coreUrl + "notification/status?status=3";
@@ -46,6 +46,17 @@ function Inbox() {
                 context: this,
                 success: this.getNotificationsFollowUp
             });
+        }
+    };
+        this.getNotificationsFollowUp1 = function(data){
+        this.notifications = new Array();
+        for(var i=0;i<data.length;i++){
+            var notification1 = new Notification();
+            notification1.createFromDB(data[i].idnotification);
+            if(notification1.status == 3 || notification1.status ==4){
+                
+            }else
+            this.notifications.push(notification1);
         }
     };
     

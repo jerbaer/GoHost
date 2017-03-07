@@ -31,6 +31,15 @@ function EventChat () {
             this.line1.createFromDB(data[i].idmessage, this.user);
             this.chatLog.push(this.line1);
         }
+        this.chatLog.sort(function (a, b) {
+        if (a.time > b.time)
+            return 1;
+        else if (a.time < b.time)
+            return -1;
+        else
+            return 0;
+    });
+        this.chatLog.sort();
     };
     
     this.getChatLog = function () {

@@ -124,12 +124,12 @@ function getStringsFromProfile(profile1) {
 function addFriend() {
     owner.createPeopleList();
     owner.getPeopleList().addFriend(accessor);
-    $('#addFriendModal').modal();
+    $('#friendAddModal').modal();
 }
 
 function editProfile() {
     if ($('#name').val() !== '') {
-        profile1.editName($('#name').val());
+        owner.editName($('#name').val());
     }
     if ($('#picture').val() !== '') {
         profile1.editPicture($('#picture').val());
@@ -138,10 +138,11 @@ function editProfile() {
     if ($('#description').val() !== '') {
         profile1.editDescription($('#description').val());
     }
-    if ($('category').val() !== '') {
-        profile1.editCategory($('category').val()); // Isn't passing the profile object for some reason
+    if ($('#eventsCat').val() > 0) {
+        profile1.editCategory($('#eventsCat').val()); // Isn't passing the profile object for some reason
     }
     profile1.refreshEdits();
+    owner.refreshEdits();
 
     window.location.reload();
 }
@@ -348,9 +349,9 @@ function getCategories() {
 }
 
 function categoriesFollowUp(data) {
-    var eventsCat = $('#category');
+    eventsCat = $('#eventsCat');
     for (i = 0; i < data.length; i++) {
-        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        newHr = $('<option>').val(parseInt(data[i].idcategory)).text(data[i].name);
         eventsCat.append(newHr);
     }
 }

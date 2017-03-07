@@ -321,7 +321,7 @@ function User() {
     };
     
     this.refreshEdits = function () {
-        if (isAdmin == true){
+        if (this.isAdmin == true){
             var admin = 1;
         }else
             var admin = 0;
