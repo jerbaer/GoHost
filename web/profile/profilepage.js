@@ -30,23 +30,21 @@ function setUpComponents() {
     accessor.create(id);
     inbox = new Inbox();
     inbox.create(id);
-    if(inbox.areUnread()){
-        
+    if (inbox.areUnread()) {
+
     }
-    
+
     $('.ownerName').text(owner.getName());
 
     getProfile();
     getCategories();
-    
+
     getEvents();
     getCategories();
     getLocations();
 
     isOwner = profile1.isCurrentUser();
     isFriend = profile1.isFriend();
-    $('#flagUser').removeClass('hidden');
-    $('#report').on('click', reportUser);
     if (isOwner) {
         $('#ownerOnly').removeClass('hidden');
         $('#editProfile').on('click', editProfile);
@@ -58,9 +56,13 @@ function setUpComponents() {
         $('#friendsOnly').removeClass('hidden');
         $('#attendingtab').on('click', getAttendingStrings);
         $('#hostingtab').on('click', getHostStrings);
+        $('#flagUser').removeClass('hidden');
+        $('#report').on('click', reportUser);
     } else {
         $('#addFriend').removeClass('hidden');
         $('#addFriend').on('click', addFriend);
+        $('#flagUser').removeClass('hidden');
+        $('#report').on('click', reportUser);
     }
 }
 
@@ -171,14 +173,14 @@ function getStringsFromEvents(eventList) {
     eventIDs = new Array(list.length);
     hostIDs = new Array(list.length);
     for (i = 0; i < list.length; i++) {
-        if(list[i].canUserSee())
-        eventTitles[i] = list[i].getTitle();
+        if (list[i].canUserSee())
+            eventTitles[i] = list[i].getTitle();
         eventHosts [i] = list[i].getHost().getName();
         //var t = list[i].getEventStart().split(/[- T :]/);
         var d = list[i].getEventStart().mysqlToDate();
-        eventStartTimes[i] = d.toString().substring(0,21);
+        eventStartTimes[i] = d.toString().substring(0, 21);
         var x = list[i].getEventEnd().mysqlToDate();
-        eventEndTimes[i] = x.toString().substring(0,21);
+        eventEndTimes[i] = x.toString().substring(0, 21);
         eventCategories[i] = list[i].getCategory();
         eventLocations[i] = list[i].getLocation();
         eventIDs[i] = list[i].getID();

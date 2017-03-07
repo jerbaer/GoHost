@@ -66,7 +66,6 @@ function setUpComponents() {
     
     //This is out here because I want it to be visible to all users
     $('#report').on('click', reportEvent);
-    $('#reportSpan').removeClass('hidden');
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
         $('#inviteSpan').removeClass('hidden');
