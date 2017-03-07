@@ -62,7 +62,7 @@ function Event() {
 
     this.create = function (idhost, idcategory, eventStart, eventEnd, description, title, idvisibility, idaccessibility, idlocation, eventMax) {
         this.tempID = idhost;
-        var event = {title: title, idhost: idhost, maxattendees: parseInt(eventMax), idlocation: idlocation, visibility: parseInt(idvisibility), accessibility: parseInt(idaccessibility), starttime: new Date(eventStart), endtime: new Date(eventEnd), description: description, idcategory: parseInt(idcategory)};
+        var event = {title: title, idhost: idhost, maxattendees: parseInt(eventMax), idlocation: idlocation, visibility: parseInt(idvisibility), accessibility: parseInt(idaccessibility), starttime: eventStart, endtime: eventEnd, description: description, idcategory: parseInt(idcategory)};
         $.ajax({
             url: this.coreUrl + "event",
             type: 'post',
@@ -498,7 +498,7 @@ function Event() {
     };
 
     this.refreshEdits = function () {
-        var event = {idevent: parseInt(this.idevent), title: this.title, idhost: this.host.getID(), maxattendees: parseInt(this.eventMax), idlocation: parseInt(this.location.getID()), idvisibility: parseInt(this.visibility), idaccessibility: parseInt(this.accessibility), starttime: new Date(this.eventStart), endtime: new Date(this.eventEnd), description: this.description, idcategory: parseInt(this.category.getID())};
+        var event = {idevent: parseInt(this.idevent), title: this.title, idhost: this.host.getID(), maxattendees: parseInt(this.eventMax), idlocation: parseInt(this.location.getID()), idvisibility: parseInt(this.visibility), idaccessibility: parseInt(this.accessibility), starttime: this.eventStart, endtime: this.eventEnd, description: this.description, idcategory: parseInt(this.category.getID())};
         $.ajax({
             url: this.coreUrl + 'event/' + this.idevent,
             type: 'PUT',
