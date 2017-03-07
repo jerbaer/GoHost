@@ -54,8 +54,8 @@ sys_init = {
         var password = user.getPassword();
         var name = user.getName();
         sys_init.profile = new Profile();
-        sys_init.profile.create(parseInt(sessionStorage.getItem('id')),parseInt(sessionStorage.getItem('id')));
-        var profileId = {idprofile: sys_init.profile.getIdProfile(), iduser: iduser, password: password, name: name, email: email};
+        sys_init.profile.create(parseInt(sessionStorage.getItem('id')),user);
+        var profileId = {idprofile: sys_init.profile.getIdProfile(), iduser: iduser, password: password, name: name, email: email, admin:0};
         $.ajax({
             url: sys_init.coreUrl + 'user/' + parseInt(sessionStorage.getItem('id')),
             type: 'PUT',
