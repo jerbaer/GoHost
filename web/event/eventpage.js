@@ -236,15 +236,13 @@ function getEvent() {
     newH8 = $('<p>').text(eventDescription);
     newH5 = $('<p>').text("Event Attendees:");
     newH6 = $('<div>');
-    newHr = $('<hr>');
     newDiv = $('<div>').addClass('well');
 
     for (var i = 0; i < eventAttendees.length; i++) {
         makeAttendeeAlert(attendeeIDs[i], i);
     }
 
-    newDiv.append(newH);
-    newDiv.append(newHr);
+    eventDetails.append(newH);
     newDiv.append(newH1);
     newDiv.append(newH2);
     newDiv.append(newH3);
