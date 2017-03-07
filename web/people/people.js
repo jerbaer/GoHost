@@ -60,7 +60,7 @@ function userSearch () {
     var n, url;
     // this part might need to change/be more specific with bootstrap classes
     searchList = $('#search');
-    for (n = strangers.getSize() - 1; n > -1; n--) {
+    for (n = searchResults.getSize() - 1; n > -1; n--) {
         url = ".../profile/index.html#" + peopleUserIDs[n];
         newA = $('<a>').attr('href', url).text(peopleNames[n]).on('click', function () {
             window.locaton.href = url;
