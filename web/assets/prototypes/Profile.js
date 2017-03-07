@@ -56,10 +56,9 @@ function Profile() {
     };
     
     this.checkRequestFollowUp = function (data) {
-        if (data === true) {
+        if (data === "0") {
             this.canFriend = false;
-        } else
-            this.canFriend = true;
+        } 
     };
     
     this.hasFlag = function () {
@@ -75,7 +74,7 @@ function Profile() {
     };
     
     this.checkFlagFollowUp = function (data) {
-        if (data === true) {
+        if (data === "0") {
             this.canFlag = false;
         }
     };

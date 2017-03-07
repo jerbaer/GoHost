@@ -47,7 +47,7 @@ function Notification(){
         if(data.idevent!= null&& data.idevent!=0){
         this.event = new Event();
         this.event.createFromDB(data.idevent, this.user);
-    }
+    } else this.event=null;
         this.status = data.notificationstatus;
         this.read = data.isread;
         this.timestamp = data.timesent;
@@ -135,7 +135,10 @@ function Notification(){
     window.location.reload(true);
     };
         this.refreshEdits = function () {
-        var profile = {idnotification: this.idnotification, sender: this.from, idevent: this.event.getID(), iduser: this.user.getID(), isread: this.read, notificationstatus: this.status, timesent: this.timestamp};
+            if(this.event==null){
+                var eventID = 0;
+            } else eventID = this.event.getID();
+        var profile = {idnotification: this.idnotification, sender: this.from.getID(), idevent: eventID, iduser: this.user.getID(), isread: this.read, notificationstatus: this.status, timesent: this.timestamp};
         $.ajax({
             url: this.coreUrl + 'notification/' + this.idnotification,
             type: 'PUT',
