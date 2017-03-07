@@ -234,7 +234,7 @@ function getEvent() {
     newH3 = $('<p>').text(eventCategory);
     newH4 = $('<p>').text(eventLocation);
     newH8 = $('<p>').text(eventDescription);
-    newH5 = $('<p>').text("Event Attendees:");
+    newH5 = $('<h4>').text("Event Attendees:");
     newH6 = $('<div>');
     newDiv = $('<div>').addClass('well');
 
