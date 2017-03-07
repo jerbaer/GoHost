@@ -18,6 +18,7 @@ function setUpComponents() {
     id = parseInt(sessionStorage.getItem('id'));
     $('#friendsTab').on('click', getFriendsStrings);
     $('#strangersTab').on('click', getStrangersStrings);
+    $('#searchTab').on('click', clearOtherTabs);
     $('#searchButton').on('click', userSearch);
     getPeople();
     getProfile();
@@ -27,7 +28,6 @@ function setUpComponents() {
         
     }
 }
-
 
 function getPeople() {
     user = new User();
@@ -60,7 +60,6 @@ function userSearch () {
     //Getting both here. Did not take the time to understand what this code will
     //actually do.
     getStringsFromStrangers(searchResults);
-    getStringsFromPeople(searchResults);
     var newH, newA, newP, searchList;
     var n, url;
     // this part might need to change/be more specific with bootstrap classes
@@ -76,13 +75,14 @@ function userSearch () {
         newH = $('<h3>').append(newA);
         newP = $('<p>').append(peopleDescriptions[n]);
         // figure out how to do picture
-
-        searchList.append(newH);
-        searchList.append(newP);
+        
+        newDiv = $('<div>').addClass('well');
+        newDiv.append(newH);
+        newDiv.append(newP);
+        searchList.append(newDiv);
     }
     $('#search').show();
 }
-
 
 function getStrangersStrings() {
     $('#friends').hide();
@@ -202,6 +202,15 @@ function getStringsFromStrangers(PeopleList) {
     }
 }
 
+function clearOtherTabs() {
+    $('#friends').hide();
+    $('#strangers').hide();
+    $('#search').hide();
+    $('#friends').empty();
+    $('#strangers').empty();
+    $('#search').empty();
+}
+
 function getProfile() {
     var url, newA;
     profile1 = new Profile();
@@ -217,7 +226,7 @@ function getProfile() {
     newH1 = $('<h1>').append(newA);
 
     profPic = $('#profPic');
-    // Do picture stuff
+    profPic.attr('src', profile1.getPicture());
 
     profDesc = $('#profDesc');
     newP = $('<p>').text(profileDescription);

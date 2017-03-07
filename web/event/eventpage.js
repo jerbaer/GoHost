@@ -7,6 +7,8 @@ var isHost = false;
 var isAttendee = false;
 var canJoin = false;
 var canSee = false;
+var canFlag = true;
+var canReuqest = true;
 
 var eventAttendees = [];
 var attendeeIDs = [];
@@ -54,6 +56,8 @@ function setUpComponents() {
     //userto that event. Host, Attendee, neither
     getEvent();
     getMessages();
+    canFlagEvent();
+    canEventRequest();
     isHost = event1.isAccessorHost();
     isAttendee = event1.isUserInEvent();
     canJoin = (event1.canUserJoin() && !event1.isUserInEvent());
@@ -66,7 +70,6 @@ function setUpComponents() {
     
     //This is out here because I want it to be visible to all users
     $('#report').on('click', reportEvent);
-    $('#reportSpan').removeClass('hidden');
     //eventDetails, joinEvent, hostOnly
     if (isHost) {
         $('#inviteSpan').removeClass('hidden');
@@ -186,7 +189,7 @@ function canFlagEvent(){
     event1.hasFlag();
     canFlag = event1.canFlag;
 }
-function canFriendRequestProfile(){
+function canEventRequest(){
     event1.hasEventRequest();
     canRequest = event1.canFriend;
 }
