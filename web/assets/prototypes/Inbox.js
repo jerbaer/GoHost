@@ -56,6 +56,12 @@ function Inbox() {
             this.notifications.push(notification1);
         }
     };
+    this.readNotifications= function(){
+        for(var i=0;i<this.notifications.length;i++){;
+            this.notifications[i].readNotification();
+            this.notifications[i].refreshEdits();
+        }
+    }
     
     this.getNotificationsList= function () {
         return this.notifications;

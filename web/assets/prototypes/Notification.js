@@ -118,6 +118,9 @@ function Notification(){
         });
         this.refresh();
     };
+    this.readNotification = function(){
+        this.read = 1;
+    };
     
     
     
@@ -127,9 +130,9 @@ function Notification(){
     window.location.reload(true);
     };
         this.refreshEdits = function () {
-        var profile = {idnotification: this.idnotification, sender: this.from, idevent: this.event.getID(), iduser: this.user.getID(), isread: this.read, };
+        var profile = {idnotification: this.idnotification, sender: this.from, idevent: this.event.getID(), iduser: this.user.getID(), isread: this.read, notificationstatus: this.status, timesent: this.timestamp};
         $.ajax({
-            url: this.coreUrl + 'profile/' + this.idprofile,
+            url: this.coreUrl + 'notification/' + this.idnotification,
             type: 'PUT',
             data: JSON.stringify(profile),
             contentType: 'application/json',
