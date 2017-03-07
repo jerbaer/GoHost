@@ -237,18 +237,20 @@ function getEvent() {
     newH5 = $('<p>').text("Event Attendees:");
     newH6 = $('<div>');
     newHr = $('<hr>');
+    newDiv = $('<div>').addClass('well');
 
     for (var i = 0; i < eventAttendees.length; i++) {
         makeAttendeeAlert(attendeeIDs[i], i);
     }
 
-    eventDetails.append(newH);
-    eventDetails.append(newHr);
-    eventDetails.append(newH1);
-    eventDetails.append(newH2);
-    eventDetails.append(newH3);
-    eventDetails.append(newH4);
-    eventDetails.append(newH8);
+    newDiv.append(newH);
+    newDiv.append(newHr);
+    newDiv.append(newH1);
+    newDiv.append(newH2);
+    newDiv.append(newH3);
+    newDiv.append(newH4);
+    newDiv.append(newH8);
+    eventDetails.append(newDiv);
     eventDetails.append(newH5);
     eventDetails.append(newH6);
     eventDetails.append('<br />');
