@@ -11,11 +11,13 @@ function User() {
     this.name = "";
     this.PeopleList = null;
     this.StrangerList = null;
+    this.searchedList = null;
     this.eventsHosting = null;
     this.eventsAttending = null;
     this.eventsVisible = null;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
     this.idprofile;
+    this.word = "";
     //0 if not admin, 1 if is admin
     this.isAdmin = false;
     
@@ -200,7 +202,17 @@ function User() {
         });
         }
     };
-    
+    //Need to go back and fix people list now so that I can pass it certain
+    //parameters and it will know to create a list of searched for users
+    this.createSearchList = function () {
+        this.searchedList = new PeopleList();
+        this.searchedList.setWord(this.word);
+        //The parameters here need to be changed accordingly
+        this.searchedList.create(this.iduser, null, 3);
+    };
+    this.getSearchList = function(){
+        return this.searchedList;
+    };
     //These two functions will probably not be called from here
     this.createPeopleList = function () {
         this.PeopleList = new PeopleList();
@@ -322,4 +334,7 @@ function User() {
             dataType: 'json'
         });
     };
-}
+    this.setWord = function(word) {
+      this.word = word;
+    };
+};

@@ -3,6 +3,8 @@
 //Global variables
 var friends = null;
 var strangers = null;
+var searchResults = null;
+var input = "";
 var user = null;
 var list;
 var peopleNames;
@@ -16,9 +18,11 @@ function setUpComponents() {
     id = parseInt(sessionStorage.getItem('id'));
     $('#friendsTab').on('click', getFriendsStrings);
     $('#strangersTab').on('click', getStrangersStrings);
+    $('#searchTab').on('click', userSearch);
     getPeople();
     getProfile();
 }
+
 
 function getPeople() {
     user = new User();
@@ -26,14 +30,67 @@ function getPeople() {
     getFriendsStrings();
 }
 
+function userSearch () {
+    $('#friends').hide();
+    $('#strangers').hide();
+    $('#friends').empty();
+    $('#strangers').empty();
+    $('#search').empty();
+    input = $('#userName').val();
+    //Here need to pass it to the user object instead of putting in session storage
+    sessionStorage.setItem('search', input);
+    if (friends !== null)
+        friends = null;
+    if (strangers !== null)
+        strangers = null;
+    if (searchResults !== null)
+        searchResults = null;
+    user.setWord(input);
+    user.createSearchList();
+    searchResults = user.getSearchList();
+    peopleNames = null;
+    peoplePictures = null;
+    peopleDescriptions = null;
+    peopleIDs = null;
+    //Getting both here. Did not take the time to understand what this code will
+    //actually do.
+    getStringsFromStrangers(searchResults);
+    getStringsFromPeople(searchResults);
+    var newH, newA, newP, searchList;
+    var n, url;
+    // this part might need to change/be more specific with bootstrap classes
+    searchList = $('#search');
+    for (n = strangers.getSize() - 1; n > -1; n--) {
+        url = ".../profile/index.html#" + peopleUserIDs[n];
+        newA = $('<a>').attr('href', url).text(peopleNames[n]).on('click', function () {
+            window.locaton.href = url;
+            window.location.reload(true);
+            //double check this session storage part
+            sessionStorage.setItem('peopleid'), peopleIDs[n];
+        });
+        newH = $('<h3>').append(newA);
+        newP = $('<p>').append(peopleDescriptions[n]);
+        // figure out how to do picture
+
+        searchList.append(newH);
+        searchList.append(newP);
+    }
+    $('#search').show();
+}
+
+
 function getStrangersStrings() {
     $('#friends').hide();
+    $('#search').hide();
+    $('#search').empty();
     $('#friends').empty();
     $('#strangers').empty();
     if (friends !== null)
         friends = null;
     if (strangers !== null)
         strangers = null;
+    if (searchResults !== null)
+        searchResults = null;
     user.createStrangersList();
     strangers = user.getStrangersList();
     peopleNames = null;
@@ -65,12 +122,16 @@ function getStrangersStrings() {
 
 function getFriendsStrings() {
     $('#strangers').hide();
+    $('#search').hide();
+    $('#search').empty();
     $('#strangers').empty();
     $('#friends').empty();
     if (friends !== null)
         friends = null;
     if (strangers !== null)
         stragners = null;
+    if (searchResults !== null)
+        searchResults = null;
     user.createPeopleList();
     friends = user.getPeopleList();
     peopleNames = null;
@@ -120,7 +181,6 @@ function getStringsFromPeople(PeopleList) {
 }
 
 function getStringsFromStrangers(PeopleList) {
-
     list = PeopleList.getPeopleList();
     peopleNames = new Array(list.length);
     peoplePictures = new Array(list.length);

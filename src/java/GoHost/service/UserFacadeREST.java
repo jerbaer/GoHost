@@ -76,6 +76,12 @@ public class UserFacadeREST extends AbstractFacade<User> {
     public User findUser(@PathParam("id") Integer id) {
         return em.createNamedQuery("User.findByIduser", User.class).setParameter("iduser", id).getSingleResult();
     }
+    //This is new shit. Might throw problems. Might still
+    @GET
+    @Path("{name}")
+    public List<User> searchForUser(@PathParam("name") String name) {
+        return em.createNamedQuery("User.searchByName", User.class).setParameter("name", name).getResultList();
+    }
 
     @GET
     @Produces({"text/plain"})
@@ -108,6 +114,8 @@ public class UserFacadeREST extends AbstractFacade<User> {
         if (u.getAdmin() == 1) return true;
         else return false;
     }
+    
+    
     
     @GET
     @Path("all")
