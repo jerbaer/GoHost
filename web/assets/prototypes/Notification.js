@@ -121,6 +121,11 @@ function Notification(){
     this.readNotification = function(){
         this.read = 1;
     };
+    this.isUnread = function(){
+        if (this.read==0){
+            return true
+        } else return false;
+    }
     
     
     
