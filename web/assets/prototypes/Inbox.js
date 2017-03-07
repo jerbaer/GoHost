@@ -23,6 +23,7 @@ function Inbox() {
     //This means that the iduser will contain the id of the user being reported
     //in case of a report
     this.getNotifications = function () {
+        this.notifications = new Array();
         if(!this.owner.getIsAdmin()) {
             var url = this.coreUrl + "notification/iduser?iduser=" + this.ownerid;
             $.ajax({
@@ -61,7 +62,7 @@ function Inbox() {
     };
     
     this.getNotificationsFollowUp = function(data){
-        this.notifications = new Array();
+
         for(var i=0;i<data.length;i++){
             var notification1 = new Notification();
             notification1.createFromDB(data[i].idnotification);

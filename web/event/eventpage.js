@@ -113,7 +113,7 @@ function setUpComponents() {
 function reportEvent() {
     if (canFlag) {
         notification = new Notification();
-        notification.create(0, user.getID(), event1.getID(), new Date(), 0, 3);
+        notification.create(event1.host.getID(), user.getID(), event1.getID(), new Date(), 0, 3);
         $('#reportModal').modal();
     } else {
         $('#reportedModal').modal();
