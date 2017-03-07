@@ -15,6 +15,7 @@ function Inbox() {
         this.ownerid = ownerid;
         this.owner = new User();
         this.owner.create(ownerid);
+        
     }
     //This either grabs notifications by the id of the user that they were sent
     //to in the case of normal notifications or by whether they are reports 
