@@ -143,7 +143,7 @@ function getProfile() {
         window.location.href = url;
         window.location.reload(true);
     });
-    newH1 = $('<h2>').append(newA);
+    newH1 = $('<h3>').append(newA);
 
     profPic = $('#profPic');
     profPic.attr('src', profile1.getPicture());
