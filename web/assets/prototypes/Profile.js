@@ -37,7 +37,7 @@ function Profile() {
 
     this.createFollowUp = function (data) {
         this.idprofile = data.idprofile;
-        this.photoURL = "../assets/img/profile-placeholder.png";
+        this.photoURL = "http://143.44.67.0:13774/goHost/assets/img/profile-placeholder.png";
     };
 
     this.isCurrentUser = function () {
