@@ -132,7 +132,7 @@ function editProfile() {
     if ($('#description').val() !== '') {
         profile1.editDescription($('#description').val());
     }
-    if ($('category').val() !== '') {
+    if ($('category').val() > 0) {
         profile1.editCategory($('category').val()); // Isn't passing the profile object for some reason
     }
     profile1.refreshEdits();
