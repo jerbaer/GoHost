@@ -8,7 +8,7 @@ var isAttendee = false;
 var canJoin = false;
 var canSee = false;
 var canFlag = true;
-var canReuqest = true;
+var canRequest = true;
 
 var eventAttendees = [];
 var attendeeIDs = [];
@@ -50,7 +50,7 @@ function setUpComponents() {
     user.create(id);
     getCategories();
     getLocations();
-    
+
 
     //Call function to display the event based on the relation of the
     //userto that event. Host, Attendee, neither
@@ -67,7 +67,7 @@ function setUpComponents() {
     if (inbox.areUnread()) {
         $('#bell').addClass('text-warning');
     }
-    
+
     //This is out here because I want it to be visible to all users
     $('#report').on('click', reportEvent);
     //eventDetails, joinEvent, hostOnly
@@ -94,15 +94,23 @@ function setUpComponents() {
         $('#request').on('click', requestToJoinEvent);
         // Make error div for can't see
     }
+
+    $('#reportModal').on('hidden.bs.modal', function () {
+        window.location.reload();
+    })
 }
 //This should create a notification of status = 3 and idevent = this one
 //Note: The iduser value doesn't change anything in this kind of notification
 //It will not show up in any user's notification feed because of the logic I 
 //added in notifications.getNotifications(). Defaulting it to 0 because why not.
 function reportEvent() {
-    notification = new Notification();
-    notification.create(0, user.getID(), event1.getID(), new Date(), 0, 3);
-    alert("Thank you. This event has now been reported to the administrator.");
+    if (canFlag) {
+        notification = new Notification();
+        notification.create(0, user.getID(), event1.getID(), new Date(), 0, 3);
+        $('#reportModal').modal();
+    } else {
+        $('#reportedModal').modal();
+    }
 }
 
 //Next two functions migrated from eventChat. Will need to make sure it is 
@@ -132,6 +140,7 @@ function getMessages() {
         chat.append(newHr);
     }
 }
+
 //I'm keeping track of all the times and the ids in case we need them for the purpose of deleting
 //messages and soritng by timesent although I am not showing these
 function getMessageStrings(eventChat) {
@@ -144,7 +153,7 @@ function getMessageStrings(eventChat) {
         senders[i] = chatLog[i].getUser();
         messages[i] = chatLog[i].getText();
         var d = chatLog[i].getTime().mysqlToDate();
-        times[i] = d.toString().substring(0,21);
+        times[i] = d.toString().substring(0, 21);
         messageIDs[i] = chatLog[i].getID();
     }
 }
@@ -185,11 +194,13 @@ function categoriesFollowUp(data) {
         eventsCat.append(newHr);
     }
 }
-function canFlagEvent(){
+
+function canFlagEvent() {
     event1.hasFlag();
     canFlag = event1.canFlag;
 }
-function canEventRequest(){
+
+function canEventRequest() {
     event1.hasEventRequest();
     canRequest = event1.canFriend;
 }
@@ -243,12 +254,12 @@ function makeAttendeeAlert(iduser, i) {
         window.location.href = url;
         window.location.reload(true);
     });
-    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").html("&times;").attr('id', "hostOnly").on('click', function(){
+    newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").html("&times;").attr('id', "hostOnly").on('click', function () {
         removeUser(iduser);
     });
     if (event1.getHostID() !== iduser) {
-        if(event1.isAccessorHost())
-        newH7.append(newA2);
+        if (event1.isAccessorHost())
+            newH7.append(newA2);
     }
     newH7.append(newA);
     newH6.append(newH7);
@@ -328,7 +339,8 @@ function leaveEvent() {
     event1.removeUserFromEvent(id);
     location.href = "../home";
 }
-function removeUser(iduser){
+
+function removeUser(iduser) {
     event1.removeUserFromEvent(iduser);
     window.location.reload();
 }
@@ -337,9 +349,9 @@ function getStringsFromEvent(event1) {
     eventTitle = event1.getTitle();
     //eventHost = event.getHost(); don't need to display this
     var d = event1.getEventStart().mysqlToDate();
-    eventStartTimes = d.toString().substring(0,21);
+    eventStartTimes = d.toString().substring(0, 21);
     var x = event1.getEventEnd().mysqlToDate();
-    eventEndTime = x.toString().substring(0,21);
+    eventEndTime = x.toString().substring(0, 21);
     eventCategory = event1.getCategory();
     eventLocation = event1.getLocation();
     //Goes through and fills out eventAttendees
@@ -370,8 +382,8 @@ function getFriends() {
     peopleList = $('#friends');
     for (var n = friends.getSize() - 1; n > -1; n--) {
         if (peopleUserIDs[n] !== undefined) {
-            if(!event1.isUserInvited(peopleUserIDs[n]))
-            makeFriendAlert(peopleUserIDs[n], n);
+            if (!event1.isUserInvited(peopleUserIDs[n]))
+                makeFriendAlert(peopleUserIDs[n], n);
         }
     }
     // if(peopleNames.empty()){ // or something like that
@@ -391,15 +403,19 @@ function makeFriendAlert(iduser, n) {
         sessionStorage.setItem('peopleid'), peopleIDs[n];
     });
     newA2 = $('<button>').attr('href', "#").addClass("close").attr('data-dismiss', "alert").attr('aria-label', "close").attr('id', "hostOnly");
-    newI = $('<i>').addClass("fa fa-envelope").attr('aria-hidden', "true").on('click', function(){
+    newI = $('<i>').addClass("fa fa-envelope").attr('aria-hidden', "true").on('click', function () {
         event1.inviteUser(iduser);
         window.location.reload(true);
     });
     newA2.append(newI);
     if (!event1.isUserInvited(iduser)) {
-        newH7.append(newA2).append(newA);};
+        newH7.append(newA2).append(newA);
+    }
+    ;
     if (!event1.isUserInvited(iduser)) {
-        peopleList.append(newH7);};
+        peopleList.append(newH7);
+    }
+    ;
 }
 
 function getStringsFromPeople(PeopleList) {
