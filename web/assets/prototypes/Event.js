@@ -106,7 +106,7 @@ function Event() {
         }
     };
         this.hasEventRequest = function(){
-        var url = coreUrl + "notification/checkNotification?iduser=" + this.host.getID() + "&sender=" + this.accessor.getID() + "&status=1";
+        var url = this.coreUrl + "notification/checkNotification?iduser=" + this.host.getID() + "&sender=" + this.accessor.getID() + "&status=1";
         $.ajax({
             dataType: "json",
             url: url,
@@ -122,7 +122,7 @@ function Event() {
         }
     }
         this.hasFlag = function(){
-        var url = coreUrl + "notification/checkNotification?iduser=" + this.host.getID() + "&sender=" + this.accessor.getID() + "&status=3";
+        var url = this.coreUrl + "notification/checkNotification?iduser=" + this.host.getID() + "&sender=" + this.accessor.getID() + "&status=3";
         $.ajax({
             dataType: "json",
             url: url,

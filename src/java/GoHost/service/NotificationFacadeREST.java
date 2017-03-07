@@ -103,8 +103,8 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
         List<Notification> n = null;
         n = em.createNamedQuery("Notification.findByUserStatusSender", Notification.class).setParameter("iduser", id).setParameter("sender", id1).setParameter("notificationstatus", id2).getResultList();
         if (n==null){
-            return "0";
-        }else return "1";
+            return "1";
+        }else return "0";
     }
     
     

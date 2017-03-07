@@ -44,7 +44,7 @@ function Profile() {
     };
     
     this.hasFriendRequest = function () {
-        var url = coreUrl + "notification/checkNotification?iduser=" + this.owner.getID() + "&sender=" + this.accessor.getID() + "&status=2";
+        var url = this.coreUrl + "notification/checkNotification?iduser=" + this.owner.getID() + "&sender=" + this.accessor.getID() + "&status=2";
         $.ajax({
             dataType: "json",
             url: url,
