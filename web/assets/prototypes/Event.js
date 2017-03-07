@@ -15,8 +15,8 @@ function Event() {
     this.eventMax = 0;
     this.description = "";
     this.title = "";
-    this.visibility = 0;
-    this.accessibility = 0; //0 means open to everyone, 1 means friends can join without request, 2, everyone must request
+    this.visibility = 0; // 0 No one can see it, 1 Only friends can see it, 2 Everyone can see it
+    this.accessibility = 0; //0 Open to everyone, 1 Friends can join without request, 2, everyone must request, 3 closed
     this.invitedUsers = [];
     this.location = null;
     this.users = [];
