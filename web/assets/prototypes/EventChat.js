@@ -33,9 +33,9 @@ function EventChat () {
         }
         this.chatLog.sort(function (a, b) {
         if (a.time > b.time)
-            return 1;
-        else if (a.time < b.time)
             return -1;
+        else if (a.time < b.time)
+            return 1;
         else
             return 0;
     });
