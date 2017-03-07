@@ -77,7 +77,7 @@ function userSearch () {
         newP = $('<p>').append(peopleDescriptions[n]);
         // figure out how to do picture
         
-        newDiv = $('<div>').addClass('well');
+        var newDiv = $('<div>').addClass('well');
         newDiv.append(newH);
         newDiv.append(newP);
         searchList.append(newDiv);
@@ -120,8 +120,10 @@ function getStrangersStrings() {
         newP = $('<p>').append(peopleDescriptions[n]);
         // figure out how to do picture
 
-        peopleList.append(newH);
-        peopleList.append(newP);
+        var newDiv = $('<div>').addClass('well');
+        newDiv.append(newH);
+        newDiv.append(newP);
+        peopleList.append(newDiv);
     }
     $('#strangers').show();
 }
@@ -162,7 +164,10 @@ function getFriendsStrings() {
         // figure out how to do picture
 
         peopleList.append(newH);
-        peopleList.append(newP);
+        peopleList.append(newP);var newDiv = $('<div>').addClass('well');
+        newDiv.append(newH);
+        newDiv.append(newP);
+        peopleList.append(newDiv);
     }
     $('#friends').show();
 }

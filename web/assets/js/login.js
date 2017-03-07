@@ -67,8 +67,9 @@ sys_init = {
     },
     
     moveToHome2: function (data) {
-        window.location.href = 'home/index.html#';
+        window.location.href = 'home/index.html';
     },
+    
     //Gonna have to get rid of this parameter since it's being passed 
     moveToHome: function (data) {
         if(data!==null){
@@ -79,7 +80,7 @@ sys_init = {
             sys_init.refresh;
         } else if(data.admin ==1){
             sessionStorage.setItem('id', parseInt(data.iduser));
-            window.location.href = 'notifications/index.html#';
+            window.location.href = 'notifications/index.html';
             sys_init.refresh;
         }
         else {
