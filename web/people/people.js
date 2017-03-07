@@ -55,7 +55,6 @@ function userSearch () {
     //Getting both here. Did not take the time to understand what this code will
     //actually do.
     getStringsFromStrangers(searchResults);
-    getStringsFromPeople(searchResults);
     var newH, newA, newP, searchList;
     var n, url;
     // this part might need to change/be more specific with bootstrap classes
