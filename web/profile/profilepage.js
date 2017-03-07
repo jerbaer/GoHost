@@ -8,7 +8,6 @@ var user = null;
 var owner = null;
 
 var profileName;
-var profilePicture;
 var profileDescription;
 var favCat;
 var favCategory;
@@ -96,7 +95,6 @@ function getProfile() {
 
 function getStringsFromProfile(profile1) {
     profileName = profile1.getName();
-    profilePicture = profile1.getPicture();
     profileDescription = profile1.getDescription();
     favCategory = new Category(profile1.getCategory());
 }
