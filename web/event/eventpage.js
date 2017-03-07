@@ -48,6 +48,7 @@ function setUpComponents() {
     eventid = (window.location.href.split('#'))[1];
     user = new User();
     user.create(id);
+    
     getCategories();
     getLocations();
 
@@ -64,6 +65,7 @@ function setUpComponents() {
     canSee = event1.canUserSee();
     inbox = new Inbox();
     inbox.create(id);
+    inbox.getNotifications();
     if (inbox.areUnread()) {
         $('#bell').addClass('text-warning');
     }
@@ -349,7 +351,7 @@ function getStringsFromEvent(event1) {
     eventTitle = event1.getTitle();
     //eventHost = event.getHost(); don't need to display this
     var d = event1.getEventStart().mysqlToDate();
-    eventStartTimes = d.toString().substring(0, 21);
+    eventStartTime = d.toString().substring(0, 21);
     var x = event1.getEventEnd().mysqlToDate();
     eventEndTime = x.toString().substring(0, 21);
     eventCategory = event1.getCategory();

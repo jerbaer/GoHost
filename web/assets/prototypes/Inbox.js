@@ -65,7 +65,7 @@ function Inbox() {
     };
     this.areUnread = function(){
         for(var i=0;i<this.notifications.length;i++){;
-            if (this.notifications[i].isUnread){
+            if (this.notifications[i].isUnread()){
                 return true;
             }
         }

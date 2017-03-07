@@ -32,6 +32,7 @@ function setUpComponents() {
     accessor.create(id);
     inbox = new Inbox();
     inbox.create(id);
+    inbox.getNotifications();
     if (inbox.areUnread()) {
         $('#bell').addClass('text-warning');
     }
