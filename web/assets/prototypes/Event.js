@@ -59,6 +59,7 @@ function Event() {
         this.getInvitedUsers();
         // Need to populate users
     };
+
     this.create = function (idhost, idcategory, eventStart, eventEnd, description, title, idvisibility, idaccessibility, idlocation, eventMax) {
         this.tempID = idhost;
         var event = {title: title, idhost: idhost, maxattendees: parseInt(eventMax), idlocation: idlocation, visibility: parseInt(idvisibility), accessibility: parseInt(idaccessibility), starttime: new Date(eventStart), endtime: new Date(eventEnd), description: description, idcategory: parseInt(idcategory)};
@@ -76,7 +77,7 @@ function Event() {
 
     this.createFollowUp2 = function (data) { //when PeopleList is working, do some of this stuff
         var id = parseInt(data.idevent);
-        var attendee = {iduser : this.tempID, idevent : id};
+        var attendee = {iduser: this.tempID, idevent: id};
         $.ajax({
             url: this.coreUrl + "attendee",
             type: 'POST',
@@ -86,26 +87,27 @@ function Event() {
             dataType: 'json',
             async: false
         });
-        if (data.visibility == 1){
+        if (data.visibility == 1) {
             var user = new User();
             user.create(this.tempID);
             var PeopleList = user.getPeopleList();
-            for(var i = 0; i<PeopleList.getSize(); i++){
-            var attending = {iduser: user.getPeopleList().getFriendsList()[i].getID(), idevent: id}; 
-            $.ajax({
-            url: this.coreUrl + "invited",
-            type: 'POST',
-            data: JSON.stringify(attending),
-            context: this,
-            contentType: 'application/json',
-            dataType: 'json',
-            async: true,
-        });
-                
+            for (var i = 0; i < PeopleList.getSize(); i++) {
+                var attending = {iduser: user.getPeopleList().getFriendsList()[i].getID(), idevent: id};
+                $.ajax({
+                    url: this.coreUrl + "invited",
+                    type: 'POST',
+                    data: JSON.stringify(attending),
+                    context: this,
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    async: true
+                });
+
             }
         }
     };
-        this.hasEventRequest = function(){
+    
+    this.hasEventRequest = function () {
         var url = this.coreUrl + "notification/checkNotification?iduser=" + this.host.getID() + "&sender=" + this.accessor.getID() + "&status=1";
         $.ajax({
             dataType: "json",
@@ -115,13 +117,15 @@ function Event() {
             success: this.checkRequestFollowUp,
             async: false
         });
-    }
-        this.checkRequestFollowUp = function(data){
-        if (data === 0){
+    };
+    
+    this.checkRequestFollowUp = function (data) {
+        if (data === 0) {
             this.canRequest = false;
         }
-    }
-        this.hasFlag = function(){
+    };
+    
+    this.hasFlag = function () {
         var url = this.coreUrl + "notification/checkNotification?iduser=" + this.host.getID() + "&sender=" + this.accessor.getID() + "&status=3";
         $.ajax({
             dataType: "json",
@@ -131,15 +135,18 @@ function Event() {
             success: this.checkFlagFollowUp,
             async: false
         });
-    }
-        this.checkFlagFollowUp = function(data){
-        if (data === 0){
+    };
+    
+    this.checkFlagFollowUp = function (data) {
+        if (data === 0) {
             this.canFlag = false;
         }
-    }
+    };
+    
     this.getListofAttendees = function () {
         return this.users;
     };
+    
     this.getEventStart = function () {
         return this.eventStart;
     };
@@ -151,15 +158,15 @@ function Event() {
     this.getHost = function () {
         return this.host;
     };
-    
+
     this.getHostID = function () {
         return this.host.getID();
-    }
+    };
 
     this.getCategory = function () {
         return this.category.getName();
     };
-    
+
     this.getCategoryID = function () {
         return this.category.getID();
     };
@@ -171,6 +178,7 @@ function Event() {
     this.getLocation = function () {
         return this.location.getName();
     };
+    
     this.getLocationID = function () {
         return this.location.getID();
     };
@@ -193,7 +201,7 @@ function Event() {
         } else
             return false;
     };
-    
+
     this.isUserInEvent = function () {
         for (i = 0; i < this.users.length; i++) {
             if (this.accessor.getID() === this.users[i].getID()) {
@@ -202,7 +210,7 @@ function Event() {
         }
         return false;
     };
-    
+
     this.isAccessorInEvent = function (accessor) {
         for (i = 0; i < this.users.length; i++) {
             if (accessor.getID() === this.users[i].getID()) {
@@ -211,43 +219,43 @@ function Event() {
         }
         return false;
     };
-    
+
     this.isEventFull = function () {
         if (this.accessibility === 3) {
             return true;
         } else
             return false;
     };
-    
+
     this.isOpenEvent = function () {
-        if(this.accessibility === 0) // if event is open
+        if (this.accessibility === 0) // if event is open
             return true;
         return false;
     };
-    
+
     this.canUserJoin = function () {
         if (this.accessibility === 0) {
             return true;
         } else {
-        for (i = 0; i < this.invitedUsers.length; i++) {
-           if (this.accessor.getID() == this.invitedUsers[i].getID()) {
-                return true;
-           }
-          }
-          return false;
-         }
+            for (i = 0; i < this.invitedUsers.length; i++) {
+                if (this.accessor.getID() == this.invitedUsers[i].getID()) {
+                    return true;
+                }
+            }
+            return false;
+        }
     };
-    
+
     this.canUserSee = function () {
-        
+
         if (this.visibility === 2) {
             return true;
-            } else if (this.host.getPeopleList().isUserOnList(this.accessor) && this.visibility == 1){
-                return true;
+        } else if (this.host.getPeopleList().isUserOnList(this.accessor) && this.visibility == 1) {
+            return true;
         } else
             return false;
     };
-    
+
     this.closeEvent = function () {
         //Is this the right way to declare a variable?
         access = 3;
@@ -266,7 +274,7 @@ function Event() {
             url: this.coreUrl + 'attendee/idevent?idevent=' + this.idevent,
             type: 'GET',
             context: this,
-            dataType : 'json',
+            dataType: 'json',
             success: this.deleteAttendees
         });
         //Delets all invited rows of this event
@@ -274,7 +282,7 @@ function Event() {
             url: this.coreUrl + 'invited/idevent?idevent=' + this.idevent,
             type: 'GET',
             context: this,
-            dataType : 'json',
+            dataType: 'json',
             success: this.deleteInvited
         });
         //Delets all messages of this event
@@ -282,7 +290,7 @@ function Event() {
             url: this.coreUrl + 'message/idevent?idevent=' + this.idevent,
             type: 'GET',
             context: this,
-            dataType : 'json',
+            dataType: 'json',
             success: this.deleteMessages
         });
         //Deletes all notifications of this event
@@ -290,50 +298,54 @@ function Event() {
             url: this.coreUrl + 'notification/idevent?idevent=' + this.idevent,
             type: 'GET',
             context: this,
-            dataType : 'json',
+            dataType: 'json',
             success: this.deleteNotifications
         });
     };
-    this.deleteAttendees = function(data){
-        for(var i = 0; i<data.length; i++){      
-        $.ajax({
-            url: this.coreUrl + 'attendee/' + data[i].idattendee,
-            type: 'DELETE'
-        });
-    }
-    };
-    this.deleteInvited = function(data){
-                for(var i = 0; i<data.length; i++){      
-        $.ajax({
-            url: this.coreUrl + 'invited/' + data[i].idinvited,
-            type: 'DELETE'
-        });
-    }
-    };
-    this.deleteNotifications = function(data){
-                for(var i = 0; i<data.length; i++){      
-        $.ajax({
-            url: this.coreUrl + 'notification/' + data[i].idnotification,
-            type: 'DELETE'
-        });
-    }
-    };
-    this.deleteMessages = function(data){
-                for(var i = 0; i<data.length; i++){      
-        $.ajax({
-            url: this.coreUrl + 'message/' + data[i].idmessage,
-            type: 'DELETE'
-        });
-    }
-    }
     
+    this.deleteAttendees = function (data) {
+        for (var i = 0; i < data.length; i++) {
+            $.ajax({
+                url: this.coreUrl + 'attendee/' + data[i].idattendee,
+                type: 'DELETE'
+            });
+        }
+    };
+    
+    this.deleteInvited = function (data) {
+        for (var i = 0; i < data.length; i++) {
+            $.ajax({
+                url: this.coreUrl + 'invited/' + data[i].idinvited,
+                type: 'DELETE'
+            });
+        }
+    };
+    
+    this.deleteNotifications = function (data) {
+        for (var i = 0; i < data.length; i++) {
+            $.ajax({
+                url: this.coreUrl + 'notification/' + data[i].idnotification,
+                type: 'DELETE'
+            });
+        }
+    };
+    
+    this.deleteMessages = function (data) {
+        for (var i = 0; i < data.length; i++) {
+            $.ajax({
+                url: this.coreUrl + 'message/' + data[i].idmessage,
+                type: 'DELETE'
+            });
+        }
+    }
+
     this.addUserToEvent = function (iduser) {
         //adds user to the users array as well as the database and refresh
         n = this.users.length;
         var u = new User();
         u.create(iduser);
         this.users[n] = u;
-        if(this.users.length == this.eventMax){
+        if (this.users.length == this.eventMax) {
             this.accessibility = 3;
         }
         var user = {iduser: iduser, idevent: this.idevent};
@@ -345,7 +357,7 @@ function Event() {
             dataType: 'json'
         });
     };
-    
+
     this.removeUserFromEvent = function (iduser) {
         $.ajax({
             url: this.coreUrl + 'attendee/iduser?iduser=' + iduser,
@@ -354,37 +366,37 @@ function Event() {
             context: this,
             success: this.getRight
         });
-        
+
     };
-    
-    this.getRight = function(data){
+
+    this.getRight = function (data) {
         var idattendee = 0;
-        for(var i =0; i<data.length; i++){
-            if (data[i].idevent == this.idevent){
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].idevent == this.idevent) {
                 idattendee = data[i].idattendee;
                 this.removeUser(idattendee);
             }
-          
+
         }
     };
-    
-    this.removeUser = function(idattendee){
+
+    this.removeUser = function (idattendee) {
         $.ajax({
             url: this.coreUrl + 'attendee/' + idattendee,
             type: 'DELETE'
         });
     };
-    
+
     this.editDescription = function (description) {
         this.description = description;
 
     };
-    
+
     this.editStartTime = function (startTime) {
         this.startTime = startTime;
- 
+
     };
-    
+
     this.editEndTime = function (endTime) {
         this.endTime = endTime;
     };
@@ -398,12 +410,12 @@ function Event() {
         this.category = category;
 
     };
-    
+
     this.editLocation = function (location) {
         this.location = location;
 
     };
-    
+
     this.editVisibility = function (visibility) {
         this.visibility = visibility;
 
@@ -418,8 +430,8 @@ function Event() {
         this.eventMax = max;
 
     };
-    
-    this.getInvitedUsers = function(){
+
+    this.getInvitedUsers = function () {
         //Need to make sure the attendee facade supports this 
         var url = this.coreUrl + "invited/idevent?idevent=" + this.idevent;
         $.ajax({
@@ -430,7 +442,7 @@ function Event() {
             success: this.invitedFollowUp
         });
     };
-    
+
     this.invitedFollowUp = function (data) {
         for (var n = 0; n < data.length; n++) {
             this.user1 = new User();
@@ -438,7 +450,7 @@ function Event() {
             this.invitedUsers.push(this.user1);
         }
     };
-    
+
     this.getUsersAttending = function () {
         //Need to make sure the attendee facade supports this 
         var url = this.coreUrl + "attendee/idevent?idevent=" + this.idevent;
@@ -450,9 +462,9 @@ function Event() {
             success: this.attendingFollowUp
         });
     };
-    this.inviteUser = function(iduser){
+    this.inviteUser = function (iduser) {
         var url = this.coreUrl + "invited";
-        var toSend ={ iduser: iduser, idevent : this.idevent};
+        var toSend = {iduser: iduser, idevent: this.idevent};
         $.ajax({
             dataType: 'json',
             data: JSON.stringify(toSend),
@@ -463,20 +475,20 @@ function Event() {
             success: this.inviteUserFollowUp
         });
     }
-    this.inviteUserFollowUp = function(data){
+    this.inviteUserFollowUp = function (data) {
         var note = new Notification();
-        note.create(data, this.host.getID(), this.idevent, new Date(), 0, 0);        
+        note.create(data, this.host.getID(), this.idevent, new Date(), 0, 0);
     }
-    this.isUserInvited = function(iduser){
-        for(var i = 0; i<this.invitedUsers.length; i++){
+    this.isUserInvited = function (iduser) {
+        for (var i = 0; i < this.invitedUsers.length; i++) {
             var invitedID = this.invitedUsers[i].getID();
-            if (iduser === invitedID){
+            if (iduser === invitedID) {
                 return true;
             }
         }
         return false;
     }
-    
+
     this.attendingFollowUp = function (data) {
         for (var n = 0; n < data.length; n++) {
             this.user1 = new User();

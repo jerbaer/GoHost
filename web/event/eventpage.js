@@ -18,6 +18,7 @@ var eventStartTime;
 var eventEndTime;
 var eventCategory;
 var eventLocation;
+var eventDescription;
 var eventIDs;
 
 var peopleNames;
@@ -232,6 +233,7 @@ function getEvent() {
     newH2 = $('<p>').text(eventEndTime);
     newH3 = $('<p>').text(eventCategory);
     newH4 = $('<p>').text(eventLocation);
+    newH7 = $('<p>').text(eventDescription);
     newH5 = $('<p>').text("Event Attendees:");
     newH6 = $('<div>');
     newHr = $('<hr>');
@@ -246,9 +248,30 @@ function getEvent() {
     eventDetails.append(newH2);
     eventDetails.append(newH3);
     eventDetails.append(newH4);
+    eventDetails.append(newH7);
     eventDetails.append(newH5);
     eventDetails.append(newH6);
     eventDetails.append('<br />');
+}
+
+function getStringsFromEvent(event1) {
+    eventTitle = event1.getTitle();
+    //eventHost = event.getHost(); don't need to display this
+    var d = event1.getEventStart().mysqlToDate();
+    eventStartTime = d.toString().substring(0, 21);
+    var x = event1.getEventEnd().mysqlToDate();
+    eventEndTime = x.toString().substring(0, 21);
+    eventCategory = event1.getCategory();
+    eventLocation = event1.getLocation();
+    //Goes through and fills out eventAttendees
+    for (i = 0; i < event1.getListofAttendees().length; i++) {
+        eventAttendees.push(event1.getListofAttendees()[i].getName());
+    }
+    for (i = 0; i < event1.getListofAttendees().length; i++) {
+        attendeeIDs.push(event1.getListofAttendees()[i].getID());
+    }
+    eventDescription = event1.getDescription();
+    //eventID = event.getID(); or this
 }
 
 function makeAttendeeAlert(iduser, i) {
@@ -352,24 +375,6 @@ function removeUser(iduser) {
     window.location.reload();
 }
 
-function getStringsFromEvent(event1) {
-    eventTitle = event1.getTitle();
-    //eventHost = event.getHost(); don't need to display this
-    var d = event1.getEventStart().mysqlToDate();
-    eventStartTime = d.toString().substring(0, 21);
-    var x = event1.getEventEnd().mysqlToDate();
-    eventEndTime = x.toString().substring(0, 21);
-    eventCategory = event1.getCategory();
-    eventLocation = event1.getLocation();
-    //Goes through and fills out eventAttendees
-    for (i = 0; i < event1.getListofAttendees().length; i++) {
-        eventAttendees.push(event1.getListofAttendees()[i].getName());
-    }
-    for (i = 0; i < event1.getListofAttendees().length; i++) {
-        attendeeIDs.push(event1.getListofAttendees()[i].getID());
-    }
-    //eventID = event.getID(); or this
-}
 
 function getFriends() {
     var friends = null;
