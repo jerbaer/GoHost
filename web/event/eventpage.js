@@ -144,6 +144,7 @@ function getMessageStrings(eventChat) {
         messageIDs[i] = chatLog[i].getID();
     }
 }
+
 //Need to fill this in now
 //This needs to refresh the event page after it sends the message
 function sendMessage() {

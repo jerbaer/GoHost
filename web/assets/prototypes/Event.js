@@ -22,6 +22,8 @@ function Event() {
     this.users = [];
     this.tempID;
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
+    this.canRequest = true;
+    this.canFlag = true;
 
 
     this.createFromDB = function (idevent, accessor1) {
@@ -103,6 +105,38 @@ function Event() {
             }
         }
     };
+        this.hasEventRequest = function(){
+        var url = coreUrl + "notification/checkNotification?iduser=" + this.host.getID() + "&sender=" + this.accessor.getID() + "&status=1";
+        $.ajax({
+            dataType: "json",
+            url: url,
+            type: 'GET',
+            context: this,
+            success: this.checkRequestFollowUp,
+            async: false
+        });
+    }
+        this.checkRequestFollowUp = function(data){
+        if (data == true){
+            this.canRequest = false;
+        }
+    }
+        this.hasFlag = function(){
+        var url = coreUrl + "notification/checkNotification?iduser=" + this.host.getID() + "&sender=" + this.accessor.getID() + "&status=3";
+        $.ajax({
+            dataType: "json",
+            url: url,
+            type: 'GET',
+            context: this,
+            success: this.checkFlagFollowUp,
+            async: false
+        });
+    }
+        this.checkFlagFollowUp = function(data){
+        if (data == true){
+            this.canFlag = false;
+        }
+    }
     this.getListofAttendees = function () {
         return this.users;
     };
