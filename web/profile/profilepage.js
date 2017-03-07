@@ -62,7 +62,7 @@ function setUpComponents() {
         $('#flagUser').removeClass('hidden');
         $('#report').on('click', reportUser);
     } else {
-        if (!canRequest) {
+        if (canRequest) {
             $('#addFriend').removeClass('hidden');
             $('#addFriend').on('click', addFriend);
         }
