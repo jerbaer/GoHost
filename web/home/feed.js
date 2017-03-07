@@ -13,6 +13,12 @@ var hostIDs;
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
+    
+    user = new User();
+    user.create(id);
+    profPic = $('#profPic');
+    profPic.attr('src', user.getPicture());
+    
     getEvents();
     getProfile();
     getCategories();
@@ -34,8 +40,6 @@ String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
 };
 
 function getEvents() {
-    user = new User();
-    user.create(id);
     user.createVisibleList();
     visibleEvents = user.getVisibleEvents();
 
