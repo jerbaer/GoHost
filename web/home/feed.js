@@ -112,7 +112,11 @@ function getStringsFromEvents(eventList) {
     eventLocations = new Array(list.length);
     eventIDs = new Array(list.length);
     hostIDs = new Array(list.length);
-    for (i = 0; i < list.length; i++) {
+    for (var i = 0; i < list.length; i++) {
+        var currentDate = new Date();
+        if (list[i].getEventStart().mysqlToDate()<currentDate){
+            list[i].deleteEvent();
+        }else{
         eventTitles[i] = list[i].getTitle();
         eventHosts [i] = list[i].getHost().getName();
         //var t = list[i].getEventStart().split(/[- T :]/);
@@ -124,6 +128,7 @@ function getStringsFromEvents(eventList) {
         eventLocations[i] = list[i].getLocation();
         eventIDs[i] = list[i].getID();
         hostIDs[i] = list[i].getHostID();
+    }
     }
 }
 

@@ -7,11 +7,16 @@ var id = 0;
 var notifications = null;
 var notificationsFeed = null;
 var isSetUp = false;
+var owner = null;
+var isAdmin = false;
 coreUrl = "http://143.44.67.0:13774/GoHost/api/";
 
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
+    owner = new User();
+    owner.create(id);
+    isAdmin = owner.isAdmin;
     getNotifications();
     
     inbox = new Inbox();
@@ -20,9 +25,8 @@ function setUpComponents() {
         $('#bell').addClass('text-warning');
     }
     
-    var owner = new User();
-    owner.create(id);
-    var isAdmin = owner.isAdmin; // Isn't getting the right value
+
+     // Isn't getting the right value
     if(isAdmin) {
         $('.notAdmin').hide();
         $('#forAdmin').removeClass('hidden');
@@ -61,9 +65,9 @@ function getNotifications(inbox) {
                     //this is a friend request
                     createFriendRequest(notifications[i]);
                 }
-            } else if (notifications[i].status === 3) {
+            } else if (notifications[i].status === 3 && owner.isAdmin) {
                 createEventReport(notifications[i]);
-            }  else if (notifications[i].status === 4) {
+            }  else if (notifications[i].status === 4 && owner.isAdmin) {
                 createUserReport(notifications[i]);
             }
         }

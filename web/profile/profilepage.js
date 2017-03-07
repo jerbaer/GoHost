@@ -124,7 +124,7 @@ function getStringsFromProfile(profile1) {
 function addFriend() {
     owner.createPeopleList();
     owner.getPeopleList().addFriend(accessor);
-    $('#addFriendModal').modal();
+    $('#friendAddModal').modal();
 }
 
 function editProfile() {
