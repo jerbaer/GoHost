@@ -228,7 +228,7 @@ function getEvent() {
     // Create the event in the html
     // Can implement links that allow edits to be made from the page
     eventDetails = $('#eventDetails');
-    newH = $('<h3>').text(eventTitle).addClass('text-info');
+    newH = $('<h3>').addClass('text-info').text(eventTitle);
     newH1 = $('<p>').text(eventStartTime);
     newH2 = $('<p>').text(eventEndTime);
     newH3 = $('<p>').text(eventCategory);
