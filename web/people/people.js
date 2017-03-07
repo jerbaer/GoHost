@@ -21,6 +21,11 @@ function setUpComponents() {
     $('#searchButton').on('click', userSearch);
     getPeople();
     getProfile();
+    inbox = new Inbox();
+    inbox.create(id);
+    if(inbox.areUnread()){
+        
+    }
 }
 
 

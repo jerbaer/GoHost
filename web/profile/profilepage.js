@@ -28,6 +28,11 @@ function setUpComponents() {
     owner.create(profileid);
     accessor = new User();
     accessor.create(id);
+    inbox = new Inbox();
+    inbox.create(id);
+    if(inbox.areUnread()){
+        
+    }
     
     $('.ownerName').text(owner.getName());
 
