@@ -44,7 +44,7 @@ function getLocations() {
 
 function categoriesFollowUp(data) {
     eventsCat = $('#eventCat');
-    for (i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
         newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
         eventsCat.append(newHr);
     }
