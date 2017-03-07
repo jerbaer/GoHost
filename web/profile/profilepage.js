@@ -15,6 +15,9 @@ var favCategory;
 var eventsHosted = null;
 var eventsAttending = null;
 var visibleEvents = null;
+var canFlag = true;
+var canRequest = true;
+
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
     var t = this.split(/[- :T]/);
     return new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
@@ -38,9 +41,7 @@ function setUpComponents() {
 
     getProfile();
     getCategories();
-    
     getEvents();
-    getCategories();
     getLocations();
 
     isOwner = profile1.isCurrentUser();
@@ -68,6 +69,14 @@ function reportUser() {
     notification = new Notification();
     notification.create(owner.getID(), accessor.getID(), 0, new Date(), 0, 4);
     alert("Thank you. This user has now been reported to the administrator.");
+}
+function canFlagProfile(){
+    profile1.hasFlag();
+    canFlag = profile1.canFlag;
+}
+function canFriendRequestProfile(){
+    profile1.hasFriendRequest();
+    canRequest = profile1.canFriend;
 }
 
 function getProfile() {

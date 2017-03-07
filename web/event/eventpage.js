@@ -182,6 +182,14 @@ function categoriesFollowUp(data) {
         eventsCat.append(newHr);
     }
 }
+function canFlagEvent(){
+    event1.hasFlag();
+    canFlag = event1.canFlag;
+}
+function canFriendRequestProfile(){
+    event1.hasEventRequest();
+    canRequest = event1.canFriend;
+}
 
 function locationsFollowUp(data) {
     eventsLoc = $('#eventLoc');
