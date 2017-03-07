@@ -83,7 +83,7 @@ function eventsList() {
         for (var i = 0; i < data.length; i++) {
             let event1 = new Event();
             event1.createFromDB(data[i].idevent, this.accessor);
-            if(event1.canUserSee()){
+            if(event1.canUserSee()||event1.isAccessorHost()){
                 this.events.push(event1);
             }
         }
