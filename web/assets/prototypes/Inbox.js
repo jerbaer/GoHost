@@ -38,6 +38,13 @@ function Inbox() {
                 context: this,
                 success: this.getNotificationsFollowUp
             });
+            var url = this.coreUrl + "notification/status?status=4";
+            $.ajax({
+                dataType: "json",
+                url: url,
+                context: this,
+                success: this.getNotificationsFollowUp
+            });
         }
     };
     
