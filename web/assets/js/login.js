@@ -67,8 +67,9 @@ sys_init = {
     },
     
     moveToHome2: function (data) {
-        window.location.href = 'home/index.html#';
+        window.location.href = 'home/index.html';
     },
+    
     //Gonna have to get rid of this parameter since it's being passed 
     moveToHome: function (data) {
         if(data!==null){
