@@ -209,7 +209,7 @@ function canFlagEvent() {
 
 function canEventRequest() {
     event1.hasEventRequest();
-    canRequest = event1.canFriend;
+    canRequest = event1.canRequest;
 }
 
 function locationsFollowUp(data) {
