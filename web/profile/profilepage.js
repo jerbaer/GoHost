@@ -7,7 +7,6 @@ var profile1 = null;
 var user = null;
 var owner = null;
 
-var profileName;
 var profileDescription;
 var favCat;
 var favCategory;
@@ -77,9 +76,6 @@ function getProfile() {
     profile1.createFromDB(owner, accessor);
     getStringsFromProfile(profile1);
     // Popualte the html page
-    profName = $('#profName');
-    newH1 = $('<h1>').text(profileName);
-
     profPic = $('#profPic');
     profPic.attr('src', profile1.getPicture());
 
@@ -90,13 +86,11 @@ function getProfile() {
     favCategory.retrieveName();
     newP2 = $('<span>').text(favCategory.getName());
 
-    profName.append(newH1);
     profDesc.append(newP);
     favCat.append(newP2);
 }
 
 function getStringsFromProfile(profile1) {
-    profileName = profile1.getName();
     profileDescription = profile1.getDescription();
     favCategory = new Category(profile1.getCategory());
 }
