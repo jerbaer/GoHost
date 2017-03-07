@@ -53,10 +53,19 @@ function Profile() {
             success: this.checkRequestFollowUp,
             async: false
         });
+        url = this.coreUrl + "notification/checkNotification?iduser=" + this.accessor.getID() + "&sender=" + this.owner.getID() + "&status=2";
+        $.ajax({
+            dataType: "json",
+            url: url,
+            type: 'GET',
+            context: this,
+            success: this.checkRequestFollowUp,
+            async: false
+        });
     };
     
     this.checkRequestFollowUp = function (data) {
-        if (data === "0") {
+        if (data === 0) {
             this.canFriend = false;
         } 
     };
@@ -74,7 +83,7 @@ function Profile() {
     };
     
     this.checkFlagFollowUp = function (data) {
-        if (data === "0") {
+        if (data === 0) {
             this.canFlag = false;
         }
     };
