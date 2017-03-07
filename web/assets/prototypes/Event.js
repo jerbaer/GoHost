@@ -486,7 +486,7 @@ function Event() {
     };
 
     this.refreshEdits = function () {
-        var event = {idevent: parseInt(this.idevent), title: this.title, idhost: this.host.getID(), maxattendees: parseInt(this.eventMax), idlocation: this.location.getID(), idvisibility: parseInt(this.visibility), idaccessibility: parseInt(this.accessibility), starttime: new Date(this.eventStart), endtime: new Date(this.eventEnd), description: this.description, idcategory: parseInt(this.category.getID())};
+        var event = {idevent: parseInt(this.idevent), title: this.title, idhost: this.host.getID(), maxattendees: parseInt(this.eventMax), idlocation: parseInt(this.location.getID()), idvisibility: parseInt(this.visibility), idaccessibility: parseInt(this.accessibility), starttime: new Date(this.eventStart), endtime: new Date(this.eventEnd), description: this.description, idcategory: parseInt(this.category.getID())};
         $.ajax({
             url: this.coreUrl + 'event/' + this.idevent,
             type: 'PUT',
