@@ -134,8 +134,8 @@ function editProfile() {
     if ($('#description').val() !== '') {
         profile1.editDescription($('#description').val());
     }
-    if ($('category').val() > 0) {
-        profile1.editCategory($('category').val()); // Isn't passing the profile object for some reason
+    if ($('#eventsCat').val() > 0) {
+        profile1.editCategory($('#eventsCat').val()); // Isn't passing the profile object for some reason
     }
     profile1.refreshEdits();
 
@@ -344,7 +344,7 @@ function getCategories() {
 }
 
 function categoriesFollowUp(data) {
-    var eventsCat = $('#category');
+    eventsCat = $('#eventsCat');
     for (i = 0; i < data.length; i++) {
         newHr = $('<option>').val(parseInt(data[i].idcategory)).text(data[i].name);
         eventsCat.append(newHr);
