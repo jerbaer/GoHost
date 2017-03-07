@@ -90,7 +90,7 @@ function setUpComponents() {
     } else if (canJoin) {
         $('#joinEvent').removeClass('hidden');
         $('#joinEvent').on('click', joinEvent);
-    } else if (canSee) {
+    } else if (canSee && canRequest) {
         $('#request').removeClass('hidden');
         $('#request').on('click', requestToJoinEvent);
         // Make error div for can't see
@@ -98,7 +98,11 @@ function setUpComponents() {
 
     $('#reportModal').on('hidden.bs.modal', function () {
         window.location.reload();
-    })
+    });
+    
+    $('#eventReqModal').on('hidden.bs.modal', function () {
+        window.location.reload();
+    });
 }
 //This should create a notification of status = 3 and idevent = this one
 //Note: The iduser value doesn't change anything in this kind of notification
@@ -171,6 +175,7 @@ function sendMessage() {
 function requestToJoinEvent() {
     notification = new Notification();
     notification.create(event1.getHost().getID(), user.getID(), event1.getID(), new Date(), 0, 1);
+    $('#eventReqModal').modal();
 }
 
 function inviteToEvent(iduser) {

@@ -72,11 +72,11 @@ function setUpComponents() {
 
     $('#reportModal').on('hidden.bs.modal', function () {
         window.location.reload();
-    })
+    });
     
     $('#friendAddModal').on('hidden.bs.modal', function () {
         window.location.reload();
-    })
+    });
 }
 
 function reportUser() {
