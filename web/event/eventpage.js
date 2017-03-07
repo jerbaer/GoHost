@@ -308,20 +308,20 @@ function editEvent() {
         event1.editStartTime(startDate);
         event1.editEndTime(endDate);
         //These two need to be creating objects on the other end
-        if ($('#eventCat').val() !== '') {
+        if ($('#eventCat').val() > 0) {
             event1.editCategory(category);
         }
-        if ($('#eventLoc').val() !== '') {
+        if ($('#eventLoc').val() > 0) {
             event1.editLocation(location);
         }
         //These two need to be converted to 0,1,2
-        if ($('#eventVis').val() !== '') {
+        if ($('#eventVis').val() > -1) {
             event1.editVisibility($('#eventVis').val());
         }
-        if ($('#eventAcc').val() !== '') {
+        if ($('#eventAcc').val() > -1) {
             event1.editAccessiblity($('#eventAcc').val());
         }
-        if ($('#maxAttendees').val() !== '') {
+        if ($('#maxAttendees').val() > 0) {
             event1.editMax($('#maxAttendees').val());
         }
         if ($('#description').val() !== '') {
