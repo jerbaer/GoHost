@@ -26,9 +26,11 @@ function EventChat () {
     
     this.createFollowUp = function (data) {
         this.chatLog = new Array();
-        for (i = 0; i < data.length; i++) {
+        for (var i = 0; i < data.length; i++) {
+            var u = new User();
+            u.create(data[i].iduser)
             this.line1 = new ChatLine();
-            this.line1.createFromDB(data[i].idmessage, this.user);
+            this.line1.createFromDB(data[i].idmessage, u);
             this.chatLog.push(this.line1);
         }
         this.chatLog.sort(function (a, b) {

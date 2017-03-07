@@ -62,7 +62,11 @@ function Event() {
 
     this.create = function (idhost, idcategory, eventStart, eventEnd, description, title, idvisibility, idaccessibility, idlocation, eventMax) {
         this.tempID = idhost;
-        var event = {title: title, idhost: idhost, maxattendees: parseInt(eventMax), idlocation: idlocation, visibility: parseInt(idvisibility), accessibility: parseInt(idaccessibility), starttime: new Date(eventStart), endtime: new Date(eventEnd), description: description, idcategory: parseInt(idcategory)};
+         var startTime = new Date(eventStart);
+        startTime =   new Date( startTime.getTime() + ( startTime.getTimezoneOffset() * 60000 ) )
+        var endTime = new Date(eventEnd);
+        endTime =   new Date( endTime.getTime() + ( endTime.getTimezoneOffset() * 60000 ) )
+        var event = {title: title, idhost: idhost, maxattendees: parseInt(eventMax), idlocation: idlocation, visibility: parseInt(idvisibility), accessibility: parseInt(idaccessibility), starttime: startTime, endtime: endTime, description: description, idcategory: parseInt(idcategory)};
         $.ajax({
             url: this.coreUrl + "event",
             type: 'post',
@@ -87,7 +91,7 @@ function Event() {
             dataType: 'json',
             async: false
         });
-        if (data.visibility == 1) {
+        if (data.accessibility == 1) {
             var user = new User();
             user.create(this.tempID);
             var PeopleList = user.getPeopleList();
@@ -498,7 +502,11 @@ function Event() {
     };
 
     this.refreshEdits = function () {
-        var event = {idevent: parseInt(this.idevent), title: this.title, idhost: this.host.getID(), maxattendees: parseInt(this.eventMax), idlocation: this.location.getID(), idvisibility: parseInt(this.visibility), idaccessibility: parseInt(this.accessibility), starttime: new Date(this.eventStart), endtime: new Date(this.eventEnd), description: this.description, idcategory: parseInt(this.category.getID())};
+        var startTime = new Date(this.eventStart);
+        startTime =   new Date( startTime.getTime() + ( startTime.getTimezoneOffset() * 60000 ) )
+        var endTime = new Date(this.eventEnd);
+        endTime =   new Date( endTime.getTime() + ( endTime.getTimezoneOffset() * 60000 ) )
+        var event = {idevent: parseInt(this.idevent), title: this.title, idhost: this.host.getID(), maxattendees: parseInt(this.eventMax), idlocation: parseInt(this.location.getID()), idvisibility: parseInt(this.visibility), idaccessibility: parseInt(this.accessibility), starttime: startTime, endtime: endTime, description: this.description, idcategory: parseInt(this.category.getID())};
         $.ajax({
             url: this.coreUrl + 'event/' + this.idevent,
             type: 'PUT',

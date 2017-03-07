@@ -310,7 +310,7 @@ function editEvent() {
     } else {
         startDate = event1.getEventStart();
     }
-    if ($('eventEnd').val() !== '') {
+    if ($('#eventEnd').val() !== '') {
         endDate = new Date($('#eventEnd').val());
     } else {
         endDate = event1.getEventEnd();
@@ -321,7 +321,7 @@ function editEvent() {
         $('#invTimeModal').modal('show');
     } else {
         var category = new Category($('#eventCat').val());
-        var location = new Location($('#eventLoc').val() + 1);
+        var location = new Location($('#eventLoc').val());
         //This will get all the input from the edit form and use it call all the
         //edit functions on the event object. After that, it will call the function
         //that flushes all the changes to the database
