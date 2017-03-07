@@ -1,6 +1,13 @@
+BUGS:
+
+In eventpage.js/Event.js
+canflag/hasflag() in Event doesn't seem to be working so error checking is broken
+checkFlagFollowUp always gets data = 1
+
+no way to delete chat
+
 wrong email/password combo check aka form warnings
         setup facebook login - low
-    index.js reference at the bottom of each page
         calender view feature
         show past events
         event "theme" pictures
@@ -9,9 +16,6 @@ use profile pic of host if no pic chosen
         fa-comment/fa-comments for chat bubble icons
             change all bootstrap columns to sm instead of lg
 add footer to login page
-bootstrap.js cdn in header replace
-hide all divs, show as needed as opposed to vice versa
-event page join event button push/pull col
 for inv friends display no friends to invite message if no more friends to inv
 home: events feed, calender view, map view
 Browse by category/location

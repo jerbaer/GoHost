@@ -49,10 +49,10 @@ function setUpComponents() {
     eventid = (window.location.href.split('#'))[1];
     user = new User();
     user.create(id);
-    
+
     getCategories();
     getLocations();
-    
+
     //Call function to display the event based on the relation of the
     //userto that event. Host, Attendee, neither
     getEvent();
@@ -100,7 +100,7 @@ function setUpComponents() {
     $('#reportModal').on('hidden.bs.modal', function () {
         window.location.reload();
     });
-    
+
     $('#eventReqModal').on('hidden.bs.modal', function () {
         window.location.reload();
     });
@@ -169,9 +169,11 @@ function getMessageStrings(eventChat) {
 //This needs to refresh the event page after it sends the message
 function sendMessage() {
     newMessage = $('#newMessage').val();
-    chatLine = new ChatLine();
-    chatLine.create(newMessage, id, eventid, new Date());
-    refresh();
+    if (newMessage !== "") {
+        chatLine = new ChatLine();
+        chatLine.create(newMessage, id, eventid, new Date());
+        refresh();
+    }
 }
 
 function requestToJoinEvent() {
