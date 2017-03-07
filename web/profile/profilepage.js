@@ -73,6 +73,10 @@ function setUpComponents() {
     $('#reportModal').on('hidden.bs.modal', function () {
         window.location.reload();
     })
+    
+    $('#friendAddModal').on('hidden.bs.modal', function () {
+        window.location.reload();
+    })
 }
 
 function reportUser() {
@@ -120,7 +124,7 @@ function getStringsFromProfile(profile1) {
 function addFriend() {
     owner.createPeopleList();
     owner.getPeopleList().addFriend(accessor);
-    window.location.reload();
+    $('#addFriendModal').modal();
 }
 
 function editProfile() {
