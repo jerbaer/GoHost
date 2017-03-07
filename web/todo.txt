@@ -18,7 +18,6 @@ use profile pic of host if no pic chosen
 add footer to login page
 for inv friends display no friends to invite message if no more friends to inv
 home: events feed, calender view, map view
-Browse by category/location
 
 event chat:
     button from event page -> event chat

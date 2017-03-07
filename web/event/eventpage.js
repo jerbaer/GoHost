@@ -391,19 +391,23 @@ function getFriends() {
     peopleDescriptions = null;
     peopleIDs = null;
     getStringsFromPeople(friends);
-    var newH, newA;
-    var n, url;
-    // this part might need to change/be more specific with bootstrap classes
-    peopleList = $('#friends');
-    for (var n = friends.getSize() - 1; n > -1; n--) {
-        if (peopleUserIDs[n] !== undefined) {
-            if (!event1.isUserInvited(peopleUserIDs[n]))
-                makeFriendAlert(peopleUserIDs[n], n);
+    if (friends.getSize() === 0) {
+        $('#noFriends').removeClass('hidden');
+    } else {
+        var newH, newA;
+        var n, url;
+        // this part might need to change/be more specific with bootstrap classes
+        peopleList = $('#friends');
+        for (var n = friends.getSize() - 1; n > -1; n--) {
+            if (peopleUserIDs[n] !== undefined) {
+                if (!event1.isUserInvited(peopleUserIDs[n]))
+                    makeFriendAlert(peopleUserIDs[n], n);
+            }
         }
+        // if(peopleNames.empty()){ // or something like that
+        // $('#noMoreFriends').show();
+        $('#friends').show();
     }
-    // if(peopleNames.empty()){ // or something like that
-    // $('#noMoreFriends').show();
-    $('#friends').show();
 }
 
 function makeFriendAlert(iduser, n) {

@@ -111,7 +111,8 @@
                         <h4 class="modal-title">Invite Friends</h4>
                     </div>
                     <div class="modal-body">
-                        <div id="friends"></div>
+                        <p><span class="hidden" id="noFriends">You don't seem to have any more friends to invite. Go and add some more!</span></p>
+                        <span id="friends"></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -252,7 +253,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="input-group">
-                            <textarea class="form-control custom-control" rows="2" style="resize:none" id = "newMessage"></textarea>     
+                            <textarea class="form-control custom-control" rows="2" style="resize:none" id="newMessage"></textarea>     
                             <span class="input-group-addon btn btn-info" id="sendChat">Send</span>
                         </div>
                     </div>
