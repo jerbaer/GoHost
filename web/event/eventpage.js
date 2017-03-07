@@ -248,7 +248,7 @@ function getEvent() {
     eventDetails.append(newH2);
     eventDetails.append(newH3);
     eventDetails.append(newH4);
-    eventDetails.append(newH7);
+    //eventDetails.append(newH7);
     eventDetails.append(newH5);
     eventDetails.append(newH6);
     eventDetails.append('<br />');
