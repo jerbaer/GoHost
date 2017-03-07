@@ -14,6 +14,12 @@ function setUpComponents() {
     id = parseInt(sessionStorage.getItem('id'));
     getNotifications();
     
+    inbox = new Inbox();
+    inbox.create(id);
+    if (inbox.areUnread()) {
+        $('#bell').addClass('text-warning');
+    }
+    
     var owner = new User();
     owner.create(id);
     var isAdmin = owner.isAdmin; // Isn't getting the right value
