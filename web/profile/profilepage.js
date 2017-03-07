@@ -72,11 +72,11 @@ function setUpComponents() {
 
     $('#reportModal').on('hidden.bs.modal', function () {
         window.location.reload();
-    })
+    });
     
     $('#friendAddModal').on('hidden.bs.modal', function () {
         window.location.reload();
-    })
+    });
 }
 
 function reportUser() {
@@ -163,7 +163,7 @@ function editAccount() {
 
 function deleteAccount() {
     accessor.deleteUser();
-    url = "http://143.44.67.0:13774/GoHost/"
+    url = "http://143.44.67.0:13774/GoHost/";
     setTimeout(sessionStorage.clear(), 10000);
     window.location.href = url;
 }
