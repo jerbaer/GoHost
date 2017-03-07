@@ -78,7 +78,7 @@ sys_init = {
             sessionStorage.setItem('id', parseInt(data.iduser));
             window.location.href = 'home/index.html';
             sys_init.refresh;
-        } else if(data.admin ==1){
+        } else if(data.admin == 1){
             sessionStorage.setItem('id', parseInt(data.iduser));
             window.location.href = 'notifications/index.html';
             sys_init.refresh;
