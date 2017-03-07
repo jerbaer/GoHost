@@ -42,6 +42,7 @@ function Profile() {
         this.favCategory = data.idcategory;
         this.photoURL = data.picture;
     };
+    
     this.hasFriendRequest = function () {
         var url = coreUrl + "notification/checkNotification?iduser=" + this.owner.getID() + "&sender=" + this.accessor.getID() + "&status=2";
         $.ajax({
@@ -52,15 +53,17 @@ function Profile() {
             success: this.checkRequestFollowUp,
             async: false
         });
-    }
+    };
+    
     this.checkRequestFollowUp = function (data) {
-        if (data == true) {
+        if (data === true) {
             this.canFriend = false;
         } else
             this.canFriend = true;
-    }
+    };
+    
     this.hasFlag = function () {
-        var url = coreUrl + "notification/checkNotification?iduser=" + this.owner.getID() + "&sender=" + this.accessor.getID() + "&status=4";
+        var url = this.coreUrl + "notification/checkNotification?iduser=" + this.owner.getID() + "&sender=" + this.accessor.getID() + "&status=4";
         $.ajax({
             dataType: "json",
             url: url,
@@ -69,21 +72,22 @@ function Profile() {
             success: this.checkFlagFollowUp,
             async: false
         });
-    }
+    };
+    
     this.checkFlagFollowUp = function (data) {
-        if (data == true) {
+        if (data === true) {
             this.canFlag = false;
         }
-    }
+    };
 
     this.isCurrentUser = function () {
-        if (this.owner.getID() == this.accessor.getID())
+        if (this.owner.getID() === this.accessor.getID())
             return true;
         return false;
     };
 
     this.isFriend = function () {
-        owner.createPeopleList()
+        owner.createPeopleList();
         if (owner.getPeopleList().isUserOnList(this.accessor))
             return true;
         return false;
