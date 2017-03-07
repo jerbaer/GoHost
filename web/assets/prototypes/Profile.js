@@ -42,7 +42,7 @@ function Profile() {
         this.favCategory = data.idcategory;
         this.photoURL = data.picture;
     };
-    this.hasFriendRequest = function(){
+    this.hasFriendRequest = function () {
         var url = coreUrl + "notification/checkNotification?iduser=" + this.owner.getID() + "&sender=" + this.accessor.getID() + "&status=2";
         $.ajax({
             dataType: "json",
@@ -53,12 +53,13 @@ function Profile() {
             async: false
         });
     }
-    this.checkRequestFollowUp = function(data){
-        if (data == true){
+    this.checkRequestFollowUp = function (data) {
+        if (data == true) {
             this.canFriend = false;
-        } else this.canFriend = true;
+        } else
+            this.canFriend = true;
     }
-            this.hasFlag = function(){
+    this.hasFlag = function () {
         var url = coreUrl + "notification/checkNotification?iduser=" + this.owner.getID() + "&sender=" + this.accessor.getID() + "&status=4";
         $.ajax({
             dataType: "json",
@@ -69,8 +70,8 @@ function Profile() {
             async: false
         });
     }
-        this.checkFlagFollowUp = function(data){
-        if (data == true){
+    this.checkFlagFollowUp = function (data) {
+        if (data == true) {
             this.canFlag = false;
         }
     }
