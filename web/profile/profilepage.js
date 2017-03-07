@@ -346,7 +346,7 @@ function getCategories() {
 function categoriesFollowUp(data) {
     var eventsCat = $('#category');
     for (i = 0; i < data.length; i++) {
-        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+        newHr = $('<option>').val(parseInt(data[i].idcategory)).text(data[i].name);
         eventsCat.append(newHr);
     }
 }
