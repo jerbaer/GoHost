@@ -64,8 +64,8 @@ function setUpComponents() {
     canSee = event1.canUserSee();
     inbox = new Inbox();
     inbox.create(id);
-    if(inbox.areUnread()){
-        
+    if (inbox.areUnread()) {
+        $('#bell').addClass('text-warning');
     }
     
     //This is out here because I want it to be visible to all users

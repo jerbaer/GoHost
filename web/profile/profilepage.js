@@ -33,7 +33,7 @@ function setUpComponents() {
     inbox = new Inbox();
     inbox.create(id);
     if (inbox.areUnread()) {
-
+        $('#bell').addClass('text-warning');
     }
 
     $('.ownerName').text(owner.getName());
