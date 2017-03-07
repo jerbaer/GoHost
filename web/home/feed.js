@@ -129,7 +129,7 @@ function getProfile() {
     newH1 = $('<h1>').append(newA);
 
     profPic = $('#profPic');
-    // Do picture stuff
+    profPic.attr('src', profile1.getPicture());
 
     profDesc = $('#profDesc');
     newP = $('<p>').text(profileDescription);
