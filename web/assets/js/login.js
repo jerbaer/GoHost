@@ -76,7 +76,7 @@ sys_init = {
         if (data.iduser>0 && data.admin != 1) {
             // Storing the id number of the user
             sessionStorage.setItem('id', parseInt(data.iduser));
-            window.location.href = 'home/index.html#';
+            window.location.href = 'home/index.html';
             sys_init.refresh;
         } else if(data.admin ==1){
             sessionStorage.setItem('id', parseInt(data.iduser));
