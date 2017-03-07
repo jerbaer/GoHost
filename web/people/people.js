@@ -24,8 +24,8 @@ function setUpComponents() {
     getProfile();
     inbox = new Inbox();
     inbox.create(id);
-    if(inbox.areUnread()){
-        
+    if (inbox.areUnread()) {
+        $('#bell').addClass('text-warning');
     }
 }
 
