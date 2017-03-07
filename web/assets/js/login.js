@@ -10,7 +10,7 @@ sys_init = {
    
 
     doLogin: function () {
-        var url = sys_init.coreUrl + "user?email=" + $('#loginEmail').val() + "&password=" + $('#loginPass').val();
+        var url = sys_init.coreUrl + "user/login?email=" + $('#loginEmail').val() + "&password=" + $('#loginPass').val();
         $.getJSON(url).done(sys_init.moveToHome);
     },
 
@@ -24,7 +24,7 @@ sys_init = {
             //4. PUT it into that user
             var url = sys_init.coreUrl + "user";
             var user = {name:$('#regName').val(), email: $('#regEmail').val(),
-                password: $('#regPass').val()};
+                password: $('#regPass').val(), admin: 0};
             var toSend = JSON.stringify(user);
             $.ajax({
                 url: url,
@@ -39,10 +39,10 @@ sys_init = {
     },
     
     createProfile: function (data) {
-        if (data !== "0"&& data !== 0) {
+        if (data.iduser>0) {
             // Storing the id number of the user
-            sessionStorage.setItem('id', parseInt(data));
-        } else if (data == "0" || data == 0) {
+            sessionStorage.setItem('id', parseInt(data.iduser));
+        } else if (data.iduser == "0" || data.iduser == 0) {
             $('#regWarning2').show();
         } else {
             $('#regWarning').show();
@@ -54,8 +54,8 @@ sys_init = {
         var password = user.getPassword();
         var name = user.getName();
         sys_init.profile = new Profile();
-        sys_init.profile.create(parseInt(sessionStorage.getItem('id')),parseInt(sessionStorage.getItem('id')));
-        var profileId = {idprofile: sys_init.profile.getIdProfile(), iduser: iduser, password: password, name: name, email: email};
+        sys_init.profile.create(parseInt(sessionStorage.getItem('id')),user);
+        var profileId = {idprofile: sys_init.profile.getIdProfile(), iduser: iduser, password: password, name: name, email: email, admin:0};
         $.ajax({
             url: sys_init.coreUrl + 'user/' + parseInt(sessionStorage.getItem('id')),
             type: 'PUT',
@@ -68,19 +68,24 @@ sys_init = {
     
     moveToHome2: function (data) {
         window.location.href = 'home/index.html#';
-        sys_init.refresh;
     },
     //Gonna have to get rid of this parameter since it's being passed 
     moveToHome: function (data) {
-        if (data>0) {
+        if(data!==null){
+        if (data.iduser>0 && data.admin != 1) {
             // Storing the id number of the user
-            sessionStorage.setItem('id', parseInt(data));
+            sessionStorage.setItem('id', parseInt(data.iduser));
             window.location.href = 'home/index.html#';
             sys_init.refresh;
-        } else {
+        } else if(data.admin ==1){
+            sessionStorage.setItem('id', parseInt(data.iduser));
+            window.location.href = 'notifications/index.html#';
+            sys_init.refresh;
+        }
+        else {
             $('#regWarning').show();
         }
-
+        }
     },
 
     setUpButtons: function () {

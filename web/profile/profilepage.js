@@ -62,10 +62,9 @@ function setUpComponents() {
 
 function reportUser() {
     notification = new Notification();
-    notification.create(accessor.getID(), owner.getID(), 0, new Date(), 0, 4);
-    alert("Thank you. This event has now been reported to the administrator.");
+    notification.create(owner.getID(), accessor.getID(), 0, new Date(), 0, 4);
+    alert("Thank you. This user has now been reported to the administrator.");
 }
-
 
 function getProfile() {
     profile1 = new Profile();
@@ -76,7 +75,7 @@ function getProfile() {
     newH1 = $('<h1>').text(profileName);
 
     profPic = $('#profPic');
-    // Do picture stuff
+    profPic.attr('src', profile1.getPicture());
 
     profDesc = $('#profileDesc');
     newP = $('<span>').text(profileDescription);
@@ -139,9 +138,8 @@ function editAccount() {
 function deleteAccount() {
     accessor.deleteUser();
     url = "http://143.44.67.0:13774/GoHost/"
-    sessionStorage.clear();
+    setTimeout(sessionStorage.clear(), 10000);
     window.location.href = url;
-    window.location.reload(true);
 }
 
 function getEvents() {

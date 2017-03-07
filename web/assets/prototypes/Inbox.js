@@ -38,6 +38,13 @@ function Inbox() {
                 context: this,
                 success: this.getNotificationsFollowUp
             });
+            var url = this.coreUrl + "notification/status?status=4";
+            $.ajax({
+                dataType: "json",
+                url: url,
+                context: this,
+                success: this.getNotificationsFollowUp
+            });
         }
     };
     
@@ -48,6 +55,20 @@ function Inbox() {
             notification1.createFromDB(data[i].idnotification);
             this.notifications.push(notification1);
         }
+    };
+    this.readNotifications= function(){
+        for(var i=0;i<this.notifications.length;i++){;
+            this.notifications[i].readNotification();
+            this.notifications[i].refreshEdits();
+        }
+    };
+    this.areUnread = function(){
+        for(var i=0;i<this.notifications.length;i++){;
+            if (this.notifications[i].isUnread){
+                return true;
+            }
+        }
+        return false;        
     };
     
     this.getNotificationsList= function () {
