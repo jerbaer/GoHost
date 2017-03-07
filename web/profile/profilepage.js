@@ -142,7 +142,7 @@ function deleteAccount() {
 
 function getEvents() {
     user = new User();
-    user.create(id);
+    user.create(profileid);
     getHostStrings();
 }
 
@@ -166,6 +166,7 @@ function getStringsFromEvents(eventList) {
     eventIDs = new Array(list.length);
     hostIDs = new Array(list.length);
     for (i = 0; i < list.length; i++) {
+        if(list[i].canUserSee())
         eventTitles[i] = list[i].getTitle();
         eventHosts [i] = list[i].getHost().getName();
         //var t = list[i].getEventStart().split(/[- T :]/);
