@@ -18,8 +18,9 @@ function setUpComponents() {
     user.create(id);
     inbox = new Inbox();
     inbox.create(id);
+    inbox.getNotifications();
     if (inbox.areUnread()) {
-
+        $('#bell').addClass('text-warning');
     }
 
     getEvents();
@@ -39,6 +40,7 @@ function setUpComponents() {
         setTimeout(getStringsFromEvents(visibleEvents), 10000);
         populateFeed();
     });
+    $('#refreshPage').on('click', refresh);
 }
 
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
