@@ -21,7 +21,7 @@ function Profile() {
         this.owner = new User();
         this.owner.create(iduser);
         this.accessor = accessor1;
-        var profile = {iduser: this.iduser, description: this.description, picture: 'http://143.44.67.0:13774/goHost/assets/img/profile-placeholder.png', idcategory: 1};
+        var profile = {iduser: this.iduser, description: this.description, picture: 'http://143.44.67.0:13774/GoHost/assets/img/profile-placeholder.png', idcategory: 1};
         $.ajax({
             url: this.coreUrl + "profile",
             type: 'post',
