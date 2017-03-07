@@ -40,6 +40,9 @@ function Profile() {
         this.favCategory = data.idcategory;
         this.photoURL = data.picture;
     };
+    this.hasFriendRequest = function(){
+        
+    }
 
     this.isCurrentUser = function () {
         if (this.owner.getID() == this.accessor.getID())
