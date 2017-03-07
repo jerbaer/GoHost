@@ -229,10 +229,10 @@ function getEvent() {
     // Can implement links that allow edits to be made from the page
     eventDetails = $('#eventDetails');
     newH = $('<h3>').addClass('text-info').text(eventTitle);
-    newH1 = $('<p>').text(eventStartTime);
-    newH2 = $('<p>').text(eventEndTime);
-    newH3 = $('<p>').text(eventCategory);
-    newH4 = $('<p>').text(eventLocation);
+    newH1 = $('<h5>').text(eventStartTime);
+    newH2 = $('<h5>').text(eventEndTime);
+    newH3 = $('<h5>').text(eventCategory);
+    newH4 = $('<h5>').text(eventLocation);
     newH8 = $('<p>').text(eventDescription);
     newH5 = $('<h4>').text("Event Attendees:");
     newH6 = $('<div>');
@@ -247,7 +247,6 @@ function getEvent() {
     newDiv.append(newH2);
     newDiv.append(newH3);
     newDiv.append(newH4);
-    newDiv.append('<hr>');
     newDiv.append(newH8);
     eventDetails.append(newDiv);
     eventDetails.append(newH5);
