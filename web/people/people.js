@@ -18,7 +18,7 @@ function setUpComponents() {
     id = parseInt(sessionStorage.getItem('id'));
     $('#friendsTab').on('click', getFriendsStrings);
     $('#strangersTab').on('click', getStrangersStrings);
-    $('#searchTab').on('click', userSearch);
+    $('#searchButton').on('click', userSearch);
     getPeople();
     getProfile();
 }
