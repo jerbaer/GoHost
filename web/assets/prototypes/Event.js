@@ -117,7 +117,7 @@ function Event() {
         });
     }
         this.checkRequestFollowUp = function(data){
-        if (data == true){
+        if (data === "0"){
             this.canRequest = false;
         }
     }
@@ -133,7 +133,7 @@ function Event() {
         });
     }
         this.checkFlagFollowUp = function(data){
-        if (data == true){
+        if (data === "0"){
             this.canFlag = false;
         }
     }

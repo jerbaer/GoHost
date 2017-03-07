@@ -99,12 +99,12 @@ public class NotificationFacadeREST extends AbstractFacade<Notification> {
     @GET
     @Path("checkNotification")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public boolean findByUserSenderStatus(@QueryParam("iduser") Integer id, @QueryParam("sender") Integer id1, @QueryParam("status") Integer id2){
+    public String findByUserSenderStatus(@QueryParam("iduser") Integer id, @QueryParam("sender") Integer id1, @QueryParam("status") Integer id2){
         List<Notification> n = null;
         n = em.createNamedQuery("Notification.findByUserStatusSender", Notification.class).setParameter("iduser", id).setParameter("sender", id1).setParameter("notificationstatus", id2).getResultList();
         if (n==null){
-            return false;
-        }else return true;
+            return "0";
+        }else return "1";
     }
     
     
