@@ -136,7 +136,7 @@ function User() {
         //Need to make sure my notification facade supports this call
         //This has the same callback function as the last one
         $.ajax({
-            url: this.coreUrl + 'notification/from?from=' + this.iduser,
+            url: this.coreUrl + 'notification/sender?sender=' + this.iduser,
             type: 'GET',
             context: this,
             dataType : 'json',
