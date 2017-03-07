@@ -52,8 +52,8 @@ function categoriesFollowUp(data) {
 
 function locationsFollowUp(data) {
     eventsLoc = $('#eventLoc');
-    for (i = 0; i < data.length; i++) {
-        newHr = $('<option>').val(data[i].idcategory).text(data[i].name);
+    for (var i = 0; i < data.length; i++) {
+        newHr = $('<option>').val(data[i].idlocation).text(data[i].name);
         eventsLoc.append(newHr);
     }
 }
@@ -221,7 +221,7 @@ function createEvent() {
         eventStart = $('#eventStart').val();
         eventEnd = $('#eventEnd').val();
         eventCat = $('#eventCat').val();
-        eventLoc = $('#eventLoc').val() + 1;
+        eventLoc = $('#eventLoc').val();
         eventVis = $('#eventVis').val();
         eventAcc = $('#eventAcc').val();
         maxAttendees = $('#maxAttendees').val();
