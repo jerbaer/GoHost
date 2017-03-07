@@ -18,6 +18,7 @@ function setUpComponents() {
     id = parseInt(sessionStorage.getItem('id'));
     $('#friendsTab').on('click', getFriendsStrings);
     $('#strangersTab').on('click', getStrangersStrings);
+    $('#searchTab').on('click', clearOtherTabs);
     $('#searchButton').on('click', userSearch);
     getPeople();
     getProfile();
@@ -27,7 +28,6 @@ function setUpComponents() {
         
     }
 }
-
 
 function getPeople() {
     user = new User();
@@ -75,13 +75,14 @@ function userSearch () {
         newH = $('<h3>').append(newA);
         newP = $('<p>').append(peopleDescriptions[n]);
         // figure out how to do picture
-
-        searchList.append(newH);
-        searchList.append(newP);
+        
+        newDiv = $('<div>').addClass('well');
+        newDiv.append(newH);
+        newDiv.append(newP);
+        searchList.append(newDiv);
     }
     $('#search').show();
 }
-
 
 function getStrangersStrings() {
     $('#friends').hide();
@@ -199,6 +200,15 @@ function getStringsFromStrangers(PeopleList) {
         peopleIDs[i] = list[i].getProfileID();
         peopleUserIDs[i] = list[i].getID();
     }
+}
+
+function clearOtherTabs() {
+    $('#friends').hide();
+    $('#strangers').hide();
+    $('#search').hide();
+    $('#friends').empty();
+    $('#strangers').empty();
+    $('#search').empty();
 }
 
 function getProfile() {
