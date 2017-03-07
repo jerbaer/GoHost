@@ -13,9 +13,6 @@
     position:relative;
     float:left;
 }
-
-*.icon-blue {color: #0088cc}
-*.icon-grey {color: grey}
 i {   
     width:100px;
     text-align:center;
@@ -28,8 +25,8 @@ i {
     margin: 0;
     border-radius: 50%;
     position:absolute;
-    top:-13px;
-    right:-8px;
+    top:-5px;
+    right:-5px;
     padding:5px;
 }
 
