@@ -62,8 +62,8 @@ function setUpComponents() {
 
 function reportUser() {
     notification = new Notification();
-    notification.create(accessor.getID(), owner.getID(), 0, new Date(), 0, 4);
-    alert("Thank you. This event has now been reported to the administrator.");
+    notification.create(owner.getID(), accessor.getID(), 0, new Date(), 0, 4);
+    alert("Thank you. This user has now been reported to the administrator.");
 }
 
 function getProfile() {

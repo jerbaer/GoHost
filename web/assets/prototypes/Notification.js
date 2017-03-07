@@ -44,7 +44,7 @@ function Notification(){
     }
         this.from = new User();
         this.from.create(data.sender);
-        if(data.idevent!= null){
+        if(data.idevent!= null&& data.idevent!=0){
         this.event = new Event();
         this.event.createFromDB(data.idevent, this.user);
     }
@@ -125,6 +125,16 @@ function Notification(){
     this.refresh = function() {
     window.location.href = window.location.href;
     window.location.reload(true);
+    };
+        this.refreshEdits = function () {
+        var profile = {idnotification: this.idnotification, sender: this.from, idevent: this.event.getID(), iduser: this.user.getID(), isread: this.read, };
+        $.ajax({
+            url: this.coreUrl + 'profile/' + this.idprofile,
+            type: 'PUT',
+            data: JSON.stringify(profile),
+            contentType: 'application/json',
+            dataType: 'json'
+        });
     };
     
 }
