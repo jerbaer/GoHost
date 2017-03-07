@@ -58,6 +58,11 @@ function setUpComponents() {
     isAttendee = event1.isUserInEvent();
     canJoin = (event1.canUserJoin() && !event1.isUserInEvent());
     canSee = event1.canUserSee();
+    inbox = new Inbox();
+    inbox.create(id);
+    if(inbox.areUnread()){
+        
+    }
     
     //This is out here because I want it to be visible to all users
     $('#report').on('click', reportEvent);

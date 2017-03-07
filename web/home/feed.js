@@ -16,6 +16,11 @@ function setUpComponents() {
     
     user = new User();
     user.create(id);
+    inbox = new Inbox();
+    inbox.create(id);
+    if(inbox.areUnread()){
+        
+    }
 
     
     getEvents();

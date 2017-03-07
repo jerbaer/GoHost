@@ -25,6 +25,11 @@ function setUpComponents() {
     getEvents();
     getCategories();
     getLocations();
+    inbox = new Inbox();
+    inbox.create(id);
+    if(inbox.areUnread()){
+        
+    }
 }
 
 function getCategories() {
