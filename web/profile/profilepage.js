@@ -129,7 +129,7 @@ function addFriend() {
 
 function editProfile() {
     if ($('#name').val() !== '') {
-        profile1.editName($('#name').val());
+        owner.editName($('#name').val());
     }
     if ($('#picture').val() !== '') {
         profile1.editPicture($('#picture').val());
@@ -142,6 +142,7 @@ function editProfile() {
         profile1.editCategory($('#eventsCat').val()); // Isn't passing the profile object for some reason
     }
     profile1.refreshEdits();
+    owner.refreshEdits();
 
     window.location.reload();
 }
