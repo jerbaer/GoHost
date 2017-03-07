@@ -14,6 +14,8 @@ function Profile() {
     this.coreUrl = "http://143.44.67.0:13774/GoHost/api/";
     this.idprofile = 0;
     this.favCategory = 0;
+    this.canFriend = true;
+    this.canFlag = true;
 
 
     this.create = function (iduser, accessor1) { // might pass iduser instead as mentioned above
@@ -40,15 +42,52 @@ function Profile() {
         this.favCategory = data.idcategory;
         this.photoURL = data.picture;
     };
+    
+    this.hasFriendRequest = function () {
+        var url = this.coreUrl + "notification/checkNotification?iduser=" + this.owner.getID() + "&sender=" + this.accessor.getID() + "&status=2";
+        $.ajax({
+            dataType: "json",
+            url: url,
+            type: 'GET',
+            context: this,
+            success: this.checkRequestFollowUp,
+            async: false
+        });
+    };
+    
+    this.checkRequestFollowUp = function (data) {
+        if (data === true) {
+            this.canFriend = false;
+        } else
+            this.canFriend = true;
+    };
+    
+    this.hasFlag = function () {
+        var url = this.coreUrl + "notification/checkNotification?iduser=" + this.owner.getID() + "&sender=" + this.accessor.getID() + "&status=4";
+        $.ajax({
+            dataType: "json",
+            url: url,
+            type: 'GET',
+            context: this,
+            success: this.checkFlagFollowUp,
+            async: false
+        });
+    };
+    
+    this.checkFlagFollowUp = function (data) {
+        if (data === true) {
+            this.canFlag = false;
+        }
+    };
 
     this.isCurrentUser = function () {
-        if (this.owner.getID() == this.accessor.getID())
+        if (this.owner.getID() === this.accessor.getID())
             return true;
         return false;
     };
 
     this.isFriend = function () {
-        owner.createPeopleList()
+        owner.createPeopleList();
         if (owner.getPeopleList().isUserOnList(this.accessor))
             return true;
         return false;

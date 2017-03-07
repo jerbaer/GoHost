@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Notification.findByIdevent", query = "SELECT n FROM Notification n WHERE n.idevent = :idevent")
     , @NamedQuery(name = "Notification.findByNotificationstatus", query = "SELECT n FROM Notification n WHERE n.notificationstatus = :notificationstatus")
     , @NamedQuery(name = "Notification.findByisRead", query = "SELECT n FROM Notification n WHERE n.isread = :isread")
-    , @NamedQuery(name = "Notification.findByTimesent", query = "SELECT n FROM Notification n WHERE n.timesent = :timesent")})
+    , @NamedQuery(name = "Notification.findByTimesent", query = "SELECT n FROM Notification n WHERE n.timesent = :timesent")
+    , @NamedQuery(name = "Notification.findByUserStatusSender", query = "SELECT n FROM Notification n WHERE n.notificationstatus = :notificationstatus AND n.iduser = :iduser AND n.sender = :sender")})
 public class Notification implements Serializable {
 
     private static final long serialVersionUID = 1L;

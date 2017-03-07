@@ -7,7 +7,6 @@ var profile1 = null;
 var user = null;
 var owner = null;
 
-var profileName;
 var profileDescription;
 var favCat;
 var favCategory;
@@ -15,6 +14,9 @@ var favCategory;
 var eventsHosted = null;
 var eventsAttending = null;
 var visibleEvents = null;
+var canFlag = true;
+var canRequest = true;
+
 String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
     var t = this.split(/[- :T]/);
     return new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
@@ -30,23 +32,21 @@ function setUpComponents() {
     accessor.create(id);
     inbox = new Inbox();
     inbox.create(id);
-    if(inbox.areUnread()){
-        
+    if (inbox.areUnread()) {
+
     }
-    
+
     $('.ownerName').text(owner.getName());
 
     getProfile();
     getCategories();
-    
     getEvents();
-    getCategories();
     getLocations();
+    canFlagProfile();
+    canFriendRequestProfile();
 
     isOwner = profile1.isCurrentUser();
     isFriend = profile1.isFriend();
-    $('#flagUser').removeClass('hidden');
-    $('#report').on('click', reportUser);
     if (isOwner) {
         $('#ownerOnly').removeClass('hidden');
         $('#editProfile').on('click', editProfile);
@@ -58,9 +58,13 @@ function setUpComponents() {
         $('#friendsOnly').removeClass('hidden');
         $('#attendingtab').on('click', getAttendingStrings);
         $('#hostingtab').on('click', getHostStrings);
+        $('#flagUser').removeClass('hidden');
+        $('#report').on('click', reportUser);
     } else {
         $('#addFriend').removeClass('hidden');
         $('#addFriend').on('click', addFriend);
+        $('#flagUser').removeClass('hidden');
+        $('#report').on('click', reportUser);
     }
 }
 
@@ -69,15 +73,20 @@ function reportUser() {
     notification.create(owner.getID(), accessor.getID(), 0, new Date(), 0, 4);
     alert("Thank you. This user has now been reported to the administrator.");
 }
+function canFlagProfile(){
+    profile1.hasFlag();
+    canFlag = profile1.canFlag;
+}
+function canFriendRequestProfile(){
+    profile1.hasFriendRequest();
+    canRequest = profile1.canFriend;
+}
 
 function getProfile() {
     profile1 = new Profile();
     profile1.createFromDB(owner, accessor);
     getStringsFromProfile(profile1);
     // Popualte the html page
-    profName = $('#profName');
-    newH1 = $('<h1>').text(profileName);
-
     profPic = $('#profPic');
     profPic.attr('src', profile1.getPicture());
 
@@ -88,13 +97,11 @@ function getProfile() {
     favCategory.retrieveName();
     newP2 = $('<span>').text(favCategory.getName());
 
-    profName.append(newH1);
     profDesc.append(newP);
     favCat.append(newP2);
 }
 
 function getStringsFromProfile(profile1) {
-    profileName = profile1.getName();
     profileDescription = profile1.getDescription();
     favCategory = new Category(profile1.getCategory());
 }
@@ -147,7 +154,7 @@ function deleteAccount() {
 
 function getEvents() {
     user = new User();
-    user.create(id);
+    user.create(profileid);
     getHostStrings();
 }
 
@@ -171,13 +178,14 @@ function getStringsFromEvents(eventList) {
     eventIDs = new Array(list.length);
     hostIDs = new Array(list.length);
     for (i = 0; i < list.length; i++) {
-        eventTitles[i] = list[i].getTitle();
+        if (list[i].canUserSee())
+            eventTitles[i] = list[i].getTitle();
         eventHosts [i] = list[i].getHost().getName();
         //var t = list[i].getEventStart().split(/[- T :]/);
         var d = list[i].getEventStart().mysqlToDate();
-        eventStartTimes[i] = d.toString().substring(0,21);
+        eventStartTimes[i] = d.toString().substring(0, 21);
         var x = list[i].getEventEnd().mysqlToDate();
-        eventEndTimes[i] = x.toString().substring(0,21);
+        eventEndTimes[i] = x.toString().substring(0, 21);
         eventCategories[i] = list[i].getCategory();
         eventLocations[i] = list[i].getLocation();
         eventIDs[i] = list[i].getID();

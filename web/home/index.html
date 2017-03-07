@@ -16,6 +16,8 @@
         <script src="../assets/prototypes/Category.js"></script>
         <script src="../assets/prototypes/Location.js"></script>
         <script src="../assets/prototypes/PeopleList.js"></script>
+        <script src="../assets/prototypes/Inbox.js"></script>
+        <script src="../assets/prototypes/Notification.js"></script>
         <script src="feed.js"></script>
         <style type="text/css">
             body { 
@@ -40,7 +42,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="../eventsmanager"><i class="fa fa-calendar-o fa-fw"></i></a></li>
                         <li><a href="../people"><i class="fa fa-user-o fa-fw"></i></a></li>
-                        <li><a href="../notifications"><i class="fa fa-bell-o fa-fw"></i></a></li>
+                        <li><a href="../notifications"><i class="fa fa-bell fa-fw" id="bell"></i></a></li>
                         <li><a href="..">Logout</a></li>
                     </ul>
                 </div>
@@ -75,10 +77,12 @@
                     <p>Search by Location:</p>
                     <div class="input-group">
                         <select class="form-control" id="location">
-                        <!-- Locations populated from database -->
-                    </select>
+                            <!-- Locations populated from database -->
+                        </select>
                         <span class="input-group-addon btn btn-info" id="locationButton">Search</span>
                     </div>
+                    <br>
+                    <button class="btn btn-info" id="refreshPage">Reset Filters</button>
                     <hr>
                 </div>
                 <div class="col-sm-pull-3 col-sm-8">

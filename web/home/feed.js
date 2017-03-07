@@ -13,16 +13,16 @@ var hostIDs;
 function setUpComponents() {
     jQuery.ajaxSetup({async: false});
     id = parseInt(sessionStorage.getItem('id'));
-    
+
     user = new User();
     user.create(id);
     inbox = new Inbox();
     inbox.create(id);
-    if(inbox.areUnread()){
-        
+    inbox.getNotifications();
+    if (inbox.areUnread()) {
+        $('#bell').addClass('text-warning');
     }
 
-    
     getEvents();
     getProfile();
     getCategories();
@@ -40,10 +40,12 @@ function setUpComponents() {
         setTimeout(getStringsFromEvents(visibleEvents), 10000);
         populateFeed();
     });
+    $('#refreshPage').on('click', refresh);
 }
-String.prototype.mysqlToDate = String.prototype.mysqlToDate || function() {
+
+String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
     var t = this.split(/[- :T]/);
-    return new Date(t[0], t[1]-1, t[2], t[3]||0, t[4]||0, t[5]||0);
+    return new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
 };
 
 function getEvents() {
@@ -53,6 +55,7 @@ function getEvents() {
     setTimeout(getStringsFromEvents(visibleEvents), 10000);
     populateFeed();
 }
+
 function populateFeed() {
     //this is where it connects with HTML to print the feed in objects
     var newH, newA, newA2, newHr, newH1, newH2, newH3, newH4, newH5, eventsFeed;
@@ -92,9 +95,14 @@ function populateFeed() {
 
 function getStringsFromEvents(eventList) {
     list = eventList.getEventsList();
-    list.sort(function(a, b) {
-    if (a.eventStart>b.eventStart) return -1; else if (a.eventStart<b.eventStart) return 1; else return 0;
-});
+    list.sort(function (a, b) {
+        if (a.eventStart > b.eventStart)
+            return -1;
+        else if (a.eventStart < b.eventStart)
+            return 1;
+        else
+            return 0;
+    });
     list.sort;
     eventTitles = new Array(list.length);
     eventHosts = new Array(list.length);
@@ -109,9 +117,9 @@ function getStringsFromEvents(eventList) {
         eventHosts [i] = list[i].getHost().getName();
         //var t = list[i].getEventStart().split(/[- T :]/);
         var d = list[i].getEventStart().mysqlToDate();
-        eventStartTimes[i] = d.toString().substring(0,21);
+        eventStartTimes[i] = d.toString().substring(0, 21);
         var x = list[i].getEventEnd().mysqlToDate();
-        eventEndTimes[i] = x.toString().substring(0,21);
+        eventEndTimes[i] = x.toString().substring(0, 21);
         eventCategories[i] = list[i].getCategory();
         eventLocations[i] = list[i].getLocation();
         eventIDs[i] = list[i].getID();

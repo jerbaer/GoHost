@@ -13,6 +13,7 @@
         <script src="../assets/prototypes/User.js"></script>
         <script src="../assets/prototypes/PeopleList.js"></script>
         <script src="../assets/prototypes/Profile.js"></script>
+        <script src="../assets/prototypes/Inbox.js"></script>
         <style type="text/css">
             body { 
                 padding: 60px 0 0 0;
@@ -36,7 +37,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="../eventsmanager"><i class="fa fa-calendar-o fa-fw"></i></a></li>
                         <li><a href="../people"><i class="fa fa-user-o fa-fw"></i></a></li>
-                        <li><a href="../notifications"><i class="fa fa-bell-o fa-fw"></i></a></li>
+                        <li><a href="../notifications"><i class="fa fa-bell-o fa-fw" id="bell"></i></a></li>
                         <li><a href="..">Logout</a></li>
                     </ul>
                 </div>
@@ -44,8 +45,26 @@
         </div>
         <div class="container">
             <br>
-            <div class="row">
-                <div class="col-sm-8">
+            <div class="row-fluid">
+                <div class="col-sm-push-9 col-sm-3">
+                    <!-- User Profile Information Here -->
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <!-- Profile Picture Here -->
+                            <img class="img-responsive" id="profPic" alt="profile-picture">
+                        </div>
+                        <div class="col-xs-offset-1 col-xs-6">
+                            <div class="row" id="profName">
+                                <!-- User Name -->
+                            </div>
+                            <div class="row" id="profDesc">
+                                <!-- User Description -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col-sm-pull-3 col-sm-8">
                     <!-- List of friends, clicking one takes you to their user page -->
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#friends" id="friendsTab">My Friends</a></li>
@@ -57,26 +76,20 @@
                         <div id="friends" class="tab-pane fade in active"></div>
                         <div id="strangers" class="tab-pane fade"></div>
                         <div id="search1" class="tab-pane fade">
-                            <label for="userName" class="col-sm-3 control-label">Enter user name: <span class="text-warning">*</span></label>
-                                <div class="col-sm-9">
-                                    <input class="form-control" id="userName" name="userName" placeholder="Full or part of user name" type="text">
+                            <br>
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="userName" class="col-sm-3 control-label">Enter User Name </label>
+                                    <div class="col-sm-9">
+                                        <div class="input-group">
+                                            <input class="form-control" id="userName" name="userName" placeholder="Enter Name Here" type="text">
+                                            <span class="input-group-addon btn btn-info" id="searchButton">Search</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            <button class="btn btn-info" id="searchButton" type="button">Submit</button>
-                            <div id="search" class="tab-pane fade"></div>
+                            </form>
+                            <div id="search"></div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xs-2 col-sm-offset-2">
-                    <!-- User Profile Information Here -->
-                    <div class="row" id="profPic">
-                        <!-- Profile Picture Here -->
-                        <img class="img-responsive" src="../assets/img/profile-placeholder.png" alt="Profile Placeholder">
-                    </div>
-                    <div class="row" id="profName">
-                        <!-- User Name -->
-                    </div>
-                    <div class="row" id="profDesc">
-                        <!-- User Description -->
                     </div>
                 </div>
             </div>

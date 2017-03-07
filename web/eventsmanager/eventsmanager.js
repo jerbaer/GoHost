@@ -27,8 +27,8 @@ function setUpComponents() {
     getLocations();
     inbox = new Inbox();
     inbox.create(id);
-    if(inbox.areUnread()){
-        
+    if (inbox.areUnread()) {
+        $('#bell').addClass('text-warning');
     }
 }
 
@@ -87,9 +87,9 @@ function getStringsFromEvents(eventList) {
         eventHosts [i] = list[i].getHost().getName();
         //var t = list[i].getEventStart().split(/[- T :]/);
         var d = list[i].getEventStart().mysqlToDate();
-        eventStartTimes[i] = d.toString().substring(0,21);
+        eventStartTimes[i] = d.toString().substring(0, 21);
         var x = list[i].getEventEnd().mysqlToDate();
-        eventEndTimes[i] = x.toString().substring(0,21);
+        eventEndTimes[i] = x.toString().substring(0, 21);
         eventCategories[i] = list[i].getCategory();
         eventLocations[i] = list[i].getLocation();
         eventIDs[i] = list[i].getID();
