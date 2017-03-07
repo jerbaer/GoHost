@@ -51,8 +51,7 @@ function setUpComponents() {
     
     getCategories();
     getLocations();
-
-
+    
     //Call function to display the event based on the relation of the
     //userto that event. Host, Attendee, neither
     getEvent();
@@ -440,11 +439,6 @@ function getStringsFromPeople(PeopleList) {
             count++;
         }
     }
-}
-
-//This will be coded in iteration 2.0?? hehe ecks dee
-function chat() {
-
 }
 
 $.wait = function (ms) {
