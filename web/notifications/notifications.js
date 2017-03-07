@@ -29,10 +29,9 @@ String.prototype.mysqlToDate = String.prototype.mysqlToDate || function () {
 
 //This will go through the list of notifications, checking what type of notification
 //it is all
-function getNotifications() {
+function getNotifications(inbox) {
     inbox = new Inbox();
     inbox.create(id);
-    inbox.readNotifications();
     inbox.getNotifications();
     notificationsFeed = $('#notifications');
     notifications = new Array();
