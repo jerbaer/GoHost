@@ -140,7 +140,6 @@ function getProfile() {
 
 function getStringsFromProfile(profile1) {
     profileName = profile1.getName();
-    profilePicture = profile1.getPicture();
     profileDescription = profile1.getDescription();
 }
 function getCategories() {
