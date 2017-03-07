@@ -62,6 +62,8 @@ function Event() {
 
     this.create = function (idhost, idcategory, eventStart, eventEnd, description, title, idvisibility, idaccessibility, idlocation, eventMax) {
         this.tempID = idhost;
+        eventStart.slice(0,-1);
+        eventEnd.slice(0,-1);
         var event = {title: title, idhost: idhost, maxattendees: parseInt(eventMax), idlocation: idlocation, visibility: parseInt(idvisibility), accessibility: parseInt(idaccessibility), starttime: eventStart, endtime: eventEnd, description: description, idcategory: parseInt(idcategory)};
         $.ajax({
             url: this.coreUrl + "event",
