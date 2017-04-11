@@ -1,0 +1,1 @@
+add number of participants on event page + add that to database
